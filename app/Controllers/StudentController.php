@@ -432,163 +432,145 @@ class StudentController extends Controller
      * Excel'den içe aktar
      */
     public function importExcel() {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            redirect('/students');
-        }
-        
-        // CSRF kontrolü
-        if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
-            setFlashMessage('Geçersiz form token.', 'error');
-            redirect('/students');
-        }
-        
-        // Dosya kontrolü
-        if (!isset($_FILES['excel_file']) || $_FILES['excel_file']['error'] !== UPLOAD_ERR_OK) {
-            setFlashMessage('Dosya yüklenemedi.', 'error');
-            redirect('/students');
-        }
-        
-        $file = $_FILES['excel_file'];
-        
-        // Validasyon
-        $errors = validateExcelFile($file);
-        if (!empty($errors)) {
-            setFlashMessage(implode('<br>', $errors), 'error');
-            redirect('/students');
-        }
-        
-        // Geçici dosyayı kaydet
-        $tempPath = UPLOAD_PATH . '/excel/temp_' . time() . '.xlsx';
-        if (!move_uploaded_file($file['tmp_name'], $tempPath)) {
-            setFlashMessage('Dosya kaydedilemedi.', 'error');
-            redirect('/students');
-        }
-        
-        // Excel'i oku
-        $result = importStudentsFromExcel($tempPath);
-        
-        // Geçici dosyayı sil
-        unlink($tempPath);
-        
-        if (!$result['success']) {
-            setFlashMessage($result['message'], 'error');
-            redirect('/students');
-        }
-        
-        // Veritabanına kaydet
-        $imported = 0;
-        $updated = 0;
-        $skipped = 0;
-        $importErrors = [];
-        $duplicateTcCount = 0;
-        $dbErrorCount = 0;
-        
-        // İmport modu: create veya update (POST parametresi)
-        $importMode = $_POST['import_mode'] ?? 'skip'; // 'skip' veya 'update'
-        
-        foreach ($result['data'] as $studentData) {
-            // TC unique kontrolü
-            if (!empty($studentData['tc_no'])) {
-                $existingStudent = $this->studentModel->findWhere(['tc_no' => $studentData['tc_no']]);
-                
-                if ($existingStudent) {
-                    if ($importMode === 'update') {
-                        // Mevcut öğrenciyi güncelle
-                        if ($this->studentModel->update($existingStudent['id'], $studentData)) {
-                            $updated++;
+        try {
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                redirect('/students');
+            }
+            // CSRF kontrolü
+            if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+                setFlashMessage('Geçersiz form token.', 'error');
+                redirect('/students');
+            }
+            // Dosya kontrolü
+            if (!isset($_FILES['excel_file']) || $_FILES['excel_file']['error'] !== UPLOAD_ERR_OK) {
+                setFlashMessage('Dosya yüklenemedi.', 'error');
+                redirect('/students');
+            }
+            $file = $_FILES['excel_file'];
+            // Validasyon
+            $errors = validateExcelFile($file);
+            if (!empty($errors)) {
+                setFlashMessage(implode('<br>', $errors), 'error');
+                redirect('/students');
+            }
+            // Geçici dosyayı kaydet
+            $tempPath = UPLOAD_PATH . '/excel/temp_' . time() . '.xlsx';
+            if (!move_uploaded_file($file['tmp_name'], $tempPath)) {
+                setFlashMessage('Dosya kaydedilemedi.', 'error');
+                redirect('/students');
+            }
+            // Excel'i oku
+            $result = importStudentsFromExcel($tempPath);
+            // Geçici dosyayı sil
+            unlink($tempPath);
+            if (!$result['success']) {
+                setFlashMessage($result['message'], 'error');
+                redirect('/students');
+            }
+            // Veritabanına kaydet
+            $imported = 0;
+            $updated = 0;
+            $skipped = 0;
+            $importErrors = [];
+            $duplicateTcCount = 0;
+            $dbErrorCount = 0;
+            // İmport modu: create veya update (POST parametresi)
+            $importMode = $_POST['import_mode'] ?? 'skip'; // 'skip' veya 'update'
+            foreach ($result['data'] as $studentData) {
+                // TC unique kontrolü
+                if (!empty($studentData['tc_no'])) {
+                    $existingStudent = $this->studentModel->findWhere(['tc_no' => $studentData['tc_no']]);
+                    if ($existingStudent) {
+                        if ($importMode === 'update') {
+                            // Mevcut öğrenciyi güncelle
+                            if ($this->studentModel->update($existingStudent['id'], $studentData)) {
+                                $updated++;
+                            } else {
+                                $skipped++;
+                                $dbErrorCount++;
+                                $importErrors[] = $studentData['first_name'] . ' ' . $studentData['last_name'] . ' (TC: ' . $studentData['tc_no'] . ') - Güncelleme hatası';
+                            }
+                            continue;
                         } else {
+                            // Atla
                             $skipped++;
-                            $dbErrorCount++;
-                            $importErrors[] = $studentData['first_name'] . ' ' . $studentData['last_name'] . ' (TC: ' . $studentData['tc_no'] . ') - Güncelleme hatası';
+                            $duplicateTcCount++;
+                            $importErrors[] = $studentData['first_name'] . ' ' . $studentData['last_name'] . ' (TC: ' . $studentData['tc_no'] . ') - Zaten kayıtlı';
+                            continue;
                         }
-                        continue;
-                    } else {
-                        // Atla
-                        $skipped++;
-                        $duplicateTcCount++;
-                        $importErrors[] = $studentData['first_name'] . ' ' . $studentData['last_name'] . ' (TC: ' . $studentData['tc_no'] . ') - Zaten kayıtlı';
-                        continue;
                     }
                 }
-            }
-            
-            $studentData['created_by'] = getCurrentUserId();
-            
-            try {
-                $inserted = $this->studentModel->create($studentData);
-                if ($inserted) {
-                    $imported++;
-                } else {
+                $studentData['created_by'] = getCurrentUserId();
+                try {
+                    $inserted = $this->studentModel->create($studentData);
+                    if ($inserted) {
+                        $imported++;
+                    } else {
+                        $skipped++;
+                        $dbErrorCount++;
+                        $errorMsg = $studentData['first_name'] . ' ' . $studentData['last_name'];
+                        if (!empty($studentData['tc_no'])) {
+                            $errorMsg .= ' (TC: ' . $studentData['tc_no'] . ')';
+                        }
+                        $errorMsg .= ' - Kayıt hatası (DB insert failed)';
+                        $importErrors[] = $errorMsg;
+                        // Log detailed error
+                        error_log("Student import error: " . $errorMsg . " | Data: " . json_encode($studentData));
+                    }
+                } catch (Exception $e) {
                     $skipped++;
                     $dbErrorCount++;
-                    $errorMsg = $studentData['first_name'] . ' ' . $studentData['last_name'];
-                    if (!empty($studentData['tc_no'])) {
-                        $errorMsg .= ' (TC: ' . $studentData['tc_no'] . ')';
-                    }
-                    $errorMsg .= ' - Kayıt hatası (DB insert failed)';
-                    $importErrors[] = $errorMsg;
-                    
-                    // Log detailed error
-                    error_log("Student import error: " . $errorMsg . " | Data: " . json_encode($studentData));
+                    $importErrors[] = $studentData['first_name'] . ' ' . $studentData['last_name'] . ' - Exception: ' . $e->getMessage();
+                    error_log("Student import exception: " . $e->getMessage() . " | Data: " . json_encode($studentData));
                 }
-            } catch (Exception $e) {
-                $skipped++;
-                $dbErrorCount++;
-                $importErrors[] = $studentData['first_name'] . ' ' . $studentData['last_name'] . ' - Exception: ' . $e->getMessage();
-                error_log("Student import exception: " . $e->getMessage() . " | Data: " . json_encode($studentData));
             }
-        }
-        
-        // Log kaydı
-        logActivity('students_imported', 'students', null, null, [
-            'imported' => $imported,
-            'updated' => $updated,
-            'skipped' => $skipped,
-            'total' => count($result['data']),
-            'duplicate_tc' => $duplicateTcCount,
-            'db_errors' => $dbErrorCount,
-            'mode' => $importMode
-        ]);
-        
-        // Sonuç mesajı
-        $message = "";
-        if ($imported > 0) {
-            $message .= "{$imported} yeni öğrenci eklendi.";
-        }
-        if ($updated > 0) {
-            $message .= ($imported > 0 ? " " : "") . "{$updated} öğrenci güncellendi.";
-        }
-        
-        if ($skipped > 0) {
-            $message .= ($imported > 0 || $updated > 0 ? " " : "") . "{$skipped} öğrenci atlandı";
-            if ($duplicateTcCount > 0) {
-                $message .= " ({$duplicateTcCount} TC zaten kayıtlı";
+            // Log kaydı
+            logActivity('students_imported', 'students', null, null, [
+                'imported' => $imported,
+                'updated' => $updated,
+                'skipped' => $skipped,
+                'total' => count($result['data']),
+                'duplicate_tc' => $duplicateTcCount,
+                'db_errors' => $dbErrorCount,
+                'mode' => $importMode
+            ]);
+            // Sonuç mesajı
+            $message = "";
+            if ($imported > 0) {
+                $message .= "{$imported} yeni öğrenci eklendi.";
             }
-            if ($dbErrorCount > 0) {
-                $message .= ($duplicateTcCount > 0 ? ', ' : ' (') . "{$dbErrorCount} kayıt hatası";
+            if ($updated > 0) {
+                $message .= ($imported > 0 ? " " : "") . "{$updated} öğrenci güncellendi.";
             }
-            if ($duplicateTcCount > 0 || $dbErrorCount > 0) {
-                $message .= ")";
+            if ($skipped > 0) {
+                $message .= ($imported > 0 || $updated > 0 ? " " : "") . "{$skipped} öğrenci atlandı";
+                if ($duplicateTcCount > 0) {
+                    $message .= " ({$duplicateTcCount} TC zaten kayıtlı";
+                }
+                if ($dbErrorCount > 0) {
+                    $message .= ($duplicateTcCount > 0 ? ', ' : ' (') . "{$dbErrorCount} kayıt hatası";
+                }
+                if ($duplicateTcCount > 0 || $dbErrorCount > 0) {
+                    $message .= ")";
+                }
+                $message .= ".";
             }
-            $message .= ".";
+            if (empty($message)) {
+                $message = "Hiçbir öğrenci işlenmedi.";
+            }
+            if (!empty($result['errors'])) {
+                $message .= " Excel okuma uyarıları: " . count($result['errors']);
+            }
+            setFlashMessage($message, ($imported > 0 || $updated > 0) ? 'success' : 'warning');
+            // Hata detaylarını session'a kaydet (opsiyonel)
+            if (!empty($importErrors) && count($importErrors) < 20) {
+                $_SESSION['import_errors'] = $importErrors;
+            }
+            redirect('/students');
+        } catch (Exception $ex) {
+            setFlashMessage('Excel yükleme sırasında beklenmeyen bir hata oluştu: ' . $ex->getMessage(), 'error');
+            redirect('/students');
         }
-        
-        if (empty($message)) {
-            $message = "Hiçbir öğrenci işlenmedi.";
-        }
-        
-        if (!empty($result['errors'])) {
-            $message .= " Excel okuma uyarıları: " . count($result['errors']);
-        }
-        
-        setFlashMessage($message, ($imported > 0 || $updated > 0) ? 'success' : 'warning');
-        
-        // Hata detaylarını session'a kaydet (opsiyonel)
-        if (!empty($importErrors) && count($importErrors) < 20) {
-            $_SESSION['import_errors'] = $importErrors;
-        }
-        
-        redirect('/students');
     }
     
     /**
