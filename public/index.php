@@ -1,4 +1,16 @@
 <?php
+// ======================================================================
+// FATAL ERROR YAKALAMA (Beyaz sayfa için)
+// ======================================================================
+register_shutdown_function(function() {
+    $error = error_get_last();
+    if ($error) {
+        echo '<pre style="background:#fff;color:#c00;padding:16px;border:2px solid #c00;font-size:16px;">';
+        echo "<b>Fatal Error:</b>\n";
+        print_r($error);
+        echo '</pre>';
+    }
+});
 
 // ======================================================================
 // 0. HATA AYIKLAMA KODU (Geliştirme için)
