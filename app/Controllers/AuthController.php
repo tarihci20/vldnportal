@@ -29,11 +29,11 @@ class AuthController extends Controller
             redirect('/dashboard');
         }
 
-        // Login view'ını göster
+        // Sadece login view'ı, layout olmadan göster
         $this->view('auth/login', [
             'title' => 'Giriş Yap',
             'pageTitle' => 'Vildan Portal - Giriş'
-        ]);
+        ], null);
     }
 
     /**
