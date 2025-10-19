@@ -285,13 +285,13 @@ $pageTitle = 'Yeni Öğrenci Ekle';
                 <div class="flex items-center justify-end space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                     <a 
                         href="<?= url('/students') ?>" 
-                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 border border-blue-600 shadow"
                     >
                         <i class="fas fa-times mr-2"></i> İptal
                     </a>
                     <button 
                         type="submit" 
-                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 border border-blue-600 shadow"
                     >
                         <i class="fas fa-save mr-2"></i> Kaydet
                     </button>
