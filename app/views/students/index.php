@@ -1,4 +1,27 @@
-﻿<!-- Page Header -->
+﻿<!-- Flash Messages -->
+<?php $flash = getFlashMessage(); if ($flash): ?>
+    <div class="mb-6 p-4 rounded-lg <?= $flash['type'] === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : ($flash['type'] === 'error' ? 'bg-red-50 text-red-800 border border-red-200' : 'bg-yellow-50 text-yellow-800 border border-yellow-200') ?> flex items-center gap-3">
+        <?php if ($flash['type'] === 'success'): ?>
+            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+            </svg>
+        <?php elseif ($flash['type'] === 'error'): ?>
+            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9l-6 6M9 9l6 6" />
+            </svg>
+        <?php else: ?>
+            <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+            </svg>
+        <?php endif; ?>
+        <span class="font-semibold"><?= e($flash['message']) ?></span>
+    </div>
+<?php endif; ?>
+
+<!-- Page Header -->
 <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
     <div>
         <h1 class="text-3xl font-bold text-gray-900">Öğrenci Bilgileri</h1>
