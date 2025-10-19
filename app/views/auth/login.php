@@ -48,17 +48,18 @@
                             <img src="<?= asset('img/logo.png') ?>" alt="Logo" class="w-20 h-20 object-contain">
                         </div>
                         <h1 class="text-4xl font-extrabold text-white mb-2 tracking-tight drop-shadow">Vildan Portal</h1>
+                        <p class="text-base text-white mb-2 drop-shadow">Vildan Koleji Bilgi Sistemi</p>
                     </div>
                     <!-- Login Card -->
                     <div class="glass-card p-10">
                         <?php $flash = getFlashMessage(); if ($flash): ?>
                             <?php if ($flash['type'] === 'success'): ?>
-                                <div class="mb-6 p-4 rounded-lg bg-green-50 text-green-800 border border-green-200 flex items-center gap-3">
+                                <div class="mb-6 p-4 rounded-lg bg-green-50 text-green-700 border border-green-200 flex items-center gap-3">
                                     <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
                                     </svg>
-                                    <span class="font-semibold">Giriş başarılı</span>
+                                    <span class="font-semibold text-green-700"><?= e($flash['message']) ?></span>
                                 </div>
                             <?php else: ?>
                                 <div class="mb-6 p-4 rounded-lg bg-red-50 text-red-800 border-red-200 border flex items-center gap-3">
@@ -66,7 +67,7 @@
                                         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9l-6 6M9 9l6 6" />
                                     </svg>
-                                    <span class="font-semibold"><?= e($flash['message']) ?></span>
+                                    <span class="font-semibold text-red-800"><?= e($flash['message']) ?></span>
                                 </div>
                             <?php endif; ?>
                         <?php endif; ?>

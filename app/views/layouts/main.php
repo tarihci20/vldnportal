@@ -263,7 +263,7 @@
             
             <!-- Flash Messages -->
             <?php $flash = getFlashMessage(); if ($flash): ?>
-                <div class="mb-4 p-3 rounded-lg <?= $flash['type'] === 'success' ? 'bg-green-50 text-green-800 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200' ?>">
+                <div class="mb-4 p-3 rounded-lg <?= $flash['type'] === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200' ?>">
                     <div class="flex">
                         <div class="flex-shrink-0">
                             <?php if ($flash['type'] === 'success'): ?>
@@ -277,7 +277,7 @@
                             <?php endif; ?>
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm font-medium"><?= e($flash['message']) ?></p>
+                            <p class="text-sm font-medium <?= $flash['type'] === 'success' ? 'text-green-700' : 'text-red-800' ?>"><?= e($flash['message']) ?></p>
                         </div>
                     </div>
                 </div>
