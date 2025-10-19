@@ -1,0 +1,76 @@
+<?php
+/**
+ * Vildan Portal - Production Config (cPanel)
+ * 
+ * ⚠️ DEPLOYMENT SONRASI BU DOSYAYI KULLANIN
+ * 
+ * Kullanım:
+ * 1. Bu dosyanın ismini "config.php.production" olarak kaydedin
+ * 2. cPanel'e upload ettikten sonra:
+ *    - config/config.php dosyasını silin veya yedekleyin (config.php.local)
+ *    - config.php.production ismini config.php olarak değiştirin
+ * 3. Aşağıdaki değerleri kendi hosting bilgilerinizle güncelleyin
+ */
+
+return [
+    // Uygulama bilgileri
+    'app_name' => 'Vildan Portal',
+    'app_url' => 'https://yourdomain.com/portalv2', // ⚠️ DEĞİŞTİRİN
+    'base_path' => '/portalv2',
+    'environment' => 'production',
+    'debug' => false, // ⚠️ PRODUCTION'DA MUTLAKA FALSE!
+    
+    // Yollar (cPanel shared hosting için)
+    // cPanel'de genellikle: /home/USERNAME/public_html/portalv2
+    'root_path' => '/home/yourusername/public_html/portalv2', // ⚠️ DEĞİŞTİRİN
+    'public_path' => '/home/yourusername/public_html/portalv2/public',
+    'storage_path' => '/home/yourusername/public_html/portalv2/storage',
+    'upload_path' => '/home/yourusername/public_html/portalv2/public/assets/uploads',
+    
+    // URL'ler
+    'assets_url' => '/portalv2/public/assets',
+    'upload_url' => '/portalv2/public/assets/uploads',
+    'base_url' => 'https://yourdomain.com/portalv2', // ⚠️ DEĞİŞTİRİN
+    
+    // Session
+    'session_lifetime' => 7200, // 2 saat (saniye)
+    'session_name' => 'vildan_portal_session',
+    'session_path' => '/portalv2',
+    
+    // Timezone
+    'timezone' => 'Europe/Istanbul',
+    'locale' => 'tr_TR',
+    
+    // Pagination
+    'per_page' => 20,
+    'max_per_page' => 100,
+    
+    // Upload
+    'max_upload_size' => 10 * 1024 * 1024, // 10MB
+    'allowed_image_types' => ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+    'allowed_document_types' => ['pdf', 'doc', 'docx', 'xls', 'xlsx'],
+    
+    // Security
+    'csrf_token_name' => 'csrf_token',
+    'csrf_token_lifetime' => 3600, // 1 saat
+    'password_min_length' => 8,
+    'max_login_attempts' => 5,
+    'login_lockout_time' => 900, // 15 dakika
+    
+    // Email (PHPMailer için)
+    'mail_from_address' => 'noreply@yourdomain.com', // ⚠️ DEĞİŞTİRİN
+    'mail_from_name' => 'Vildan Portal',
+    
+    // Logging
+    'log_level' => 'error', // Production'da sadece error
+    'log_path' => '/home/yourusername/public_html/portalv2/storage/logs', // ⚠️ DEĞİŞTİRİN
+    
+    // Cache
+    'cache_enabled' => true,
+    'cache_lifetime' => 3600, // 1 saat
+    'cache_path' => '/home/yourusername/public_html/portalv2/storage/cache', // ⚠️ DEĞİŞTİRİN
+    
+    // Maintenance mode
+    'maintenance_mode' => false,
+    'maintenance_allowed_ips' => [], // Bakım modunda izin verilen IP'ler
+];

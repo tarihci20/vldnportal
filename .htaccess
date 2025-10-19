@@ -1,0 +1,22 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Public dizinine yönlendir
+    RewriteRule ^$ public/ [L]
+    RewriteRule (.*) public/$1 [L]
+</IfModule>
+
+# Dizin listelemeyi engelle
+Options -Indexes
+
+# Gizli dosyaları koru
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Hassas dosyaları koru
+<FilesMatch "(composer\.(json|lock)|\.env|\.git)">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>

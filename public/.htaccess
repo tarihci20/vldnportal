@@ -1,0 +1,67 @@
+# Vildan Portal - Public .htaccess
+# Path: /home/vildacgg/vldn.in/portalv2/public/.htaccess
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # RewriteBase /portalv2/ yönergesi, iç içe yönlendirmelerde sorun çıkardığı için kaldırıldı.
+    
+    # HTTPS'e yönlendir (production için). Localhost üzerinde geliştirme yaparken
+    # otomatik yönlendirmeyi engellemek için localhost ve 127.0.0.1 host'larını hariç tutun.
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)$ [NC]
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Dosya veya dizin değilse index.php'ye yönlendir
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+# Güvenlik başlıkları
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Gizli dosyaları engelle
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ⚠️ ÖNEMLİ: PHP dosyalarını ENGELLEME - sadece hassas dosyaları koru
+# Test dosyalarına izin ver (kurulum sonrası silin)
+<FilesMatch "^(config|database|\.env|\.git)">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# PHP ayarları
+<IfModule mod_php7.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value memory_limit 256M
+</IfModule>
+
+# Sıkıştırma
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser cache
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+</IfModule>

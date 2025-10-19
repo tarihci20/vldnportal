@@ -1,0 +1,2185 @@
+[18-Oct-2025 06:40:23 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 06:40:23 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 06:40:23 UTC] Router callHandler: Array
+(
+    [handler] => AuthController@loginPage
+    [params] => Array
+        (
+        )
+
+)
+
+[18-Oct-2025 06:40:23 UTC] Router: Exception in handler - Controller bulunamadÄ±: App\Controllers\AuthController
+[18-Oct-2025 06:52:02 UTC] Router: No route matched for GET /diagnostics.php
+[18-Oct-2025 07:01:55 UTC] Router: No route matched for GET /diagnostics.php
+[18-Oct-2025 07:01:58 UTC] Router: No route matched for GET /diagnostics.php
+[18-Oct-2025 07:08:54 UTC] Router: Route matched - GET /login -> AuthController@loginPage
+[18-Oct-2025 07:08:54 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:08:54 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:08:54 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:08:54 UTC] Router: Exception in handler - Controller sınıfı bulunamadı: \App\Controllers\AuthController
+Aranan controller: AuthController
+Aranan method: loginPage
+Handler string: AuthController@loginPage
+Base dizin: /home/vildacgg/vldn.in/portalv2
+Controllers dizini: /home/vildacgg/vldn.in/portalv2/app/Controllers
+✗ Controllers klasörü bulunamadı!
+Kayıtlı autoloader sayısı: 2
+Yüklenmiş toplam dosya sayısı: 52
+✓ Composer autoload mevcut: /home/vildacgg/vldn.in/portalv2/vendor/autoload.php
+⚠ App\ namespace'inden hiçbir sınıf yüklenmemiş!
+[18-Oct-2025 07:09:00 UTC] Router: No route matched for GET /diagnostics.php
+[18-Oct-2025 07:13:54 UTC] Router: No route matched for GET /composer-refresh.php
+[18-Oct-2025 07:14:00 UTC] Router: No route matched for GET /composer-refresh.php
+[18-Oct-2025 07:21:07 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:21:07 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:21:07 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:21:07 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:21:07 UTC] Router: Exception in handler - Controller sınıfı bulunamadı: \App\Controllers\AuthController
+Aranan controller: AuthController
+Aranan method: loginPage
+Handler string: AuthController@loginPage
+Base dizin: /home/vildacgg/vldn.in/portalv2
+Controllers dizini: /home/vildacgg/vldn.in/portalv2/app/Controllers
+✗ Controllers klasörü bulunamadı!
+Kayıtlı autoloader sayısı: 2
+Yüklenmiş toplam dosya sayısı: 52
+✓ Composer autoload mevcut: /home/vildacgg/vldn.in/portalv2/vendor/autoload.php
+⚠ App\ namespace'inden hiçbir sınıf yüklenmemiş!
+[18-Oct-2025 07:21:16 UTC] Router: Route matched - GET /login -> AuthController@loginPage
+[18-Oct-2025 07:21:16 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:21:16 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:21:16 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:21:16 UTC] Router: Exception in handler - Controller sınıfı bulunamadı: \App\Controllers\AuthController
+Aranan controller: AuthController
+Aranan method: loginPage
+Handler string: AuthController@loginPage
+Base dizin: /home/vildacgg/vldn.in/portalv2
+Controllers dizini: /home/vildacgg/vldn.in/portalv2/app/Controllers
+✗ Controllers klasörü bulunamadı!
+Kayıtlı autoloader sayısı: 2
+Yüklenmiş toplam dosya sayısı: 52
+✓ Composer autoload mevcut: /home/vildacgg/vldn.in/portalv2/vendor/autoload.php
+⚠ App\ namespace'inden hiçbir sınıf yüklenmemiş!
+[18-Oct-2025 07:21:28 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:21:28 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:21:28 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:21:28 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:21:28 UTC] Router: Exception in handler - Controller sınıfı bulunamadı: \App\Controllers\AuthController
+Aranan controller: AuthController
+Aranan method: loginPage
+Handler string: AuthController@loginPage
+Base dizin: /home/vildacgg/vldn.in/portalv2
+Controllers dizini: /home/vildacgg/vldn.in/portalv2/app/Controllers
+✗ Controllers klasörü bulunamadı!
+Kayıtlı autoloader sayısı: 2
+Yüklenmiş toplam dosya sayısı: 52
+✓ Composer autoload mevcut: /home/vildacgg/vldn.in/portalv2/vendor/autoload.php
+⚠ App\ namespace'inden hiçbir sınıf yüklenmemiş!
+[18-Oct-2025 07:21:44 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:21:44 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:21:44 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:21:44 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:21:44 UTC] Router: Exception in handler - Controller sınıfı bulunamadı: \App\Controllers\AuthController
+Aranan controller: AuthController
+Aranan method: loginPage
+Handler string: AuthController@loginPage
+Base dizin: /home/vildacgg/vldn.in/portalv2
+Controllers dizini: /home/vildacgg/vldn.in/portalv2/app/Controllers
+✗ Controllers klasörü bulunamadı!
+Kayıtlı autoloader sayısı: 2
+Yüklenmiş toplam dosya sayısı: 52
+✓ Composer autoload mevcut: /home/vildacgg/vldn.in/portalv2/vendor/autoload.php
+⚠ App\ namespace'inden hiçbir sınıf yüklenmemiş!
+[18-Oct-2025 07:23:23 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:23:23 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:23:23 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:23:23 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:23:23 UTC] PHP Parse error:  syntax error, unexpected token "`" in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 217
+[18-Oct-2025 07:23:27 UTC] Router: Route matched - GET /login -> AuthController@loginPage
+[18-Oct-2025 07:23:27 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:23:27 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:23:27 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:23:27 UTC] PHP Parse error:  syntax error, unexpected token "`" in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 217
+[18-Oct-2025 07:23:30 UTC] Router: Route matched - GET /login -> AuthController@loginPage
+[18-Oct-2025 07:23:30 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:23:30 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:23:30 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:23:30 UTC] PHP Parse error:  syntax error, unexpected token "`" in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 217
+[18-Oct-2025 07:23:59 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:23:59 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:23:59 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:23:59 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:23:59 UTC] PHP Parse error:  syntax error, unexpected identifier "kaydettikten" in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 220
+[18-Oct-2025 07:24:00 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:24:00 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:24:00 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:24:00 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:24:00 UTC] PHP Parse error:  syntax error, unexpected identifier "kaydettikten" in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 220
+[18-Oct-2025 07:24:15 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:24:15 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:24:15 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:24:15 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:24:15 UTC] PHP Fatal error:  Uncaught Error: Call to private Core\Auth::__construct() from scope App\Controllers\AuthController in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php:19
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Router.php(321): App\Controllers\AuthController->__construct()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#2 /home/vildacgg/vldn.in/portalv2/public/index.php(87): Core\Router->dispatch()
+#3 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 19
+[18-Oct-2025 07:32:01 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:32:01 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:32:01 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:32:01 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:37:11 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:37:11 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:37:11 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:37:11 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:37:51 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:37:51 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:37:51 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:37:51 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:37:53 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:37:53 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:37:53 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:37:53 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:39:39 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:39:39 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:39:39 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:39:39 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:39:40 UTC] Router: Route matched - GET / -> AuthController@loginPage
+[18-Oct-2025 07:39:40 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:39:40 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:39:40 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 07:42:40 UTC] Router: Route matched - GET /login -> AuthController@loginPage
+[18-Oct-2025 07:42:40 UTC] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 07:42:40 UTC] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 07:42:40 UTC] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 08:16:58 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:16:58 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:16:58 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:16:58 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:16:58 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:16:58 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 08:17:00 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:17:00 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:17:00 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:17:00 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:17:00 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:17:00 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 11:17:00 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to undefined method App\Controllers\AuthController::validateCSRF() in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php:45
+Stack trace:
+#0 [internal function]: App\Controllers\AuthController->login()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(86): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 45
+[18-Oct-2025 08:17:06 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:17:06 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:17:06 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:17:06 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:17:06 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:17:06 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 08:17:08 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:17:08 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:17:08 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:17:08 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:17:08 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:17:08 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 11:17:08 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to undefined method App\Controllers\AuthController::validateCSRF() in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php:45
+Stack trace:
+#0 [internal function]: App\Controllers\AuthController->login()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(86): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 45
+[18-Oct-2025 08:17:10 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:17:10 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:17:10 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:17:10 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:17:10 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:17:10 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 08:17:16 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:17:16 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:17:16 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:17:16 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:17:16 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:17:16 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 08:17:25 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:17:25 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:17:25 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:17:25 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:17:25 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:17:25 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 11:17:25 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to undefined method App\Controllers\AuthController::validateCSRF() in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php:45
+Stack trace:
+#0 [internal function]: App\Controllers\AuthController->login()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(86): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 45
+[18-Oct-2025 08:21:12 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:21:12 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:21:12 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:21:12 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:21:12 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:21:12 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 08:21:14 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:21:14 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:21:14 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:21:14 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:21:14 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:21:14 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 11:21:14 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to undefined method App\Controllers\AuthController::validateCSRF() in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php:45
+Stack trace:
+#0 [internal function]: App\Controllers\AuthController->login()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(86): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 45
+[18-Oct-2025 08:21:39 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:21:39 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:21:39 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:21:39 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:21:39 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:21:39 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 11:21:39 Europe/Istanbul] Router: Route matched - GET /login -> AuthController@loginPage
+[18-Oct-2025 11:21:39 Europe/Istanbul] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 11:21:39 Europe/Istanbul] Router callHandler: Handler=AuthController@loginPage, Params=Array
+(
+)
+
+[18-Oct-2025 11:21:39 Europe/Istanbul] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 11:21:39 Europe/Istanbul] Router: Controller örneği oluşturuldu: App\Controllers\AuthController
+[18-Oct-2025 11:21:39 Europe/Istanbul] Router: Method çağrılıyor: loginPage
+[18-Oct-2025 11:21:39 Europe/Istanbul] Router: callHandler başarılı, return type: NULL
+[18-Oct-2025 11:21:39 Europe/Istanbul] Router: Handler returned successfully, type: NULL
+[18-Oct-2025 08:21:41 UTC] PHP Warning:  Constant ROOT_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 27
+[18-Oct-2025 08:21:41 UTC] PHP Warning:  Constant APP_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 28
+[18-Oct-2025 08:21:41 UTC] PHP Warning:  Constant PUBLIC_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 31
+[18-Oct-2025 08:21:41 UTC] PHP Warning:  Constant VIEW_PATH already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 33
+[18-Oct-2025 08:21:41 UTC] PHP Warning:  Constant APP_ENV already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 42
+[18-Oct-2025 08:21:41 UTC] PHP Warning:  Constant APP_DEBUG already defined in /home/vildacgg/vldn.in/portalv2/config/constants.php on line 43
+[18-Oct-2025 11:21:41 Europe/Istanbul] Router: Route matched - POST /login -> AuthController@login
+[18-Oct-2025 11:21:41 Europe/Istanbul] Router: Params extracted - Array
+(
+)
+
+[18-Oct-2025 11:21:41 Europe/Istanbul] Router callHandler: Handler=AuthController@login, Params=Array
+(
+)
+
+[18-Oct-2025 11:21:41 Europe/Istanbul] Router: Aranan controller sınıfı: \App\Controllers\AuthController
+[18-Oct-2025 11:21:41 Europe/Istanbul] Router: Controller örneği oluşturuldu: App\Controllers\AuthController
+[18-Oct-2025 11:21:41 Europe/Istanbul] Router: Method çağrılıyor: login
+[18-Oct-2025 11:21:41 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to undefined method App\Controllers\AuthController::validateCSRF() in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php:45
+Stack trace:
+#0 [internal function]: App\Controllers\AuthController->login()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(86): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 45
+[18-Oct-2025 08:22:41 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "ROOT_PATH" in /home/vildacgg/vldn.in/portalv2/public/index.php:36
+Stack trace:
+#0 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/public/index.php on line 36
+[18-Oct-2025 08:22:41 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "ROOT_PATH" in /home/vildacgg/vldn.in/portalv2/public/index.php:36
+Stack trace:
+#0 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/public/index.php on line 36
+[18-Oct-2025 08:22:47 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "ROOT_PATH" in /home/vildacgg/vldn.in/portalv2/public/index.php:36
+Stack trace:
+#0 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/public/index.php on line 36
+[18-Oct-2025 11:23:22 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Call to undefined method App\Controllers\AuthController::validateCSRF() in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php:45
+Stack trace:
+#0 [internal function]: App\Controllers\AuthController->login()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/AuthController.php on line 45
+[18-Oct-2025 11:32:09 Europe/Istanbul] === LOGIN DEBUG START ===
+[18-Oct-2025 11:32:09 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => fc9d187394576f7e0c4e219db9f5edb6ab4cbe3d0ae9b5826a24caa8ce8ab97e
+    [username] => tarihci20
+    [password] => aci2406717
+)
+
+[18-Oct-2025 11:38:51 Europe/Istanbul] === LOGIN DEBUG START ===
+[18-Oct-2025 11:38:51 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => fc9d187394576f7e0c4e219db9f5edb6ab4cbe3d0ae9b5826a24caa8ce8ab97e
+    [username] => tarihci20
+    [password] => 2406717
+)
+
+[18-Oct-2025 11:39:00 Europe/Istanbul] === LOGIN DEBUG START ===
+[18-Oct-2025 11:39:00 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => fc9d187394576f7e0c4e219db9f5edb6ab4cbe3d0ae9b5826a24caa8ce8ab97e
+    [username] => tarihci20
+    [password] => 2406717
+)
+
+[18-Oct-2025 11:44:54 Europe/Istanbul] === LOGIN ATTEMPT START ===
+[18-Oct-2025 11:44:54 Europe/Istanbul] POST data: {"csrf_token":"fc9d187394576f7e0c4e219db9f5edb6ab4cbe3d0ae9b5826a24caa8ce8ab97e","username":"tarihci20","password":"2406717"}
+[18-Oct-2025 11:44:54 Europe/Istanbul] ✅ CSRF validation passed
+[18-Oct-2025 11:44:54 Europe/Istanbul] Username/Email: 
+[18-Oct-2025 11:44:54 Europe/Istanbul] Password length: 7
+[18-Oct-2025 11:44:54 Europe/Istanbul] Remember: NO
+[18-Oct-2025 11:44:54 Europe/Istanbul] ❌ Empty credentials
+[18-Oct-2025 11:45:03 Europe/Istanbul] === LOGIN ATTEMPT START ===
+[18-Oct-2025 11:45:03 Europe/Istanbul] POST data: {"csrf_token":"fc9d187394576f7e0c4e219db9f5edb6ab4cbe3d0ae9b5826a24caa8ce8ab97e","username":"tarihci20","password":"aci2406717"}
+[18-Oct-2025 11:45:03 Europe/Istanbul] ✅ CSRF validation passed
+[18-Oct-2025 11:45:03 Europe/Istanbul] Username/Email: 
+[18-Oct-2025 11:45:03 Europe/Istanbul] Password length: 10
+[18-Oct-2025 11:45:03 Europe/Istanbul] Remember: NO
+[18-Oct-2025 11:45:03 Europe/Istanbul] ❌ Empty credentials
+[18-Oct-2025 11:47:02 Europe/Istanbul] === LOGIN ATTEMPT START ===
+[18-Oct-2025 11:47:02 Europe/Istanbul] POST data: {"csrf_token":"fc9d187394576f7e0c4e219db9f5edb6ab4cbe3d0ae9b5826a24caa8ce8ab97e","username":"tarihci20","password":"2406717"}
+[18-Oct-2025 11:47:02 Europe/Istanbul] ✅ CSRF validation passed
+[18-Oct-2025 11:47:02 Europe/Istanbul] Username/Email: 
+[18-Oct-2025 11:47:02 Europe/Istanbul] Password length: 7
+[18-Oct-2025 11:47:02 Europe/Istanbul] Remember: NO
+[18-Oct-2025 11:47:02 Europe/Istanbul] ❌ Empty credentials
+[18-Oct-2025 11:47:23 Europe/Istanbul] === LOGIN ATTEMPT START ===
+[18-Oct-2025 11:47:23 Europe/Istanbul] POST data: {"csrf_token":"0d752f9a838cd5803fd5a9d1c0323cfca8cd94b1167d9062f554ae8b52304780","username":"tarihci20","password":"2406717"}
+[18-Oct-2025 11:47:23 Europe/Istanbul] ✅ CSRF validation passed
+[18-Oct-2025 11:47:23 Europe/Istanbul] Username/Email: 
+[18-Oct-2025 11:47:23 Europe/Istanbul] Password length: 7
+[18-Oct-2025 11:47:23 Europe/Istanbul] Remember: NO
+[18-Oct-2025 11:47:23 Europe/Istanbul] ❌ Empty credentials
+[18-Oct-2025 09:00:06 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "DB_PORT" in /home/vildacgg/vldn.in/portalv2/core/Database.php:28
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(58): Core\Database->__construct()
+#1 /home/vildacgg/vldn.in/portalv2/public/test-db-query.php(17): Core\Database::getInstance()
+#2 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 28
+[18-Oct-2025 12:11:18 Europe/Istanbul] === AUTH::LOGIN START ===
+[18-Oct-2025 12:11:18 Europe/Istanbul] Username: tarihci20
+[18-Oct-2025 12:11:18 Europe/Istanbul] Password length: 7
+[18-Oct-2025 12:11:18 Europe/Istanbul] Remember: NO
+[18-Oct-2025 12:11:19 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Class "App\Models\Student" not found in /home/vildacgg/vldn.in/portalv2/app/Controllers/DashboardController.php:30
+Stack trace:
+#0 [internal function]: App\Controllers\DashboardController->index()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/DashboardController.php on line 30
+[18-Oct-2025 12:22:07 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:98
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 98
+[18-Oct-2025 12:39:24 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:98
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 98
+[18-Oct-2025 12:39:27 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:98
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 98
+[18-Oct-2025 12:39:31 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:98
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 98
+[18-Oct-2025 12:39:34 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:98
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 98
+[18-Oct-2025 12:39:36 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:98
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 98
+[18-Oct-2025 12:39:39 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:98
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 98
+[18-Oct-2025 12:43:30 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 12:43:30 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 12:43:30 Europe/Istanbul] POST: []
+[18-Oct-2025 12:43:30 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 12:43:33 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 12:43:33 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 12:43:33 Europe/Istanbul] POST: []
+[18-Oct-2025 12:43:33 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 12:45:07 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 12:45:07 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 12:45:07 Europe/Istanbul] POST: []
+[18-Oct-2025 12:45:07 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 12:45:12 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 12:45:12 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 12:45:12 Europe/Istanbul] POST: []
+[18-Oct-2025 12:45:12 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 12:51:17 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 12:51:17 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 12:51:17 Europe/Istanbul] POST: []
+[18-Oct-2025 12:51:17 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 12:57:54 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 12:57:54 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 12:57:54 Europe/Istanbul] POST: []
+[18-Oct-2025 12:57:54 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 19:37:01 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 19:37:01 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 19:37:01 Europe/Istanbul] POST: []
+[18-Oct-2025 19:37:01 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 16:39:53 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting variable or "${" or "{$" in /home/vildacgg/vldn.in/portalv2/public/debug-ajax-search.php on line 55
+[18-Oct-2025 16:40:07 UTC] PHP Warning:  Undefined array key 0 in /home/vildacgg/vldn.in/portalv2/public/debug-ajax-search.php on line 42
+[18-Oct-2025 20:17:49 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 20:17:49 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 20:17:49 Europe/Istanbul] POST: []
+[18-Oct-2025 20:17:49 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 20:17:53 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 20:17:53 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 20:17:53 Europe/Istanbul] POST: []
+[18-Oct-2025 20:17:53 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 20:36:34 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 20:36:34 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 20:36:34 Europe/Istanbul] POST: []
+[18-Oct-2025 20:36:34 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 20:38:30 Europe/Istanbul] PHP Parse error:  syntax error, unexpected token "public" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 40
+[18-Oct-2025 20:38:50 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 20:38:50 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 20:38:50 Europe/Istanbul] POST: []
+[18-Oct-2025 20:38:50 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "App\Controllers\SEARCH_RESULTS_PER_PAGE" in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php:103
+Stack trace:
+#0 [internal function]: App\Controllers\StudentController->ajaxSearch()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/app/Controllers/StudentController.php on line 103
+[18-Oct-2025 20:42:52 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 20:42:52 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 20:42:52 Europe/Istanbul] POST: []
+[18-Oct-2025 20:42:52 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 20:42:52 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 20:42:52 Europe/Istanbul] POST: []
+[18-Oct-2025 20:42:56 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 20:42:56 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 20:42:56 Europe/Istanbul] POST: []
+[18-Oct-2025 20:43:05 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[18-Oct-2025 20:43:05 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[18-Oct-2025 20:43:05 Europe/Istanbul] POST: []
+[18-Oct-2025 21:01:07 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:01:07 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 37273a731e150d1b4f32f111c9d1e423ac4360c7a6e6f59da78711e85e195d14
+    [activity_area_id] => 8
+    [activity_name] => DENEME DEMENEM
+    [activity_date] => 2025-10-18
+    [staff] => CXZCZXC ACAA
+    [notes] => ASDASD
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 27
+            [1] => 28
+        )
+
+)
+
+[18-Oct-2025 21:01:07 Europe/Istanbul] CSRF token verification failed
+[18-Oct-2025 21:02:40 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:02:40 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 7707da06dd755a427d0d40e4b0e5cbb3cdbe4a4bc9f8def15991b141cdaa734f
+    [activity_area_id] => 8
+    [activity_name] => SADASDAS
+    [activity_date] => 2025-10-18
+    [staff] => SDASDAS
+    [notes] => ASDASDA
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 27
+            [1] => 28
+        )
+
+)
+
+[18-Oct-2025 21:02:40 Europe/Istanbul] Seçilen saat dilimleri: 27, 28
+[18-Oct-2025 21:02:40 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:02:40 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(257): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:04:15 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:04:15 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 7707da06dd755a427d0d40e4b0e5cbb3cdbe4a4bc9f8def15991b141cdaa734f
+    [activity_area_id] => 8
+    [activity_name] => SADASDA ASDASDA
+    [activity_date] => 2025-10-18
+    [staff] => ASDASD
+    [notes] => ASDA
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 28
+            [1] => 27
+        )
+
+)
+
+[18-Oct-2025 21:04:15 Europe/Istanbul] Seçilen saat dilimleri: 28, 27
+[18-Oct-2025 21:04:15 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:04:15 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(257): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:08:33 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:08:33 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 7707da06dd755a427d0d40e4b0e5cbb3cdbe4a4bc9f8def15991b141cdaa734f
+    [activity_area_id] => 8
+    [activity_name] => sdfdsfds
+    [activity_date] => 2025-10-18
+    [staff] => sdfsdf
+    [notes] => sdfsf
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 28
+            [1] => 27
+        )
+
+)
+
+[18-Oct-2025 21:08:33 Europe/Istanbul] Seçilen saat dilimleri: 28, 27
+[18-Oct-2025 21:08:33 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:08:33 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(257): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:11:23 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:11:23 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 7707da06dd755a427d0d40e4b0e5cbb3cdbe4a4bc9f8def15991b141cdaa734f
+    [activity_area_id] => 8
+    [activity_name] => asdasdasd
+    [activity_date] => 2025-10-19
+    [staff] => asdasd
+    [notes] => asdadas
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 1
+            [1] => 2
+            [2] => 3
+            [3] => 4
+        )
+
+)
+
+[18-Oct-2025 21:11:23 Europe/Istanbul] Seçilen saat dilimleri: 1, 2, 3, 4
+[18-Oct-2025 21:11:23 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:11:23 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(257): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:13:27 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:13:27 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 7707da06dd755a427d0d40e4b0e5cbb3cdbe4a4bc9f8def15991b141cdaa734f
+    [activity_area_id] => 8
+    [activity_name] => sadadas
+    [activity_date] => 2025-10-19
+    [staff] => ASas
+    [notes] => ASas
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 8
+            [1] => 7
+        )
+
+)
+
+[18-Oct-2025 21:13:27 Europe/Istanbul] Seçilen saat dilimleri: 8, 7
+[18-Oct-2025 21:13:27 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:13:27 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(257): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:17:40 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:17:40 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 7707da06dd755a427d0d40e4b0e5cbb3cdbe4a4bc9f8def15991b141cdaa734f
+    [activity_area_id] => 8
+    [activity_name] => asdasdas
+    [activity_date] => 2025-10-19
+    [staff] => sadasdas
+    [notes] => asdasda
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 1
+            [1] => 2
+            [2] => 3
+            [3] => 4
+        )
+
+)
+
+[18-Oct-2025 21:17:40 Europe/Istanbul] Seçilen saat dilimleri: 1, 2, 3, 4
+[18-Oct-2025 21:17:40 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:17:40 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(257): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:18:22 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:18:22 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 7707da06dd755a427d0d40e4b0e5cbb3cdbe4a4bc9f8def15991b141cdaa734f
+    [activity_area_id] => 8
+    [activity_name] => asdasda asdas
+    [activity_date] => 2025-10-20
+    [staff] => asdasdas
+    [notes] => asdasdad
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 5
+            [1] => 6
+            [2] => 7
+            [3] => 8
+        )
+
+)
+
+[18-Oct-2025 21:18:22 Europe/Istanbul] Seçilen saat dilimleri: 5, 6, 7, 8
+[18-Oct-2025 21:18:22 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:18:22 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(257): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:22:03 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:22:03 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 7707da06dd755a427d0d40e4b0e5cbb3cdbe4a4bc9f8def15991b141cdaa734f
+    [activity_area_id] => 8
+    [activity_name] => sdsfdsf dsfd
+    [activity_date] => 2025-10-19
+    [staff] => asdasd
+    [notes] => asdasd
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 1
+            [1] => 2
+            [2] => 3
+            [3] => 4
+        )
+
+)
+
+[18-Oct-2025 21:22:03 Europe/Istanbul] Seçilen saat dilimleri: 1, 2, 3, 4
+[18-Oct-2025 21:22:03 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:22:03 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(257): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:23:20 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:23:20 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 7707da06dd755a427d0d40e4b0e5cbb3cdbe4a4bc9f8def15991b141cdaa734f
+    [activity_area_id] => 9
+    [activity_name] => asdasdaasdasd
+    [activity_date] => 2025-10-20
+    [staff] => asdasdas asdasd
+    [notes] => asdasdas
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 1
+            [1] => 2
+        )
+
+)
+
+[18-Oct-2025 21:23:20 Europe/Istanbul] Seçilen saat dilimleri: 1, 2
+[18-Oct-2025 21:23:20 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:23:20 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(257): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:27:26 Europe/Istanbul] PHP Parse error:  syntax error, unexpected token "private" in /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php on line 320
+[18-Oct-2025 21:27:28 Europe/Istanbul] PHP Parse error:  syntax error, unexpected token "private" in /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php on line 320
+[18-Oct-2025 21:27:30 Europe/Istanbul] PHP Parse error:  syntax error, unexpected token "private" in /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php on line 320
+[18-Oct-2025 21:27:32 Europe/Istanbul] PHP Parse error:  syntax error, unexpected token "private" in /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php on line 320
+[18-Oct-2025 21:28:17 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:28:17 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => asdda
+    [activity_date] => 2025-10-20
+    [staff] => asdasd
+    [notes] => asdasd
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 1
+            [1] => 2
+            [2] => 3
+            [3] => 4
+        )
+
+)
+
+[18-Oct-2025 21:28:17 Europe/Istanbul] Seçilen saat dilimleri: 1, 2, 3, 4
+[18-Oct-2025 21:28:17 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:28:17 Europe/Istanbul] PHP Fatal error:  Uncaught Error: Undefined constant "Core\ERROR_LOG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:366
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(129): Core\Database->logError()
+#1 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#2 /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php(723): Core\Database->insert()
+#3 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(261): App\Models\Activity->createWithTimeSlots()
+#4 [internal function]: App\Controllers\ActivityController->store()
+#5 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#6 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#7 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#8 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 366
+[18-Oct-2025 21:31:48 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:31:48 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => asdda
+    [activity_date] => 2025-10-20
+    [staff] => asdasd
+    [notes] => asdasd
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 1
+            [1] => 2
+            [2] => 3
+            [3] => 4
+        )
+
+)
+
+[18-Oct-2025 21:31:48 Europe/Istanbul] Seçilen saat dilimleri: 1, 2, 3, 4
+[18-Oct-2025 21:31:48 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:31:48 Europe/Istanbul] Etkinlik oluşturma hatası: Etkinlik oluşturulamadı!
+[18-Oct-2025 21:31:48 Europe/Istanbul] Stack trace: #0 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(261): App\Models\Activity->createWithTimeSlots()
+#1 [internal function]: App\Controllers\ActivityController->store()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#3 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#4 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#5 {main}
+[18-Oct-2025 21:32:04 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:32:04 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => asdsa asdasd
+    [activity_date] => 2025-10-20
+    [staff] => sadasd 
+    [notes] => asdasda
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 13
+            [1] => 14
+            [2] => 15
+            [3] => 16
+        )
+
+)
+
+[18-Oct-2025 21:32:04 Europe/Istanbul] Seçilen saat dilimleri: 13, 14, 15, 16
+[18-Oct-2025 21:32:04 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:32:04 Europe/Istanbul] Etkinlik oluşturma hatası: Etkinlik oluşturulamadı!
+[18-Oct-2025 21:32:04 Europe/Istanbul] Stack trace: #0 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(261): App\Models\Activity->createWithTimeSlots()
+#1 [internal function]: App\Controllers\ActivityController->store()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#3 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#4 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#5 {main}
+[18-Oct-2025 21:42:15 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:42:15 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => asdad 
+    [activity_date] => 2025-10-19
+    [staff] => sdasdasd 
+    [notes] => asdsaa
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 1
+            [1] => 2
+            [2] => 3
+            [3] => 4
+        )
+
+)
+
+[18-Oct-2025 21:42:15 Europe/Istanbul] Seçilen saat dilimleri: 1, 2, 3, 4
+[18-Oct-2025 21:42:15 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:42:15 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 21:42:15 Europe/Istanbul] Hata mesajı: Etkinlik oluşturulamadı!
+[18-Oct-2025 21:42:15 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php
+[18-Oct-2025 21:42:15 Europe/Istanbul] Satır: 726
+[18-Oct-2025 21:42:15 Europe/Istanbul] Stack trace: #0 /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php(197): App\Models\Activity->createWithTimeSlots()
+#1 [internal function]: App\Controllers\ActivityController->store()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#3 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#4 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#5 {main}
+[18-Oct-2025 18:46:58 UTC] PHP Parse error:  syntax error, unexpected token "`" in /home/vildacgg/vldn.in/portalv2/public/test-insert.php on line 73
+[18-Oct-2025 18:47:22 UTC] PHP Fatal error:  Uncaught Error: Call to private Core\Database::__construct() from global scope in /home/vildacgg/vldn.in/portalv2/public/test-insert.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/public/test-insert.php on line 21
+[18-Oct-2025 18:48:01 UTC] PHP Parse error:  Unclosed '{' on line 18 in /home/vildacgg/vldn.in/portalv2/public/test-insert.php on line 67
+[18-Oct-2025 18:48:33 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "APP_DEBUG" in /home/vildacgg/vldn.in/portalv2/core/Database.php:132
+Stack trace:
+#0 /home/vildacgg/vldn.in/portalv2/core/Database.php(291): Core\Database->execute()
+#1 /home/vildacgg/vldn.in/portalv2/public/test-insert.php(74): Core\Database->insert()
+#2 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/core/Database.php on line 132
+[18-Oct-2025 21:52:34 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 21:52:34 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => WQEQWEQWE
+    [activity_date] => 2025-10-20
+    [staff] => QWEWQEQW
+    [notes] => QWEQWEQW
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 1
+            [1] => 2
+            [2] => 3
+            [3] => 4
+        )
+
+)
+
+[18-Oct-2025 21:52:34 Europe/Istanbul] Seçilen saat dilimleri: 1, 2, 3, 4
+[18-Oct-2025 21:52:34 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 21:52:34 Europe/Istanbul] Etkinlik oluşturuldu, ID: 87
+[18-Oct-2025 22:00:43 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:00:43 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 9
+    [activity_name] => fsdffssdfs
+    [activity_date] => 2025-10-20
+    [staff] => sdfsdfsd
+    [notes] => sdfsdfsdf
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 1
+            [1] => 2
+            [2] => 3
+        )
+
+)
+
+[18-Oct-2025 22:00:43 Europe/Istanbul] Seçilen saat dilimleri: 1, 2, 3
+[18-Oct-2025 22:00:43 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 22:00:43 Europe/Istanbul] Etkinlik oluşturuldu, ID: 88
+[18-Oct-2025 22:01:00 Europe/Istanbul] === BULK DELETE BAŞLADI ===
+[18-Oct-2025 22:01:00 Europe/Istanbul] User Admin?: Evet
+[18-Oct-2025 22:01:00 Europe/Istanbul] Input data: {"csrf_token":"2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778","activity_ids":["82","83","84","85","87","88"]}
+[18-Oct-2025 22:01:00 Europe/Istanbul] Decoded data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_ids] => Array
+        (
+            [0] => 82
+            [1] => 83
+            [2] => 84
+            [3] => 85
+            [4] => 87
+            [5] => 88
+        )
+
+)
+
+[18-Oct-2025 22:01:00 Europe/Istanbul] Activity IDs: Array
+(
+    [0] => 82
+    [1] => 83
+    [2] => 84
+    [3] => 85
+    [4] => 87
+    [5] => 88
+)
+
+[18-Oct-2025 22:01:00 Europe/Istanbul] Siliniyor: ID 82
+[18-Oct-2025 22:01:00 Europe/Istanbul] Silindi: ID 82
+[18-Oct-2025 22:01:00 Europe/Istanbul] Siliniyor: ID 83
+[18-Oct-2025 22:01:00 Europe/Istanbul] Silindi: ID 83
+[18-Oct-2025 22:01:00 Europe/Istanbul] Siliniyor: ID 84
+[18-Oct-2025 22:01:00 Europe/Istanbul] Silindi: ID 84
+[18-Oct-2025 22:01:00 Europe/Istanbul] Siliniyor: ID 85
+[18-Oct-2025 22:01:00 Europe/Istanbul] Silindi: ID 85
+[18-Oct-2025 22:01:00 Europe/Istanbul] Siliniyor: ID 87
+[18-Oct-2025 22:01:00 Europe/Istanbul] Silindi: ID 87
+[18-Oct-2025 22:01:00 Europe/Istanbul] Siliniyor: ID 88
+[18-Oct-2025 22:01:00 Europe/Istanbul] Silindi: ID 88
+[18-Oct-2025 22:01:00 Europe/Istanbul] Toplam silinen: 6
+[18-Oct-2025 22:01:19 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:01:19 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => sdadasd sdas
+    [activity_date] => 2025-10-18
+    [staff] => asdasdad
+    [notes] => sdasdas
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 27
+            [1] => 28
+        )
+
+)
+
+[18-Oct-2025 22:01:19 Europe/Istanbul] Seçilen saat dilimleri: 27, 28
+[18-Oct-2025 22:01:19 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 22:01:19 Europe/Istanbul] Etkinlik oluşturuldu, ID: 89
+[18-Oct-2025 22:01:48 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:01:48 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => asdasd sadasdsa
+    [activity_date] => 2025-10-20
+    [staff] => asdasd asdasd
+    [notes] => asdasdada
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_4
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:01:48 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:01:48 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:01:48 Europe/Istanbul] Oluşturulan tarih sayısı: 5
+[18-Oct-2025 22:01:48 Europe/Istanbul] Tekrarlı etkinlik sonucu: Array
+(
+    [success] => 1
+    [created_count] => 5
+    [skipped_count] => 0
+    [created_activities] => Array
+        (
+            [0] => 90
+            [1] => 91
+            [2] => 92
+            [3] => 93
+            [4] => 94
+        )
+
+    [skipped_dates] => Array
+        (
+        )
+
+)
+
+[18-Oct-2025 22:03:24 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:03:24 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => sffsd dfsdf
+    [activity_date] => 2025-10-22
+    [staff] => sdfsdf
+    [notes] => sfsf
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:03:24 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:03:24 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 22:03:24 Europe/Istanbul] Etkinlik oluşturuldu, ID: 95
+[18-Oct-2025 19:07:04 UTC] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, Core\Database given in /home/vildacgg/vldn.in/portalv2/public/test-available-slots.php:106
+Stack trace:
+#0 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/public/test-available-slots.php on line 106
+[18-Oct-2025 19:08:35 UTC] PHP Fatal error:  Uncaught Error: Cannot use object of type Core\Database as array in /home/vildacgg/vldn.in/portalv2/public/check-activities.php:69
+Stack trace:
+#0 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/public/check-activities.php on line 69
+[18-Oct-2025 22:11:47 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:11:47 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => dasdsa asd
+    [activity_date] => 2025-10-22
+    [staff] => asdasdad
+    [notes] => asdasdaa
+    [tekrar_durumu] => hayir
+    [tekrar_turu] => 
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:11:47 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:11:47 Europe/Istanbul] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 22:11:47 Europe/Istanbul] Etkinlik oluşturuldu, ID: 96
+[18-Oct-2025 22:12:07 Europe/Istanbul] === BULK DELETE BAŞLADI ===
+[18-Oct-2025 22:12:07 Europe/Istanbul] User Admin?: Evet
+[18-Oct-2025 22:12:07 Europe/Istanbul] Input data: {"csrf_token":"2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778","activity_ids":["89","90","91","92","95","96","93","94"]}
+[18-Oct-2025 22:12:07 Europe/Istanbul] Decoded data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_ids] => Array
+        (
+            [0] => 89
+            [1] => 90
+            [2] => 91
+            [3] => 92
+            [4] => 95
+            [5] => 96
+            [6] => 93
+            [7] => 94
+        )
+
+)
+
+[18-Oct-2025 22:12:07 Europe/Istanbul] Activity IDs: Array
+(
+    [0] => 89
+    [1] => 90
+    [2] => 91
+    [3] => 92
+    [4] => 95
+    [5] => 96
+    [6] => 93
+    [7] => 94
+)
+
+[18-Oct-2025 22:12:07 Europe/Istanbul] Siliniyor: ID 89
+[18-Oct-2025 22:12:07 Europe/Istanbul] Silindi: ID 89
+[18-Oct-2025 22:12:07 Europe/Istanbul] Siliniyor: ID 90
+[18-Oct-2025 22:12:07 Europe/Istanbul] Silindi: ID 90
+[18-Oct-2025 22:12:07 Europe/Istanbul] Siliniyor: ID 91
+[18-Oct-2025 22:12:07 Europe/Istanbul] Silindi: ID 91
+[18-Oct-2025 22:12:07 Europe/Istanbul] Siliniyor: ID 92
+[18-Oct-2025 22:12:07 Europe/Istanbul] Silindi: ID 92
+[18-Oct-2025 22:12:07 Europe/Istanbul] Siliniyor: ID 95
+[18-Oct-2025 22:12:07 Europe/Istanbul] Silindi: ID 95
+[18-Oct-2025 22:12:07 Europe/Istanbul] Siliniyor: ID 96
+[18-Oct-2025 22:12:07 Europe/Istanbul] Silindi: ID 96
+[18-Oct-2025 22:12:07 Europe/Istanbul] Siliniyor: ID 93
+[18-Oct-2025 22:12:07 Europe/Istanbul] Silindi: ID 93
+[18-Oct-2025 22:12:07 Europe/Istanbul] Siliniyor: ID 94
+[18-Oct-2025 22:12:07 Europe/Istanbul] Silindi: ID 94
+[18-Oct-2025 22:12:07 Europe/Istanbul] Toplam silinen: 8
+[18-Oct-2025 22:12:36 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:12:36 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => wewew awea
+    [activity_date] => 2025-10-20
+    [staff] => weawewae
+    [notes] => weaeaeae
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_4
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:12:36 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:12:36 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:12:36 Europe/Istanbul] Oluşturulan tarih sayısı: 5
+[18-Oct-2025 22:12:36 Europe/Istanbul] Tekrarlı etkinlik sonucu: Array
+(
+    [success] => 1
+    [created_count] => 5
+    [skipped_count] => 0
+    [created_activities] => Array
+        (
+            [0] => 97
+            [1] => 98
+            [2] => 99
+            [3] => 100
+            [4] => 101
+        )
+
+    [skipped_dates] => Array
+        (
+        )
+
+)
+
+[18-Oct-2025 22:13:24 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:13:24 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => aweweaea
+    [activity_date] => 2025-10-19
+    [staff] => aweawe
+    [notes] => aeaweae
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_3
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:13:24 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:13:24 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:13:24 Europe/Istanbul] Oluşturulan tarih sayısı: 4
+[18-Oct-2025 22:13:24 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:13:24 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:13:24 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:13:24 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:13:24 Europe/Istanbul] Hata mesajı: ❌ Tekrarlı randevu oluşturulamadı! 3/4 tarihte çakışma var:
+
+• 20.10.2025 Pazartesi
+• 21.10.2025 Salı
+• 22.10.2025 Çarşamba
+
+Saat dilimi: 16:00:00 - 17:30:00
+
+Lütfen farklı saat dilimleri seçin veya çakışan tarihleri hariç tutun.
+[18-Oct-2025 22:13:24 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:13:24 Europe/Istanbul] Satır: 240
+[18-Oct-2025 22:13:24 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:13:55 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:13:55 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => aweeaa 
+    [activity_date] => 2025-10-19
+    [staff] => weawe
+    [notes] =>  aeawwaea
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_4
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 18
+            [1] => 19
+            [2] => 20
+        )
+
+)
+
+[18-Oct-2025 22:13:55 Europe/Istanbul] Seçilen saat dilimleri: 18, 19, 20
+[18-Oct-2025 22:13:55 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:13:55 Europe/Istanbul] Oluşturulan tarih sayısı: 5
+[18-Oct-2025 22:13:55 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:13:55 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:13:55 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:13:55 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:13:55 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:13:55 Europe/Istanbul] Hata mesajı: ❌ Tekrarlı randevu oluşturulamadı! 4/5 tarihte çakışma var:
+
+• 20.10.2025 Pazartesi
+• 21.10.2025 Salı
+• 22.10.2025 Çarşamba
+• 23.10.2025 Perşembe
+
+Saat dilimi: 16:30:00 - 18:00:00
+
+Lütfen farklı saat dilimleri seçin veya çakışan tarihleri hariç tutun.
+[18-Oct-2025 22:13:55 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:13:55 Europe/Istanbul] Satır: 240
+[18-Oct-2025 22:13:55 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:21:53 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:21:53 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => awdwad
+    [activity_date] => 2025-10-19
+    [staff] => dadas
+    [notes] => asdad
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_5
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:21:53 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:21:53 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:21:53 Europe/Istanbul] Oluşturulan tarih sayısı: 6
+[18-Oct-2025 22:21:53 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:53 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:53 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:53 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:53 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:53 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:21:53 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/6 tarihte çakışma tespit edildi:
+
+20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma
+
+Saat dilimi: 16:00 - 17:30
+
+Lütfen farklı saat dilimleri seçin veya çakışan tarihleri hariç tutarak yeniden deneyin.
+[18-Oct-2025 22:21:53 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:21:53 Europe/Istanbul] Satır: 253
+[18-Oct-2025 22:21:53 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:21:56 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:21:56 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => awdwad
+    [activity_date] => 2025-10-19
+    [staff] => dadas
+    [notes] => asdad
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_5
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:21:56 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:21:56 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:21:56 Europe/Istanbul] Oluşturulan tarih sayısı: 6
+[18-Oct-2025 22:21:57 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:57 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:57 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:57 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:57 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:21:57 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:21:57 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/6 tarihte çakışma tespit edildi:
+
+20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma
+
+Saat dilimi: 16:00 - 17:30
+
+Lütfen farklı saat dilimleri seçin veya çakışan tarihleri hariç tutarak yeniden deneyin.
+[18-Oct-2025 22:21:57 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:21:57 Europe/Istanbul] Satır: 253
+[18-Oct-2025 22:21:57 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:22:38 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:22:38 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => erere erwrwe
+    [activity_date] => 2025-10-19
+    [staff] => aea
+    [notes] => aea
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 18
+            [1] => 19
+            [2] => 17
+        )
+
+)
+
+[18-Oct-2025 22:22:38 Europe/Istanbul] Seçilen saat dilimleri: 18, 19, 17
+[18-Oct-2025 22:22:38 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:22:38 Europe/Istanbul] Oluşturulan tarih sayısı: 8
+[18-Oct-2025 22:22:38 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:22:38 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:22:38 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:22:38 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:22:38 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:22:38 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:22:38 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/8 tarihte çakışma tespit edildi:
+
+20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma
+
+Saat dilimi: 16:00 - 17:30
+
+Lütfen farklı saat dilimleri seçin veya çakışan tarihleri hariç tutarak yeniden deneyin.
+[18-Oct-2025 22:22:38 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:22:38 Europe/Istanbul] Satır: 253
+[18-Oct-2025 22:22:38 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:26:10 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:26:10 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => adasd
+    [activity_date] => 2025-10-19
+    [staff] => asdasa
+    [notes] => asdad
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_5
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 18
+            [1] => 17
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:26:10 Europe/Istanbul] Seçilen saat dilimleri: 18, 17, 19
+[18-Oct-2025 22:26:10 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:26:10 Europe/Istanbul] Oluşturulan tarih sayısı: 6
+[18-Oct-2025 22:26:10 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:10 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:10 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:10 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:10 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:10 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:26:10 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/6 tarihte çakışma tespit edildi:
+
+20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma
+
+Saat dilimi: 16:00 - 17:30
+
+Lütfen farklı saat dilimleri seçin veya çakışan tarihleri hariç tutarak yeniden deneyin.
+[18-Oct-2025 22:26:10 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:26:10 Europe/Istanbul] Satır: 240
+[18-Oct-2025 22:26:10 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:26:14 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:26:14 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => adasd
+    [activity_date] => 2025-10-19
+    [staff] => asdasa
+    [notes] => asdad
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_5
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 18
+            [1] => 17
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:26:14 Europe/Istanbul] Seçilen saat dilimleri: 18, 17, 19
+[18-Oct-2025 22:26:14 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:26:14 Europe/Istanbul] Oluşturulan tarih sayısı: 6
+[18-Oct-2025 22:26:14 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:14 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:14 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:14 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:14 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:26:14 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:26:14 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/6 tarihte çakışma tespit edildi:
+
+20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma
+
+Saat dilimi: 16:00 - 17:30
+
+Lütfen farklı saat dilimleri seçin veya çakışan tarihleri hariç tutarak yeniden deneyin.
+[18-Oct-2025 22:26:14 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:26:14 Europe/Istanbul] Satır: 240
+[18-Oct-2025 22:26:14 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:31:10 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:31:10 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => zdffdsf
+    [activity_date] => 2025-10-19
+    [staff] => dasdasd
+    [notes] => asdasda
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:31:10 Europe/Istanbul] CSRF token verification failed
+[18-Oct-2025 22:31:14 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:31:14 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 2e84d71ed9c0f369edbfcd4e5288290a31a3f9c5a6dae77d189be211e2b3d778
+    [activity_area_id] => 8
+    [activity_name] => zdffdsf
+    [activity_date] => 2025-10-19
+    [staff] => dasdasd
+    [notes] => asdasda
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:31:14 Europe/Istanbul] CSRF token verification failed
+[18-Oct-2025 22:34:48 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:34:48 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 20cec1ec7d12c850df4e2069530780201e1c48eced5ec47dd21b43e54fae6511
+    [activity_area_id] => 8
+    [activity_name] => sdasda
+    [activity_date] => 2025-10-19
+    [staff] => sadasd
+    [notes] => asdad
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:34:48 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:34:48 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:34:48 Europe/Istanbul] Oluşturulan tarih sayısı: 8
+[18-Oct-2025 22:34:48 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:34:48 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:34:48 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:34:48 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:34:48 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:34:48 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:34:48 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/8 tarihte çakışma var: 20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma (Saat: 16:00-17:30). Lütfen farklı saat dilimleri seçin.
+[18-Oct-2025 22:34:48 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:34:48 Europe/Istanbul] Satır: 240
+[18-Oct-2025 22:34:48 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 19:35:15 UTC] === CSRF DEBUG ===
+[18-Oct-2025 19:35:15 UTC] POST csrf_token: YOK
+[18-Oct-2025 19:35:15 UTC] SESSION csrf_token: YOK
+[18-Oct-2025 19:35:15 UTC] verifyCsrfToken fonksiyonu var mı: HAYIR
+[18-Oct-2025 19:35:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function verifyCsrfToken() in /home/vildacgg/vldn.in/portalv2/public/check-error-log.php:41
+Stack trace:
+#0 {main}
+  thrown in /home/vildacgg/vldn.in/portalv2/public/check-error-log.php on line 41
+[18-Oct-2025 22:40:24 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:40:24 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 20cec1ec7d12c850df4e2069530780201e1c48eced5ec47dd21b43e54fae6511
+    [activity_area_id] => 8
+    [activity_name] => adssdas
+    [activity_date] => 2025-10-19
+    [staff] => asdsada
+    [notes] => dasda
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:40:24 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:40:24 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:40:24 Europe/Istanbul] Oluşturulan tarih sayısı: 8
+[18-Oct-2025 22:40:24 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:24 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:24 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:24 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:24 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:24 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:40:24 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/8 tarihte çakışma var: 20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma (Saat: 16:00-17:30). Lütfen farklı saat dilimleri seçin.
+[18-Oct-2025 22:40:24 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:40:24 Europe/Istanbul] Satır: 240
+[18-Oct-2025 22:40:24 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:40:26 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:40:26 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 20cec1ec7d12c850df4e2069530780201e1c48eced5ec47dd21b43e54fae6511
+    [activity_area_id] => 8
+    [activity_name] => adssdas
+    [activity_date] => 2025-10-19
+    [staff] => asdsada
+    [notes] => dasda
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:40:26 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:40:26 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:40:26 Europe/Istanbul] Oluşturulan tarih sayısı: 8
+[18-Oct-2025 22:40:26 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:26 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:26 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:26 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:26 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:26 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:40:26 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/8 tarihte çakışma var: 20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma (Saat: 16:00-17:30). Lütfen farklı saat dilimleri seçin.
+[18-Oct-2025 22:40:26 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:40:26 Europe/Istanbul] Satır: 240
+[18-Oct-2025 22:40:26 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:40:28 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:40:28 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => 20cec1ec7d12c850df4e2069530780201e1c48eced5ec47dd21b43e54fae6511
+    [activity_area_id] => 8
+    [activity_name] => adssdas
+    [activity_date] => 2025-10-19
+    [staff] => asdsada
+    [notes] => dasda
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:40:28 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:40:28 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:40:28 Europe/Istanbul] Oluşturulan tarih sayısı: 8
+[18-Oct-2025 22:40:28 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:28 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:28 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:28 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:28 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:40:28 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:40:28 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/8 tarihte çakışma var: 20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma (Saat: 16:00-17:30). Lütfen farklı saat dilimleri seçin.
+[18-Oct-2025 22:40:28 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:40:28 Europe/Istanbul] Satır: 240
+[18-Oct-2025 22:40:28 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:41:30 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:41:30 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => b588ad416543e815904367c20d26df5e1707f98ec977f1d22610526af03fba7b
+    [activity_area_id] => 8
+    [activity_name] => dgdfdf dfgdgd
+    [activity_date] => 2025-10-19
+    [staff] => dfgdfgdf
+    [notes] => dfgdfg
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:41:30 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:41:30 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:41:30 Europe/Istanbul] Oluşturulan tarih sayısı: 8
+[18-Oct-2025 22:41:30 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:41:30 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:41:30 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:41:30 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:41:30 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:41:30 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:41:30 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/8 tarihte çakışma var: 20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma (Saat: 16:00-17:30). Lütfen farklı saat dilimleri seçin.
+[18-Oct-2025 22:41:30 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:41:30 Europe/Istanbul] Satır: 240
+[18-Oct-2025 22:41:30 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 19:43:11 UTC] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 19:43:11 UTC] POST Data: Array
+(
+    [csrf_token] => test_token_123
+    [activity_area_id] => 8
+    [activity_date] => 2025-10-25
+    [activity_name] => Test Etkinlik
+    [staff] => Test Kişi
+    [notes] => Test not
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+        )
+
+    [tekrar_durumu] => hayir
+)
+
+[18-Oct-2025 22:46:39 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:46:39 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => b588ad416543e815904367c20d26df5e1707f98ec977f1d22610526af03fba7b
+    [activity_area_id] => 8
+    [activity_name] => adasdasd
+    [activity_date] => 2025-10-19
+    [staff] => asdsad
+    [notes] => adsasd
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:46:39 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:46:39 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:46:39 Europe/Istanbul] Oluşturulan tarih sayısı: 8
+[18-Oct-2025 22:46:39 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:39 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:39 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:39 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:39 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:39 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:46:39 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/8 tarihte çakışma var: 20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma (Saat: 16:00-17:30). Lütfen farklı saat dilimleri seçin.
+[18-Oct-2025 22:46:39 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:46:39 Europe/Istanbul] Satır: 241
+[18-Oct-2025 22:46:39 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:46:42 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:46:42 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => b588ad416543e815904367c20d26df5e1707f98ec977f1d22610526af03fba7b
+    [activity_area_id] => 8
+    [activity_name] => adasdasd
+    [activity_date] => 2025-10-19
+    [staff] => asdsad
+    [notes] => adsasd
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:46:42 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:46:42 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:46:42 Europe/Istanbul] Oluşturulan tarih sayısı: 8
+[18-Oct-2025 22:46:42 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:42 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:42 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:42 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:42 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:46:42 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:46:42 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/8 tarihte çakışma var: 20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma (Saat: 16:00-17:30). Lütfen farklı saat dilimleri seçin.
+[18-Oct-2025 22:46:42 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:46:42 Europe/Istanbul] Satır: 241
+[18-Oct-2025 22:46:42 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 22:47:16 Europe/Istanbul] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 22:47:16 Europe/Istanbul] POST Data: Array
+(
+    [csrf_token] => b588ad416543e815904367c20d26df5e1707f98ec977f1d22610526af03fba7b
+    [activity_area_id] => 8
+    [activity_name] => adasdasd
+    [activity_date] => 2025-10-19
+    [staff] => asdsad
+    [notes] => adsasd
+    [tekrar_durumu] => evet
+    [tekrar_turu] => gunluk_7
+    [bitis_tarihi] => 2025-10-18
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+            [2] => 19
+        )
+
+)
+
+[18-Oct-2025 22:47:16 Europe/Istanbul] Seçilen saat dilimleri: 17, 18, 19
+[18-Oct-2025 22:47:16 Europe/Istanbul] Tekrarlı etkinlik oluşturuluyor...
+[18-Oct-2025 22:47:16 Europe/Istanbul] Oluşturulan tarih sayısı: 8
+[18-Oct-2025 22:47:16 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:47:16 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:47:16 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:47:16 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:47:16 Europe/Istanbul] PHP Warning:  Undefined array key "conflicting_activities" in /home/vildacgg/vldn.in/portalv2/app/Models/Activity.php on line 859
+[18-Oct-2025 22:47:16 Europe/Istanbul] === ETKİNLİK OLUŞTURMA HATASI ===
+[18-Oct-2025 22:47:16 Europe/Istanbul] Hata mesajı: Tekrarlı rezervasyon oluşturulamadı! 5/8 tarihte çakışma var: 20.10.2025 Pazartesi, 21.10.2025 Salı, 22.10.2025 Çarşamba, 23.10.2025 Perşembe, 24.10.2025 Cuma (Saat: 16:00-17:30). Lütfen farklı saat dilimleri seçin.
+[18-Oct-2025 22:47:16 Europe/Istanbul] Dosya: /home/vildacgg/vldn.in/portalv2/app/Controllers/ActivityController.php
+[18-Oct-2025 22:47:16 Europe/Istanbul] Satır: 241
+[18-Oct-2025 22:47:16 Europe/Istanbul] Stack trace: #0 [internal function]: App\Controllers\ActivityController->store()
+#1 /home/vildacgg/vldn.in/portalv2/core/Router.php(347): call_user_func_array()
+#2 /home/vildacgg/vldn.in/portalv2/core/Router.php(147): Core\Router->callHandler()
+#3 /home/vildacgg/vldn.in/portalv2/public/index.php(77): Core\Router->dispatch()
+#4 {main}
+[18-Oct-2025 19:47:44 UTC] === SAAT DİLİMİ SİSTEMİ REZERVASYON ===
+[18-Oct-2025 19:47:44 UTC] POST Data: Array
+(
+    [csrf_token] => test_token_123
+    [activity_area_id] => 8
+    [activity_date] => 2025-10-25
+    [activity_name] => Test Etkinlik
+    [staff] => Test Kişi
+    [notes] => Test not
+    [time_slots] => Array
+        (
+            [0] => 17
+            [1] => 18
+        )
+
+    [tekrar_durumu] => hayir
+)
+
+[18-Oct-2025 19:47:44 UTC] Seçilen saat dilimleri: 17, 18
+[18-Oct-2025 19:47:44 UTC] Tek seferlik etkinlik oluşturuluyor...
+[18-Oct-2025 19:47:44 UTC] Etkinlik oluşturuldu, ID: 102
+[19-Oct-2025 12:00:29 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[19-Oct-2025 12:00:29 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[19-Oct-2025 12:00:29 Europe/Istanbul] POST: []
+[19-Oct-2025 12:00:30 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[19-Oct-2025 12:00:30 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[19-Oct-2025 12:00:30 Europe/Istanbul] POST: []
+[19-Oct-2025 12:00:49 Europe/Istanbul] === AJAX SEARCH DEBUG ===
+[19-Oct-2025 12:00:49 Europe/Istanbul] GET: {"url":"api\/students\/search"}
+[19-Oct-2025 12:00:49 Europe/Istanbul] POST: []

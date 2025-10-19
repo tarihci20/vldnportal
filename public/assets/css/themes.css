@@ -1,0 +1,689 @@
+/**
+ * Themes.css - Dark/Light Tema Sistemi
+ * Modern, kullanıcı dostu tema değişimi
+ */
+
+/* ==========================================
+   CSS VARIABLES - LIGHT THEME (Default)
+   ========================================== */
+
+:root {
+  /* Ana Renkler */
+  --color-primary: #4F46E5;
+  --color-primary-light: #6366F1;
+  --color-primary-dark: #4338CA;
+  --color-secondary: #10B981;
+  --color-accent: #F59E0B;
+  
+  /* Arkaplan Renkleri */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9FAFB;
+  --bg-tertiary: #F3F4F6;
+  --bg-hover: #F3F4F6;
+  --bg-active: #E5E7EB;
+  
+  /* Metin Renkleri */
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
+  --text-inverse: #FFFFFF;
+  
+  /* Border ve Divider */
+  --border-color: #E5E7EB;
+  --border-light: #F3F4F6;
+  --border-dark: #D1D5DB;
+  
+  /* Shadow */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Status Colors */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  
+  /* Gradient */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-success: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  --gradient-warning: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Sidebar */
+  --sidebar-bg: #1F2937;
+  --sidebar-text: #D1D5DB;
+  --sidebar-hover: #374151;
+  --sidebar-active: #4F46E5;
+}
+
+/* ==========================================
+   DARK THEME
+   ========================================== */
+
+[data-theme="dark"] {
+  /* Ana Renkler */
+  --color-primary: #6366F1;
+  --color-primary-light: #818CF8;
+  --color-primary-dark: #4F46E5;
+  
+  /* Arkaplan Renkleri */
+  --bg-primary: #111827;
+  --bg-secondary: #1F2937;
+  --bg-tertiary: #374151;
+  --bg-hover: #374151;
+  --bg-active: #4B5563;
+  
+  /* Metin Renkleri */
+  --text-primary: #F9FAFB;
+  --text-secondary: #D1D5DB;
+  --text-tertiary: #9CA3AF;
+  --text-inverse: #111827;
+  
+  /* Border */
+  --border-color: #374151;
+  --border-light: #4B5563;
+  --border-dark: #1F2937;
+  
+  /* Shadow (Daha hafif dark mode için) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  
+  /* Gradient (Dark için uyarlanmış) */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  /* Sidebar (Dark mode'da daha açık) */
+  --sidebar-bg: #0F172A;
+  --sidebar-text: #E5E7EB;
+  --sidebar-hover: #1E293B;
+  --sidebar-active: #6366F1;
+}
+
+/* ==========================================
+   GENEL STILLER
+   ========================================== */
+
+/* Body */
+[data-theme="dark"] body,
+html[data-theme="dark"] body {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* Kartlar ve Beyaz Arka Planlar */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .card,
+html[data-theme="dark"] .bg-white,
+html[data-theme="dark"] .card {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+.card, 
+.bg-white {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  transition: background-color var(--transition-base);
+}
+
+/* Gray Arka Planlar */
+[data-theme="dark"] .bg-gray-50,
+[data-theme="dark"] .bg-gray-100,
+html[data-theme="dark"] .bg-gray-50,
+html[data-theme="dark"] .bg-gray-100 {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Border */
+[data-theme="dark"] .border,
+[data-theme="dark"] .border-gray-200,
+[data-theme="dark"] .border-gray-300,
+html[data-theme="dark"] .border,
+html[data-theme="dark"] .border-gray-200,
+html[data-theme="dark"] .border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+.border,
+.border-gray-200,
+.border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+/* Metin Renkleri - Dark Mode */
+[data-theme="dark"] .text-gray-900,
+html[data-theme="dark"] .text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-gray-600,
+[data-theme="dark"] .text-gray-700,
+[data-theme="dark"] .text-gray-500,
+html[data-theme="dark"] .text-gray-600,
+html[data-theme="dark"] .text-gray-700,
+html[data-theme="dark"] .text-gray-500 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-gray-400,
+html[data-theme="dark"] .text-gray-400 {
+  color: var(--text-tertiary) !important;
+}
+
+/* Metin Renkleri - Light Mode */
+.text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-600,
+.text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+.text-gray-400,
+.text-gray-500 {
+  color: var(--text-tertiary) !important;
+}
+
+/* Input ve Form Elemanları */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+input,
+textarea,
+select {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+  transition: all var(--transition-base);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus,
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] textarea:focus,
+html[data-theme="dark"] select:focus {
+  background-color: var(--bg-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  background-color: var(--bg-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder,
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: var(--text-tertiary) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-tertiary) !important;
+}
+
+/* Butonlar */
+button:not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning) {
+  transition: all var(--transition-base);
+}
+
+.bg-gray-50,
+.bg-gray-100 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.hover\:bg-gray-50:hover,
+.hover\:bg-gray-100:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+/* Hover Efektleri */
+.hover\:shadow-lg:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Modal */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Sidebar */
+[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .sidebar {
+  background-color: var(--sidebar-bg) !important;
+  color: var(--sidebar-text) !important;
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  transition: all var(--transition-base);
+}
+
+[data-theme="dark"] .sidebar a,
+html[data-theme="dark"] .sidebar a {
+  color: var(--sidebar-text) !important;
+}
+
+.sidebar a {
+  color: var(--sidebar-text);
+  transition: all var(--transition-fast);
+}
+
+[data-theme="dark"] .sidebar a:hover,
+html[data-theme="dark"] .sidebar a:hover {
+  background-color: var(--sidebar-hover) !important;
+}
+
+.sidebar a:hover {
+  background-color: var(--sidebar-hover);
+}
+
+[data-theme="dark"] .sidebar a.active,
+html[data-theme="dark"] .sidebar a.active {
+  background-color: var(--sidebar-active) !important;
+  color: #FFFFFF !important;
+}
+
+.sidebar a.active {
+  background-color: var(--sidebar-active);
+  color: #FFFFFF;
+}
+
+/* Table */
+[data-theme="dark"] table,
+html[data-theme="dark"] table {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+table {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] thead,
+html[data-theme="dark"] thead {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-secondary) !important;
+}
+
+thead {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] tbody tr:hover,
+html[data-theme="dark"] tbody tr:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+tbody tr:hover {
+  background-color: var(--bg-hover);
+}
+
+/* Alerts */
+.alert {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .alert {
+  filter: brightness(0.85);
+}
+
+/* ==========================================
+   ANIMASYONLAR
+   ========================================== */
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-base) ease-out;
+}
+
+/* Slide In from Right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight var(--transition-base) ease-out;
+}
+
+/* Slide In from Left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft var(--transition-base) ease-out;
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--transition-base) ease-out;
+}
+
+/* Pulse */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Bounce */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* ==========================================
+   HOVER EFFECTS
+   ========================================== */
+
+/* Card Hover */
+.card-hover {
+  transition: all var(--transition-base);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Button Hover */
+.btn-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.btn-hover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-hover:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Glow Effect */
+.glow-on-hover {
+  transition: all var(--transition-base);
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px var(--color-primary);
+}
+
+/* ==========================================
+   LOADING STATES
+   ========================================== */
+
+/* Skeleton Loader */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 25%,
+    var(--bg-hover) 50%,
+    var(--bg-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-text {
+  height: 16px;
+  margin-bottom: 8px;
+}
+
+.skeleton-title {
+  height: 24px;
+  margin-bottom: 16px;
+}
+
+.skeleton-circle {
+  border-radius: 50%;
+}
+
+/* Spinner */
+.spinner {
+  border: 3px solid var(--border-color);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: relative;
+  height: 4px;
+  background-color: var(--bg-tertiary);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  transition: width var(--transition-slow);
+}
+
+.progress-bar-indeterminate {
+  position: absolute;
+  height: 100%;
+  width: 30%;
+  background: var(--gradient-primary);
+  animation: indeterminate 1.5s infinite;
+}
+
+@keyframes indeterminate {
+  0% {
+    left: -30%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ==========================================
+   GLASSMORPHISM
+   ========================================== */
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+[data-theme="dark"] .glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   SCROLL BEHAVIOR
+   ========================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+/* Focus Styles */
+*:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .sidebar,
+  .no-print {
+    display: none !important;
+  }
+}

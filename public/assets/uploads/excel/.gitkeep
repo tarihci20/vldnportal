@@ -1,0 +1,9 @@
+# Bu dosya boş klasörlerin Git'te takip edilmesini sağlar
+# Aşağıdaki klasörlere kopyalayın:
+#
+# - public/assets/uploads/excel/.gitkeep
+# - storage/logs/.gitkeep
+# - storage/cache/.gitkeep
+# - storage/backups/.gitkeep
+#
+# Kullanım: Dosya içeriği boş olabilir veya bu açıklama kalabilir

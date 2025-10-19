@@ -1,0 +1,137 @@
+<?php
+/**
+ * Vildan Portal - Production Constants (cPanel)
+ * 
+ * ⚠️ DEPLOYMENT SONRASI BU DOSYAYI KULLANIN
+ * 
+ * Kullanım:
+ * 1. Bu dosyanın ismini "constants.php.production" olarak kaydedin
+ * 2. cPanel'e upload ettikten sonra:
+ *    - config/constants.php dosyasını yedekleyin (constants.php.local)
+ *    - constants.php.production ismini constants.php olarak değiştirin
+ * 3. Aşağıdaki değerleri kendi hosting bilgilerinizle güncelleyin
+ */
+
+// Eğer index.php'de tanımlı değilse tanımla
+if (!defined('ROOT_PATH')) define('ROOT_PATH', dirname(__DIR__));
+if (!defined('PUBLIC_PATH')) define('PUBLIC_PATH', ROOT_PATH . '/public');
+
+// Uygulama yolları
+if (!defined('APP_PATH')) define('APP_PATH', ROOT_PATH . '/app');
+if (!defined('CONFIG_PATH')) define('CONFIG_PATH', ROOT_PATH . '/config');
+if (!defined('CORE_PATH')) define('CORE_PATH', ROOT_PATH . '/core');
+if (!defined('STORAGE_PATH')) define('STORAGE_PATH', ROOT_PATH . '/storage');
+if (!defined('VIEW_PATH')) define('VIEW_PATH', APP_PATH . '/views');
+if (!defined('CONTROLLER_PATH')) define('CONTROLLER_PATH', APP_PATH . '/controllers');
+if (!defined('MODEL_PATH')) define('MODEL_PATH', APP_PATH . '/models');
+if (!defined('HELPER_PATH')) define('HELPER_PATH', APP_PATH . '/helpers');
+
+// URL sabitleri - PRODUCTION
+// ⚠️ SSL varsa https://, yoksa http:// kullanın
+if (!defined('BASE_URL')) define('BASE_URL', 'https://yourdomain.com/portalv2'); // ⚠️ DEĞİŞTİRİN
+if (!defined('BASE_PATH')) define('BASE_PATH', '/portalv2');
+if (!defined('ASSETS_URL')) define('ASSETS_URL', BASE_URL . '/public/assets');
+if (!defined('UPLOAD_URL')) define('UPLOAD_URL', BASE_URL . '/public/assets/uploads');
+
+// Upload yolları
+if (!defined('UPLOAD_PATH')) define('UPLOAD_PATH', PUBLIC_PATH . '/assets/uploads');
+if (!defined('PROFILE_UPLOAD_PATH')) define('PROFILE_UPLOAD_PATH', UPLOAD_PATH . '/profiles');
+if (!defined('ACTIVITY_AREA_UPLOAD_PATH')) define('ACTIVITY_AREA_UPLOAD_PATH', UPLOAD_PATH . '/activity-areas');
+if (!defined('TEMP_UPLOAD_PATH')) define('TEMP_UPLOAD_PATH', UPLOAD_PATH . '/temp');
+
+// Log yolları
+if (!defined('LOG_PATH')) define('LOG_PATH', STORAGE_PATH . '/logs');
+if (!defined('APP_LOG')) define('APP_LOG', LOG_PATH . '/app.log');
+if (!defined('ERROR_LOG')) define('ERROR_LOG', LOG_PATH . '/error.log');
+if (!defined('SECURITY_LOG')) define('SECURITY_LOG', LOG_PATH . '/security.log');
+
+// Cache
+if (!defined('CACHE_PATH')) define('CACHE_PATH', STORAGE_PATH . '/cache');
+if (!defined('CACHE_ENABLED')) define('CACHE_ENABLED', true);
+if (!defined('CACHE_LIFETIME')) define('CACHE_LIFETIME', 3600); // 1 saat
+
+// Session
+if (!defined('SESSION_NAME')) define('SESSION_NAME', 'vildan_portal_session');
+if (!defined('SESSION_LIFETIME')) define('SESSION_LIFETIME', 7200); // 2 saat
+
+// Uygulama
+if (!defined('APP_NAME')) define('APP_NAME', 'Vildan Portal');
+if (!defined('APP_VERSION')) define('APP_VERSION', '1.0.0');
+if (!defined('APP_ENV')) define('APP_ENV', 'production'); // ⚠️ PRODUCTION
+if (!defined('APP_DEBUG')) define('APP_DEBUG', false); // ⚠️ PRODUCTION'DA FALSE!
+
+// Veritabanı tablo prefix
+if (!defined('DB_PREFIX')) define('DB_PREFIX', 'vp_');
+
+// Timezone
+if (!defined('APP_TIMEZONE')) define('APP_TIMEZONE', 'Europe/Istanbul');
+if (!defined('APP_LOCALE')) define('APP_LOCALE', 'tr_TR');
+
+// Pagination
+if (!defined('PER_PAGE')) define('PER_PAGE', 20);
+if (!defined('MAX_PER_PAGE')) define('MAX_PER_PAGE', 100);
+if (!defined('STUDENTS_PER_PAGE')) define('STUDENTS_PER_PAGE', 20);
+if (!defined('ACTIVITIES_PER_PAGE')) define('ACTIVITIES_PER_PAGE', 20);
+if (!defined('SEARCH_RESULTS_PER_PAGE')) define('SEARCH_RESULTS_PER_PAGE', 10);
+
+// Upload limitleri
+if (!defined('MAX_UPLOAD_SIZE')) define('MAX_UPLOAD_SIZE', 10 * 1024 * 1024); // 10MB
+if (!defined('MAX_FILE_SIZE')) define('MAX_FILE_SIZE', 10 * 1024 * 1024); // 10MB
+if (!defined('ALLOWED_IMAGE_EXTENSIONS')) define('ALLOWED_IMAGE_EXTENSIONS', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+if (!defined('ALLOWED_DOCUMENT_EXTENSIONS')) define('ALLOWED_DOCUMENT_EXTENSIONS', ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv']);
+if (!defined('ALLOWED_EXCEL_TYPES')) define('ALLOWED_EXCEL_TYPES', [
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/octet-stream'
+]);
+
+// Güvenlik
+if (!defined('CSRF_TOKEN_NAME')) define('CSRF_TOKEN_NAME', 'csrf_token');
+if (!defined('CSRF_TOKEN_LIFETIME')) define('CSRF_TOKEN_LIFETIME', 3600); // 1 saat
+if (!defined('PASSWORD_MIN_LENGTH')) define('PASSWORD_MIN_LENGTH', 8);
+if (!defined('MAX_LOGIN_ATTEMPTS')) define('MAX_LOGIN_ATTEMPTS', 5);
+if (!defined('LOGIN_LOCKOUT_TIME')) define('LOGIN_LOCKOUT_TIME', 900); // 15 dakika
+if (!defined('REMEMBER_ME_LIFETIME')) define('REMEMBER_ME_LIFETIME', 30 * 24 * 60 * 60); // 30 gün
+if (!defined('MAX_CONCURRENT_SESSIONS')) define('MAX_CONCURRENT_SESSIONS', 5);
+
+// Rate Limiting
+if (!defined('RATE_LIMIT_LOGIN')) define('RATE_LIMIT_LOGIN', 5); // 5 deneme
+if (!defined('RATE_LIMIT_API')) define('RATE_LIMIT_API', 60); // 60 istek/dakika
+if (!defined('RATE_LIMIT_WINDOW')) define('RATE_LIMIT_WINDOW', 60); // 60 saniye
+
+// Google OAuth (isteğe bağlı)
+if (!defined('GOOGLE_OAUTH_ENABLED')) define('GOOGLE_OAUTH_ENABLED', false);
+if (!defined('GOOGLE_CLIENT_ID')) define('GOOGLE_CLIENT_ID', '');
+if (!defined('GOOGLE_CLIENT_SECRET')) define('GOOGLE_CLIENT_SECRET', '');
+if (!defined('GOOGLE_REDIRECT_URI')) define('GOOGLE_REDIRECT_URI', BASE_URL . '/auth/google/callback');
+
+// Rol ID'leri
+if (!defined('ROLE_ADMIN')) define('ROLE_ADMIN', 1);
+if (!defined('ROLE_TEACHER')) define('ROLE_TEACHER', 2);
+if (!defined('ROLE_SECRETARY')) define('ROLE_SECRETARY', 3);
+if (!defined('ROLE_PRINCIPAL')) define('ROLE_PRINCIPAL', 4);
+if (!defined('ROLE_VICE_PRINCIPAL')) define('ROLE_VICE_PRINCIPAL', 5);
+
+// Hata raporlama - PRODUCTION
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
+ini_set('display_errors', '0'); // ⚠️ PRODUCTION'DA KAPALI
+ini_set('log_errors', '1');
+ini_set('error_log', ERROR_LOG);
+
+// Timezone ayarla
+date_default_timezone_set(APP_TIMEZONE);
+
+// Session ayarları
+ini_set('session.cookie_httponly', '1');
+ini_set('session.cookie_secure', '1'); // ⚠️ SSL varsa 1, yoksa 0
+ini_set('session.use_strict_mode', '1');
+ini_set('session.cookie_samesite', 'Lax');
+
+// PHP memory ve execution time
+ini_set('memory_limit', '256M');
+ini_set('max_execution_time', '300');
+ini_set('max_input_time', '300');
+
+// Upload ayarları
+ini_set('upload_max_filesize', '10M');
+ini_set('post_max_size', '10M');
