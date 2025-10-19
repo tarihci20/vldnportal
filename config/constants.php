@@ -85,11 +85,18 @@ if (!defined('MAX_PER_PAGE')) define('MAX_PER_PAGE', 100);
 if (!defined('STUDENTS_PER_PAGE')) define('STUDENTS_PER_PAGE', 50);  // ← EKLE
 if (!defined('SEARCH_RESULTS_PER_PAGE')) define('SEARCH_RESULTS_PER_PAGE', 20);  // ← EKLE
 // ============================================================
+
 // DOSYA YÜKLEME
 // ============================================================
 define('MAX_UPLOAD_SIZE', 10 * 1024 * 1024); // 10MB
 define('ALLOWED_IMAGE_TYPES', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
 define('ALLOWED_DOCUMENT_TYPES', ['pdf', 'doc', 'docx', 'xls', 'xlsx']);
+if (!defined('MAX_FILE_SIZE')) define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
+if (!defined('ALLOWED_EXCEL_TYPES')) define('ALLOWED_EXCEL_TYPES', [
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/octet-stream'
+]);
 
 // Timezone ayarla
 date_default_timezone_set(TIMEZONE);
