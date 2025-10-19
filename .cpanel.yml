@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/vildacgg/vldn.in/portalv2
+    - /bin/cp -R * $DEPLOYPATH
+    
