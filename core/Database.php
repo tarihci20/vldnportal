@@ -227,6 +227,10 @@ class Database
      * * @return string
      */
     public function getError() {
+        if ($this->statement && is_object($this->statement)) {
+            $info = $this->statement->errorInfo();
+            return isset($info[2]) && !empty($info[2]) ? $info[2] : $this->error;
+        }
         return $this->error;
     }
     

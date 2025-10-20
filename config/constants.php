@@ -31,7 +31,7 @@ define('CORE_PATH', ROOT_PATH . '/core');
 define('PUBLIC_PATH', ROOT_PATH . '/public');
 define('STORAGE_PATH', ROOT_PATH . '/storage');
 define('VIEW_PATH', APP_PATH . '/views');
-define('LOG_PATH', STORAGE_PATH . '/logs');
+define('LOG_PATH', dirname(__DIR__) . '/storage/logs');
 define('CACHE_PATH', STORAGE_PATH . '/cache');
 define('UPLOAD_PATH', PUBLIC_PATH . '/assets/uploads');
 
@@ -71,8 +71,8 @@ define('TR_DAYS', [
 // ============================================================
 // GÜVENLİK
 // ============================================================
-define('CSRF_TOKEN_LIFETIME', 3600); // 1 saat
-define('SESSION_LIFETIME', 7200); // 2 saat
+define('CSRF_TOKEN_LIFETIME', 86400); // 24 saat
+define('SESSION_LIFETIME', 86400); // 24 saat
 define('PASSWORD_MIN_LENGTH', 8);
 define('MAX_LOGIN_ATTEMPTS', 5);
 define('LOGIN_LOCKOUT_TIME', 900); // 15 dakika

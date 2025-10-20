@@ -265,8 +265,11 @@ class Student extends Model
         if (isset($data['tc_no']) && empty($data['tc_no'])) {
             $data['tc_no'] = null;
         }
-        
-        return parent::create($data);
+        $result = parent::create($data);
+        if ($result === false && isset($this->db) && method_exists($this->db, 'getError')) {
+            return $this->db->getError();
+        }
+        return $result;
     }
     
     /**

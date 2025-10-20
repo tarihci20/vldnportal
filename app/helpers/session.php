@@ -14,7 +14,7 @@ if (!function_exists('startSession')) {
     function startSession() {
         if (session_status() === PHP_SESSION_NONE) {
             // Sabitlerin tanımlı olup olmadığını kontrol et
-            $lifetime = defined('SESSION_LIFETIME') ? SESSION_LIFETIME : 7200;
+            $lifetime = defined('SESSION_LIFETIME') ? SESSION_LIFETIME : 86400;
             $basePath = defined('BASE_PATH') ? BASE_PATH : '/';
             $sessionName = defined('SESSION_NAME') ? SESSION_NAME : 'app_session';
 

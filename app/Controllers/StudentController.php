@@ -176,49 +176,48 @@ class StudentController extends Controller
             'teacher_name' => cleanName($_POST['teacher_name'] ?? ''),
             'teacher_phone' => cleanPhone($_POST['teacher_phone'] ?? ''),
             'notes' => cleanText($_POST['notes'] ?? ''),
+            'is_active' => 1,
             'created_by' => getCurrentUserId()
         ];
         
         // Zorunlu alanları kontrol et
         $errors = [];
-        
         if (empty($data['first_name'])) {
             $errors[] = 'İsim alanı zorunludur.';
         }
-        
         if (empty($data['last_name'])) {
             $errors[] = 'Soyisim alanı zorunludur.';
         }
-        
-        // TC kontrolü (varsa)
-        if (!empty($data['tc_no'])) {
-            if (strlen($data['tc_no']) != 11) {
-                $errors[] = 'TC kimlik numarası 11 haneli olmalıdır.';
-            }
-            
-            // TC unique kontrolü
-            if ($this->studentModel->isTcExists($data['tc_no'])) {
-                $errors[] = 'Bu TC kimlik numarası ile kayıtlı bir öğrenci zaten var.';
-            }
+        if (empty($data['tc_no'])) {
+            $errors[] = 'TC kimlik numarası zorunludur.';
+        } elseif (strlen($data['tc_no']) != 11) {
+            $errors[] = 'TC kimlik numarası 11 haneli olmalıdır.';
+        } elseif ($this->studentModel->isTcExists($data['tc_no'])) {
+            $errors[] = 'Bu TC kimlik numarası ile kayıtlı bir öğrenci zaten var.';
         }
-        
+        if (empty($data['birth_date'])) {
+            $errors[] = 'Doğum tarihi zorunludur.';
+        }
+        if (empty($data['class'])) {
+            $errors[] = 'Sınıf alanı zorunludur.';
+        }
+
         if (!empty($errors)) {
             setFlashMessage(implode('<br>', $errors), 'error');
             redirect('/students/create');
         }
-        
-        // Öğrenciyi kaydet
+        // Kayıt işlemi
         $studentId = $this->studentModel->create($data);
-        
-        if ($studentId) {
-            // Log kaydı
-            logActivity('student_created', 'students', $studentId, null, $data);
-            
+        if ($studentId !== false && !is_string($studentId)) {
             setFlashMessage('Öğrenci başarıyla eklendi.', 'success');
-            redirect('/students/' . $studentId);
+            redirect(url('/students/' . $studentId));
         } else {
-            setFlashMessage('Öğrenci eklenirken bir hata oluştu.', 'error');
-            redirect('/students/create');
+            $errorMsg = 'Öğrenci eklenirken bir hata oluştu.';
+            if (is_string($studentId) && !empty($studentId)) {
+                $errorMsg .= '<br><strong>Veritabanı Hatası:</strong> ' . htmlspecialchars($studentId);
+            }
+            setFlashMessage($errorMsg, 'error');
+            redirect(url('/students/create'));
         }
     }
     
@@ -349,7 +348,7 @@ class StudentController extends Controller
             exit;
         }
         
-        if ($this->studentModel->delete($id)) {
+    if ($this->studentModel->hardDelete($id)) {
             // Log kaydı
             logActivity('student_deleted', 'students', $id, $student, null);
             
@@ -503,7 +502,8 @@ class StudentController extends Controller
                 $studentData['created_by'] = getCurrentUserId();
                 try {
                     $inserted = $this->studentModel->create($studentData);
-                    if ($inserted) {
+                    if ($inserted !== false && !is_string($inserted)) {
+                        // Başarılı insert (ID döndü)
                         $imported++;
                     } else {
                         $skipped++;
@@ -513,6 +513,22 @@ class StudentController extends Controller
                             $errorMsg .= ' (TC: ' . $studentData['tc_no'] . ')';
                         }
                         $errorMsg .= ' - Kayıt hatası (DB insert failed)';
+                        if (is_string($inserted) && !empty($inserted)) {
+                            $errorMsg .= ' | DB Error: ' . $inserted;
+                        } else {
+                            // PDO/Model hata detayını al
+                            $pdoError = '';
+                            if (isset($this->studentModel->db)) {
+                                if (!empty($this->studentModel->db->error)) {
+                                    $pdoError = $this->studentModel->db->error;
+                                } elseif (method_exists($this->studentModel->db, 'getError')) {
+                                    $pdoError = $this->studentModel->db->getError();
+                                }
+                            }
+                            if ($pdoError) {
+                                $errorMsg .= ' | DB Error: ' . $pdoError;
+                            }
+                        }
                         $importErrors[] = $errorMsg;
                         // Log detailed error
                         error_log("Student import error: " . $errorMsg . " | Data: " . json_encode($studentData));
@@ -560,6 +576,11 @@ class StudentController extends Controller
             }
             if (!empty($result['errors'])) {
                 $message .= " Excel okuma uyarıları: " . count($result['errors']);
+            }
+            // Hata detaylarını log dosyasına yaz
+            if (!empty($importErrors)) {
+                $logFile = LOG_PATH . '/excel_import_errors_' . date('Ymd_His') . '.log';
+                file_put_contents($logFile, implode("\n", $importErrors));
             }
             setFlashMessage($message, ($imported > 0 || $updated > 0) ? 'success' : 'warning');
             // Hata detaylarını session'a kaydet (opsiyonel)

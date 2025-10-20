@@ -45,20 +45,20 @@ $router->post('/api/students/search', 'StudentController@ajaxSearch');
 
 // Öğrenci listesi ve CRUD
 $router->get('/students', 'StudentController@index', 'students.index');
+
+// ÖNEMLİ: Statik route'lar dinamik route'lardan ÖNCE tanımlanmalı!
 $router->get('/students/create', 'StudentController@create', 'students.create');
+$router->get('/students/export/excel', 'StudentController@exportExcel', 'students.export');
+$router->get('/students/download/template', 'StudentController@downloadTemplate', 'students.template');
+$router->post('/students/import/excel', 'StudentController@importExcel', 'students.import');
+$router->post('/students/delete-all', 'StudentController@deleteAll');
+
+// Dinamik route'lar (ID ile) en sonda!
 $router->post('/students', 'StudentController@store');
 $router->get('/students/{id}', 'StudentController@detail', 'students.detail');
 $router->get('/students/{id}/edit', 'StudentController@edit', 'students.edit');
 $router->post('/students/{id}', 'StudentController@update');
 $router->post('/students/{id}/delete', 'StudentController@delete');
-
-// Excel işlemleri
-$router->get('/students/export/excel', 'StudentController@exportExcel', 'students.export');
-$router->get('/students/download/template', 'StudentController@downloadTemplate', 'students.template');
-$router->post('/students/import/excel', 'StudentController@importExcel', 'students.import');
-
-// Toplu silme
-$router->post('/students/delete-all', 'StudentController@deleteAll');
 
 // ============================================
 // ETKİNLİK ROUTES
@@ -66,25 +66,15 @@ $router->post('/students/delete-all', 'StudentController@deleteAll');
 
 // Etkinlik listesi
 $router->get('/activities', 'ActivityController@index', 'activities.index');
+
+// ÖNEMLİ: Statik route'lar dinamik route'lardan ÖNCE tanımlanmalı!
 $router->get('/activities/current', 'ActivityController@current', 'activities.current');
 $router->get('/activities/past', 'ActivityController@past', 'activities.past');
-
-// Yeni etkinlik
 $router->get('/activities/create', 'ActivityController@create', 'activities.create');
-$router->post('/activities', 'ActivityController@store');
-
-// Takvim görünümü - GEREKSİZ KAYNAK KULLANIMI NEDENİYLE KALDIRILDI
-// $router->get('/activities/calendar', 'ActivityController@calendar', 'activities.calendar');
-// $router->get('/api/activities/calendar-events', 'ActivityController@calendarEvents');
-
-// Toplu silme (Admin only) - ÖNEMLİ: {id} route'larından ÖNCE olmalı!
 $router->post('/activities/bulk-delete', 'ActivityController@bulkDelete');
 
-// Activity export (admin)
-$router->post('/admin/activities/export', 'ActivityController@exportSelected', 'admin.activities.export');
-$router->post('/admin/activities/export-by-date', 'ActivityController@exportByDate', 'admin.activities.export_by_date');
-
-// Etkinlik detay ve düzenleme - DİKKAT: Statik route'lar bundan ÖNCE tanımlanmali!
+// Dinamik route'lar (ID ile) en sonda!
+$router->post('/activities', 'ActivityController@store');
 $router->get('/activities/{id}', 'ActivityController@detail', 'activities.detail');
 $router->get('/activities/{id}/edit', 'ActivityController@edit', 'activities.edit');
 $router->post('/activities/{id}', 'ActivityController@update');
@@ -134,22 +124,11 @@ $router->get('/etut', 'EtutController@index', 'etut.index'); // Ana sayfa (kare 
 $router->get('/etut/ortaokul', 'EtutController@ortaokul', 'etut.ortaokul'); // Ortaokul listesi
 $router->get('/etut/lise', 'EtutController@lise', 'etut.lise'); // Lise listesi
 
-// API routes
-$router->get('/api/etut/{id}', 'EtutController@apiGet');
-$router->post('/api/etut/{id}/approve', 'EtutController@apiApprove');
-$router->post('/api/etut/{id}/reject', 'EtutController@apiReject');
-// Ensure status update route is available via web router (frontend uses /api/etut/{id}/status)
-$router->post('/api/etut/{id}/status', 'Api\\EtutApiController@updateStatus');
-// Batch delete (handled by API controller)
-$router->post('/api/etut/batch-delete', 'Api\\EtutApiController@batchDelete');
-$router->post('/api/etut/{id}/delete', 'Api\\EtutApiController@delete');
-// Etüt export (admin)
-$router->post('/admin/etut/export', 'EtutController@exportSelected', 'admin.etut.export');
-$router->post('/admin/etut/export-by-date', 'EtutController@exportByDate', 'admin.etut.export_by_date');
-
-// Eski routes (uyumluluk için)
+// ÖNEMLİ: Statik route'lar dinamik route'lardan ÖNCE tanımlanmalı!
 $router->get('/etut/form', 'EtutController@form', 'etut.form');
 $router->get('/etut/create', 'EtutController@create', 'etut.create');
+
+// Dinamik route'lar (ID ile) en sonda!
 $router->post('/etut', 'EtutController@store');
 $router->get('/etut/{id}', 'EtutController@detail');
 $router->get('/etut/{id}/edit', 'EtutController@edit');

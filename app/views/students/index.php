@@ -17,7 +17,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
             </svg>
         <?php endif; ?>
-        <span class="font-semibold"><?= e($flash['message']) ?></span>
+    <span class="font-semibold"><?= $flash['message'] ?></span>
     </div>
 <?php endif; ?>
 
