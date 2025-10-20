@@ -48,36 +48,48 @@ try {
     
     // 5. Test with Database class
     echo "<h2>5. Testing Database class...</h2>";
-    $db = \Core\Database::getInstance();
-    echo "<p>✅ Database instance created</p>";
-    
-    $db->query("SELECT * FROM students WHERE id = :id LIMIT 1");
-    $db->bind(':id', 1);
-    $dbResult = $db->single();
-    
-    if ($dbResult) {
-        echo "<p style='color: green;'>✅ Database->single() found it</p>";
-        echo "<pre>";
-        var_dump($dbResult);
-        echo "</pre>";
-    } else {
-        echo "<p style='color: red;'>❌ Database->single() returned NULL</p>";
+    try {
+        $db = \Core\Database::getInstance();
+        echo "<p>✅ Database instance created</p>";
+        echo "<p>Connection: " . (is_object($db) ? "OK" : "FAILED") . "</p>";
+        
+        $db->query("SELECT * FROM students WHERE id = :id LIMIT 1");
+        $db->bind(':id', 1);
+        $dbResult = $db->single();
+        
+        if ($dbResult) {
+            echo "<p style='color: green;'>✅ Database->single() found it</p>";
+            echo "<pre>";
+            var_dump($dbResult);
+            echo "</pre>";
+        } else {
+            echo "<p style='color: red;'>❌ Database->single() returned NULL</p>";
+            echo "<p><strong>Error:</strong> " . $db->getError() . "</p>";
+        }
+    } catch (\Exception $e) {
+        echo "<p style='color: red;'>❌ Database Error: " . $e->getMessage() . "</p>";
+        echo "<pre>" . $e->getTraceAsString() . "</pre>";
     }
     
     // 6. Test Model
     echo "<h2>6. Testing Model->findById()...</h2>";
-    $model = new \App\Models\Student();
-    echo "<p>✅ Model instantiated</p>";
-    
-    $result = $model->findById(1);
-    
-    if ($result) {
-        echo "<p style='color: green;'>✅ Model->findById(1) SUCCESS</p>";
-        echo "<pre>";
-        var_dump($result);
-        echo "</pre>";
-    } else {
-        echo "<p style='color: red;'>❌ Model->findById(1) returned NULL</p>";
+    try {
+        $model = new \App\Models\Student();
+        echo "<p>✅ Model instantiated</p>";
+        
+        $result = $model->findById(1);
+        
+        if ($result) {
+            echo "<p style='color: green;'>✅ Model->findById(1) SUCCESS</p>";
+            echo "<pre>";
+            var_dump($result);
+            echo "</pre>";
+        } else {
+            echo "<p style='color: red;'>❌ Model->findById(1) returned NULL</p>";
+        }
+    } catch (\Exception $e) {
+        echo "<p style='color: red;'>❌ Model Error: " . $e->getMessage() . "</p>";
+        echo "<pre>" . $e->getTraceAsString() . "</pre>";
     }
     
 } catch (Exception $e) {
