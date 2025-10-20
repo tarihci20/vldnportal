@@ -206,9 +206,21 @@ class StudentController extends Controller
             setFlashMessage(implode('<br>', $errors), 'error');
             redirect('/students/create');
         }
+        // DEBUG: Eklenen veriyi logla
+        error_log("=== STUDENT CREATE DEBUG ===");
+        error_log("Data: " . json_encode($data));
+        
         // Kayıt işlemi
         $studentId = $this->studentModel->create($data);
+        
+        error_log("StudentId result: " . var_export($studentId, true));
+        
         if ($studentId !== false && !is_string($studentId)) {
+            // DEBUG: Insert başarılı - kaydı hemen doğrula
+            error_log("Insert başarılı, ID: " . $studentId);
+            $verifyStudent = $this->studentModel->findById($studentId);
+            error_log("Verify result: " . json_encode($verifyStudent));
+            
             setFlashMessage('Öğrenci başarıyla eklendi.', 'success');
             redirect(url('/students/' . $studentId));
         } else {
