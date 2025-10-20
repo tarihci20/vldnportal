@@ -215,7 +215,9 @@ class StudentController extends Controller
         
         error_log("StudentId result: " . var_export($studentId, true));
         
-        if ($studentId !== false && !is_string($studentId)) {
+        // Başarılı olup olmadığını kontrol et
+        // create() başarılı ise ID döndürür (int veya string olabilir), başarısızsa false döndürür
+        if ($studentId !== false) {
             // DEBUG: Insert başarılı - kaydı hemen doğrula
             error_log("Insert başarılı, ID: " . $studentId);
             $verifyStudent = $this->studentModel->findById($studentId);
@@ -225,9 +227,6 @@ class StudentController extends Controller
             redirect(url('/students/' . $studentId));
         } else {
             $errorMsg = 'Öğrenci eklenirken bir hata oluştu.';
-            if (is_string($studentId) && !empty($studentId)) {
-                $errorMsg .= '<br><strong>Veritabanı Hatası:</strong> ' . htmlspecialchars($studentId);
-            }
             setFlashMessage($errorMsg, 'error');
             redirect(url('/students/create'));
         }
