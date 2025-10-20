@@ -78,6 +78,19 @@ define('MAX_LOGIN_ATTEMPTS', 5);
 define('LOGIN_LOCKOUT_TIME', 900); // 15 dakika
 
 // ============================================================
+// VERİTABANI SABİTLERİ
+// ============================================================
+define('DB_DRIVER', 'mysql');
+define('DB_HOST', 'localhost');
+define('DB_PORT', 3306);
+define('DB_NAME', 'vildacgg_portalv2');
+define('DB_USER', 'vildacgg_tarihci20');
+define('DB_PASS', 'C@rg_;NBXBu5');
+define('DB_CHARSET', 'utf8mb4');
+define('DB_COLLATION', 'utf8mb4_unicode_ci');
+define('DB_PREFIX', 'vp_');
+
+// ============================================================
 // SAYFALAMA
 // ==============================================
 if (!defined('PER_PAGE')) define('PER_PAGE', 20);
