@@ -1,8 +1,17 @@
 <!-- Flash Messages -->
 <?php $flash = getFlashMessage(); if ($flash): ?>
-    <div class="mb-6 p-4 rounded-lg <?= $flash['type'] === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : ($flash['type'] === 'error' ? 'bg-red-50 text-red-800 border border-red-200' : 'bg-yellow-50 text-yellow-800 border border-yellow-200') ?>">
+    <div id="flash-message" class="mb-6 p-4 rounded-lg <?= $flash['type'] === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : ($flash['type'] === 'error' ? 'bg-red-50 text-red-800 border border-red-200' : 'bg-yellow-50 text-yellow-800 border border-yellow-200') ?>">
         <strong><?= $flash['message'] ?></strong>
     </div>
+    <script>
+        // Auto-dismiss flash message after 3 seconds
+        setTimeout(() => {
+            const flashMsg = document.getElementById('flash-message');
+            if (flashMsg) {
+                flashMsg.style.display = 'none';
+            }
+        }, 3000);
+    </script>
 <?php endif; ?>
 
 <div class="container mx-auto px-4 py-8">
