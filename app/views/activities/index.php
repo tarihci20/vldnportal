@@ -12,42 +12,70 @@ $pagination = $data['pagination'] ?? [];
 <!-- Main Content -->
 <div class="max-w-7xl mx-auto">
     
-        <!-- Page Header -->
-        <div class="mb-4 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-            <div class="flex-1">
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Etkinlikler</h1>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                    Tüm etkinlikleri görüntüleyin ve yönetin
-                </p>
-            </div>
-            
-            <!-- Butonlar Bölümü -->
-            <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
-                <!-- Excel Butonları (Sol) -->
-                <?php if (isAdmin()): ?>
-                <div class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-                    <button onclick="exportSelectedActivities()" class="inline-flex items-center justify-center text-white bg-emerald-600 hover:bg-emerald-700 font-medium rounded-lg text-sm px-4 py-2 whitespace-nowrap">
-                        <i class="fas fa-file-excel mr-2"></i> Seçilenleri Excel
-                    </button>
-                    <form id="exportActivitiesByDate" method="POST" action="<?= url('/admin/activities/export-by-date') ?>" class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-                        <input type="date" name="date" id="activitiesExportDate" class="border rounded px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600">
-                        <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
-                        <button type="submit" class="inline-flex items-center justify-center text-white bg-indigo-600 hover:bg-indigo-700 font-medium rounded-lg text-sm px-4 py-2 whitespace-nowrap">
-                            <i class="fas fa-calendar-day mr-2"></i> Tarihe Göre Excel
-                        </button>
-                    </form>
+        <!-- Page Header with Modern Design -->
+        <div class="mb-8">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6">
+                <!-- Title Section -->
+                <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Etkinlikler</h1>
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                Tüm etkinlikleri görüntüleyin ve yönetin
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <?php endif; ?>
                 
-                <!-- Yeni Etkinlik Butonu (Sağ) -->
-                <?php if (hasPermission('activities', 'can_create')): ?>
-                <a href="<?= url('/activities/create') ?>" class="flex items-center justify-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 whitespace-nowrap">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                    </svg>
-                    Yeni Etkinlik
-                </a>
-                <?php endif; ?>
+                <!-- Action Buttons Section -->
+                <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+                    <!-- Export Dropdown Group -->
+                    <?php if (isAdmin()): ?>
+                    <div class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+                        <!-- Export Selected -->
+                        <button onclick="exportSelectedActivities()" 
+                                class="group relative inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Seçilenleri Excel</span>
+                        </button>
+                        
+                        <!-- Export by Date -->
+                        <form id="exportActivitiesByDate" method="POST" action="<?= url('/admin/activities/export-by-date') ?>" class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+                            <div class="relative">
+                                <input type="date" name="date" id="activitiesExportDate" 
+                                       class="w-full px-3 py-2.5 border-2 border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:border-indigo-500 focus:outline-none transition-colors"
+                                       required>
+                            </div>
+                            <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+                            <button type="submit" 
+                                    class="group relative inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Tarihe Göre</span>
+                            </button>
+                        </form>
+                    </div>
+                    <?php endif; ?>
+                    
+                    <!-- Add New Button (Prominent) -->
+                    <?php if (hasPermission('activities', 'can_create')): ?>
+                    <a href="<?= url('/activities/create') ?>" 
+                       class="group relative inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-1 whitespace-nowrap">
+                        <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        <span>Yeni Etkinlik</span>
+                    </a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
         
