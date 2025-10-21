@@ -136,14 +136,20 @@ class ActivityAreaController extends Controller
             
             error_log("Data to save: " . print_r($data, true));
             
-            $result = $this->areaModel->create($data);
-            
-            error_log("Create result: " . print_r($result, true));
-            
-            if ($result) {
-                setFlashMessage('Etkinlik alanı başarıyla eklendi!', 'success');
-            } else {
-                setFlashMessage('Etkinlik alanı eklenirken hata oluştu!', 'error');
+            try {
+                $result = $this->areaModel->create($data);
+                error_log("Create result: " . print_r($result, true));
+                
+                if ($result && $result !== false) {
+                    setFlashMessage('Etkinlik alanı başarıyla eklendi!', 'success');
+                    error_log("Area created successfully with ID: $result");
+                } else {
+                    error_log("Create failed - result is false or empty");
+                    setFlashMessage('Etkinlik alanı eklenirken hata oluştu! Lütfen forma kontrol edin.', 'error');
+                }
+            } catch (\Exception $dbException) {
+                error_log("Database error: " . $dbException->getMessage());
+                setFlashMessage('Veritabanı hatası: ' . $dbException->getMessage(), 'error');
             }
             
         } catch (Exception $e) {

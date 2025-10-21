@@ -281,22 +281,29 @@ class Database
      * @return bool|string Son eklenen ID veya false
      */
     public function insert($table, $data) {
-        $columns = implode(', ', array_keys($data));
-        $placeholders = ':' . implode(', :', array_keys($data));
-        
-        $sql = "INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})";
-        
-        $this->query($sql);
-        
-        foreach ($data as $key => $value) {
-            $this->bind(":{$key}", $value);
+        try {
+            $columns = implode(', ', array_keys($data));
+            $placeholders = ':' . implode(', :', array_keys($data));
+            
+            $sql = "INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})";
+            
+            $this->query($sql);
+            
+            foreach ($data as $key => $value) {
+                $this->bind(":{$key}", $value);
+            }
+            
+            if ($this->execute()) {
+                return $this->lastInsertId();
+            }
+            
+            return false;
+        } catch (\PDOException $e) {
+            error_log("INSERT Error - SQL: " . ($sql ?? 'unknown'));
+            error_log("INSERT Error - Message: " . $e->getMessage());
+            error_log("INSERT Error - Data: " . print_r($data, true));
+            throw $e;
         }
-        
-        if ($this->execute()) {
-            return $this->lastInsertId();
-        }
-        
-        return false;
     }
     
     /**
