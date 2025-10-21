@@ -7,58 +7,58 @@
 // ============================================================
 // URL SABİTLERİ - PRODUCTION
 // ============================================================
-define('BASE_URL', 'https://vldn.in/portalv2');
-define('BASE_PATH', '/portalv2');
-define('SITE_URL', 'https://vldn.in');
-define('PUBLIC_URL', 'https://vldn.in/portalv2/public');
+if (!defined('BASE_URL')) define('BASE_URL', 'https://vldn.in/portalv2');
+if (!defined('BASE_PATH')) define('BASE_PATH', '/portalv2');
+if (!defined('SITE_URL')) define('SITE_URL', 'https://vldn.in');
+if (!defined('PUBLIC_URL')) define('PUBLIC_URL', 'https://vldn.in/portalv2/public');
 
 // ============================================================
 // ASSET URL'LERİ
 // ============================================================
-define('ASSETS_URL', PUBLIC_URL . '/assets');
-define('UPLOADS_URL', PUBLIC_URL . '/assets/uploads');
-define('CSS_URL', ASSETS_URL . '/css');
-define('JS_URL', ASSETS_URL . '/js');
-define('IMG_URL', ASSETS_URL . '/images');
+if (!defined('ASSETS_URL')) define('ASSETS_URL', PUBLIC_URL . '/assets');
+if (!defined('UPLOADS_URL')) define('UPLOADS_URL', PUBLIC_URL . '/assets/uploads');
+if (!defined('CSS_URL')) define('CSS_URL', ASSETS_URL . '/css');
+if (!defined('JS_URL')) define('JS_URL', ASSETS_URL . '/js');
+if (!defined('IMG_URL')) define('IMG_URL', ASSETS_URL . '/images');
 
 // ============================================================
 // DOSYA YOLLARI (cPanel)
 // ============================================================
-define('ROOT_PATH', '/home/vildacgg/vldn.in/portalv2');
-define('APP_PATH', ROOT_PATH . '/app');
-define('CONFIG_PATH', ROOT_PATH . '/config');
-define('CORE_PATH', ROOT_PATH . '/core');
-define('PUBLIC_PATH', ROOT_PATH . '/public');
-define('STORAGE_PATH', ROOT_PATH . '/storage');
-define('VIEW_PATH', APP_PATH . '/views');
-define('LOG_PATH', dirname(__DIR__) . '/storage/logs');
-define('CACHE_PATH', STORAGE_PATH . '/cache');
-define('UPLOAD_PATH', PUBLIC_PATH . '/assets/uploads');
+if (!defined('ROOT_PATH')) define('ROOT_PATH', '/home/vildacgg/vldn.in/portalv2');
+if (!defined('APP_PATH')) define('APP_PATH', ROOT_PATH . '/app');
+if (!defined('CONFIG_PATH')) define('CONFIG_PATH', ROOT_PATH . '/config');
+if (!defined('CORE_PATH')) define('CORE_PATH', ROOT_PATH . '/core');
+if (!defined('PUBLIC_PATH')) define('PUBLIC_PATH', ROOT_PATH . '/public');
+if (!defined('STORAGE_PATH')) define('STORAGE_PATH', ROOT_PATH . '/storage');
+if (!defined('VIEW_PATH')) define('VIEW_PATH', APP_PATH . '/views');
+if (!defined('LOG_PATH')) define('LOG_PATH', dirname(__DIR__) . '/storage/logs');
+if (!defined('CACHE_PATH')) define('CACHE_PATH', STORAGE_PATH . '/cache');
+if (!defined('UPLOAD_PATH')) define('UPLOAD_PATH', PUBLIC_PATH . '/assets/uploads');
 
 // ============================================================
 // UYGULAMA SABİTLERİ
 // ============================================================
-define('APP_NAME', 'Vildan Portal');
-define('APP_ENV', 'production');
-define('APP_DEBUG', false); // Production'da false olmalı
+if (!defined('APP_NAME')) define('APP_NAME', 'Vildan Portal');
+if (!defined('APP_ENV')) define('APP_ENV', 'production');
+if (!defined('APP_DEBUG')) define('APP_DEBUG', false); // Production'da false olmalı
 
 // ============================================================
 // TARİH VE ZAMAN
 // ============================================================
-define('DATE_FORMAT', 'd.m.Y');
-define('TIME_FORMAT', 'H:i');
-define('DATETIME_FORMAT', 'd.m.Y H:i');
-define('TIMEZONE', 'Europe/Istanbul');
+if (!defined('DATE_FORMAT')) define('DATE_FORMAT', 'd.m.Y');
+if (!defined('TIME_FORMAT')) define('TIME_FORMAT', 'H:i');
+if (!defined('DATETIME_FORMAT')) define('DATETIME_FORMAT', 'd.m.Y H:i');
+if (!defined('TIMEZONE')) define('TIMEZONE', 'Europe/Istanbul');
 
 // Türkçe aylar
-define('TR_MONTHS', [
+if (!defined('TR_MONTHS')) define('TR_MONTHS', [
     1 => 'Ocak', 2 => 'Şubat', 3 => 'Mart', 4 => 'Nisan',
     5 => 'Mayıs', 6 => 'Haziran', 7 => 'Temmuz', 8 => 'Ağustos',
     9 => 'Eylül', 10 => 'Ekim', 11 => 'Kasım', 12 => 'Aralık'
 ]);
 
 // Türkçe günler
-define('TR_DAYS', [
+if (!defined('TR_DAYS')) define('TR_DAYS', [
     'Monday' => 'Pazartesi',
     'Tuesday' => 'Salı',
     'Wednesday' => 'Çarşamba',
@@ -71,24 +71,24 @@ define('TR_DAYS', [
 // ============================================================
 // GÜVENLİK
 // ============================================================
-define('CSRF_TOKEN_LIFETIME', 86400); // 24 saat
-define('SESSION_LIFETIME', 86400); // 24 saat
-define('PASSWORD_MIN_LENGTH', 8);
-define('MAX_LOGIN_ATTEMPTS', 5);
-define('LOGIN_LOCKOUT_TIME', 900); // 15 dakika
+if (!defined('CSRF_TOKEN_LIFETIME')) define('CSRF_TOKEN_LIFETIME', 86400); // 24 saat
+if (!defined('SESSION_LIFETIME')) define('SESSION_LIFETIME', 86400); // 24 saat
+if (!defined('PASSWORD_MIN_LENGTH')) define('PASSWORD_MIN_LENGTH', 8);
+if (!defined('MAX_LOGIN_ATTEMPTS')) define('MAX_LOGIN_ATTEMPTS', 5);
+if (!defined('LOGIN_LOCKOUT_TIME')) define('LOGIN_LOCKOUT_TIME', 900); // 15 dakika
 
 // ============================================================
 // VERİTABANI SABİTLERİ
 // ============================================================
-define('DB_DRIVER', 'mysql');
-define('DB_HOST', 'localhost');
-define('DB_PORT', 3306);
-define('DB_NAME', 'vildacgg_portalv2');
-define('DB_USER', 'vildacgg_tarihci20');
-define('DB_PASS', 'C@rg_;NBXBu5');
-define('DB_CHARSET', 'utf8mb4');
-define('DB_COLLATION', 'utf8mb4_unicode_ci');
-define('DB_PREFIX', 'vp_');
+if (!defined('DB_DRIVER')) define('DB_DRIVER', 'mysql');
+if (!defined('DB_HOST')) define('DB_HOST', 'localhost');
+if (!defined('DB_PORT')) define('DB_PORT', 3306);
+if (!defined('DB_NAME')) define('DB_NAME', 'vildacgg_portalv2');
+if (!defined('DB_USER')) define('DB_USER', 'vildacgg_tarihci20');
+if (!defined('DB_PASS')) define('DB_PASS', 'C@rg_;NBXBu5');
+if (!defined('DB_CHARSET')) define('DB_CHARSET', 'utf8mb4');
+if (!defined('DB_COLLATION')) define('DB_COLLATION', 'utf8mb4_unicode_ci');
+if (!defined('DB_PREFIX')) define('DB_PREFIX', 'vp_');
 
 // ============================================================
 // SAYFALAMA
@@ -101,9 +101,9 @@ if (!defined('SEARCH_RESULTS_PER_PAGE')) define('SEARCH_RESULTS_PER_PAGE', 20); 
 
 // DOSYA YÜKLEME
 // ============================================================
-define('MAX_UPLOAD_SIZE', 10 * 1024 * 1024); // 10MB
-define('ALLOWED_IMAGE_TYPES', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
-define('ALLOWED_DOCUMENT_TYPES', ['pdf', 'doc', 'docx', 'xls', 'xlsx']);
+if (!defined('MAX_UPLOAD_SIZE')) define('MAX_UPLOAD_SIZE', 10 * 1024 * 1024); // 10MB
+if (!defined('ALLOWED_IMAGE_TYPES')) define('ALLOWED_IMAGE_TYPES', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+if (!defined('ALLOWED_DOCUMENT_TYPES')) define('ALLOWED_DOCUMENT_TYPES', ['pdf', 'doc', 'docx', 'xls', 'xlsx']);
 if (!defined('MAX_FILE_SIZE')) define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
 if (!defined('ALLOWED_EXCEL_TYPES')) define('ALLOWED_EXCEL_TYPES', [
     'application/vnd.ms-excel',
