@@ -29,7 +29,40 @@ require __DIR__ . '/../vendor/autoload.php';
 
 // 1. Sabitler ve config dosyalarını yükle
 $rootPath = dirname(__DIR__);
-require_once $rootPath . '/config/constants.php';
+
+// Try to load constants.php with multiple paths
+$constantsPaths = [
+    $rootPath . '/config/constants.php',
+    '/home/vildacgg/vldn.in/portalv2/config/constants.php',
+];
+
+$constantsLoaded = false;
+foreach ($constantsPaths as $path) {
+    if (file_exists($path)) {
+        require_once $path;
+        $constantsLoaded = true;
+        break;
+    }
+}
+
+if (!$constantsLoaded) {
+    // Fallback: define constants manually
+    define('BASE_URL', 'https://vldn.in/portalv2');
+    define('BASE_PATH', '/portalv2');
+    define('SITE_URL', 'https://vldn.in');
+    define('PUBLIC_URL', 'https://vldn.in/portalv2/public');
+    define('ASSETS_URL', PUBLIC_URL . '/assets');
+    define('UPLOADS_URL', PUBLIC_URL . '/assets/uploads');
+    define('CSS_URL', ASSETS_URL . '/css');
+    define('JS_URL', ASSETS_URL . '/js');
+    define('IMG_URL', ASSETS_URL . '/images');
+    define('ROOT_PATH', dirname(__DIR__));
+    define('APP_PATH', ROOT_PATH . '/app');
+    define('CONFIG_PATH', ROOT_PATH . '/config');
+    define('CORE_PATH', ROOT_PATH . '/core');
+    define('PUBLIC_PATH', ROOT_PATH . '/public');
+    define('APP_DEBUG', false);
+}
 
 // 2. Veritabanı sabitlerini tanımla (constants.php'den sonra)
 if (!defined('DB_HOST')) define('DB_HOST', 'localhost');

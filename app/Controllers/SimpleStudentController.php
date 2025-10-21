@@ -16,6 +16,11 @@ class SimpleStudentController extends Controller
     public function __construct() {
         parent::__construct();
         $this->studentModel = new Student();
+        
+        // Ensure BASE_URL is defined (for production compatibility)
+        if (!defined('BASE_URL')) {
+            define('BASE_URL', 'https://vldn.in/portalv2');
+        }
     }
     
     /**
