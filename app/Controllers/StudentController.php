@@ -214,11 +214,11 @@ class StudentController extends Controller
         // create() başarılı ise ID döndürür (int veya string olabilir), başarısızsa false döndürür
         if ($studentId !== false) {
             setFlashMessage('Öğrenci başarıyla eklendi.', 'success');
-            redirect(url('/students/' . $studentId));
+            redirect('/students/' . $studentId);
         } else {
             $errorMsg = 'Öğrenci eklenirken bir hata oluştu.';
             setFlashMessage($errorMsg, 'error');
-            redirect(url('/students/create'));
+            redirect('/students/create');
         }
     }
     
