@@ -20,9 +20,10 @@ $pagination = $data['pagination'] ?? [];
                     Tüm etkinlikleri görüntüleyin ve yönetin
                 </p>
             </div>
-            <div class="flex space-x-2 items-center">
+            <div class="flex gap-4 items-center w-full sm:w-auto justify-between sm:justify-end">
+                <!-- Excel Butonları (Sol) -->
                 <?php if (isAdmin()): ?>
-                <div class="inline-flex items-center space-x-2">
+                <div class="inline-flex items-center gap-2">
                     <button onclick="exportSelectedActivities()" class="inline-flex items-center text-white bg-emerald-600 hover:bg-emerald-700 font-medium rounded-lg text-sm px-4 py-2">
                         <i class="fas fa-file-excel mr-2"></i> Seçilenleri Excel
                     </button>
@@ -35,8 +36,10 @@ $pagination = $data['pagination'] ?? [];
                     </form>
                 </div>
                 <?php endif; ?>
+                
+                <!-- Yeni Etkinlik Butonu (Sağ) -->
                 <?php if (hasPermission('activities', 'can_create')): ?>
-                <a href="<?= url('/activities/create') ?>" class="ml-2 inline-flex items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                <a href="<?= url('/activities/create') ?>" class="inline-flex items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 whitespace-nowrap">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
