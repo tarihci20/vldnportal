@@ -2,9 +2,11 @@
 /**
  * Check if new student was created
  */
-include 'config/config.example.php';
-include 'config/config.php';
-include 'core/Database.php';
+session_start();
+
+// Load config
+require_once __DIR__ . '/../config/constants.php';
+require_once __DIR__ . '/../core/Database.php';
 
 use Core\Database;
 
