@@ -9,7 +9,7 @@
     <div class="max-w-2xl mx-auto">
         <h1 class="text-3xl font-bold mb-6">Yeni Öğrenci Ekle</h1>
         
-        <form method="POST" action="<?= (defined('BASE_PATH') ? BASE_PATH : '') ?>/simple-students" class="bg-white shadow rounded-lg p-6">
+        <form method="POST" action="<?= (defined('BASE_PATH') ? BASE_PATH : '') ?>/students" class="bg-white shadow rounded-lg p-6">
             <!-- CSRF Token -->
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
             
