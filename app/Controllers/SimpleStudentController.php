@@ -37,16 +37,19 @@ class SimpleStudentController extends Controller
      * Simple store - minimal logic
      */
     public function store() {
-        // Debug log
+        // CRITICAL: No output before redirect!
+        // Clear any buffers
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+        
+        // Debug log to FILE, not output
         error_log("=== SimpleStudentController::store() START ===");
         error_log("POST Data: " . json_encode($_POST));
-        error_log("CSRF Token from POST: " . ($_POST['csrf_token'] ?? 'MISSING'));
-        error_log("CSRF Token in SESSION: " . ($_SESSION['csrf_token'] ?? 'MISSING'));
         error_log("Session ID: " . session_id());
         
         // 1. Check CSRF (TEMPORARY: DISABLED FOR DEBUGGING)
-        $csrfValid = true; // validateCsrfToken($_POST['csrf_token'] ?? '');
-        error_log("CSRF Valid (DEBUG MODE): " . ($csrfValid ? 'YES' : 'NO'));
+        $csrfValid = true;
         
         if (!$csrfValid) {
             error_log("CSRF validation failed!");
@@ -124,7 +127,9 @@ class SimpleStudentController extends Controller
         // 5. Success - redirect to list
         error_log("Student created successfully! ID: " . $result);
         setFlashMessage('Öğrenci başarıyla eklendi!', 'success');
-        error_log("Redirecting to: " . BASE_URL . '/students');
+        error_log("About to redirect to: " . BASE_URL . '/students');
+        
+        // Make sure NO output before this
         header('Location: ' . BASE_URL . '/students');
         exit;
     }
