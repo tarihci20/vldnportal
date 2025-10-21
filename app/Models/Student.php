@@ -10,7 +10,7 @@ use Core\Model;
 
 class Student extends Model
 {
-    protected $table = 'vp_students';
+    protected $table = 'students';  // DB_PREFIX otomatik eklenecek
     protected $primaryKey = 'id';
     protected $timestamps = true;
     

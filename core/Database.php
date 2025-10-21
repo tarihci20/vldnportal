@@ -277,6 +277,7 @@ class Database
      * @return array
      */
     public function select($table, $columns = ['*'], $where = [], $options = []) {
+        $table = $this->applyPrefix($table);
         $sql = "SELECT " . implode(', ', $columns) . " FROM {$table}";
         
         if (!empty($where)) {
@@ -326,6 +327,7 @@ class Database
      * @return bool|string Son eklenen ID veya false
      */
     public function insert($table, $data) {
+        $table = $this->applyPrefix($table);
         $columns = implode(', ', array_keys($data));
         $placeholders = ':' . implode(', :', array_keys($data));
         
@@ -352,6 +354,7 @@ class Database
      * @return bool
      */
     public function update($table, $data, $where) {
+        $table = $this->applyPrefix($table);
         $set = [];
         foreach ($data as $key => $value) {
             $set[] = "{$key} = :{$key}";
@@ -384,6 +387,7 @@ class Database
      * @return bool
      */
     public function delete($table, $where) {
+        $table = $this->applyPrefix($table);
         $conditions = [];
         foreach ($where as $key => $value) {
             $conditions[] = "{$key} = :{$key}";
@@ -446,5 +450,27 @@ class Database
      */
     public function __wakeup() {
         throw new \Exception("Cannot unserialize singleton");
+    }
+    
+    /**
+     * Tablo adına DB prefix uygula
+     * 
+     * @param string $table Tablo adı
+     * @return string Prefix eklenmiş tablo adı
+     */
+    private function applyPrefix($table) {
+        $prefix = \DB_PREFIX ?? 'vp_';
+        
+        // Eğer tablo adı zaten prefix ile başlıyorsa, iki kez ekleme
+        if (strpos($table, $prefix) === 0) {
+            return $table;
+        }
+        
+        // JOIN, AS, WHERE gibi keyword'leri içeriyorsa, direkt döndür (kompleks query)
+        if (preg_match('/\s+(JOIN|AS|WHERE|LEFT|INNER|OUTER|CROSS)\s+/i', $table)) {
+            return $table;
+        }
+        
+        return $prefix . $table;
     }
 }
