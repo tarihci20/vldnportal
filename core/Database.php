@@ -75,14 +75,15 @@ class Database
     public function query($sql) {
         try {
             $this->statement = $this->connection->prepare($sql);
+            if (!$this->statement) {
+                throw new \PDOException("Failed to prepare statement");
+            }
         } catch (\PDOException $e) {
             $this->error = $e->getMessage();
             $this->logError($sql, $e);
             
-            // HATA DÜZELTMESİ: APP_DEBUG için mutlak yol kullanıldı.
-            if (\APP_DEBUG) {
-                throw $e;
-            }
+            // HATA DÜZELTMESİ: Her durumda exception at ki select/insert/update hataları görülsün
+            throw $e;
         }
         
         return $this;
@@ -126,14 +127,10 @@ class Database
             return $this->statement->execute();
         } catch (\PDOException $e) {
             $this->error = $e->getMessage();
-            $this->logError($this->statement->queryString, $e);
+            $this->logError($this->statement->queryString ?? 'Unknown query', $e);
             
-            // HATA DÜZELTMESİ: APP_DEBUG için mutlak yol kullanıldı.
-            if (\APP_DEBUG) {
-                throw $e;
-            }
-            
-            return false;
+            // HATA DÜZELTMESİ: Her durumda exception at
+            throw $e;
         }
     }
     
