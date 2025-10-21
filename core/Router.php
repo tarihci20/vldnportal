@@ -111,27 +111,23 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = $this->getUri(); // Temizlenmiş URI (örn: /)
         
-        // ALWAYS LOG - Dispatch başladı
-        error_log("Router::dispatch() - Method: $method, URI: $uri");
-        
         // Method override kontrolü (_method POST parametresi)
         if ($method === 'POST' && isset($_POST['_method'])) {
             $method = strtoupper($_POST['_method']);
-            error_log("Router::dispatch() - Method override: $method");
         }
-        
-        error_log("Router::dispatch() - Total routes to check: " . count($this->routes));
         
         foreach ($this->routes as $route) {
             if ($route['method'] !== $method) {
                 continue;
             }
             
-            error_log("Router::dispatch() - Checking route: {$route['method']} {$route['path']} (regex: {$route['regex']})");
-            
             if (preg_match($route['regex'], $uri, $matches)) { // Eşleşme burada yapılır
-                error_log("Router::dispatch() - MATCHED! {$route['method']} {$route['path']} -> {$route['handler']}");
                 $this->currentRoute = $route;
+                
+                // Debug: Route eşleşti
+                if (defined('APP_DEBUG') && APP_DEBUG) {
+                    error_log("Router: Route matched - {$route['method']} {$route['path']} -> {$route['handler']}");
+                }
                 
                 // Parametreleri çıkar
                 $params = [];

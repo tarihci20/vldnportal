@@ -36,14 +36,7 @@ class SimpleStudentController extends Controller
         if (empty($_SESSION['csrf_token'])) {
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
             $_SESSION['csrf_token_time'] = time();
-            error_log("SimpleStudentController::create() - Created new CSRF token: " . substr($_SESSION['csrf_token'], 0, 10) . "...");
-        } else {
-            error_log("SimpleStudentController::create() - CSRF token already exists: " . substr($_SESSION['csrf_token'], 0, 10) . "...");
         }
-        
-        // Debug session
-        error_log("SimpleStudentController::create() - Session ID: " . session_id());
-        error_log("SimpleStudentController::create() - Session data: " . json_encode($_SESSION));
         
         $this->view('students/simple-create', [
             'title' => 'Yeni Öğrenci Ekle'
@@ -55,12 +48,10 @@ class SimpleStudentController extends Controller
      */
     public function store() {
         try {
-            error_log("=== STORE METHOD CALLED ===");
-            error_log("POST Data Keys: " . implode(", ", array_keys($_POST)));
-            error_log("POST tc_no value: " . ($_POST['tc_no'] ?? 'MISSING'));
-            
-            // 1. Check CSRF (TEMPORARY: DISABLED FOR DEBUGGING)
-            $csrfValid = true;
+            // 1. Check CSRF token
+            $csrfToken = $_POST['csrf_token'] ?? '';
+            $sessionToken = $_SESSION['csrf_token'] ?? '';
+            $csrfValid = (!empty($csrfToken) && !empty($sessionToken) && hash_equals($csrfToken, $sessionToken));
             
             if (!$csrfValid) {
                 error_log("CSRF validation failed!");
@@ -87,10 +78,7 @@ class SimpleStudentController extends Controller
                 'created_by' => getCurrentUserId()
             ];
             
-            error_log("Form data collected: " . json_encode($data));
-            error_log("Data to insert - TC: {$data['tc_no']}, Name: {$data['first_name']} {$data['last_name']}, Created_by: {$data['created_by']}");
-            
-            // 3. Basic validation
+            // 3. Validation
             $errors = [];
             
             if (empty($data['tc_no'])) {
@@ -117,40 +105,29 @@ class SimpleStudentController extends Controller
             
             // If validation fails
             if (!empty($errors)) {
-                error_log("Validation errors: " . implode(", ", $errors));
                 setFlashMessage(implode('<br>', $errors), 'error');
                 header('Location: ' . BASE_URL . '/simple-students/create');
                 exit;
             }
             
-            error_log("Validation passed");
-            
             // 4. Insert to database
-            error_log("Calling studentModel->create()");
             $result = $this->studentModel->create($data);
-            error_log("Create returned: " . var_export($result, true));
             
             // Check if result is numeric (ID) or error string
             if (!is_numeric($result) || $result <= 0) {
-                error_log("Database insert failed! Result was: " . var_export($result, true));
                 setFlashMessage('Veritabanı hatası: ' . $result, 'error');
                 header('Location: ' . BASE_URL . '/simple-students/create');
                 exit;
             }
             
             // 5. Success - set flash message and redirect
-            error_log("Student created with ID: " . $result);
             setFlashMessage('Öğrenci başarıyla eklendi!', 'success');
-            error_log("About to send redirect header");
-            
             header('Location: ' . BASE_URL . '/students');
-            error_log("Header sent, calling exit");
             exit;
             
         } catch (Exception $e) {
-            error_log("EXCEPTION in store(): " . $e->getMessage());
-            error_log("Stack trace: " . $e->getTraceAsString());
-            echo "ERROR: " . $e->getMessage();
+            setFlashMessage('Bir hata oluştu: ' . $e->getMessage(), 'error');
+            header('Location: ' . BASE_URL . '/simple-students/create');
             exit;
         }
     }
