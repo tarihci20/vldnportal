@@ -175,7 +175,10 @@ class Auth
         if (isset($_COOKIE['remember_me'])) {
             $token = $_COOKIE['remember_me'];
             $this->db->query("DELETE FROM user_sessions WHERE token = :token")->bind(':token', hash('sha256', $token))->execute();
-            setcookie('remember_me', '', time() - 3600, '/', '', false, true);
+            
+            // Cookie'yi silirken BASE_PATH kullan (çünkü set ederken de BASE_PATH kullanıldı)
+            $basePath = defined('BASE_PATH') ? BASE_PATH : '/';
+            setcookie('remember_me', '', time() - 3600, $basePath, '', false, true);
         }
 
         $this->session->destroy();
@@ -344,7 +347,9 @@ class Auth
                 ]
             );
 
-            setcookie('remember_me', $token, time() + (86400 * 30), '/', '', false, true);
+            // Cookie'yi BASE_PATH altında set et
+            $basePath = defined('BASE_PATH') ? BASE_PATH : '/';
+            setcookie('remember_me', $token, time() + (86400 * 30), $basePath, '', false, true);
         }
     }
 
@@ -385,7 +390,8 @@ class Auth
                     isset($sessionData['created_at']) &&
                     strtotime($sessionData['sessions_valid_from']) > strtotime($sessionData['created_at'])) {
                     // Bu token artık geçerli değil. Çerezi temizle.
-                    setcookie('remember_me', '', time() - 3600, '/');
+                    $basePath = defined('BASE_PATH') ? BASE_PATH : '/';
+                    setcookie('remember_me', '', time() - 3600, $basePath);
                     return false;
                 }
 
@@ -407,7 +413,8 @@ class Auth
                 return true;
             } else {
                 // Veritabanında geçerli bir token bulunamadı, çerezi temizle
-                setcookie('remember_me', '', time() - 3600, '/');
+                $basePath = defined('BASE_PATH') ? BASE_PATH : '/';
+                setcookie('remember_me', '', time() - 3600, $basePath);
             }
         }
 
