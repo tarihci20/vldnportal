@@ -40,7 +40,7 @@ define('UPLOAD_PATH', PUBLIC_PATH . '/assets/uploads');
 // ============================================================
 define('APP_NAME', 'Vildan Portal');
 define('APP_ENV', 'production');
-define('APP_DEBUG', false); // Production'da false olmalı
+define('APP_DEBUG', true); // Debug mode ON - sorun giderin, sonra kapayın!
 
 // ============================================================
 // TARİH VE ZAMAN
