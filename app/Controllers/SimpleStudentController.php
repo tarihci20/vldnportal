@@ -101,7 +101,6 @@ class SimpleStudentController extends Controller
             
             // If validation fails
             if (!empty($errors)) {
-                setFlashMessage(implode('<br>', $errors), 'error');
                 header('Location: ' . BASE_URL . '/simple-students/create');
                 exit;
             }
@@ -111,18 +110,15 @@ class SimpleStudentController extends Controller
             
             // Check if result is numeric (ID) or error string
             if (!is_numeric($result) || $result <= 0) {
-                setFlashMessage('Veritabanı hatası: ' . $result, 'error');
                 header('Location: ' . BASE_URL . '/simple-students/create');
                 exit;
             }
             
-            // 5. Success - set flash message and redirect
-            setFlashMessage('Öğrenci başarıyla eklendi!', 'success');
+            // 5. Success - redirect
             header('Location: ' . BASE_URL . '/students');
             exit;
             
         } catch (Exception $e) {
-            setFlashMessage('Bir hata oluştu: ' . $e->getMessage(), 'error');
             header('Location: ' . BASE_URL . '/simple-students/create');
             exit;
         }
