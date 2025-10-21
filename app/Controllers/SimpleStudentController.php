@@ -37,8 +37,17 @@ class SimpleStudentController extends Controller
      * Simple store - minimal logic
      */
     public function store() {
+        // Debug log
+        error_log("=== SimpleStudentController::store() START ===");
+        error_log("POST Data: " . json_encode($_POST));
+        error_log("CSRF Token Session: " . ($_SESSION['csrf_token'] ?? 'MISSING'));
+        
         // 1. Check CSRF
-        if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+        $csrfValid = validateCsrfToken($_POST['csrf_token'] ?? '');
+        error_log("CSRF Valid: " . ($csrfValid ? 'YES' : 'NO'));
+        
+        if (!$csrfValid) {
+            error_log("CSRF validation failed!");
             setFlashMessage('Geçersiz form token.', 'error');
             header('Location: ' . BASE_URL . '/simple-students/create');
             exit;
@@ -61,6 +70,8 @@ class SimpleStudentController extends Controller
             'is_active' => 1,
             'created_by' => getCurrentUserId()
         ];
+        
+        error_log("Form Data: " . json_encode($data));
         
         // 3. Basic validation
         $errors = [];
@@ -89,22 +100,29 @@ class SimpleStudentController extends Controller
         
         // If validation fails
         if (!empty($errors)) {
+            error_log("Validation errors: " . implode(", ", $errors));
             setFlashMessage(implode('<br>', $errors), 'error');
             header('Location: ' . BASE_URL . '/simple-students/create');
             exit;
         }
         
+        error_log("Validation passed, attempting to create student...");
+        
         // 4. Insert to database
         $result = $this->studentModel->create($data);
+        error_log("Create result: " . json_encode($result));
         
         if (!$result) {
+            error_log("Database error!");
             setFlashMessage('Veritabanı hatası!', 'error');
             header('Location: ' . BASE_URL . '/simple-students/create');
             exit;
         }
         
         // 5. Success - redirect to list
+        error_log("Student created successfully! ID: " . $result);
         setFlashMessage('Öğrenci başarıyla eklendi!', 'success');
+        error_log("Redirecting to: " . BASE_URL . '/students');
         header('Location: ' . BASE_URL . '/students');
         exit;
     }
