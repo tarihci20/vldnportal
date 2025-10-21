@@ -161,8 +161,18 @@ $(document).ready(function() {
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json'
         },
+        columnDefs: [
+            { targets: 0, title: 'Kullanıcı', width: '20%' },
+            { targets: 1, title: 'E-posta', width: '20%' },
+            { targets: 2, title: 'Rol', width: '12%' },
+            { targets: 3, title: 'Durum', width: '10%' },
+            { targets: 4, title: 'Şifre Değiştirme', width: '15%' },
+            { targets: 5, title: 'Kayıt Tarihi', width: '12%' },
+            { targets: 6, title: 'İşlemler', width: '11%', orderable: false }
+        ],
         order: [[5, 'desc']], // Kayıt tarihine göre sırala
-        pageLength: 25
+        pageLength: 25,
+        autoWidth: false
     });
 });
 
