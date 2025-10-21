@@ -129,7 +129,12 @@ class StudentController extends Controller
      * Öğrenci detay sayfası
      */
     public function detail($id) {
+        error_log("=== DETAIL METHOD CALLED ===");
+        error_log("ID parameter: " . var_export($id, true));
+        
         $student = $this->studentModel->findById($id);
+        
+        error_log("findById result: " . var_export($student, true));
         
         if (!$student) {
             setFlashMessage('Öğrenci bulunamadı.', 'error');
