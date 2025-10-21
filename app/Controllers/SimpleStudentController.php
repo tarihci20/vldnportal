@@ -115,9 +115,10 @@ class SimpleStudentController extends Controller
             $result = $this->studentModel->create($data);
             error_log("Create returned: " . var_export($result, true));
             
-            if (!$result) {
+            // Check if result is numeric (ID) or error string
+            if (!is_numeric($result) || $result <= 0) {
                 error_log("Database insert failed! Result was: " . var_export($result, true));
-                setFlashMessage('Veritabanı hatası!', 'error');
+                setFlashMessage('Veritabanı hatası: ' . $result, 'error');
                 header('Location: ' . BASE_URL . '/simple-students/create');
                 exit;
             }
