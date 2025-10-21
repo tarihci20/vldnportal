@@ -22,6 +22,12 @@ class SimpleStudentController extends Controller
      * Simple form page
      */
     public function create() {
+        // Debug: CSRF token oluştur eğer yoksa
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            $_SESSION['csrf_token_time'] = time();
+        }
+        
         $this->view('students/simple-create', [
             'title' => 'Yeni Öğrenci Ekle'
         ]);
@@ -34,8 +40,8 @@ class SimpleStudentController extends Controller
         // 1. Check CSRF
         if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
             setFlashMessage('Geçersiz form token.', 'error');
-            redirect('/simple-students/create');
-            return;
+            header('Location: /simple-students/create');
+            exit;
         }
         
         // 2. Get form data
@@ -84,8 +90,8 @@ class SimpleStudentController extends Controller
         // If validation fails
         if (!empty($errors)) {
             setFlashMessage(implode('<br>', $errors), 'error');
-            redirect('/simple-students/create');
-            return;
+            header('Location: /simple-students/create');
+            exit;
         }
         
         // 4. Insert to database
@@ -93,13 +99,14 @@ class SimpleStudentController extends Controller
         
         if (!$result) {
             setFlashMessage('Veritabanı hatası!', 'error');
-            redirect('/simple-students/create');
-            return;
+            header('Location: /simple-students/create');
+            exit;
         }
         
         // 5. Success - redirect to list
         setFlashMessage('Öğrenci başarıyla eklendi!', 'success');
-        redirect('/students');
+        header('Location: /students');
+        exit;
     }
 }
 ?>
