@@ -64,7 +64,7 @@ class AuthController extends Controller
             $result = $this->auth->login($email, $password, $remember);
 
             if ($result['success']) {
-                setFlashMessage('success', 'Hoş geldiniz!');
+                // Başarılı login - mesaj göstermeye gerek yok
                 redirect('/dashboard');
             } else {
                 $message = $result['message'] ?? 'Kullanıcı adı veya şifre hatalı!';
@@ -239,7 +239,6 @@ class AuthController extends Controller
     public function logout()
     {
         $this->auth->logout();
-        setFlashMessage('success', 'Başarıyla çıkış yapıldı.');
         redirect('/login');
     }
 }
