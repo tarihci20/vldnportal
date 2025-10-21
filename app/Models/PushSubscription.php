@@ -11,7 +11,7 @@ use App\Core\Model;
 
 class PushSubscription extends Model
 {
-    protected $table = 'push_subscriptions';
+    protected $table = 'vp_push_subscriptions';
     
     protected $fillable = [
         'user_id',

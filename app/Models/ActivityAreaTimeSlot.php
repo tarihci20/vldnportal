@@ -6,7 +6,7 @@ use Core\Model;
 
 class ActivityAreaTimeSlot extends Model
 {
-    protected $table = 'activity_area_time_slots';
+    protected $table = 'vp_activity_area_time_slots';
     protected $primaryKey = 'id';
     protected $timestamps = true;
 

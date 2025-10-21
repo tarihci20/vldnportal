@@ -10,7 +10,7 @@ use Core\Model;
 
 class Activity extends Model
 {
-    protected $table = 'activities';
+    protected $table = 'vp_activities';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     

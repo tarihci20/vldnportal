@@ -10,7 +10,7 @@ use Core\Model;
 
 class Student extends Model
 {
-    protected $table = 'students';
+    protected $table = 'vp_students';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     

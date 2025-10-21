@@ -10,7 +10,7 @@ use Core\Model;
 
 class Etut extends Model
 {
-    protected $table = 'etut_applications';
+    protected $table = 'vp_etut_applications';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     
