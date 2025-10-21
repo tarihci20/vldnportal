@@ -40,7 +40,7 @@ class SimpleStudentController extends Controller
         // 1. Check CSRF
         if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
             setFlashMessage('Geçersiz form token.', 'error');
-            header('Location: /simple-students/create');
+            header('Location: ' . BASE_URL . '/simple-students/create');
             exit;
         }
         
@@ -90,7 +90,7 @@ class SimpleStudentController extends Controller
         // If validation fails
         if (!empty($errors)) {
             setFlashMessage(implode('<br>', $errors), 'error');
-            header('Location: /simple-students/create');
+            header('Location: ' . BASE_URL . '/simple-students/create');
             exit;
         }
         
@@ -99,13 +99,13 @@ class SimpleStudentController extends Controller
         
         if (!$result) {
             setFlashMessage('Veritabanı hatası!', 'error');
-            header('Location: /simple-students/create');
+            header('Location: ' . BASE_URL . '/simple-students/create');
             exit;
         }
         
         // 5. Success - redirect to list
         setFlashMessage('Öğrenci başarıyla eklendi!', 'success');
-        header('Location: /students');
+        header('Location: ' . BASE_URL . '/students');
         exit;
     }
 }
