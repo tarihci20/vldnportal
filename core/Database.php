@@ -79,9 +79,16 @@ class Database
             $this->error = $e->getMessage();
             $this->logError($sql, $e);
             
+            // Statement'i initialize et (null olmasın)
+            $this->statement = null;
+            
             // HATA DÜZELTMESİ: APP_DEBUG için mutlak yol kullanıldı.
             if (\APP_DEBUG) {
                 throw $e;
+            } else {
+                // Production'da error log'a yaz
+                error_log("Database Query Error - SQL: " . $sql);
+                error_log("Database Query Error - Message: " . $e->getMessage());
             }
         }
         
@@ -122,6 +129,12 @@ class Database
      * * @return bool
      */
     public function execute() {
+        // Statement hazırlanmamışsa veya null ise hata dön
+        if ($this->statement === null) {
+            error_log("Execute called but statement is null. Error: " . $this->error);
+            return false;
+        }
+        
         try {
             return $this->statement->execute();
         } catch (\PDOException $e) {
@@ -142,6 +155,11 @@ class Database
      * * @return mixed
      */
     public function single() {
+        if ($this->statement === null) {
+            error_log("single() called but statement is null. Error: " . $this->error);
+            return null;
+        }
+        
         $this->execute();
         return $this->statement->fetch();
     }
@@ -151,6 +169,11 @@ class Database
      * * @return array
      */
     public function resultSet() {
+        if ($this->statement === null) {
+            error_log("resultSet() called but statement is null. Error: " . $this->error);
+            return [];
+        }
+        
         $this->execute();
         return $this->statement->fetchAll();
     }
@@ -160,6 +183,11 @@ class Database
      * * @return int
      */
     public function rowCount() {
+        if ($this->statement === null) {
+            error_log("rowCount() called but statement is null. Error: " . $this->error);
+            return 0;
+        }
+        
         return $this->statement->rowCount();
     }
     
