@@ -81,11 +81,11 @@ class Response
      * @param int $statusCode
      */
     public function redirect($url, $statusCode = 302) {
-        // Eğer URL tam path değilse (http ile başlamıyorsa), BASE_PATH ekle
+        // Eğer URL tam URL değilse (http ile başlamıyorsa), BASE_URL ekle
         if (!preg_match('/^https?:\/\//', $url)) {
-            // BASE_PATH'i kontrol et ve ekle
-            if (defined('BASE_PATH') && BASE_PATH !== '') {
-                $url = rtrim(BASE_PATH, '/') . '/' . ltrim($url, '/');
+            // BASE_URL'i kontrol et ve ekle (BASE_PATH değil!)
+            if (defined('BASE_URL') && BASE_URL !== '') {
+                $url = rtrim(BASE_URL, '/') . '/' . ltrim($url, '/');
             }
         }
         
