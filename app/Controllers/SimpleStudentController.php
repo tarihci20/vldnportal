@@ -37,17 +37,6 @@ class SimpleStudentController extends Controller
      * Simple store - minimal logic
      */
     public function store() {
-        // CRITICAL: No output before redirect!
-        // Clear any buffers
-        while (ob_get_level()) {
-            ob_end_clean();
-        }
-        
-        // Debug log to FILE, not output
-        error_log("=== SimpleStudentController::store() START ===");
-        error_log("POST Data: " . json_encode($_POST));
-        error_log("Session ID: " . session_id());
-        
         // 1. Check CSRF (TEMPORARY: DISABLED FOR DEBUGGING)
         $csrfValid = true;
         
@@ -75,8 +64,6 @@ class SimpleStudentController extends Controller
             'is_active' => 1,
             'created_by' => getCurrentUserId()
         ];
-        
-        error_log("Form Data: " . json_encode($data));
         
         // 3. Basic validation
         $errors = [];
@@ -124,12 +111,15 @@ class SimpleStudentController extends Controller
             exit;
         }
         
-        // 5. Success - redirect to list
+        // 5. Success - set flash message and redirect
         error_log("Student created successfully! ID: " . $result);
         setFlashMessage('Öğrenci başarıyla eklendi!', 'success');
-        error_log("About to redirect to: " . BASE_URL . '/students');
         
-        // Make sure NO output before this
+        // IMPORTANT: Make sure headers are sent BEFORE any output
+        // If there's output buffering, we need to clean it
+        // But DO NOT use ob_end_clean() as it removes important content!
+        // Instead, just send the redirect header
+        error_log("Sending redirect header to: " . BASE_URL . '/students');
         header('Location: ' . BASE_URL . '/students');
         exit;
     }
