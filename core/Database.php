@@ -273,7 +273,7 @@ class Database
      * * @param string $table Tablo adı
      * @param array $columns Sütunlar
      * @param array $where Where koşulları
-     * @param array $options Ek seçenekler (orderBy, limit, offset)
+     * @param array $options Ek seçenekler (orderBy, limit, offset, order)
      * @return array
      */
     public function select($table, $columns = ['*'], $where = [], $options = []) {
@@ -287,8 +287,19 @@ class Database
             $sql .= " WHERE " . implode(' AND ', $conditions);
         }
         
+        // orderBy veya order key'ini destekle
         if (isset($options['orderBy'])) {
             $sql .= " ORDER BY {$options['orderBy']}";
+        } elseif (isset($options['order'])) {
+            // order key'i kullanıldığında (key => direction formatında)
+            $orderParts = [];
+            foreach ($options['order'] as $column => $direction) {
+                $direction = strtoupper($direction) === 'DESC' ? 'DESC' : 'ASC';
+                $orderParts[] = "{$column} {$direction}";
+            }
+            if (!empty($orderParts)) {
+                $sql .= " ORDER BY " . implode(', ', $orderParts);
+            }
         }
         
         if (isset($options['limit'])) {
