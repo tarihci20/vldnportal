@@ -111,5 +111,14 @@ if (!defined('ALLOWED_EXCEL_TYPES')) define('ALLOWED_EXCEL_TYPES', [
     'application/octet-stream'
 ]);
 
+// ============================================================
+// UPLOAD YOLLARI (Özel Klasörler)
+// ============================================================
+if (!defined('ACTIVITY_AREA_UPLOAD_PATH')) define('ACTIVITY_AREA_UPLOAD_PATH', UPLOAD_PATH . '/activity-areas');
+if (!defined('ACTIVITY_UPLOAD_PATH')) define('ACTIVITY_UPLOAD_PATH', UPLOAD_PATH . '/activities');
+if (!defined('STUDENT_UPLOAD_PATH')) define('STUDENT_UPLOAD_PATH', UPLOAD_PATH . '/students');
+if (!defined('USER_UPLOAD_PATH')) define('USER_UPLOAD_PATH', UPLOAD_PATH . '/users');
+if (!defined('ETUT_UPLOAD_PATH')) define('ETUT_UPLOAD_PATH', UPLOAD_PATH . '/etuts');
+
 // Timezone ayarla
 date_default_timezone_set(TIMEZONE);
