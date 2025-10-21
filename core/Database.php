@@ -103,6 +103,12 @@ class Database
      * @return $this
      */
     public function bind($param, $value, $type = null) {
+        // Statement hazırlanmamışsa veya null ise, hata logla ve dön
+        if ($this->statement === null) {
+            error_log("bind() called but statement is null. Error: " . $this->error);
+            return $this;
+        }
+        
         if (is_null($type)) {
             switch (true) {
                 case is_int($value):
