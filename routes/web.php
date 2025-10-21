@@ -53,6 +53,10 @@ $router->get('/students/download/template', 'StudentController@downloadTemplate'
 $router->post('/students/import/excel', 'StudentController@importExcel', 'students.import');
 $router->post('/students/delete-all', 'StudentController@deleteAll');
 
+// Yeni basit öğrenci ekleme sistemi
+$router->get('/simple-students/create', 'SimpleStudentController@create', 'simple.students.create');
+$router->post('/simple-students', 'SimpleStudentController@store', 'simple.students.store');
+
 // Dinamik route'lar (ID ile) en sonda!
 $router->post('/students', 'StudentController@store');
 $router->get('/students/{id}', 'StudentController@detail', 'students.detail');
