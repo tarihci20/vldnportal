@@ -155,6 +155,7 @@ function displayResults(data) {
     
     resultCount.textContent = data.pagination.total;
     
+    const studentBaseUrl = '<?= url('/students') ?>';
     resultsList.innerHTML = data.data.map(student => `
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition-all duration-200 p-6 border border-gray-100">
             <!-- Başlık -->
@@ -225,7 +226,7 @@ function displayResults(data) {
             </div>
             
             <!-- Detay Linki -->
-            <a href="<?= url('/students') ?>/${student.id}" 
+            <a href="${studentBaseUrl}/${student.id}" 
                class="inline-flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-800 font-medium group">
                 <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
