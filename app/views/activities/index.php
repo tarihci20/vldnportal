@@ -34,37 +34,6 @@ $pagination = $data['pagination'] ?? [];
                 
                 <!-- Action Buttons Section -->
                 <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-                    <!-- Export Dropdown Group -->
-                    <?php if (isAdmin()): ?>
-                    <div class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-                        <!-- Export Selected -->
-                        <button onclick="exportSelectedActivities()" 
-                                class="group relative inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                            </svg>
-                            <span>Seçilenleri Excel</span>
-                        </button>
-                        
-                        <!-- Export by Date -->
-                        <form id="exportActivitiesByDate" method="POST" action="<?= url('/admin/activities/export-by-date') ?>" class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-                            <div class="relative">
-                                <input type="date" name="date" id="activitiesExportDate" 
-                                       class="w-full px-3 py-2.5 border-2 border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:border-indigo-500 focus:outline-none transition-colors"
-                                       required>
-                            </div>
-                            <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
-                            <button type="submit" 
-                                    class="group relative inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                                </svg>
-                                <span>Tarihe Göre</span>
-                            </button>
-                        </form>
-                    </div>
-                    <?php endif; ?>
-                    
                     <!-- Add New Button (Prominent) -->
                     <?php if (hasPermission('activities', 'can_create')): ?>
                     <a href="<?= url('/activities/create') ?>" 
