@@ -54,7 +54,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Baba Telefonu</label>
-                    <input type="tel" name="father_phone" maxlength="11" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="05055974225">
+                    <input type="tel" name="father_phone" maxlength="11" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="05321234567">
                 </div>
             </div>
             
@@ -69,7 +69,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Anne Telefonu</label>
-                    <input type="tel" name="mother_phone" maxlength="11" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="05055974225">
+                    <input type="tel" name="mother_phone" maxlength="11" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="05321234567">
                 </div>
             </div>
             
@@ -84,7 +84,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Öğretmen Telefonu</label>
-                    <input type="tel" name="teacher_phone" maxlength="11" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="05055974225">
+                    <input type="tel" name="teacher_phone" maxlength="11" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="05321234567">
                 </div>
             </div>
             
