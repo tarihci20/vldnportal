@@ -75,15 +75,14 @@ class Database
     public function query($sql) {
         try {
             $this->statement = $this->connection->prepare($sql);
-            if (!$this->statement) {
-                throw new \PDOException("Failed to prepare statement");
-            }
         } catch (\PDOException $e) {
             $this->error = $e->getMessage();
             $this->logError($sql, $e);
             
-            // HATA DÜZELTMESİ: Her durumda exception at ki select/insert/update hataları görülsün
-            throw $e;
+            // HATA DÜZELTMESİ: APP_DEBUG için mutlak yol kullanıldı.
+            if (\APP_DEBUG) {
+                throw $e;
+            }
         }
         
         return $this;
@@ -127,10 +126,14 @@ class Database
             return $this->statement->execute();
         } catch (\PDOException $e) {
             $this->error = $e->getMessage();
-            $this->logError($this->statement->queryString ?? 'Unknown query', $e);
+            $this->logError($this->statement->queryString, $e);
             
-            // HATA DÜZELTMESİ: Her durumda exception at
-            throw $e;
+            // HATA DÜZELTMESİ: APP_DEBUG için mutlak yol kullanıldı.
+            if (\APP_DEBUG) {
+                throw $e;
+            }
+            
+            return false;
         }
     }
     
@@ -278,29 +281,22 @@ class Database
      * @return bool|string Son eklenen ID veya false
      */
     public function insert($table, $data) {
-        try {
-            $columns = implode(', ', array_keys($data));
-            $placeholders = ':' . implode(', :', array_keys($data));
-            
-            $sql = "INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})";
-            
-            $this->query($sql);
-            
-            foreach ($data as $key => $value) {
-                $this->bind(":{$key}", $value);
-            }
-            
-            if ($this->execute()) {
-                return $this->lastInsertId();
-            }
-            
-            return false;
-        } catch (\PDOException $e) {
-            error_log("INSERT Error - SQL: " . ($sql ?? 'unknown'));
-            error_log("INSERT Error - Message: " . $e->getMessage());
-            error_log("INSERT Error - Data: " . print_r($data, true));
-            throw $e;
+        $columns = implode(', ', array_keys($data));
+        $placeholders = ':' . implode(', :', array_keys($data));
+        
+        $sql = "INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})";
+        
+        $this->query($sql);
+        
+        foreach ($data as $key => $value) {
+            $this->bind(":{$key}", $value);
         }
+        
+        if ($this->execute()) {
+            return $this->lastInsertId();
+        }
+        
+        return false;
     }
     
     /**
