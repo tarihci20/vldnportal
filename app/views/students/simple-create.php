@@ -9,7 +9,7 @@
     <div class="max-w-2xl mx-auto">
         <h1 class="text-3xl font-bold mb-6">Yeni Öğrenci Ekle</h1>
         
-        <form method="POST" action="/simple-students" class="bg-white shadow rounded-lg p-6">
+        <form method="POST" action="<?= (defined('BASE_PATH') ? BASE_PATH : '') ?>/simple-students" class="bg-white shadow rounded-lg p-6">
             <!-- CSRF Token -->
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
             
@@ -112,7 +112,7 @@
                 <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                     Kaydet
                 </button>
-                <a href="/students" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">
+                <a href="<?= (defined('BASE_PATH') ? BASE_PATH : '') ?>/students" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">
                     İptal
                 </a>
             </div>
