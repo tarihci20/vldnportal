@@ -13,24 +13,26 @@ $pagination = $data['pagination'] ?? [];
 <div class="max-w-7xl mx-auto">
     
         <!-- Page Header -->
-        <div class="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div>
+        <div class="mb-4 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+            <div class="flex-1">
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Etkinlikler</h1>
                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                     Tüm etkinlikleri görüntüleyin ve yönetin
                 </p>
             </div>
-            <div class="flex gap-4 items-center w-full sm:w-auto justify-between sm:justify-end">
+            
+            <!-- Butonlar Bölümü -->
+            <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
                 <!-- Excel Butonları (Sol) -->
                 <?php if (isAdmin()): ?>
-                <div class="inline-flex items-center gap-2">
-                    <button onclick="exportSelectedActivities()" class="inline-flex items-center text-white bg-emerald-600 hover:bg-emerald-700 font-medium rounded-lg text-sm px-4 py-2">
+                <div class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+                    <button onclick="exportSelectedActivities()" class="inline-flex items-center justify-center text-white bg-emerald-600 hover:bg-emerald-700 font-medium rounded-lg text-sm px-4 py-2 whitespace-nowrap">
                         <i class="fas fa-file-excel mr-2"></i> Seçilenleri Excel
                     </button>
-                    <form id="exportActivitiesByDate" method="POST" action="<?= url('/admin/activities/export-by-date') ?>" class="inline-flex items-center">
-                        <input type="date" name="date" id="activitiesExportDate" class="border rounded px-2 py-1 mr-2">
+                    <form id="exportActivitiesByDate" method="POST" action="<?= url('/admin/activities/export-by-date') ?>" class="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+                        <input type="date" name="date" id="activitiesExportDate" class="border rounded px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600">
                         <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
-                        <button type="submit" class="inline-flex items-center text-white bg-indigo-600 hover:bg-indigo-700 font-medium rounded-lg text-sm px-4 py-2">
+                        <button type="submit" class="inline-flex items-center justify-center text-white bg-indigo-600 hover:bg-indigo-700 font-medium rounded-lg text-sm px-4 py-2 whitespace-nowrap">
                             <i class="fas fa-calendar-day mr-2"></i> Tarihe Göre Excel
                         </button>
                     </form>
@@ -39,7 +41,7 @@ $pagination = $data['pagination'] ?? [];
                 
                 <!-- Yeni Etkinlik Butonu (Sağ) -->
                 <?php if (hasPermission('activities', 'can_create')): ?>
-                <a href="<?= url('/activities/create') ?>" class="inline-flex items-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 whitespace-nowrap">
+                <a href="<?= url('/activities/create') ?>" class="flex items-center justify-center text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 whitespace-nowrap">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
