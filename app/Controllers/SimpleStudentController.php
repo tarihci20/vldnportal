@@ -56,6 +56,8 @@ class SimpleStudentController extends Controller
     public function store() {
         try {
             error_log("=== STORE METHOD CALLED ===");
+            error_log("POST Data Keys: " . implode(", ", array_keys($_POST)));
+            error_log("POST tc_no value: " . ($_POST['tc_no'] ?? 'MISSING'));
             
             // 1. Check CSRF (TEMPORARY: DISABLED FOR DEBUGGING)
             $csrfValid = true;
@@ -86,6 +88,7 @@ class SimpleStudentController extends Controller
             ];
             
             error_log("Form data collected: " . json_encode($data));
+            error_log("Data to insert - TC: {$data['tc_no']}, Name: {$data['first_name']} {$data['last_name']}, Created_by: {$data['created_by']}");
             
             // 3. Basic validation
             $errors = [];
