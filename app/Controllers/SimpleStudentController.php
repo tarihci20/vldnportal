@@ -27,11 +27,23 @@ class SimpleStudentController extends Controller
      * Simple form page
      */
     public function create() {
-        // Debug: CSRF token oluştur eğer yoksa
+        // Ensure session is started
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+        // Create CSRF token if not exists
         if (empty($_SESSION['csrf_token'])) {
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
             $_SESSION['csrf_token_time'] = time();
+            error_log("SimpleStudentController::create() - Created new CSRF token: " . substr($_SESSION['csrf_token'], 0, 10) . "...");
+        } else {
+            error_log("SimpleStudentController::create() - CSRF token already exists: " . substr($_SESSION['csrf_token'], 0, 10) . "...");
         }
+        
+        // Debug session
+        error_log("SimpleStudentController::create() - Session ID: " . session_id());
+        error_log("SimpleStudentController::create() - Session data: " . json_encode($_SESSION));
         
         $this->view('students/simple-create', [
             'title' => 'Yeni Öğrenci Ekle'
