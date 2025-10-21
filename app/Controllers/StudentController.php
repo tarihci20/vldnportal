@@ -129,12 +129,7 @@ class StudentController extends Controller
      * Öğrenci detay sayfası
      */
     public function detail($id) {
-        error_log("=== DETAIL METHOD CALLED ===");
-        error_log("ID parameter: " . var_export($id, true));
-        
         $student = $this->studentModel->findById($id);
-        
-        error_log("findById result: " . var_export($student, true));
         
         if (!$student) {
             setFlashMessage('Öğrenci bulunamadı.', 'error');
@@ -211,23 +206,13 @@ class StudentController extends Controller
             setFlashMessage(implode('<br>', $errors), 'error');
             redirect('/students/create');
         }
-        // DEBUG: Eklenen veriyi logla
-        error_log("=== STUDENT CREATE DEBUG ===");
-        error_log("Data: " . json_encode($data));
         
         // Kayıt işlemi
         $studentId = $this->studentModel->create($data);
         
-        error_log("StudentId result: " . var_export($studentId, true));
-        
         // Başarılı olup olmadığını kontrol et
         // create() başarılı ise ID döndürür (int veya string olabilir), başarısızsa false döndürür
         if ($studentId !== false) {
-            // DEBUG: Insert başarılı - kaydı hemen doğrula
-            error_log("Insert başarılı, ID: " . $studentId);
-            $verifyStudent = $this->studentModel->findById($studentId);
-            error_log("Verify result: " . json_encode($verifyStudent));
-            
             setFlashMessage('Öğrenci başarıyla eklendi.', 'success');
             redirect(url('/students/' . $studentId));
         } else {
