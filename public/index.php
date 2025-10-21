@@ -30,13 +30,18 @@ require __DIR__ . '/../vendor/autoload.php';
 // 1. Sabitler ve config dosyalarını yükle
 $rootPath = dirname(__DIR__);
 
-// Try to load constants.php with multiple paths
+// ÖNCE: Fallback ROOT_PATH'ı tanımla (constants.php'nin ihtiyacı var)
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', $rootPath);
+}
+
+// SONRA: constants.php'yi yüklemeye çalış
+$constantsLoaded = false;
 $constantsPaths = [
-    $rootPath . '/config/constants.php',
+    ROOT_PATH . '/config/constants.php',
     '/home/vildacgg/vldn.in/portalv2/config/constants.php',
 ];
 
-$constantsLoaded = false;
 foreach ($constantsPaths as $path) {
     if (file_exists($path)) {
         require_once $path;
@@ -45,6 +50,7 @@ foreach ($constantsPaths as $path) {
     }
 }
 
+// SONRA: Eğer constants.php yüklenemedi, manuel tanımlama yap
 if (!$constantsLoaded) {
     // Fallback: define constants manually
     define('BASE_URL', 'https://vldn.in/portalv2');
@@ -56,7 +62,6 @@ if (!$constantsLoaded) {
     define('CSS_URL', ASSETS_URL . '/css');
     define('JS_URL', ASSETS_URL . '/js');
     define('IMG_URL', ASSETS_URL . '/images');
-    define('ROOT_PATH', dirname(__DIR__));
     define('APP_PATH', ROOT_PATH . '/app');
     define('CONFIG_PATH', ROOT_PATH . '/config');
     define('CORE_PATH', ROOT_PATH . '/core');
