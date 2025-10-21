@@ -39,19 +39,8 @@
             
             <!-- Row 3: Sınıf -->
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Sınıf *</label>
-                <select name="class" class="w-full px-3 py-2 border border-gray-300 rounded" required>
-                    <option value="">-- Sınıf Seçin --</option>
-                    <option value="9-A">9-A</option>
-                    <option value="9-B">9-B</option>
-                    <option value="9-C">9-C</option>
-                    <option value="10-A">10-A</option>
-                    <option value="10-B">10-B</option>
-                    <option value="11-A">11-A</option>
-                    <option value="11-B">11-B</option>
-                    <option value="12-A">12-A</option>
-                    <option value="12-B">12-B</option>
-                </select>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Sınıf</label>
+                <input type="text" name="class" class="w-full px-3 py-2 border border-gray-300 rounded" placeholder="Örn: 9-A, 10-B, vb (boş bırakılabilir)">
             </div>
             
             <hr class="my-6">

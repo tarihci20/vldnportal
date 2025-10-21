@@ -47,18 +47,16 @@ $router->post('/api/students/search', 'StudentController@ajaxSearch');
 $router->get('/students', 'StudentController@index', 'students.index');
 
 // ÖNEMLİ: Statik route'lar dinamik route'lardan ÖNCE tanımlanmalı!
-$router->get('/students/create', 'StudentController@create', 'students.create');
+$router->get('/students/create', 'SimpleStudentController@create', 'students.create');
 $router->get('/students/export/excel', 'StudentController@exportExcel', 'students.export');
 $router->get('/students/download/template', 'StudentController@downloadTemplate', 'students.template');
 $router->post('/students/import/excel', 'StudentController@importExcel', 'students.import');
 $router->post('/students/delete-all', 'StudentController@deleteAll');
 
-// Yeni basit öğrenci ekleme sistemi
-$router->get('/simple-students/create', 'SimpleStudentController@create', 'simple.students.create');
-$router->post('/simple-students', 'SimpleStudentController@store', 'simple.students.store');
+// POST /students route'unu SimpleStudentController@store'a yönlendir
+$router->post('/students', 'SimpleStudentController@store', 'students.store');
 
 // Dinamik route'lar (ID ile) en sonda!
-$router->post('/students', 'StudentController@store');
 $router->get('/students/{id}', 'StudentController@detail', 'students.detail');
 $router->get('/students/{id}/edit', 'StudentController@edit', 'students.edit');
 $router->post('/students/{id}', 'StudentController@update');

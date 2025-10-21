@@ -95,10 +95,6 @@ class SimpleStudentController extends Controller
                 $errors[] = 'Soyisim gerekli';
             }
             
-            if (empty($data['class'])) {
-                $errors[] = 'Sınıf gerekli';
-            }
-            
             if (empty($data['birth_date'])) {
                 $errors[] = 'Doğum tarihi gerekli';
             }
