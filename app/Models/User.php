@@ -19,9 +19,9 @@ class User extends Model
      */
     public function findById($id) {
         $sql = "SELECT * FROM {$this->table} WHERE id = :id LIMIT 1";
-        $this->db->query($sql);
-        $this->db->bind(':id', $id);
-        return $this->db->single();
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':id', $id);
+        return $this->getDb()->single();
     }
     
     /**
@@ -34,10 +34,10 @@ class User extends Model
                 WHERE u.id = :id
                 LIMIT 1";
         
-        $this->db->query($sql);
-        $this->db->bind(':id', $id);
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':id', $id);
         
-        return $this->db->single();
+        return $this->getDb()->single();
     }
     
     /**
@@ -49,8 +49,8 @@ class User extends Model
                 LEFT JOIN roles r ON u.role_id = r.id
                 ORDER BY u.created_at DESC";
         
-        $this->db->query($sql);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        return $this->getDb()->resultSet();
     }
     
     /**
@@ -58,8 +58,8 @@ class User extends Model
      */
     public function getAllRoles() {
         $sql = "SELECT * FROM roles ORDER BY sort_order, id";
-        $this->db->query($sql);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        return $this->getDb()->resultSet();
     }
     
     /**
@@ -72,9 +72,9 @@ class User extends Model
                 WHERE p.is_active = 1
                 ORDER BY p.sort_order, p.id";
         
-        $this->db->query($sql);
-        $this->db->bind(':role_id', $roleId);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':role_id', $roleId);
+        return $this->getDb()->resultSet();
     }
     
     /**
@@ -84,23 +84,23 @@ class User extends Model
         try {
             // Önce mevcut izinleri sil
             $deleteSql = "DELETE FROM role_page_permissions WHERE role_id = :role_id";
-            $this->db->query($deleteSql);
-            $this->db->bind(':role_id', $roleId);
-            $this->db->execute();
+            $this->getDb()->query($deleteSql);
+            $this->getDb()->bind(':role_id', $roleId);
+            $this->getDb()->execute();
             
             // Yeni izinleri ekle
             $insertSql = "INSERT INTO role_page_permissions (role_id, page_id, can_view, can_create, can_edit, can_delete) 
                          VALUES (:role_id, :page_id, :can_view, :can_create, :can_edit, :can_delete)";
             
             foreach ($permissions as $permission) {
-                $this->db->query($insertSql);
-                $this->db->bind(':role_id', $roleId);
-                $this->db->bind(':page_id', $permission['page_id']);
-                $this->db->bind(':can_view', $permission['can_view'] ?? 0);
-                $this->db->bind(':can_create', $permission['can_create'] ?? 0);
-                $this->db->bind(':can_edit', $permission['can_edit'] ?? 0);
-                $this->db->bind(':can_delete', $permission['can_delete'] ?? 0);
-                $this->db->execute();
+                $this->getDb()->query($insertSql);
+                $this->getDb()->bind(':role_id', $roleId);
+                $this->getDb()->bind(':page_id', $permission['page_id']);
+                $this->getDb()->bind(':can_view', $permission['can_view'] ?? 0);
+                $this->getDb()->bind(':can_create', $permission['can_create'] ?? 0);
+                $this->getDb()->bind(':can_edit', $permission['can_edit'] ?? 0);
+                $this->getDb()->bind(':can_delete', $permission['can_delete'] ?? 0);
+                $this->getDb()->execute();
             }
             
             return true;
@@ -114,8 +114,8 @@ class User extends Model
      */
     public function getAllPages() {
         $sql = "SELECT * FROM pages WHERE is_active = 1 ORDER BY sort_order, id";
-        $this->db->query($sql);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        return $this->getDb()->resultSet();
     }
     
     /**
@@ -129,16 +129,16 @@ class User extends Model
         
         // Toplam sayı
         $countSql = "SELECT COUNT(*) as total FROM {$this->table}";
-        $this->db->query($countSql);
-        $totalResult = $this->db->single();
+        $this->getDb()->query($countSql);
+        $totalResult = $this->getDb()->single();
         $total = $totalResult['total'] ?? 0;
         
         // Sayfalama
         $offset = ($page - 1) * $perPage;
         $sql .= " LIMIT {$perPage} OFFSET {$offset}";
         
-        $this->db->query($sql);
-        $data = $this->db->resultSet();
+        $this->getDb()->query($sql);
+        $data = $this->getDb()->resultSet();
         
         return [
             'data' => $data,
@@ -161,14 +161,14 @@ class User extends Model
             $sql .= " AND id != :except_id";
         }
         
-        $this->db->query($sql);
-        $this->db->bind(':username', $username);
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':username', $username);
         
         if ($exceptId) {
-            $this->db->bind(':except_id', $exceptId);
+            $this->getDb()->bind(':except_id', $exceptId);
         }
         
-        $result = $this->db->single();
+        $result = $this->getDb()->single();
         return $result['count'] > 0;
     }
     
@@ -182,14 +182,14 @@ class User extends Model
             $sql .= " AND id != :except_id";
         }
         
-        $this->db->query($sql);
-        $this->db->bind(':email', $email);
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':email', $email);
         
         if ($exceptId) {
-            $this->db->bind(':except_id', $exceptId);
+            $this->getDb()->bind(':except_id', $exceptId);
         }
         
-        $result = $this->db->single();
+        $result = $this->getDb()->single();
         return $result['count'] > 0;
     }
     
