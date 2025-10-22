@@ -11,7 +11,7 @@ use App\Core\Model;
 
 class PushSubscription extends Model
 {
-    protected $table = 'vp_push_subscriptions';
+    protected $table = 'push_subscriptions';
     
     protected $fillable = [
         'user_id',
@@ -56,7 +56,7 @@ class PushSubscription extends Model
                 NOW()
             )";
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             
             return $stmt->execute([
                 'user_id' => $data['user_id'],
@@ -90,7 +90,7 @@ class PushSubscription extends Model
                 updated_at = NOW()
             WHERE id = :id";
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             
             return $stmt->execute([
                 'id' => $id,
@@ -118,7 +118,7 @@ class PushSubscription extends Model
                     AND is_active = 1
                     ORDER BY created_at DESC";
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             $stmt->execute(['user_id' => $userId]);
             
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -145,7 +145,7 @@ class PushSubscription extends Model
             
             $sql .= " LIMIT 1";
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             $stmt->execute($params);
             
             return $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -166,7 +166,7 @@ class PushSubscription extends Model
                     WHERE is_active = 1 
                     ORDER BY created_at DESC";
             
-            $stmt = $this->db->query($sql);
+            $stmt = $this->getDb()->query($sql);
             
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
             
@@ -190,7 +190,7 @@ class PushSubscription extends Model
                 $params['user_id'] = $userId;
             }
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             
             return $stmt->execute($params);
             
@@ -208,7 +208,7 @@ class PushSubscription extends Model
         try {
             $sql = "DELETE FROM {$this->table} WHERE id = :id";
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             
             return $stmt->execute(['id' => $id]);
             
@@ -226,7 +226,7 @@ class PushSubscription extends Model
         try {
             $sql = "DELETE FROM {$this->table} WHERE user_id = :user_id";
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             
             return $stmt->execute(['user_id' => $userId]);
             
@@ -247,7 +247,7 @@ class PushSubscription extends Model
                         updated_at = NOW() 
                     WHERE id = :id";
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             
             return $stmt->execute(['id' => $id]);
             
@@ -267,7 +267,7 @@ class PushSubscription extends Model
                     SET last_used_at = NOW() 
                     WHERE id = :id";
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             
             return $stmt->execute(['id' => $id]);
             
@@ -288,7 +288,7 @@ class PushSubscription extends Model
                     WHERE last_used_at < DATE_SUB(NOW(), INTERVAL 30 DAY)
                     OR (last_used_at IS NULL AND created_at < DATE_SUB(NOW(), INTERVAL 30 DAY))";
             
-            $stmt = $this->db->query($sql);
+            $stmt = $this->getDb()->query($sql);
             
             $deletedCount = $stmt->rowCount();
             
@@ -316,7 +316,7 @@ class PushSubscription extends Model
                 FROM {$this->table}
                 WHERE user_id = :user_id";
             
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->getDb()->prepare($sql);
             $stmt->execute(['user_id' => $userId]);
             
             return $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -341,7 +341,7 @@ class PushSubscription extends Model
                     SUM(CASE WHEN last_used_at > DATE_SUB(NOW(), INTERVAL 7 DAY) THEN 1 ELSE 0 END) as used_this_week
                 FROM {$this->table}";
             
-            $stmt = $this->db->query($sql);
+            $stmt = $this->getDb()->query($sql);
             
             return $stmt->fetch(\PDO::FETCH_ASSOC);
             

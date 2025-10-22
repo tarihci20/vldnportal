@@ -58,23 +58,23 @@ class Student extends Model
         
         // Toplam kayıt sayısı
         $countSql = "SELECT COUNT(*) as total FROM ({$sql}) as t";
-        $this->db->query($countSql);
+        $this->getDb()->query($countSql);
         foreach ($params as $key => $value) {
-            $this->db->bind(":{$key}", $value);
+            $this->getDb()->bind(":{$key}", $value);
         }
-        $totalResult = $this->db->single();
+        $totalResult = $this->getDb()->single();
         $total = $totalResult['total'] ?? 0;
         
         // Sayfalama
         $offset = ($page - 1) * $perPage;
         $sql .= " LIMIT {$perPage} OFFSET {$offset}";
         
-        $this->db->query($sql);
+        $this->getDb()->query($sql);
         foreach ($params as $key => $value) {
-            $this->db->bind(":{$key}", $value);
+            $this->getDb()->bind(":{$key}", $value);
         }
         
-        $data = $this->db->resultSet();
+        $data = $this->getDb()->resultSet();
         
         return [
             'data' => $data,
@@ -113,27 +113,27 @@ class Student extends Model
         
         // Toplam sayı
         $countSql = "SELECT COUNT(*) as total FROM ({$sql}) as t";
-        $this->db->query($countSql);
-        $this->db->bind(':query1', $searchTerm);
-        $this->db->bind(':query2', $searchTerm);
-        $this->db->bind(':query3', $searchTerm);
-        $this->db->bind(':query4', $searchTerm);
-        $this->db->bind(':query5', $searchTerm);
-        $totalResult = $this->db->single();
+        $this->getDb()->query($countSql);
+        $this->getDb()->bind(':query1', $searchTerm);
+        $this->getDb()->bind(':query2', $searchTerm);
+        $this->getDb()->bind(':query3', $searchTerm);
+        $this->getDb()->bind(':query4', $searchTerm);
+        $this->getDb()->bind(':query5', $searchTerm);
+        $totalResult = $this->getDb()->single();
         $total = $totalResult['total'] ?? 0;
         
         // Sayfalama
         $offset = ($page - 1) * $perPage;
         $sql .= " ORDER BY first_name ASC, last_name ASC LIMIT {$perPage} OFFSET {$offset}";
         
-        $this->db->query($sql);
-        $this->db->bind(':query1', $searchTerm);
-        $this->db->bind(':query2', $searchTerm);
-        $this->db->bind(':query3', $searchTerm);
-        $this->db->bind(':query4', $searchTerm);
-        $this->db->bind(':query5', $searchTerm);
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':query1', $searchTerm);
+        $this->getDb()->bind(':query2', $searchTerm);
+        $this->getDb()->bind(':query3', $searchTerm);
+        $this->getDb()->bind(':query4', $searchTerm);
+        $this->getDb()->bind(':query5', $searchTerm);
         
-        $data = $this->db->resultSet();
+        $data = $this->getDb()->resultSet();
         
         return [
             'data' => $data,
@@ -184,14 +184,14 @@ class Student extends Model
             $sql .= " AND id != :except_id";
         }
         
-        $this->db->query($sql);
-        $this->db->bind(':tc_no', $tcNo);
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':tc_no', $tcNo);
         
         if ($exceptId) {
-            $this->db->bind(':except_id', $exceptId);
+            $this->getDb()->bind(':except_id', $exceptId);
         }
         
-        $result = $this->db->single();
+        $result = $this->getDb()->single();
         
         return $result['count'] > 0;
     }
@@ -206,8 +206,8 @@ class Student extends Model
                 WHERE class IS NOT NULL AND class != '' AND is_active = 1 
                 ORDER BY class ASC";
         
-        $this->db->query($sql);
-        $results = $this->db->resultSet();
+        $this->getDb()->query($sql);
+        $results = $this->getDb()->resultSet();
         
         return array_column($results, 'class');
     }
@@ -224,8 +224,8 @@ class Student extends Model
                 GROUP BY class 
                 ORDER BY class ASC";
         
-        $this->db->query($sql);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        return $this->getDb()->resultSet();
     }
     
     /**
@@ -250,8 +250,8 @@ class Student extends Model
                 WHERE is_active = 1 
                 ORDER BY class ASC, first_name ASC, last_name ASC";
         
-        $this->db->query($sql);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        return $this->getDb()->resultSet();
     }
     
     /**
@@ -267,7 +267,7 @@ class Student extends Model
         }
         $result = parent::create($data);
         if ($result === false && isset($this->db) && method_exists($this->db, 'getError')) {
-            return $this->db->getError();
+            return $this->getDb()->getError();
         }
         return $result;
     }
@@ -315,8 +315,8 @@ class Student extends Model
      */
     public function deleteAll() {
         $sql = "DELETE FROM {$this->table}";
-        $this->db->query($sql);
-        return $this->db->execute();
+        $this->getDb()->query($sql);
+        return $this->getDb()->execute();
     }
     
     /**
@@ -334,8 +334,8 @@ class Student extends Model
                 ORDER BY etut_count DESC
                 LIMIT {$limit}";
         
-        $this->db->query($sql);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        return $this->getDb()->resultSet();
     }
     
     /**

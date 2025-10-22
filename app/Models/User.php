@@ -10,7 +10,7 @@ use Core\Model;
 
 class User extends Model
 {
-    protected $table = 'vp_users';
+    protected $table = 'users';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     

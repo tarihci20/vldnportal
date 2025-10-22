@@ -10,7 +10,7 @@ use Core\Model;
 
 class Activity extends Model
 {
-    protected $table = 'vp_activities';
+    protected $table = 'activities';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     
@@ -367,7 +367,7 @@ class Activity extends Model
         
         try {
             // Transaction başlat
-            $this->db->beginTransaction();
+            $this->getDb()->beginTransaction();
             
             // 1. Ana kaydı oluştur
             $anaVeri['tekrar_durumu'] = 'evet';
@@ -422,10 +422,10 @@ class Activity extends Model
             $rapor['toplam_basarisiz'] = count($rapor['basarisiz_kayitlar']);
             
             // Transaction commit
-            $this->db->commit();
+            $this->getDb()->commit();
             
         } catch (Exception $e) {
-            $this->db->rollback();
+            $this->getDb()->rollback();
             throw $e;
         }
         
@@ -521,7 +521,7 @@ class Activity extends Model
     public function tekrarKayitlariniSil($anaKayitId)
     {
         try {
-            $this->db->beginTransaction();
+            $this->getDb()->beginTransaction();
             
             // Önce tekrar kayıtlarını sil
             $sql1 = "DELETE FROM activities WHERE ana_etkinlik_id = :ana_id";
@@ -531,11 +531,11 @@ class Activity extends Model
             $sql2 = "DELETE FROM activities WHERE id = :id";
             $this->query($sql2, ['id' => $anaKayitId]);
             
-            $this->db->commit();
+            $this->getDb()->commit();
             return true;
             
         } catch (Exception $e) {
-            $this->db->rollback();
+            $this->getDb()->rollback();
             return false;
         }
     }
@@ -698,7 +698,7 @@ class Activity extends Model
     public function createWithTimeSlots($activityData, $timeSlotIds)
     {
         try {
-            $this->db->beginTransaction();
+            $this->getDb()->beginTransaction();
             
             // Önce çakışma kontrolü
             $conflictResult = $this->checkTimeSlotsConflict(
@@ -720,7 +720,7 @@ class Activity extends Model
             $activityData['end_time'] = $timeSlotInfo['end_time'];
             $activityData['created_at'] = date('Y-m-d H:i:s');
             
-            $activityId = $this->db->insert($this->table, $activityData);
+            $activityId = $this->getDb()->insert($this->table, $activityData);
             
             if (!$activityId) {
                 throw new \Exception('Etkinlik oluşturulamadı!');
@@ -734,14 +734,14 @@ class Activity extends Model
                     'created_at' => date('Y-m-d H:i:s')
                 ];
                 
-                $this->db->insert('activity_time_slots', $relationData);
+                $this->getDb()->insert('activity_time_slots', $relationData);
             }
             
-            $this->db->commit();
+            $this->getDb()->commit();
             return $activityId;
             
         } catch (\Exception $e) {
-            $this->db->rollback();
+            $this->getDb()->rollback();
             throw $e;
         }
     }
@@ -752,7 +752,7 @@ class Activity extends Model
     public function updateWithTimeSlots($activityId, $activityData, $timeSlotIds)
     {
         try {
-            $this->db->beginTransaction();
+            $this->getDb()->beginTransaction();
             
             // Çakışma kontrolü (mevcut etkinlik hariç)
             $conflictResult = $this->checkTimeSlotsConflict(
@@ -780,14 +780,14 @@ class Activity extends Model
                     'created_at' => date('Y-m-d H:i:s')
                 ];
                 
-                $this->db->insert('activity_time_slots', $relationData);
+                $this->getDb()->insert('activity_time_slots', $relationData);
             }
             
-            $this->db->commit();
+            $this->getDb()->commit();
             return true;
             
         } catch (\Exception $e) {
-            $this->db->rollback();
+            $this->getDb()->rollback();
             throw $e;
         }
     }
@@ -812,19 +812,19 @@ class Activity extends Model
     public function deleteWithTimeSlots($activityId)
     {
         try {
-            $this->db->beginTransaction();
+            $this->getDb()->beginTransaction();
             
             // Önce saat dilimi ilişkilerini sil
-            $deleted = $this->db->delete('activity_time_slots', ['activity_id' => $activityId]);
+            $deleted = $this->getDb()->delete('activity_time_slots', ['activity_id' => $activityId]);
             
             // Sonra etkinliği sil
-            $deleted = $this->db->delete($this->table, ['id' => $activityId]);
+            $deleted = $this->getDb()->delete($this->table, ['id' => $activityId]);
             
-            $this->db->commit();
+            $this->getDb()->commit();
             return $deleted;
             
         } catch (\Exception $e) {
-            $this->db->rollback();
+            $this->getDb()->rollback();
             error_log('Activity deleteWithTimeSlots error: ' . $e->getMessage());
             return false;
         }
@@ -891,7 +891,7 @@ class Activity extends Model
             }
             
             // ÇAKIŞMA YOK, ŞİMDİ KAYDET
-            $this->db->beginTransaction();
+            $this->getDb()->beginTransaction();
             
             $createdActivities = [];
             
@@ -905,7 +905,7 @@ class Activity extends Model
                 $currentActivityData['end_time'] = $timeSlotInfo['end_time'];
                 $currentActivityData['created_at'] = date('Y-m-d H:i:s');
                 
-                $activityId = $this->db->insert($this->table, $currentActivityData);
+                $activityId = $this->getDb()->insert($this->table, $currentActivityData);
                 
                 if ($activityId) {
                     // Saat dilimi ilişkilerini ekle
@@ -916,14 +916,14 @@ class Activity extends Model
                             'created_at' => date('Y-m-d H:i:s')
                         ];
                         
-                        $this->db->insert('activity_time_slots', $relationData);
+                        $this->getDb()->insert('activity_time_slots', $relationData);
                     }
                     
                     $createdActivities[] = $activityId;
                 }
             }
             
-            $this->db->commit();
+            $this->getDb()->commit();
             
             return [
                 'success' => true,
@@ -934,7 +934,7 @@ class Activity extends Model
             ];
             
         } catch (\Exception $e) {
-            $this->db->rollback();
+            $this->getDb()->rollback();
             return [
                 'success' => false,
                 'error' => $e->getMessage()

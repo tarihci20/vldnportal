@@ -519,12 +519,10 @@ class StudentController extends Controller
                         } else {
                             // PDO/Model hata detayını al
                             $pdoError = '';
-                            if (isset($this->studentModel->db)) {
-                                if (!empty($this->studentModel->db->error)) {
-                                    $pdoError = $this->studentModel->db->error;
-                                } elseif (method_exists($this->studentModel->db, 'getError')) {
-                                    $pdoError = $this->studentModel->db->getError();
-                                }
+                            // Lazy-loaded $db'yi access et
+                            $db = $this->studentModel->db ?? $this->studentModel->getDb();
+                            if ($db && method_exists($db, 'getError')) {
+                                $pdoError = $db->getError();
                             }
                             if ($pdoError) {
                                 $errorMsg .= ' | DB Error: ' . $pdoError;

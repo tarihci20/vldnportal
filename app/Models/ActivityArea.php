@@ -10,7 +10,7 @@ use Core\Model;
 
 class ActivityArea extends Model
 {
-    protected $table = 'vp_activity_areas';
+    protected $table = 'activity_areas';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     
@@ -33,7 +33,7 @@ class ActivityArea extends Model
                 WHERE is_active = 1
                 ORDER BY sort_order ASC, area_name ASC";
         
-        $this->db->query($sql);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        return $this->getDb()->resultSet();
     }
 }

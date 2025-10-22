@@ -10,7 +10,7 @@ use Core\Model;
 
 class Etut extends Model
 {
-    protected $table = 'vp_etut_applications';
+    protected $table = 'etut_applications';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     
@@ -47,23 +47,23 @@ class Etut extends Model
         
         // Toplam sayı
         $countSql = "SELECT COUNT(*) as total FROM ({$sql}) as t";
-        $this->db->query($countSql);
+        $this->getDb()->query($countSql);
         foreach ($params as $key => $value) {
-            $this->db->bind(":{$key}", $value);
+            $this->getDb()->bind(":{$key}", $value);
         }
-        $totalResult = $this->db->single();
+        $totalResult = $this->getDb()->single();
         $total = $totalResult['total'] ?? 0;
         
         // Sayfalama
         $offset = ($page - 1) * $perPage;
         $sql .= " LIMIT {$perPage} OFFSET {$offset}";
         
-        $this->db->query($sql);
+        $this->getDb()->query($sql);
         foreach ($params as $key => $value) {
-            $this->db->bind(":{$key}", $value);
+            $this->getDb()->bind(":{$key}", $value);
         }
         
-        $data = $this->db->resultSet();
+        $data = $this->getDb()->resultSet();
         
         return [
             'data' => $data,
@@ -88,10 +88,10 @@ class Etut extends Model
                 WHERE e.application_date = :today
                 ORDER BY e.start_time ASC";
         
-        $this->db->query($sql);
-        $this->db->bind(':today', $today);
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':today', $today);
         
-        return $this->db->resultSet();
+        return $this->getDb()->resultSet();
     }
     
     /**
@@ -111,10 +111,10 @@ class Etut extends Model
                 WHERE e.student_id = :student_id
                 ORDER BY e.application_date DESC";
         
-        $this->db->query($sql);
-        $this->db->bind(':student_id', $studentId);
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':student_id', $studentId);
         
-        return $this->db->resultSet();
+        return $this->getDb()->resultSet();
     }
     
     /**
@@ -128,8 +128,8 @@ class Etut extends Model
                     SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completed
                 FROM {$this->table}";
         
-        $this->db->query($sql);
-        return $this->db->single();
+        $this->getDb()->query($sql);
+        return $this->getDb()->single();
     }
     
     /**
@@ -141,11 +141,11 @@ class Etut extends Model
                 ORDER BY created_at DESC 
                 LIMIT :limit";
         
-        $this->db->query($sql);
-        $this->db->bind(':form_type', $formType);
-        $this->db->bind(':limit', $limit);
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':form_type', $formType);
+        $this->getDb()->bind(':limit', $limit);
         
-        return $this->db->resultSet();
+        return $this->getDb()->resultSet();
     }
 
     /**
@@ -159,8 +159,8 @@ class Etut extends Model
         $ids = array_map('intval', $ids);
         $placeholders = implode(',', $ids);
         $sql = "SELECT * FROM {$this->table} WHERE id IN ({$placeholders}) ORDER BY created_at DESC";
-        $this->db->query($sql);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        return $this->getDb()->resultSet();
     }
 
     /**
@@ -171,8 +171,8 @@ class Etut extends Model
     public function getByDate($date)
     {
         $sql = "SELECT * FROM {$this->table} WHERE DATE(created_at) = :d ORDER BY created_at DESC";
-        $this->db->query($sql);
-        $this->db->bind(':d', $date);
-        return $this->db->resultSet();
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':d', $date);
+        return $this->getDb()->resultSet();
     }
 }

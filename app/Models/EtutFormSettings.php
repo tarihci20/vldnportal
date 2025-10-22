@@ -10,7 +10,7 @@ use Core\Model;
 
 class EtutFormSettings extends Model
 {
-    protected $table = 'vp_etut_form_settings';
+    protected $table = 'etut_form_settings';
     protected $primaryKey = 'id';
     
     /**
@@ -19,13 +19,13 @@ class EtutFormSettings extends Model
     public function getByFormType($formType)
     {
         // Charset ayarı
-        $this->db->query("SET NAMES utf8mb4");
-        $this->db->execute();
+        $this->getDb()->query("SET NAMES utf8mb4");
+        $this->getDb()->execute();
         
         $sql = "SELECT * FROM {$this->table} WHERE form_type = :form_type LIMIT 1";
-        $this->db->query($sql);
-        $this->db->bind(':form_type', $formType);
-        return $this->db->single();
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':form_type', $formType);
+        return $this->getDb()->single();
     }
     
     /**
@@ -43,9 +43,9 @@ class EtutFormSettings extends Model
     public function toggleFormStatus($formType)
     {
         $sql = "UPDATE {$this->table} SET is_active = NOT is_active WHERE form_type = :form_type";
-        $this->db->query($sql);
-        $this->db->bind(':form_type', $formType);
-        return $this->db->execute();
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':form_type', $formType);
+        return $this->getDb()->execute();
     }
     
     /**
@@ -61,15 +61,15 @@ class EtutFormSettings extends Model
                     closed_message = :closed_message
                 WHERE form_type = :form_type";
         
-        $this->db->query($sql);
-        $this->db->bind(':form_type', $formType);
-        $this->db->bind(':is_active', $data['is_active'] ?? 1);
-        $this->db->bind(':title', $data['title'] ?? '');
-        $this->db->bind(':description', $data['description'] ?? '');
-        $this->db->bind(':closed_message', $data['closed_message'] ?? '');
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':form_type', $formType);
+        $this->getDb()->bind(':is_active', $data['is_active'] ?? 1);
+        $this->getDb()->bind(':title', $data['title'] ?? '');
+        $this->getDb()->bind(':description', $data['description'] ?? '');
+        $this->getDb()->bind(':closed_message', $data['closed_message'] ?? '');
     // no binding for max_applications (removed)
         
-        return $this->db->execute();
+        return $this->getDb()->execute();
     }
     
     /**
@@ -78,12 +78,12 @@ class EtutFormSettings extends Model
     public function getAllSettings()
     {
         // Charset ayarı
-        $this->db->query("SET NAMES utf8mb4");
-        $this->db->execute();
+        $this->getDb()->query("SET NAMES utf8mb4");
+        $this->getDb()->execute();
         
         $sql = "SELECT * FROM {$this->table} ORDER BY form_type";
-        $this->db->query($sql);
-        $results = $this->db->resultSet();
+        $this->getDb()->query($sql);
+        $results = $this->getDb()->resultSet();
         
         // form_type key'li array'e çevir
         $settings = [];

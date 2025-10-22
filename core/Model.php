@@ -16,7 +16,43 @@ class Model
     protected $timestamps = true;
     
     public function __construct() {
-        $this->db = Database::getInstance();
+        // Tablo adına otomatik prefix ekle
+        // NOT: Child class'daki $table property'si zaten tanımlandı
+        // Burada onu prefix'li versiyonla değiştiriyoruz
+        if (!empty($this->table)) {
+            $this->table = $this->getTableName();
+        }
+        // Database instance'ı lazy-load et (ilk kullanımda)
+        // $this->db = Database::getInstance();
+    }
+    
+    /**
+     * Database instance'ı getir (Lazy loading)
+     */
+    protected function getDb() {
+        if ($this->db === null) {
+            $this->db = Database::getInstance();
+        }
+        return $this->db;
+    }
+    
+    /**
+     * Tablo adı prefix ile birlikte getir
+     * Child class'da tanımlanan table property'sine prefix ekle
+     * 
+     * @return string
+     */
+    protected function getTableName() {
+        $prefix = \DB_PREFIX ?? 'vp_';
+        $table = $this->table; // Child class'daki değer
+        
+        // Eğer tablo adı zaten prefix ile başlıyorsa, iki kez ekleme
+        if (!empty($table) && strpos($table, $prefix) === 0) {
+            return $table;
+        }
+        
+        // Prefix ekle
+        return !empty($table) ? $prefix . $table : null;
     }
     
     /**
@@ -26,7 +62,7 @@ class Model
      * @return array
      */
     public function all($columns = ['*']) {
-        return $this->db->select($this->table, $columns);
+        return $this->getDb()->select($this->table, $columns);
     }
     
     /**
@@ -36,7 +72,7 @@ class Model
      * @return array|null
      */
     public function find($id) {
-        $results = $this->db->select($this->table, ['*'], [$this->primaryKey => $id]);
+        $results = $this->getDb()->select($this->table, ['*'], [$this->primaryKey => $id]);
         return $results[0] ?? null;
     }
     
@@ -47,7 +83,7 @@ class Model
      * @return array|null
      */
     public function findWhere($where) {
-        $results = $this->db->select($this->table, ['*'], $where, ['limit' => 1]);
+        $results = $this->getDb()->select($this->table, ['*'], $where, ['limit' => 1]);
         return $results[0] ?? null;
     }
     
@@ -59,7 +95,7 @@ class Model
      * @return array
      */
     public function where($where, $options = []) {
-        return $this->db->select($this->table, ['*'], $where, $options);
+        return $this->getDb()->select($this->table, ['*'], $where, $options);
     }
     
     /**
@@ -74,7 +110,7 @@ class Model
             $data['updated_at'] = date('Y-m-d H:i:s');
         }
         
-        return $this->db->insert($this->table, $data);
+        return $this->getDb()->insert($this->table, $data);
     }
     
     /**
@@ -89,7 +125,7 @@ class Model
             $data['updated_at'] = date('Y-m-d H:i:s');
         }
         
-        return $this->db->update($this->table, $data, [$this->primaryKey => $id]);
+        return $this->getDb()->update($this->table, $data, [$this->primaryKey => $id]);
     }
     
     /**
@@ -104,7 +140,7 @@ class Model
             $data['updated_at'] = date('Y-m-d H:i:s');
         }
         
-        return $this->db->update($this->table, $data, $where);
+        return $this->getDb()->update($this->table, $data, $where);
     }
     
     /**
@@ -114,7 +150,7 @@ class Model
      * @return bool
      */
     public function delete($id) {
-        return $this->db->delete($this->table, [$this->primaryKey => $id]);
+        return $this->getDb()->delete($this->table, [$this->primaryKey => $id]);
     }
     
     /**
@@ -124,7 +160,7 @@ class Model
      * @return bool
      */
     public function deleteWhere($where) {
-        return $this->db->delete($this->table, $where);
+        return $this->getDb()->delete($this->table, $where);
     }
     
     /**
@@ -144,13 +180,13 @@ class Model
             $sql .= " WHERE " . implode(' AND ', $conditions);
         }
         
-        $this->db->query($sql);
+        $this->getDb()->query($sql);
         
         foreach ($where as $key => $value) {
-            $this->db->bind(":{$key}", $value);
+            $this->getDb()->bind(":{$key}", $value);
         }
         
-        $result = $this->db->single();
+        $result = $this->getDb()->single();
         return (int)($result['total'] ?? 0);
     }
     
@@ -207,14 +243,14 @@ class Model
      * @return array
      */
     public function query($sql, $params = []) {
-        $this->db->query($sql);
+        $this->getDb()->query($sql);
         
         foreach ($params as $key => $value) {
             $param = is_int($key) ? $key + 1 : ":{$key}";
-            $this->db->bind($param, $value);
+            $this->getDb()->bind($param, $value);
         }
         
-        return $this->db->resultSet();
+        return $this->getDb()->resultSet();
     }
     
     /**
@@ -223,7 +259,7 @@ class Model
      * @return bool
      */
     public function beginTransaction() {
-        return $this->db->beginTransaction();
+        return $this->getDb()->beginTransaction();
     }
     
     /**
@@ -232,7 +268,7 @@ class Model
      * @return bool
      */
     public function commit() {
-        return $this->db->commit();
+        return $this->getDb()->commit();
     }
     
     /**
@@ -241,7 +277,7 @@ class Model
      * @return bool
      */
     public function rollback() {
-        return $this->db->rollback();
+        return $this->getDb()->rollback();
     }
     
     /**
@@ -250,6 +286,16 @@ class Model
      * @return int
      */
     public function lastInsertId() {
-        return $this->db->lastInsertId();
+        return $this->getDb()->lastInsertId();
+    }
+    
+    /**
+     * Magic getter - Lazy load database
+     */
+    public function __get($name) {
+        if ($name === 'db' && $this->db === null) {
+            $this->db = Database::getInstance();
+        }
+        return $this->$name ?? null;
     }
 }

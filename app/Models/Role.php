@@ -5,7 +5,7 @@ namespace App\Models;
 use Core\Model;
 
 class Role extends Model {
-    protected $table = 'vp_roles';
+    protected $table = 'roles';
     
     /**
      * Tüm rolleri getir
