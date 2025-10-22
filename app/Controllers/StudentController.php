@@ -313,7 +313,7 @@ class StudentController extends Controller
             // Log kaydı
             logActivity('student_updated', 'students', $id, $oldData, $data);
             
-            setFlashMessage('Öğrenci bilgileri başarıyla güncellendi.', 'success');
+            setFlashMessage('✅ Öğrenci bilgileri başarıyla güncellendi.', 'success');
             redirect('/students/' . $id);
         } else {
             setFlashMessage('Güncelleme sırasında bir hata oluştu.', 'error');
