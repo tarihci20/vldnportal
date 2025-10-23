@@ -30,7 +30,7 @@ class User extends Model
     public function findWithRole($id) {
         $sql = "SELECT u.*, r.role_name, r.display_name as role_display_name
                 FROM {$this->table} u
-                LEFT JOIN roles r ON u.role_id = r.id
+                LEFT JOIN vp_roles r ON u.role_id = r.id
                 WHERE u.id = :id
                 LIMIT 1";
         
@@ -46,7 +46,7 @@ class User extends Model
     public function getAll() {
         $sql = "SELECT u.*, r.role_name, r.display_name as role_display_name
                 FROM {$this->table} u
-                LEFT JOIN roles r ON u.role_id = r.id
+                LEFT JOIN vp_roles r ON u.role_id = r.id
                 ORDER BY u.created_at DESC";
         
         $this->getDb()->query($sql);
@@ -57,7 +57,7 @@ class User extends Model
      * Tüm rolleri getir
      */
     public function getAllRoles() {
-        $sql = "SELECT * FROM roles ORDER BY sort_order, id";
+        $sql = "SELECT * FROM vp_roles ORDER BY sort_order, id";
         $this->getDb()->query($sql);
         return $this->getDb()->resultSet();
     }
@@ -67,8 +67,8 @@ class User extends Model
      */
     public function getRolePermissions($roleId) {
         $sql = "SELECT p.*, rpp.can_view, rpp.can_create, rpp.can_edit, rpp.can_delete
-                FROM pages p
-                LEFT JOIN role_page_permissions rpp ON p.id = rpp.page_id AND rpp.role_id = :role_id
+                FROM vp_pages p
+                LEFT JOIN vp_role_page_permissions rpp ON p.id = rpp.page_id AND rpp.role_id = :role_id
                 WHERE p.is_active = 1
                 ORDER BY p.sort_order, p.id";
         

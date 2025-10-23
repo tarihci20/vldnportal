@@ -46,8 +46,8 @@ class Auth
     {
         // Kullanıcıyı veritabanından bul (rollerle birlikte)
         $sql = "SELECT u.*, r.role_name as role, r.role_name as role_slug 
-                FROM users u 
-                LEFT JOIN roles r ON u.role_id = r.id 
+                FROM vp_users u 
+                LEFT JOIN vp_roles r ON u.role_id = r.id 
                 WHERE u.username = :username OR u.email = :email";
         
         $user = $this->db->query($sql)->bind(':username', $username)->bind(':email', $username)->single();
@@ -90,7 +90,7 @@ class Auth
         }
 
         // Diğer roller için mevcut tüm oturumları sil
-        $this->db->query("DELETE FROM user_sessions WHERE user_id = :user_id")
+        $this->db->query("DELETE FROM vp_user_sessions WHERE user_id = :user_id")
                  ->bind(':user_id', $user['id'])
                  ->execute();
     }
@@ -106,7 +106,7 @@ class Auth
     public function loginWithGoogle($googleId, $email, $name)
     {
         // İzin listesinde var mı kontrol et
-        $sql = "SELECT * FROM allowed_google_emails WHERE email = :email AND is_active = 1";
+        $sql = "SELECT * FROM vp_allowed_google_emails WHERE email = :email AND is_active = 1";
         $this->db->query($sql);
         $this->db->bind(':email', $email);
         $allowedEmail = $this->db->single();
@@ -120,8 +120,8 @@ class Auth
 
         // Kullanıcı zaten var mı?
         $sql = "SELECT u.*, r.role_name, r.display_name as role_display_name 
-                FROM users u 
-                LEFT JOIN roles r ON u.role_id = r.id 
+                FROM vp_users u 
+                LEFT JOIN vp_roles r ON u.role_id = r.id 
                 WHERE u.google_id = :google_id AND u.is_active = 1 
                 LIMIT 1";
 
@@ -142,8 +142,8 @@ class Auth
 
             // Yeni kullanıcıyı yükle
             $sql = "SELECT u.*, r.role_name, r.display_name as role_display_name 
-                    FROM users u 
-                    LEFT JOIN roles r ON u.role_id = r.id 
+                    FROM vp_users u 
+                    LEFT JOIN vp_roles r ON u.role_id = r.id 
                     WHERE u.id = :id";
             $this->db->query($sql);
             $this->db->bind(':id', $userId);
@@ -151,7 +151,7 @@ class Auth
         }
 
         // Google ile girişte her zaman tek oturum olsun
-        $this->db->delete('user_sessions', ['user_id' => $user['id']]);
+        $this->db->delete('vp_user_sessions', ['user_id' => $user['id']]);
 
         // Session oluştur
         $this->createUserSession($user, true); // Google login'de "remember me" varsayılan olarak aktif
@@ -174,7 +174,7 @@ class Auth
         // "Beni Hatırla" token'ını veritabanından sil
         if (isset($_COOKIE['remember_me'])) {
             $token = $_COOKIE['remember_me'];
-            $this->db->query("DELETE FROM user_sessions WHERE token = :token")->bind(':token', hash('sha256', $token))->execute();
+            $this->db->query("DELETE FROM vp_user_sessions WHERE token = :token")->bind(':token', hash('sha256', $token))->execute();
             
             // Cookie'yi silirken BASE_PATH kullan (çünkü set ederken de BASE_PATH kullanıldı)
             $basePath = defined('BASE_PATH') ? BASE_PATH : '/';
@@ -268,8 +268,8 @@ class Auth
         }
 
         $sql = "SELECT rpp.can_{$permission} 
-                FROM role_page_permissions rpp 
-                INNER JOIN pages p ON rpp.page_id = p.id 
+                FROM vp_role_page_permissions rpp 
+                INNER JOIN vp_pages p ON rpp.page_id = p.id 
                 WHERE rpp.role_id = :role_id AND p.page_key = :page_key";
 
         $this->db->query($sql);
@@ -337,7 +337,7 @@ class Auth
             $expiresAt = date('Y-m-d H:i:s', time() + (86400 * 30)); // 30 gün
 
             $this->db->query(
-                "INSERT INTO user_sessions (user_id, token, ip_address, user_agent, expires_at) VALUES (:user_id, :token, :ip, :ua, :expires)",
+                "INSERT INTO vp_user_sessions (user_id, token, ip_address, user_agent, expires_at) VALUES (:user_id, :token, :ip, :ua, :expires)",
                 [
                     'user_id' => $user['id'],
                     'token' => hash('sha256', $token),
@@ -377,9 +377,9 @@ class Auth
             $sql = "SELECT s.*, u.sessions_valid_from, u.id as user_id, u.username, u.email, u.full_name, 
                            u.role_id, u.can_change_password, u.can_change_username,
                            r.role_name as role, r.role_name as role_slug
-                    FROM user_sessions s
-                    JOIN users u ON s.user_id = u.id
-                    LEFT JOIN roles r ON u.role_id = r.id
+                    FROM vp_user_sessions s
+                    JOIN vp_users u ON s.user_id = u.id
+                    LEFT JOIN vp_roles r ON u.role_id = r.id
                     WHERE s.token = :token AND s.expires_at > NOW()";
             
             $sessionData = $this->db->query($sql)->bind(':token', $hashedToken)->single();
@@ -429,11 +429,11 @@ class Auth
     public function invalidateAllUserSessions(int $userId): void
     {
         // 1. `user_sessions` tablosundaki tüm tokenları sil
-        $this->db->query("DELETE FROM user_sessions WHERE user_id = :user_id")->bind(':user_id', $userId)->execute();
+        $this->db->query("DELETE FROM vp_user_sessions WHERE user_id = :user_id")->bind(':user_id', $userId)->execute();
 
         // 2. `users` tablosundaki `sessions_valid_from` zaman damgasını güncelle
         // Bu, hala aktif olabilecek "Beni Hatırla" çerezlerini geçersiz kılacaktır.
-        $this->db->query("UPDATE users SET sessions_valid_from = NOW() WHERE id = :id")->bind(':id', $userId)->execute();
+        $this->db->query("UPDATE vp_users SET sessions_valid_from = NOW() WHERE id = :id")->bind(':id', $userId)->execute();
     }
 
     /**
@@ -455,7 +455,7 @@ class Auth
         // Random şifre oluştur (Google login kullanıldığı için önemli değil)
         $password = bin2hex(random_bytes(16));
 
-        $this->db->insert('users', [
+        $this->db->insert('vp_users', [
             'username' => $username,
             'email' => $email,
             'password_hash' => password_hash($password, PASSWORD_BCRYPT),
@@ -474,7 +474,7 @@ class Auth
      */
     private function usernameExists($username)
     {
-        $sql = "SELECT COUNT(*) as count FROM users WHERE username = :username";
+        $sql = "SELECT COUNT(*) as count FROM vp_users WHERE username = :username";
         $this->db->query($sql);
         $this->db->bind(':username', $username);
         $result = $this->db->single();
@@ -486,7 +486,7 @@ class Auth
      */
     private function updateLastLogin(int $userId): void
     {
-        $this->db->update('users', [
+        $this->db->update('vp_users', [
             'last_login_at' => date('Y-m-d H:i:s'),
             'last_login_ip' => $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN'
         ], ['id' => $userId]);

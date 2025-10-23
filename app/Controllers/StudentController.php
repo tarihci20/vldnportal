@@ -214,10 +214,12 @@ class StudentController extends Controller
         // create() başarılı ise ID döndürür (int veya string olabilir), başarısızsa false döndürür
         if ($studentId !== false) {
             setFlashMessage('✅ Öğrenci başarıyla kaydedildi.', 'success');
+            session_write_close(); // Session'ı diske yaz
             redirect('/students/' . $studentId);
         } else {
             $errorMsg = 'Öğrenci eklenirken bir hata oluştu.';
             setFlashMessage($errorMsg, 'error');
+            session_write_close(); // Session'ı diske yaz
             redirect('/students/create');
         }
     }
@@ -314,9 +316,11 @@ class StudentController extends Controller
             logActivity('student_updated', 'students', $id, $oldData, $data);
             
             setFlashMessage('✅ Öğrenci bilgileri başarıyla güncellendi.', 'success');
+            session_write_close(); // Session'ı diske yaz
             redirect('/students/' . $id);
         } else {
             setFlashMessage('Güncelleme sırasında bir hata oluştu.', 'error');
+            session_write_close(); // Session'ı diske yaz
             redirect('/students/' . $id . '/edit');
         }
     }
