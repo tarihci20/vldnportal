@@ -491,6 +491,10 @@ class AdminController extends Controller
                 exit;
             }
             
+            // Önce user'ın session kayıtlarını sil (FK constraint olmaması durumunda)
+            error_log("Deleting user sessions for user_id: $id");
+            $this->deleteUserSessions($id);
+            
             error_log("Attempting to delete user: $id");
             $deleteResult = $this->userModel->delete($id);
             error_log("Delete result: " . var_export($deleteResult, true));
@@ -515,6 +519,25 @@ class AdminController extends Controller
         
         error_log("=== DELETE USER END ===");
         exit;
+    }
+    
+    /**
+     * Kullanıcının session kayıtlarını sil
+     * (vp_user_sessions tablosunda FK constraint olmadığı için manuel siliyoruz)
+     */
+    private function deleteUserSessions($userId) {
+        try {
+            // vp_user_sessions tablosundan o user'a ait tüm session'ları sil
+            $sql = "DELETE FROM vp_user_sessions WHERE user_id = :user_id";
+            $this->userModel->getDb()->query($sql);
+            $this->userModel->getDb()->bind(':user_id', $userId);
+            $result = $this->userModel->getDb()->execute();
+            error_log("User sessions deleted for user_id $userId: " . var_export($result, true));
+            return $result;
+        } catch (\Exception $e) {
+            error_log("Error deleting user sessions: " . $e->getMessage());
+            return false;
+        }
     }
     
     /**
