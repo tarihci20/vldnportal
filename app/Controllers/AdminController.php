@@ -293,18 +293,25 @@ class AdminController extends Controller
             'is_active' => 1
         ];
         
-        $userId = $this->userModel->create($data);
-        
-        if ($userId) {
-            // İzinleri kaydet
-            $permissions = $_POST['permissions'] ?? [];
-            $this->saveUserPermissions($roleId, $permissions);
+        try {
+            $userId = $this->userModel->create($data);
             
-            logActivity('user_created', 'users', $userId, null, ['username' => $username]);
-            setFlashMessage('Kullanıcı başarıyla oluşturuldu.', 'success');
-            redirect('/admin/users');
-        } else {
-            setFlashMessage('Kullanıcı oluşturma başarısız.', 'error');
+            if ($userId) {
+                // İzinleri kaydet
+                $permissions = $_POST['permissions'] ?? [];
+                $this->saveUserPermissions($roleId, $permissions);
+                
+                logActivity('user_created', 'users', $userId, null, ['username' => $username]);
+                setFlashMessage('Kullanıcı başarıyla oluşturuldu.', 'success');
+                redirect('/admin/users');
+            } else {
+                error_log("User creation failed - no ID returned");
+                setFlashMessage('Kullanıcı oluşturma başarısız (Database error).', 'error');
+                redirect('/admin/users/create');
+            }
+        } catch (\Exception $e) {
+            error_log("User creation exception: " . $e->getMessage());
+            setFlashMessage('Kullanıcı oluşturma hatası: ' . $e->getMessage(), 'error');
             redirect('/admin/users/create');
         }
     }
