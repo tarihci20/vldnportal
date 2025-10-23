@@ -2,6 +2,8 @@
 /**
  * Debug Delete User - Temporary debug page
  * Remove after debugging is complete
+ * 
+ * Place this file in the root of portalv2 project
  */
 
 // Başlangıçta error_reporting ve display_errors'ı aç
@@ -22,36 +24,20 @@ $errors = [];
 $config_loaded = false;
 $helpers_loaded = false;
 
-try {
-    // Try different config paths
-    $config_paths = [
-        __DIR__ . '/../config/config.php',
-        __DIR__ . '/../../../portalv2/config/config.php',
-        __DIR__ . '/../../../config/config.php',
-    ];
-    
-    foreach ($config_paths as $path) {
-        if (file_exists($path)) {
-            require_once $path;
-            $config_loaded = true;
-            break;
-        }
-    }
-    
-    if (!$config_loaded) {
-        $errors[] = "Config.php not found in any path";
-    }
-} catch (\Exception $e) {
-    $errors[] = "Config Error: " . $e->getMessage();
+// Load config from config directory
+if (file_exists(__DIR__ . '/config/config.php')) {
+    require_once __DIR__ . '/config/config.php';
+    $config_loaded = true;
+} else {
+    $errors[] = "Config.php not found at " . __DIR__ . '/config/config.php';
 }
 
-try {
-    if (file_exists(__DIR__ . '/../app/helpers/functions.php')) {
-        require_once __DIR__ . '/../app/helpers/functions.php';
-        $helpers_loaded = true;
-    }
-} catch (\Exception $e) {
-    $errors[] = "Helpers Error: " . $e->getMessage();
+// Load helpers
+if (file_exists(__DIR__ . '/app/helpers/functions.php')) {
+    require_once __DIR__ . '/app/helpers/functions.php';
+    $helpers_loaded = true;
+} else {
+    $errors[] = "Helpers not found";
 }
 
 ?>
@@ -60,6 +46,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= $_SESSION['csrf_token'] ?? '' ?>">
     <title>Debug - Kullanıcı Silme</title>
     <style>
         body {
@@ -80,6 +67,10 @@ try {
             color: #333;
             border-bottom: 2px solid #007bff;
             padding-bottom: 10px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
         }
         .section {
             margin: 20px 0;
@@ -102,6 +93,7 @@ try {
             border-radius: 3px;
             display: inline-block;
             margin-left: 10px;
+            word-break: break-all;
         }
         .success {
             color: green;
@@ -147,6 +139,8 @@ try {
             padding: 10px;
             border-radius: 4px;
             overflow-x: auto;
+            max-height: 300px;
+            overflow-y: auto;
         }
         .info-box {
             background: #d1ecf1;
@@ -155,6 +149,15 @@ try {
             padding: 15px;
             border-radius: 4px;
             margin: 10px 0;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
         }
     </style>
 </head>
@@ -175,86 +178,40 @@ try {
         }
     }
 
+    // Show config load status
+    echo '<div class="section">';
+    echo '<h3>📋 Yükleme Durumu</h3>';
+    echo '<div><span class="label">Config Loaded:</span><span class="value ' . ($config_loaded ? 'success' : 'error') . '">' . ($config_loaded ? 'YES ✅' : 'NO ❌') . '</span></div><br>';
+    echo '<div><span class="label">Helpers Loaded:</span><span class="value ' . ($helpers_loaded ? 'success' : 'error') . '">' . ($helpers_loaded ? 'YES ✅' : 'NO ❌') . '</span></div>';
+    echo '</div>';
+
     $currentUser = $_SESSION['user'] ?? null;
     $userId = $_SESSION['user_id'] ?? null;
 
     echo '<div class="section">';
     echo '<h3>👤 Mevcut Kullanıcı</h3>';
     if ($userId) {
+        echo '<div class="success">✅ Giriş yapılmış</div>';
         echo '<div><span class="label">User ID:</span><span class="value">' . htmlspecialchars($userId) . '</span></div><br>';
         echo '<div><span class="label">Username:</span><span class="value">' . htmlspecialchars($currentUser['username'] ?? 'N/A') . '</span></div><br>';
         echo '<div><span class="label">Role:</span><span class="value">' . htmlspecialchars($currentUser['role'] ?? 'N/A') . '</span></div><br>';
         echo '<div><span class="label">Role Slug:</span><span class="value">' . htmlspecialchars($currentUser['role_slug'] ?? 'N/A') . '</span></div>';
     } else {
-        echo '<div class="warning">⚠️ Giriş yapılmamış - Bazı özellikler sınırlı olacaktır</div>';
-        echo '<div><a href="/portalv2/login">Giriş Yap</a></div>';
+        echo '<div class="warning">⚠️ Giriş yapılmamış - CSRF token alınamaz</div>';
+        echo '<div style="margin-top: 10px;"><a href="/portalv2/login">🔐 Giriş Yap</a></div>';
     }
-    echo '</div>';
-
-    // Check if deleteUser handler exists
-    echo '<div class="section">';
-    echo '<h3>🛣️ Route Bilgisi</h3>';
-    
-    $routes = [
-        'POST /admin/users/{id}/delete' => 'AdminController@deleteUser',
-        'POST /admin/users/delete' => 'AdminController@deleteUser (old)',
-        'POST /api/users/{id}/delete' => 'AdminController@deleteUser (api)'
-    ];
-    
-    foreach ($routes as $route => $handler) {
-        echo '<div><span class="label">Route:</span><span class="value">' . htmlspecialchars($route) . ' → ' . htmlspecialchars($handler) . '</span></div>';
-    }
-    echo '</div>';
-
-    // Test delete request
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['test_delete'])) {
-        echo '<div class="section">';
-        echo '<h3>📝 Test İsteği Gönderiliyor...</h3>';
-        
-        $testUserId = $_POST['test_user_id'] ?? null;
-        
-        if (!$testUserId) {
-            echo '<div class="error">❌ Kullanıcı ID boş!</div>';
-        } else if ($testUserId == $userId) {
-            echo '<div class="error">❌ Kendi hesabınızı silemezsiniz!</div>';
-        } else {
-            // Generate CSRF token
-            $csrfToken = $_SESSION['csrf_token'] ?? '';
-            
-            echo '<div class="success">✅ POST İsteği Test Modu</div>';
-            echo '<pre>';
-            echo "URL: /admin/users/{$testUserId}/delete\n";
-            echo "Method: POST\n";
-            echo "Body: " . json_encode(['id' => $testUserId, 'csrf_token' => $csrfToken]) . "\n";
-            echo '</pre>';
-            
-            echo '<p><strong>CURL Komutu:</strong></p>';
-            echo '<pre>';
-            echo "curl -X POST 'https://vldn.in/admin/users/{$testUserId}/delete' \\
-  -H 'Content-Type: application/json' \\
-  -H 'Cookie: PHPSESSID=" . session_id() . "' \\
-  -d '{\"id\": {$testUserId}, \"csrf_token\": \"{$csrfToken}\"}'";
-            echo '</pre>';
-        }
-        echo '</div>';
-    }
-
-    // Form to test delete
-    echo '<div class="test-form">';
-    echo '<h3>🧪 Test İsteği Gönder</h3>';
-    echo '<form method="POST">';
-    echo '<div>';
-    echo '<label>Silinecek Kullanıcı ID:</label><br>';
-    echo '<input type="number" name="test_user_id" min="1" required style="padding: 8px; width: 200px;">';
-    echo '</div><br>';
-    echo '<button type="submit" name="test_delete">Test İsteği Gönder</button>';
-    echo '</form>';
     echo '</div>';
 
     // CSRF Token info
     echo '<div class="section">';
     echo '<h3>🔐 CSRF Token Bilgisi</h3>';
-    echo '<div><span class="label">Token:</span><span class="value">' . substr($_SESSION['csrf_token'] ?? '', 0, 20) . '...</span></div><br>';
+    $csrfToken = $_SESSION['csrf_token'] ?? '';
+    if ($csrfToken) {
+        echo '<div class="success">✅ CSRF Token bulundu</div>';
+        echo '<div><span class="label">Token:</span><span class="value">' . substr($csrfToken, 0, 30) . '...</span></div>';
+    } else {
+        echo '<div class="error">❌ CSRF Token bulunamadı</div>';
+    }
     echo '<div><span class="label">Token Time:</span><span class="value">' . ($_SESSION['csrf_token_time'] ?? 'N/A') . '</span></div><br>';
     echo '<div><span class="label">Current Time:</span><span class="value">' . time() . '</span></div>';
     echo '</div>';
@@ -263,9 +220,12 @@ try {
     echo '<div class="section">';
     echo '<h3>🗄️ Database Kontrol</h3>';
     
-    if (defined('DB_HOST') && defined('DB_USER') && defined('DB_PASS') && defined('DB_NAME')) {
+    $dbDefined = defined('DB_HOST') && defined('DB_USER') && defined('DB_PASS') && defined('DB_NAME');
+    
+    if ($dbDefined) {
+        echo '<div class="success">✅ Database Constants tanımlanmış</div>';
         try {
-            require_once __DIR__ . '/../core/Database.php';
+            require_once __DIR__ . '/core/Database.php';
             $db = \Core\Database::getInstance();
             
             // Check vp_users table
@@ -273,7 +233,7 @@ try {
             echo '<div class="success">✅ vp_users tablosu erişilebilir (' . ($result['count'] ?? 0) . ' kullanıcı)</div>';
             
             // List users
-            echo '<p><strong>Kullanıcılar:</strong></p>';
+            echo '<p><strong>Kullanıcılar (İlk 10):</strong></p>';
             echo '<pre>';
             $users = $db->query("SELECT id, username, email, role_id FROM vp_users LIMIT 10")->resultSet();
             foreach ($users as $user) {
@@ -281,10 +241,10 @@ try {
             }
             echo '</pre>';
         } catch (\Exception $e) {
-            echo '<div class="error">❌ Database Hatası: ' . htmlspecialchars($e->getMessage()) . '</div>';
+            echo '<div class="error">❌ Database Bağlantı Hatası: ' . htmlspecialchars($e->getMessage()) . '</div>';
         }
     } else {
-        echo '<div class="error">❌ Database Constants tanımlanmamış:</div>';
+        echo '<div class="error">❌ Database Constants tanımlanmamış</div>';
         echo '<pre>';
         echo "DB_HOST: " . (defined('DB_HOST') ? 'DEFINED' : 'NOT DEFINED') . "\n";
         echo "DB_USER: " . (defined('DB_USER') ? 'DEFINED' : 'NOT DEFINED') . "\n";
@@ -294,26 +254,25 @@ try {
     }
     echo '</div>';
 
-    // Session info
-    echo '<div class="section">';
-    echo '<h3>📦 Session Verisi</h3>';
-    echo '<pre>';
-    foreach ($_SESSION as $key => $value) {
-        if (is_array($value)) {
-            echo "$key: " . json_encode($value) . "\n";
-        } else {
-            echo "$key: " . htmlspecialchars((string)$value) . "\n";
-        }
-    }
-    echo '</pre>';
-    echo '</div>';
-
     // API Test
     echo '<div class="section">';
-    echo '<h3>🌐 JavaScript Test</h3>';
-    echo '<textarea id="console" style="width: 100%; height: 150px; font-family: monospace; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" readonly></textarea>';
+    echo '<h3>🌐 Test Delete API</h3>';
+    echo '<p>Test user ID 3\'ü silmeyi dene:</p>';
+    echo '<textarea id="console" readonly></textarea>';
     echo '<br><br>';
-    echo '<button type="button" onclick="testDelete()">Test Delete API</button>';
+    echo '<button type="button" onclick="testDelete()">▶️ Test Delete API Çalıştır</button>';
+    echo '</div>';
+
+    // Routes info
+    echo '<div class="section">';
+    echo '<h3>🛣️ Route Bilgisi</h3>';
+    $routes = [
+        'POST /admin/users/{id}/delete' => 'AdminController@deleteUser',
+        'POST /admin/users/delete' => 'AdminController@deleteUser (old)',
+    ];
+    foreach ($routes as $route => $handler) {
+        echo '<div><span class="label">Route:</span><span class="value">' . htmlspecialchars($route) . ' → ' . htmlspecialchars($handler) . '</span></div>';
+    }
     echo '</div>';
 
     ?>
@@ -331,12 +290,13 @@ async function testDelete() {
     };
 
     try {
-        const userId = 3; // Test user ID
-        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || 'test-token';
+        const userId = 3; // Test user ID (admin hesabını silmeyin!)
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
         
         log('🚀 DELETE İsteği Gönderiliyor...');
         log('URL: /admin/users/' + userId + '/delete');
-        log('Body: {"id": ' + userId + ', "csrf_token": "' + csrfToken.substring(0, 20) + '..."}');
+        log('Method: POST');
+        log('CSRF Token: ' + (csrfToken ? csrfToken.substring(0, 20) + '...' : 'BOŞŞ ⚠️'));
         log('');
         
         const response = await fetch(`/admin/users/${userId}/delete`, {
@@ -351,9 +311,10 @@ async function testDelete() {
         });
 
         log(`📊 Status: ${response.status} ${response.statusText}`);
+        log('');
         log('Headers:');
         for (const [key, value] of response.headers.entries()) {
-            log(`  ${key}: ${value}`);
+            log(`  ${key}: ${value.substring(0, 50)}`);
         }
         log('');
 
@@ -366,11 +327,10 @@ async function testDelete() {
         } else {
             const text = await response.text();
             log('📄 Response (Text):');
-            log(text);
+            log(text.substring(0, 500));
         }
     } catch (error) {
-        log('❌ Error: ' + error.message);
-        log(error.stack);
+        log('❌ Network Error: ' + error.message);
     }
 }
 </script>

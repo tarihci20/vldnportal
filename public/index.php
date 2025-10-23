@@ -100,6 +100,25 @@ startSession();
 
 
 // ======================================================================
+// 3.5. TEST DOSYALARINI BYPASS ET (Development/Debug)
+// ======================================================================
+
+$requestUri = $_SERVER['REQUEST_URI'] ?? '';
+$testFiles = ['debug-delete.php', 'test-delete-user.php', 'debug-session.php', 'check-code.php'];
+
+foreach ($testFiles as $testFile) {
+    // Kontrol: URL'de test dosyası var mı?
+    if (strpos($requestUri, '/' . $testFile) !== false) {
+        // Dosyayı doğrudan serve et (router'ı bypass et)
+        $filePath = __DIR__ . '/' . $testFile;
+        if (file_exists($filePath)) {
+            include $filePath;
+            exit;
+        }
+    }
+}
+
+// ======================================================================
 // 4. ROUTER VE ROUTE TANIMALARI
 // ======================================================================
 
