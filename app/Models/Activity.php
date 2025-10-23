@@ -738,7 +738,7 @@ class Activity extends Model
                     'created_at' => date('Y-m-d H:i:s')
                 ];
                 
-                $this->getDb()->insert('activity_time_slots', $relationData);
+                $this->getDb()->insert('vp_activity_time_slots', $relationData);
             }
             
             $this->getDb()->commit();
@@ -774,7 +774,7 @@ class Activity extends Model
             $this->update($this->table, $activityData, ['id' => $activityId]);
             
             // Mevcut saat dilimi ilişkilerini sil
-            $this->query("DELETE FROM activity_time_slots WHERE activity_id = ?", [$activityId]);
+            $this->query("DELETE FROM vp_activity_time_slots WHERE activity_id = ?", [$activityId]);
             
             // Yeni saat dilimlerini ekle
             foreach ($timeSlotIds as $slotId) {
@@ -784,7 +784,7 @@ class Activity extends Model
                     'created_at' => date('Y-m-d H:i:s')
                 ];
                 
-                $this->getDb()->insert('activity_time_slots', $relationData);
+                $this->getDb()->insert('vp_activity_time_slots', $relationData);
             }
             
             $this->getDb()->commit();
@@ -920,7 +920,7 @@ class Activity extends Model
                             'created_at' => date('Y-m-d H:i:s')
                         ];
                         
-                        $this->getDb()->insert('activity_time_slots', $relationData);
+                        $this->getDb()->insert('vp_activity_time_slots', $relationData);
                     }
                     
                     $createdActivities[] = $activityId;
