@@ -148,7 +148,8 @@ $router->post('/admin/users/store', 'AdminController@storeUser');
 $router->post('/admin/users', 'AdminController@storeUser'); // Alternative route
 $router->get('/admin/users/{id}/edit', 'AdminController@editUser');
 $router->post('/admin/users/{id}', 'AdminController@updateUser');
-$router->post('/admin/users/delete', 'AdminController@deleteUser');
+$router->post('/admin/users/delete', 'AdminController@deleteUser'); // Old route
+$router->post('/admin/users/{id}/delete', 'AdminController@deleteUser'); // New API route
 $router->get('/admin/users/permissions', 'AdminController@getUserPermissionsAjax');
 
 // Rol yönetimi
