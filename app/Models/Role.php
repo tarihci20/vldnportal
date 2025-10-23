@@ -139,14 +139,20 @@ class Role extends Model {
             $this->getDb()->query($sql);
             $this->getDb()->bind(':role_id', $roleId);
             $this->getDb()->bind(':page_id', $pageId);
-            $this->getDb()->bind(':can_view', $permissions['can_view']);
-            $this->getDb()->bind(':can_create', $permissions['can_create']);
-            $this->getDb()->bind(':can_edit', $permissions['can_edit']);
-            $this->getDb()->bind(':can_delete', $permissions['can_delete']);
+            $this->getDb()->bind(':can_view', $permissions['can_view'] ?? 0);
+            $this->getDb()->bind(':can_create', $permissions['can_create'] ?? 0);
+            $this->getDb()->bind(':can_edit', $permissions['can_edit'] ?? 0);
+            $this->getDb()->bind(':can_delete', $permissions['can_delete'] ?? 0);
             
-            return $this->getDb()->execute();
+            $result = $this->getDb()->execute();
+            
+            if (!$result) {
+                error_log("Role updatePermission SQL error: " . $this->getDb()->getError() . " | SQL: " . $sql);
+            }
+            
+            return $result;
         } catch (\Exception $e) {
-            error_log("Role updatePermission error: " . $e->getMessage());
+            error_log("Role updatePermission exception: " . $e->getMessage() . " | Trace: " . $e->getTraceAsString());
             return false;
         }
     }
@@ -161,6 +167,7 @@ class Role extends Model {
             foreach ($permissionsArray as $pageId => $permissions) {
                 if (!$this->updatePermission($roleId, $pageId, $permissions)) {
                     $this->getDb()->rollback();
+                    error_log("Role updateRolePermissions: Failed to update permission for page_id: {$pageId}");
                     return false;
                 }
             }
@@ -168,8 +175,12 @@ class Role extends Model {
             $this->getDb()->commit();
             return true;
         } catch (\Exception $e) {
-            $this->getDb()->rollback();
-            error_log("Role updateRolePermissions error: " . $e->getMessage());
+            try {
+                $this->getDb()->rollback();
+            } catch (\Exception $rollbackError) {
+                error_log("Role updateRolePermissions rollback error: " . $rollbackError->getMessage());
+            }
+            error_log("Role updateRolePermissions error: " . $e->getMessage() . " | File: " . $e->getFile() . " | Line: " . $e->getLine());
             return false;
         }
     }
