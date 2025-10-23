@@ -10,11 +10,13 @@ SSH ile production sunucusuna bağlanın:
 cd /home/vildacgg/public_html/portalv2
 git pull origin main
 
-ADIM 2: Shared Teacher Account'ı Setup Edin
-============================================
+ADIM 2: Teacher Account'ı Setup Edin (VILDAN hesabını kullanacağız)
+===================================================================
 Aşağıdaki SQL scriptini production phpMyAdmin veya MySQL CLI üzerinden çalıştırın:
 
-    mysql -u vildacgg_tarihci20 -p vildacgg_portalv2 < setup-teacher-account.sql
+    mysql -u vildacgg_tarihci20 -p vildacgg_portalv2 < setup-vildan-teacher.sql
+    
+NOT: Bu script vildan hesabını teacher rolüne çevirir ve sadece öğrenci sayfasına erişim verir.
     
 VEYA phpMyAdmin'de:
 1. Database'i seçin: vildacgg_portalv2
@@ -29,13 +31,13 @@ Admin Hesabı:
 - Kullanıcı: tarihci20
 - Şifre: aci2406717
 
-Teacher (Öğretmen) Hesabı:
-- Kullanıcı: teacher
-- Şifre: 12345678
+Teacher (Öğretmen) Hesabı (VILDAN - Paylaşımlı):
+- Kullanıcı: vildan
+- Şifre: (Vildan'ın mevcut şifresi)
 
-ADIM 4: Teacher Hesabıyla Kontrol Edin
-========================================
-Teacher olarak login yapıp aşağıdakileri doğrulayın:
+ADIM 4: Teacher Hesabıyla (VILDAN) Kontrol Edin
+================================================
+Vildan olarak login yapıp aşağıdakileri doğrulayın:
 
 1. ❌ Dashboard açılmAMALI (403 Forbidden veya redirect)
    - URL: https://vldn.in/portalv2/dashboard
@@ -53,15 +55,15 @@ Teacher olarak login yapıp aşağıdakileri doğrulayın:
    - Sol menüde diğer sayfalar görünmEMELİ
 
 5. ✅ 70 Öğretmen Aynı Hesabı Kullanabilir
-   - 70 öğretmen aynı username/password ile aynı anda login yapabilir
-   - handleConcurrentSessions() zaten teacher rolü için multi-session destekliyor
+- 70 öğretmen aynı username/password ile aynı anda login yapabilir
+- handleConcurrentSessions() zaten teacher rolü için multi-session destekliyor
 
-ADIM 5: Teacher Şifresini Değiştirin (Opsiyonel)
-================================================
+ADIM 5: Teacher Hesabının Şifresini (Opsiyonel) Değiştirin
+===========================================================
 Daha güvenli bir şifre kullanmak istiyorsanız:
 1. Admin olarak login yapın
 2. Admin > Kullanıcılar'a gidin
-3. Teacher hesabını bulup şifresini değiştirin
+3. Vildan hesabını bulup şifresini değiştirin
 
 ADIM 6: Cleanup
 ===============
@@ -84,12 +86,12 @@ Sorun: Teacher Students sayfasını göremyor
 - Teacher role_id=3 için page_id=2 (students) can_view=1 olmalı
 - SQL: SELECT * FROM vp_role_page_permissions WHERE role_id=3 AND page_id=2;
 
-Sorun: Teacher login yapamıyor
+Sorun: Vildan login yapamıyor
 Çözüm:
-- vp_users tablosunda teacher hesabını kontrol edin
+- vp_users tablosunda vildan hesabını kontrol edin
 - Status: active olmalı
 - role_id: 3 (teacher) olmalı
-- SQL: SELECT * FROM vp_users WHERE username='teacher';
+- SQL: SELECT * FROM vp_users WHERE username='vildan';
 
 Sorun: Permission middleware hatasız ama izin yok
 Çözüm:
@@ -100,8 +102,8 @@ Sorun: Permission middleware hatasız ama izin yok
 MULTIPL SESSION TESTI
 ====================
 70 öğretmen'in aynı hesapla login yapabilmesi test edilsin:
-1. Browser 1'den login yapın: teacher / 12345678
-2. Browser 2'den veya Incognito'dan yeniden login yapın: teacher / 12345678
+1. Browser 1'den login yapın: vildan / (vildan şifresi)
+2. Browser 2'den veya Incognito'dan yeniden login yapın: vildan / (vildan şifresi)
 3. Her iki session'da aktif olmalı (önceki session sonlanmaz)
 4. Sidebar'da Öğrenci Bilgileri menüsü görülmeli
 5. Dashboard linkine tıklandığında hata veya redirect olmalı
@@ -109,7 +111,7 @@ MULTIPL SESSION TESTI
 NOTES
 =====
 - Permission system: Role-Based Access Control (RBAC)
-- Teacher hesabı: Shared account (70 öğretmen paylaşıyor)
+- Teacher hesabı: Vildan hesabı paylaşımlı olarak kullanılıyor (70 öğretmen paylaşıyor)
 - Concurrent Sessions: Teacher rolü çoklu simultaneous session destekliyor
 - Page Keys: dashboard, students, activities, activity_areas, etut, admin, users
 - Permissions: can_view, can_create, can_edit, can_delete
