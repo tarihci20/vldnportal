@@ -115,10 +115,10 @@ class Role extends Model {
     public function updatePermission($roleId, $pageId, $permissions) {
         try {
             // Önce izin var mı kontrol et
-            $checkSql = "SELECT id FROM vp_role_page_permissions WHERE role_id = :role_id AND page_id = :page_id";
+            $checkSql = "SELECT id FROM vp_role_page_permissions WHERE role_id = :check_role_id AND page_id = :check_page_id";
             $this->getDb()->query($checkSql);
-            $this->getDb()->bind(':role_id', $roleId);
-            $this->getDb()->bind(':page_id', $pageId);
+            $this->getDb()->bind(':check_role_id', $roleId);
+            $this->getDb()->bind(':check_page_id', $pageId);
             $exists = $this->getDb()->single();
             
             if ($exists) {
