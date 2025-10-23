@@ -10,6 +10,10 @@ use Core\Model;
 
 class EtutFormSettings extends Model
 {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'etut_form_settings';
     protected $primaryKey = 'id';
     
@@ -104,4 +108,5 @@ class EtutFormSettings extends Model
         return $settings && $settings['is_active'] == 1;
     }
 }
+
 

@@ -11,6 +11,10 @@ use App\Core\Model;
 
 class PushSubscription extends Model
 {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'push_subscriptions';
     
     protected $fillable = [
@@ -367,3 +371,4 @@ class PushSubscription extends Model
         error_log('[PushSubscription] ' . $message);
     }
 }
+

@@ -10,6 +10,10 @@ use Core\Model;
 
 class Activity extends Model
 {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'activities';
     protected $primaryKey = 'id';
     protected $timestamps = true;
@@ -1024,3 +1028,4 @@ class Activity extends Model
         return $result[0]['total'] ?? 0;
     }
 }
+

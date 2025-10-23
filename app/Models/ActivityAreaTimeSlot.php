@@ -6,6 +6,10 @@ use Core\Model;
 
 class ActivityAreaTimeSlot extends Model
 {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'activity_area_time_slots';
     protected $primaryKey = 'id';
     protected $timestamps = true;
@@ -105,3 +109,4 @@ class ActivityAreaTimeSlot extends Model
         return $timeSlotModel->generateTimeSlots($startTime, $endTime, $duration);
     }
 }
+

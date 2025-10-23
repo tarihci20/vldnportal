@@ -5,6 +5,10 @@ namespace App\Models;
 use Core\Model;
 
 class Role extends Model {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'roles';
     
     /**
@@ -13,8 +17,8 @@ class Role extends Model {
     public function getAllRoles() {
         try {
             $sql = "SELECT * FROM {$this->table} ORDER BY id ASC";
-            $this->db->query($sql);
-            return $this->db->resultSet();
+            $this->getDb()->query($sql);
+            return $this->getDb()->resultSet();
         } catch (\Exception $e) {
             error_log("Role getAllRoles error: " . $e->getMessage());
             return [];
@@ -27,9 +31,9 @@ class Role extends Model {
     public function getRoleById($id) {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE id = :id";
-            $this->db->query($sql);
-            $this->db->bind(':id', $id);
-            return $this->db->single();
+            $this->getDb()->query($sql);
+            $this->getDb()->bind(':id', $id);
+            return $this->getDb()->single();
         } catch (\Exception $e) {
             error_log("Role getRoleById error: " . $e->getMessage());
             return null;
@@ -42,9 +46,9 @@ class Role extends Model {
     public function getRoleByName($roleName) {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE role_name = :role_name";
-            $this->db->query($sql);
-            $this->db->bind(':role_name', $roleName);
-            return $this->db->single();
+            $this->getDb()->query($sql);
+            $this->getDb()->bind(':role_name', $roleName);
+            return $this->getDb()->single();
         } catch (\Exception $e) {
             error_log("Role getRoleByName error: " . $e->getMessage());
             return null;
@@ -58,12 +62,12 @@ class Role extends Model {
         try {
             $sql = "SELECT rpp.*, p.page_name, p.page_key, p.page_url 
                      FROM vp_role_page_permissions rpp
-                     LEFT JOIN pages p ON rpp.page_id = p.id
+                     LEFT JOIN vp_pages p ON rpp.page_id = p.id
                      WHERE rpp.role_id = :role_id
                      ORDER BY p.page_name ASC";
-            $this->db->query($sql);
-            $this->db->bind(':role_id', $roleId);
-            return $this->db->resultSet();
+            $this->getDb()->query($sql);
+            $this->getDb()->bind(':role_id', $roleId);
+            return $this->getDb()->resultSet();
         } catch (\Exception $e) {
             error_log("Role getPermissionsByRoleId error: " . $e->getMessage());
             return [];
@@ -77,12 +81,12 @@ class Role extends Model {
         try {
             $sql = "SELECT rpp.{$permissionType}
                      FROM vp_role_page_permissions rpp
-                     LEFT JOIN pages p ON rpp.page_id = p.id
+                     LEFT JOIN vp_pages p ON rpp.page_id = p.id
                      WHERE rpp.role_id = :role_id AND p.page_key = :page_key";
-            $this->db->query($sql);
-            $this->db->bind(':role_id', $roleId);
-            $this->db->bind(':page_key', $pageKey);
-            $result = $this->db->single();
+            $this->getDb()->query($sql);
+            $this->getDb()->bind(':role_id', $roleId);
+            $this->getDb()->bind(':page_key', $pageKey);
+            $result = $this->getDb()->single();
             
             return $result && isset($result[$permissionType]) && $result[$permissionType] == 1;
         } catch (\Exception $e) {
@@ -97,8 +101,8 @@ class Role extends Model {
     public function getAllPages() {
         try {
             $sql = "SELECT * FROM vp_pages ORDER BY page_name ASC";
-            $this->db->query($sql);
-            return $this->db->resultSet();
+            $this->getDb()->query($sql);
+            return $this->getDb()->resultSet();
         } catch (\Exception $e) {
             error_log("Role getAllPages error: " . $e->getMessage());
             return [];
@@ -112,14 +116,14 @@ class Role extends Model {
         try {
             // Önce izin var mı kontrol et
             $checkSql = "SELECT id FROM vp_role_page_permissions WHERE role_id = :role_id AND page_id = :page_id";
-            $this->db->query($checkSql);
-            $this->db->bind(':role_id', $roleId);
-            $this->db->bind(':page_id', $pageId);
-            $exists = $this->db->single();
+            $this->getDb()->query($checkSql);
+            $this->getDb()->bind(':role_id', $roleId);
+            $this->getDb()->bind(':page_id', $pageId);
+            $exists = $this->getDb()->single();
             
             if ($exists) {
                 // Güncelle
-                $sql = "UPDATE role_page_permissions 
+                $sql = "UPDATE vp_role_page_permissions 
                          SET can_view = :can_view, 
                              can_create = :can_create, 
                              can_edit = :can_edit, 
@@ -127,20 +131,20 @@ class Role extends Model {
                          WHERE role_id = :role_id AND page_id = :page_id";
             } else {
                 // Yeni kayıt oluştur
-                $sql = "INSERT INTO role_page_permissions 
+                $sql = "INSERT INTO vp_role_page_permissions 
                          (role_id, page_id, can_view, can_create, can_edit, can_delete) 
                          VALUES (:role_id, :page_id, :can_view, :can_create, :can_edit, :can_delete)";
             }
             
-            $this->db->query($sql);
-            $this->db->bind(':role_id', $roleId);
-            $this->db->bind(':page_id', $pageId);
-            $this->db->bind(':can_view', $permissions['can_view']);
-            $this->db->bind(':can_create', $permissions['can_create']);
-            $this->db->bind(':can_edit', $permissions['can_edit']);
-            $this->db->bind(':can_delete', $permissions['can_delete']);
+            $this->getDb()->query($sql);
+            $this->getDb()->bind(':role_id', $roleId);
+            $this->getDb()->bind(':page_id', $pageId);
+            $this->getDb()->bind(':can_view', $permissions['can_view']);
+            $this->getDb()->bind(':can_create', $permissions['can_create']);
+            $this->getDb()->bind(':can_edit', $permissions['can_edit']);
+            $this->getDb()->bind(':can_delete', $permissions['can_delete']);
             
-            return $this->db->execute();
+            return $this->getDb()->execute();
         } catch (\Exception $e) {
             error_log("Role updatePermission error: " . $e->getMessage());
             return false;
@@ -152,19 +156,19 @@ class Role extends Model {
      */
     public function updateRolePermissions($roleId, $permissionsArray) {
         try {
-            $this->db->beginTransaction();
+            $this->getDb()->beginTransaction();
             
             foreach ($permissionsArray as $pageId => $permissions) {
                 if (!$this->updatePermission($roleId, $pageId, $permissions)) {
-                    $this->db->rollback();
+                    $this->getDb()->rollback();
                     return false;
                 }
             }
             
-            $this->db->commit();
+            $this->getDb()->commit();
             return true;
         } catch (\Exception $e) {
-            $this->db->rollback();
+            $this->getDb()->rollback();
             error_log("Role updateRolePermissions error: " . $e->getMessage());
             return false;
         }
@@ -176,9 +180,9 @@ class Role extends Model {
     public function isAdmin($userId) {
         try {
             $sql = "SELECT role_id FROM vp_users WHERE id = :user_id";
-            $this->db->query($sql);
-            $this->db->bind(':user_id', $userId);
-            $user = $this->db->single();
+            $this->getDb()->query($sql);
+            $this->getDb()->bind(':user_id', $userId);
+            $user = $this->getDb()->single();
             
             return $user && $user['role_id'] == 1; // 1 = admin
         } catch (\Exception $e) {
@@ -193,15 +197,16 @@ class Role extends Model {
     public function getUserRole($userId) {
         try {
             $sql = "SELECT r.* FROM vp_roles r
-                     INNER JOIN users u ON u.role_id = r.id
+                     INNER JOIN vp_users u ON u.role_id = r.id
                      WHERE u.id = :user_id";
-            $this->db->query($sql);
-            $this->db->bind(':user_id', $userId);
-            return $this->db->single();
+            $this->getDb()->query($sql);
+            $this->getDb()->bind(':user_id', $userId);
+            return $this->getDb()->single();
         } catch (\Exception $e) {
             error_log("Role getUserRole error: " . $e->getMessage());
             return null;
         }
     }
 }
+
 

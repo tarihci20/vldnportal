@@ -10,6 +10,10 @@ use Core\Model;
 
 class Student extends Model
 {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'students';  // DB_PREFIX otomatik eklenecek
     protected $primaryKey = 'id';
     protected $timestamps = true;
@@ -364,4 +368,5 @@ class Student extends Model
         ], ['orderBy' => 'first_name ASC, last_name ASC']);
     }
 }
+
 

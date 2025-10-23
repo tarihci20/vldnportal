@@ -10,6 +10,10 @@ use Core\Model;
 
 class ActivityArea extends Model
 {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'activity_areas';
     protected $primaryKey = 'id';
     protected $timestamps = true;
@@ -37,3 +41,4 @@ class ActivityArea extends Model
         return $this->getDb()->resultSet();
     }
 }
+

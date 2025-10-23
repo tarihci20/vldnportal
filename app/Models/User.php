@@ -10,6 +10,10 @@ use Core\Model;
 
 class User extends Model
 {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $timestamps = true;
@@ -217,3 +221,4 @@ class User extends Model
         return parent::create($data);
     }
 }
+

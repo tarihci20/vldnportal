@@ -6,6 +6,10 @@ use Core\Model;
 
 class TimeSlot extends Model
 {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'time_slots';
     protected $primaryKey = 'id';
     protected $timestamps = true;
@@ -126,3 +130,4 @@ class TimeSlot extends Model
         return !empty($conflicts);
     }
 }
+

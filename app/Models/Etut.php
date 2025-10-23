@@ -10,6 +10,10 @@ use Core\Model;
 
 class Etut extends Model
 {
+    public function __construct() {
+        parent::__construct();
+    }
+
     protected $table = 'etut_applications';
     protected $primaryKey = 'id';
     protected $timestamps = true;
@@ -176,4 +180,5 @@ class Etut extends Model
         return $this->getDb()->resultSet();
     }
 }
+
 
