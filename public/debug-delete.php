@@ -4,18 +4,41 @@
  * Remove after debugging is complete
  */
 
+// Başlangıçta error_reporting ve display_errors'ı aç
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+error_reporting(E_ALL);
+
 // Start session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Load environment
-require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../app/helpers/functions.php';
-
 // Set content type
 header('Content-Type: text/html; charset=UTF-8');
+
+// Try to load config and helpers
+$errors = [];
+$config_loaded = false;
+$helpers_loaded = false;
+
+try {
+    if (file_exists(__DIR__ . '/../config/config.php')) {
+        require_once __DIR__ . '/../config/config.php';
+        $config_loaded = true;
+    }
+} catch (\Exception $e) {
+    $errors[] = "Config Error: " . $e->getMessage();
+}
+
+try {
+    if (file_exists(__DIR__ . '/../app/helpers/functions.php')) {
+        require_once __DIR__ . '/../app/helpers/functions.php';
+        $helpers_loaded = true;
+    }
+} catch (\Exception $e) {
+    $errors[] = "Helpers Error: " . $e->getMessage();
+}
 
 ?>
 <!DOCTYPE html>
@@ -131,10 +154,11 @@ header('Content-Type: text/html; charset=UTF-8');
     </div>
 
     <?php
-    // Check if user is logged in
-    if (!isset($_SESSION['user_id'])) {
-        echo '<div class="error">❌ Giriş yapılmamış. Lütfen <a href="/login">giriş yapın</a></div>';
-        exit;
+    // Show any loading errors
+    if (!empty($errors)) {
+        foreach ($errors as $error) {
+            echo '<div class="warning">⚠️ ' . htmlspecialchars($error) . '</div>';
+        }
     }
 
     $currentUser = $_SESSION['user'] ?? null;
@@ -142,10 +166,15 @@ header('Content-Type: text/html; charset=UTF-8');
 
     echo '<div class="section">';
     echo '<h3>👤 Mevcut Kullanıcı</h3>';
-    echo '<div><span class="label">User ID:</span><span class="value">' . htmlspecialchars($userId) . '</span></div><br>';
-    echo '<div><span class="label">Username:</span><span class="value">' . htmlspecialchars($currentUser['username'] ?? 'N/A') . '</span></div><br>';
-    echo '<div><span class="label">Role:</span><span class="value">' . htmlspecialchars($currentUser['role'] ?? 'N/A') . '</span></div><br>';
-    echo '<div><span class="label">Role Slug:</span><span class="value">' . htmlspecialchars($currentUser['role_slug'] ?? 'N/A') . '</span></div>';
+    if ($userId) {
+        echo '<div><span class="label">User ID:</span><span class="value">' . htmlspecialchars($userId) . '</span></div><br>';
+        echo '<div><span class="label">Username:</span><span class="value">' . htmlspecialchars($currentUser['username'] ?? 'N/A') . '</span></div><br>';
+        echo '<div><span class="label">Role:</span><span class="value">' . htmlspecialchars($currentUser['role'] ?? 'N/A') . '</span></div><br>';
+        echo '<div><span class="label">Role Slug:</span><span class="value">' . htmlspecialchars($currentUser['role_slug'] ?? 'N/A') . '</span></div>';
+    } else {
+        echo '<div class="warning">⚠️ Giriş yapılmamış - Bazı özellikler sınırlı olacaktır</div>';
+        echo '<div><a href="/login">Giriş Yap</a></div>';
+    }
     echo '</div>';
 
     // Check if deleteUser handler exists
