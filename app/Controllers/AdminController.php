@@ -26,10 +26,9 @@ class AdminController extends Controller
         
         // API endpoints için login kontrol'ünü BYPASS ET
         // (deleteUser, getRolePermissions vb. JSON işlemleri)
-        $apiMethods = ['deleteUser', 'getRolePermissions', 'updateRolePermissions', 'deleteAllStudents'];
-        $currentMethod = $this->getCurrentMethod();
+        $isApiCall = $this->isApiCall();
         
-        if (!in_array($currentMethod, $apiMethods)) {
+        if (!$isApiCall) {
             // Kullanıcı giriş kontrolü
             if (!isLoggedIn()) {
                 redirect('/login');
@@ -45,11 +44,29 @@ class AdminController extends Controller
     }
     
     /**
-     * Get current method name from backtrace
+     * Check if this is an API call (JSON response endpoints)
      */
-    private function getCurrentMethod() {
-        $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
-        return $trace[1]['function'] ?? '';
+    private function isApiCall() {
+        $uri = $_SERVER['REQUEST_URI'] ?? '';
+        
+        // Check common API patterns
+        $apiPatterns = [
+            '/admin/users/*/delete',      // POST /admin/users/{id}/delete
+            '/admin/users/delete',         // POST /admin/users/delete
+            '/admin/roles/permissions',    // GET/POST role permissions
+            '/api/',                       // Any /api/ endpoint
+        ];
+        
+        foreach ($apiPatterns as $pattern) {
+            $pattern = str_replace('*', '[0-9]+', preg_quote($pattern, '#'));
+            if (preg_match('#' . $pattern . '#', $uri)) {
+                error_log("AdminController: API call detected - {$uri}");
+                return true;
+            }
+        }
+        
+        error_log("AdminController: Normal call - {$uri}");
+        return false;
     }
     
     /**
