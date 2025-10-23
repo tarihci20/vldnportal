@@ -386,37 +386,47 @@ class AdminController extends Controller
     public function deleteUser() {
         header('Content-Type: application/json');
         
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            echo json_encode(['success' => false, 'message' => 'Geçersiz istek']);
-            exit;
-        }
-        
-        $input = json_decode(file_get_contents('php://input'), true);
-        $id = $input['id'] ?? null;
-        $csrfToken = $input['csrf_token'] ?? '';
-        
-        if (!validateCsrfToken($csrfToken)) {
-            echo json_encode(['success' => false, 'message' => 'Geçersiz token']);
-            exit;
-        }
-        
-        $user = $this->userModel->findById($id);
-        if (!$user) {
-            echo json_encode(['success' => false, 'message' => 'Kullanıcı bulunamadı']);
-            exit;
-        }
-        
-        // Kendi hesabını silmeye çalışıyor mu?
-        if ($id == getCurrentUserId()) {
-            echo json_encode(['success' => false, 'message' => 'Kendi hesabınızı silemezsiniz']);
-            exit;
-        }
-        
-        if ($this->userModel->delete($id)) {
-            logActivity('user_deleted', 'users', $id, ['username' => $user['username']], null);
-            echo json_encode(['success' => true, 'message' => 'Kullanıcı başarıyla silindi']);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Kullanıcı silinemedi']);
+        try {
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                echo json_encode(['success' => false, 'message' => 'Geçersiz istek']);
+                exit;
+            }
+            
+            $input = json_decode(file_get_contents('php://input'), true);
+            $id = $input['id'] ?? null;
+            $csrfToken = $input['csrf_token'] ?? '';
+            
+            if (!validateCsrfToken($csrfToken)) {
+                echo json_encode(['success' => false, 'message' => 'Geçersiz token']);
+                exit;
+            }
+            
+            $user = $this->userModel->findById($id);
+            if (!$user) {
+                echo json_encode(['success' => false, 'message' => 'Kullanıcı bulunamadı']);
+                exit;
+            }
+            
+            // Kendi hesabını silmeye çalışıyor mu?
+            if ($id == getCurrentUserId()) {
+                echo json_encode(['success' => false, 'message' => 'Kendi hesabınızı silemezsiniz']);
+                exit;
+            }
+            
+            if ($this->userModel->delete($id)) {
+                // Log aktivitesi kaydı (hata olsa da devam et)
+                try {
+                    logActivity('user_deleted', 'users', $id, ['username' => $user['username']], null);
+                } catch (\Exception $logError) {
+                    error_log("LogActivity Error: " . $logError->getMessage());
+                }
+                echo json_encode(['success' => true, 'message' => 'Kullanıcı başarıyla silindi']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Kullanıcı silinemedi']);
+            }
+        } catch (\Exception $e) {
+            error_log("DeleteUser Error: " . $e->getMessage());
+            echo json_encode(['success' => false, 'message' => 'Hata: ' . $e->getMessage()]);
         }
         
         exit;
