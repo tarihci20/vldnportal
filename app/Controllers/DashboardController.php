@@ -11,7 +11,6 @@ use App\Models\Student;
 use App\Models\Activity;
 use App\Models\Etut;
 use App\Models\ActivityArea;
-use App\Middleware\PermissionMiddleware;
 
 class DashboardController extends Controller
 {
@@ -29,7 +28,12 @@ class DashboardController extends Controller
      */
     public function index() {
         // Permission kontrolü - dashboard yetkisi gerekli
-        PermissionMiddleware::canView('dashboard');
+        // hasPermission() helper'ını kullan (zaten test edilmiş ve çalışıyor)
+        if (!hasPermission('dashboard', 'can_view')) {
+            setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
+            redirect('/dashboard');
+            exit;
+        }
         
         $studentModel = new Student();
         $activityModel = new Activity();

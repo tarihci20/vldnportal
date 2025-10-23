@@ -8,7 +8,6 @@ namespace App\Controllers;
 
 use Core\Controller;
 use App\Models\ActivityArea;
-use App\Middleware\PermissionMiddleware;
 
 class ActivityAreaController extends Controller
 {
@@ -31,7 +30,11 @@ class ActivityAreaController extends Controller
     public function index()
     {
         // Permission kontrolü - etkinlik alanları yetkisi gerekli
-        PermissionMiddleware::canView('activity_areas');
+        if (!hasPermission('activity_areas', 'can_view')) {
+            setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
+            redirect('/dashboard');
+            exit;
+        }
         
         $areas = $this->areaModel->getActive();
         
