@@ -64,8 +64,16 @@ class AuthController extends Controller
             $result = $this->auth->login($email, $password, $remember);
 
             if ($result['success']) {
-                // Başarılı login - mesaj göstermeye gerek yok
-                redirect('/dashboard');
+                // Başarılı login - kullanıcının rolüne göre yönlendir
+                $user = currentUser();
+                $role = $user['role_slug'] ?? $user['role'] ?? 'user';
+                
+                // Teacher rolüne sadece students sayfası açık ise, oraya yönlendir
+                if ($role === 'teacher') {
+                    redirect('/students');
+                } else {
+                    redirect('/dashboard');
+                }
             } else {
                 $message = $result['message'] ?? 'Kullanıcı adı veya şifre hatalı!';
                 setFlashMessage('error', $message);

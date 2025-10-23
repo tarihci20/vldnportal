@@ -32,7 +32,13 @@ class ActivityAreaController extends Controller
         // Permission kontrolü - etkinlik alanları yetkisi gerekli
         if (!hasPermission('activity_areas', 'can_view')) {
             setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
-            redirect('/dashboard');
+            $user = currentUser();
+            $role = $user['role_slug'] ?? $user['role'] ?? 'user';
+            if ($role === 'teacher') {
+                redirect('/students');
+            } else {
+                redirect('/');
+            }
             exit;
         }
         

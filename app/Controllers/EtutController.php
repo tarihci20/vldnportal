@@ -32,7 +32,13 @@ class EtutController extends Controller
         // Permission kontrolü - etüt sayfası yetkisi gerekli
         if (!hasPermission('etut', 'can_view')) {
             setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
-            redirect('/dashboard');
+            $user = currentUser();
+            $role = $user['role_slug'] ?? $user['role'] ?? 'user';
+            if ($role === 'teacher') {
+                redirect('/students');
+            } else {
+                redirect('/');
+            }
             exit;
         }
         

@@ -31,7 +31,14 @@ class DashboardController extends Controller
         // hasPermission() helper'ını kullan (zaten test edilmiş ve çalışıyor)
         if (!hasPermission('dashboard', 'can_view')) {
             setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
-            redirect('/dashboard');
+            // Teacher rolü için /students'a yönlendir
+            $user = currentUser();
+            $role = $user['role_slug'] ?? $user['role'] ?? 'user';
+            if ($role === 'teacher') {
+                redirect('/students');
+            } else {
+                redirect('/');
+            }
             exit;
         }
         

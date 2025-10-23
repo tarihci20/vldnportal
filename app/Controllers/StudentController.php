@@ -40,7 +40,14 @@ class StudentController extends Controller
         // Permission kontrolü - öğrenci sayfası yetkisi gerekli
         if (!hasPermission('students', 'can_view')) {
             setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
-            redirect('/dashboard');
+            // Teacher için öğrenci arama sayfasına yönlendir
+            $user = currentUser();
+            $role = $user['role_slug'] ?? $user['role'] ?? 'user';
+            if ($role === 'teacher') {
+                redirect('/student-search');
+            } else {
+                redirect('/');
+            }
             exit;
         }
         
