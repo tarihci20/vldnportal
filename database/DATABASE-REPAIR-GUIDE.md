@@ -40,38 +40,46 @@ mysql -u vildacgg_tarihci20 -p vildacgg_portalv2 < inspect-vp-users-structure.sq
 
 ---
 
-### Step 2: Apply Fixes (Two Options)
+### Step 2: Apply Fixes
 
-#### Option A: Safe Version (Recommended - Shows Errors Clearly)
+#### ⭐ PRODUCTION VERSION (Recommended)
+```bash
+# phpMyAdmin: Paste contents of fix-vp-users-table-production.sql and execute
+# MySQL CLI:
+mysql -u cpses_vizka7fxkm -p cpses_portal < fix-vp-users-table-production.sql
+```
+
+**Advantages:**
+- ✅ **Avoids INFORMATION_SCHEMA** (hosting restrictions)
+- Clear verification queries
+- Safe to run multiple times
+- Shows actual results (DESCRIBE, row counts)
+
+**What to expect:**
+- Some statements may show warnings (duplicate key name = already exists, ignore)
+- At end, should see DESCRIBE output with AUTO_INCREMENT present
+- Should see row counts for both tables
+
+---
+
+#### Alternative: Safe Version (Development)
 ```bash
 # phpMyAdmin: Paste contents of fix-vp-users-table-safe.sql and execute
 # MySQL CLI:
 mysql -u vildacgg_tarihci20 -p vildacgg_portalv2 < fix-vp-users-table-safe.sql
 ```
 
-**Advantages:**
-- Shows all verification queries
-- Clear error messages
-- You can see exactly what was added
-- Safe to run multiple times
-
-**What to expect:**
-- Some statements may show warnings (duplicate key name = already exists, ignore)
-- At end, should see DESCRIBE output with AUTO_INCREMENT present
+Only use if INFORMATION_SCHEMA access is available.
 
 ---
 
-#### Option B: Quick Fix (Minimal Output)
+#### Alternative: Quick Fix (Minimal Output)
 ```bash
 # phpMyAdmin: Paste contents of fix-vp-users-table.sql and execute
-# MySQL CLI:
 mysql -u vildacgg_tarihci20 -p vildacgg_portalv2 < fix-vp-users-table.sql
 ```
 
-**Advantages:**
-- Minimal output
-- Faster execution
-- Less noise in logs
+Fastest version, minimal output.
 
 ---
 
@@ -84,15 +92,15 @@ After running fixes, manually run these queries to confirm:
 DESCRIBE vp_users;
 -- Should show "auto_increment" in EXTRA column for id
 
--- Check UNIQUE indexes exist
-SHOW INDEXES FROM vp_users;
--- Should show: PRIMARY, unique_username, unique_email
+-- Check row counts
+SELECT COUNT(*) as total_users FROM vp_users;
+SELECT COUNT(*) as total_roles FROM vp_roles;
 
--- Check FK constraint
-SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-WHERE TABLE_NAME = 'vp_users' AND REFERENCED_TABLE_NAME = 'vp_roles';
--- Should show: fk_vp_users_role_id
+-- Optional: Check UNIQUE indexes (may error if no INFORMATION_SCHEMA access)
+-- SHOW INDEXES FROM vp_users;
 ```
+
+**Note:** If you cannot access INFORMATION_SCHEMA, just run the DESCRIBE queries instead.
 
 ---
 
@@ -126,9 +134,13 @@ mysql -u vildacgg_tarihci20 -pYOUR_PASSWORD vildacgg_portalv2 < fix-vp-users-tab
 
 ## Troubleshooting
 
-### Error: "Duplicate key name"
-**Meaning:** That index/constraint already exists  
-**Action:** Safe to ignore, it means the structure is already correct
+### Error: "Access denied for user ... to database 'information_schema'"
+**Meaning:** Hosting provider restricts INFORMATION_SCHEMA access  
+**Action:** Use `fix-vp-users-table-production.sql` instead (no INFORMATION_SCHEMA queries)
+
+### Error: "Unknown table 'vp_roles' in information_schema"
+**Meaning:** Same as above - INFORMATION_SCHEMA access restricted  
+**Action:** Use `fix-vp-users-table-production.sql` instead
 
 ### Error: "Multiple primary key defined"
 **Meaning:** Tried to add PRIMARY KEY when one already exists  
@@ -203,8 +215,17 @@ SELECT id FROM vp_users ORDER BY id DESC LIMIT 5;
 | File | Purpose | When to Use |
 |------|---------|------------|
 | `inspect-vp-users-structure.sql` | Check current database structure | First - diagnose what's missing |
-| `fix-vp-users-table-safe.sql` | Safe version with verification queries | Second - apply fixes with clear output |
-| `fix-vp-users-table.sql` | Quick version, minimal output | Alternate to safe version |
+| `fix-vp-users-table-production.sql` | **PRODUCTION VERSION** - No INFORMATION_SCHEMA (hosting restrictions) | ✅ **USE THIS** for production |
+| `fix-vp-users-table-safe.sql` | Safe version with verification queries | Development/Local testing |
+| `fix-vp-users-table.sql` | Quick version, minimal output | Development/Local testing |
+
+### ⚠️ Important: Production Hosting Restrictions
+
+If you get errors like:
+- `#1044 - Access denied for user ... to database 'information_schema'`
+- `#1109 - Unknown table 'vp_roles' in information_schema`
+
+**Solution:** Use `fix-vp-users-table-production.sql` instead - it avoids INFORMATION_SCHEMA queries.
 
 ---
 
