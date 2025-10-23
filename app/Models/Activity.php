@@ -24,7 +24,7 @@ class Activity extends Model
                     aa.area_name,
                     aa.color_code as area_color,
                     u.full_name as created_by_name
-                FROM activities a
+                FROM vp_activities a
                 LEFT JOIN activity_areas aa ON a.area_id = aa.id  
                 LEFT JOIN users u ON a.created_by = u.id
                 WHERE 1=1";
@@ -64,7 +64,7 @@ class Activity extends Model
     public function countActivities($filters = [])
     {
         $sql = "SELECT COUNT(*) as total 
-                FROM activities a
+                FROM vp_activities a
                 WHERE 1=1";
         
         $params = [];
@@ -97,7 +97,7 @@ class Activity extends Model
         $sql = "SELECT 
                     a.*,
                     aa.area_name
-                FROM activities a
+                FROM vp_activities a
                 LEFT JOIN activity_areas aa ON a.area_id = aa.id
                 WHERE a.area_id = :area_id
                 AND a.activity_date = DATE(:start_dt)
@@ -127,7 +127,7 @@ class Activity extends Model
         $today = date('Y-m-d');
         
         $sql = "SELECT a.*, aa.area_name, aa.color_code
-                FROM activities a
+                FROM vp_activities a
                 LEFT JOIN activity_areas aa ON a.area_id = aa.id
                 WHERE a.activity_date = :today
                 ORDER BY a.start_time ASC";
@@ -141,7 +141,7 @@ class Activity extends Model
     public function getReservedTimeSlots($areaId, $date)
     {
         $sql = "SELECT start_time, end_time, activity_name
-                FROM activities 
+                FROM vp_activities 
                 WHERE area_id = :area_id 
                 AND activity_date = :date
                 ORDER BY start_time ASC";
@@ -161,7 +161,7 @@ class Activity extends Model
                     DATE(activity_date) as date,
                     COUNT(*) as count,
                     DAYNAME(activity_date) as day_name
-                FROM activities 
+                FROM vp_activities 
                 WHERE activity_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
                 AND activity_date <= CURDATE()
                 GROUP BY DATE(activity_date)
@@ -179,7 +179,7 @@ class Activity extends Model
                     a.*,
                     aa.area_name,
                     aa.color_code
-                FROM activities a
+                FROM vp_activities a
                 LEFT JOIN activity_areas aa ON a.area_id = aa.id
                 WHERE a.activity_date BETWEEN :start_date AND :end_date
                 ORDER BY a.activity_date ASC, a.start_time ASC";
@@ -200,7 +200,7 @@ class Activity extends Model
         if (empty($ids)) return [];
         $ids = array_map('intval', $ids);
         $placeholders = implode(',', $ids);
-        $sql = "SELECT a.*, aa.area_name, aa.color_code as area_color, u.full_name as created_by_name FROM activities a LEFT JOIN activity_areas aa ON a.area_id = aa.id LEFT JOIN users u ON a.created_by = u.id WHERE a.id IN ({$placeholders}) ORDER BY a.activity_date DESC";
+        $sql = "SELECT a.*, aa.area_name, aa.color_code as area_color, u.full_name as created_by_name FROM vp_activities a LEFT JOIN activity_areas aa ON a.area_id = aa.id LEFT JOIN users u ON a.created_by = u.id WHERE a.id IN ({$placeholders}) ORDER BY a.activity_date DESC";
         return $this->query($sql);
     }
 
@@ -211,7 +211,7 @@ class Activity extends Model
      */
     public function getByDate($date)
     {
-        $sql = "SELECT a.*, aa.area_name, aa.color_code as area_color, u.full_name as created_by_name FROM activities a LEFT JOIN activity_areas aa ON a.area_id = aa.id LEFT JOIN users u ON a.created_by = u.id WHERE a.activity_date = :d ORDER BY a.start_time ASC";
+        $sql = "SELECT a.*, aa.area_name, aa.color_code as area_color, u.full_name as created_by_name FROM vp_activities a LEFT JOIN activity_areas aa ON a.area_id = aa.id LEFT JOIN users u ON a.created_by = u.id WHERE a.activity_date = :d ORDER BY a.start_time ASC";
         return $this->query($sql, ['d' => $date]);
     }
     
@@ -225,7 +225,7 @@ class Activity extends Model
     public function cakismaKontrol($areaId, $date, $time)
     {
         $sql = "SELECT COUNT(*) as count
-                FROM activities 
+                FROM vp_activities 
                 WHERE area_id = :area_id 
                 AND activity_date = :date 
                 AND start_time = :time";
@@ -447,7 +447,7 @@ class Activity extends Model
                     aa.color_code as area_color,
                     u.full_name as created_by_name,
                     COUNT(t.id) as tekrar_sayisi
-                FROM activities a
+                FROM vp_activities a
                 LEFT JOIN activity_areas aa ON a.area_id = aa.id  
                 LEFT JOIN users u ON a.created_by = u.id
                 LEFT JOIN activities t ON a.id = t.ana_etkinlik_id
@@ -489,7 +489,7 @@ class Activity extends Model
     public function countAnaKayitlar($filters = [])
     {
         $sql = "SELECT COUNT(*) as total 
-                FROM activities a
+                FROM vp_activities a
                 WHERE a.ana_etkinlik_id IS NULL";
         
         $params = [];
@@ -524,11 +524,11 @@ class Activity extends Model
             $this->getDb()->beginTransaction();
             
             // Önce tekrar kayıtlarını sil
-            $sql1 = "DELETE FROM activities WHERE ana_etkinlik_id = :ana_id";
+            $sql1 = "DELETE FROM vp_activities WHERE ana_etkinlik_id = :ana_id";
             $this->query($sql1, ['ana_id' => $anaKayitId]);
             
             // Sonra ana kaydı sil
-            $sql2 = "DELETE FROM activities WHERE id = :id";
+            $sql2 = "DELETE FROM vp_activities WHERE id = :id";
             $this->query($sql2, ['id' => $anaKayitId]);
             
             $this->getDb()->commit();
@@ -551,7 +551,7 @@ class Activity extends Model
     {
         return $this->query("
             SELECT * 
-            FROM time_slots 
+            FROM vp_time_slots 
             WHERE is_active = 1 
             ORDER BY sort_order
         ");
@@ -568,7 +568,7 @@ class Activity extends Model
                        WHEN reserved.slot_count > 0 THEN 1 
                        ELSE 0 
                    END as is_reserved
-            FROM time_slots ts
+            FROM vp_time_slots ts
             LEFT JOIN (
                 SELECT ats.time_slot_id, COUNT(*) as slot_count
                 FROM activity_time_slots ats
@@ -628,7 +628,7 @@ class Activity extends Model
                 ts.time_code,
                 ts.display_time,
                 ats.time_slot_id
-            FROM activities a
+            FROM vp_activities a
             INNER JOIN activity_time_slots ats ON a.id = ats.activity_id
             INNER JOIN time_slots ts ON ats.time_slot_id = ts.id
             WHERE a.area_id = ? 
@@ -673,7 +673,7 @@ class Activity extends Model
             SELECT 
                 MIN(start_time) as start_time,
                 MAX(end_time) as end_time
-            FROM time_slots
+            FROM vp_time_slots
             WHERE id IN ($placeholders)
         ";
         
@@ -799,7 +799,7 @@ class Activity extends Model
     {
         return $this->query("
             SELECT ts.*, ats.created_at as assigned_at
-            FROM time_slots ts
+            FROM vp_time_slots ts
             INNER JOIN activity_time_slots ats ON ts.id = ats.time_slot_id
             WHERE ats.activity_id = ?
             ORDER BY ts.sort_order
@@ -959,7 +959,7 @@ class Activity extends Model
                     SEPARATOR ', '
                 ) as time_slots_display,
                 COUNT(DISTINCT ats.time_slot_id) as slot_count
-            FROM activities a
+            FROM vp_activities a
             LEFT JOIN activity_areas aa ON a.area_id = aa.id
             LEFT JOIN users u ON a.created_by = u.id
             LEFT JOIN activity_time_slots ats ON a.id = ats.activity_id
@@ -1002,7 +1002,7 @@ class Activity extends Model
      */
     public function getTotalCount($filters = [])
     {
-        $sql = "SELECT COUNT(DISTINCT a.id) as total FROM activities a WHERE 1=1";
+        $sql = "SELECT COUNT(DISTINCT a.id) as total FROM vp_activities a WHERE 1=1";
         $params = [];
         
         if (!empty($filters['area_id'])) {

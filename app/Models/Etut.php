@@ -176,3 +176,4 @@ class Etut extends Model
         return $this->getDb()->resultSet();
     }
 }
+

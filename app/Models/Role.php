@@ -57,7 +57,7 @@ class Role extends Model {
     public function getPermissionsByRoleId($roleId) {
         try {
             $sql = "SELECT rpp.*, p.page_name, p.page_key, p.page_url 
-                     FROM role_page_permissions rpp
+                     FROM vp_role_page_permissions rpp
                      LEFT JOIN pages p ON rpp.page_id = p.id
                      WHERE rpp.role_id = :role_id
                      ORDER BY p.page_name ASC";
@@ -76,7 +76,7 @@ class Role extends Model {
     public function checkPermission($roleId, $pageKey, $permissionType = 'can_view') {
         try {
             $sql = "SELECT rpp.{$permissionType}
-                     FROM role_page_permissions rpp
+                     FROM vp_role_page_permissions rpp
                      LEFT JOIN pages p ON rpp.page_id = p.id
                      WHERE rpp.role_id = :role_id AND p.page_key = :page_key";
             $this->db->query($sql);
@@ -96,7 +96,7 @@ class Role extends Model {
      */
     public function getAllPages() {
         try {
-            $sql = "SELECT * FROM pages ORDER BY page_name ASC";
+            $sql = "SELECT * FROM vp_pages ORDER BY page_name ASC";
             $this->db->query($sql);
             return $this->db->resultSet();
         } catch (\Exception $e) {
@@ -111,7 +111,7 @@ class Role extends Model {
     public function updatePermission($roleId, $pageId, $permissions) {
         try {
             // Önce izin var mı kontrol et
-            $checkSql = "SELECT id FROM role_page_permissions WHERE role_id = :role_id AND page_id = :page_id";
+            $checkSql = "SELECT id FROM vp_role_page_permissions WHERE role_id = :role_id AND page_id = :page_id";
             $this->db->query($checkSql);
             $this->db->bind(':role_id', $roleId);
             $this->db->bind(':page_id', $pageId);
@@ -175,7 +175,7 @@ class Role extends Model {
      */
     public function isAdmin($userId) {
         try {
-            $sql = "SELECT role_id FROM users WHERE id = :user_id";
+            $sql = "SELECT role_id FROM vp_users WHERE id = :user_id";
             $this->db->query($sql);
             $this->db->bind(':user_id', $userId);
             $user = $this->db->single();
@@ -192,7 +192,7 @@ class Role extends Model {
      */
     public function getUserRole($userId) {
         try {
-            $sql = "SELECT r.* FROM roles r
+            $sql = "SELECT r.* FROM vp_roles r
                      INNER JOIN users u ON u.role_id = r.id
                      WHERE u.id = :user_id";
             $this->db->query($sql);
@@ -204,3 +204,4 @@ class Role extends Model {
         }
     }
 }
+

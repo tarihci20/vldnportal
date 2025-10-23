@@ -83,13 +83,13 @@ class User extends Model
     public function updateRolePermissions($roleId, $permissions) {
         try {
             // Önce mevcut izinleri sil
-            $deleteSql = "DELETE FROM role_page_permissions WHERE role_id = :role_id";
+            $deleteSql = "DELETE FROM vp_role_page_permissions WHERE role_id = :role_id";
             $this->getDb()->query($deleteSql);
             $this->getDb()->bind(':role_id', $roleId);
             $this->getDb()->execute();
             
             // Yeni izinleri ekle
-            $insertSql = "INSERT INTO role_page_permissions (role_id, page_id, can_view, can_create, can_edit, can_delete) 
+            $insertSql = "INSERT INTO vp_role_page_permissions (role_id, page_id, can_view, can_create, can_edit, can_delete) 
                          VALUES (:role_id, :page_id, :can_view, :can_create, :can_edit, :can_delete)";
             
             foreach ($permissions as $permission) {
@@ -113,7 +113,7 @@ class User extends Model
      * Tüm sayfaları getir
      */
     public function getAllPages() {
-        $sql = "SELECT * FROM pages WHERE is_active = 1 ORDER BY sort_order, id";
+        $sql = "SELECT * FROM vp_pages WHERE is_active = 1 ORDER BY sort_order, id";
         $this->getDb()->query($sql);
         return $this->getDb()->resultSet();
     }
@@ -124,7 +124,7 @@ class User extends Model
     public function getAllWithRoles($page = 1, $perPage = 50) {
         $sql = "SELECT u.*, r.role_name, r.display_name as role_display_name
                 FROM {$this->table} u
-                LEFT JOIN roles r ON u.role_id = r.id
+                LEFT JOIN vp_roles r ON u.role_id = r.id
                 ORDER BY u.created_at DESC";
         
         // Toplam sayı

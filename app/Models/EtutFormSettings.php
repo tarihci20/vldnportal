@@ -104,3 +104,4 @@ class EtutFormSettings extends Model
         return $settings && $settings['is_active'] == 1;
     }
 }
+

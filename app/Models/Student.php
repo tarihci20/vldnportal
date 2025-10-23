@@ -364,3 +364,4 @@ class Student extends Model
         ], ['orderBy' => 'first_name ASC, last_name ASC']);
     }
 }
+
