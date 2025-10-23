@@ -42,6 +42,9 @@ class ActivityController extends Controller
     public function index()
     {
         try {
+            // Permission kontrolü - etkinlik sayfası yetkisi gerekli
+            \App\Middleware\PermissionMiddleware::canView('activities');
+            
             // Sayfalama parametreleri
             $page = $_GET['page'] ?? 1;
             $perPage = 20;

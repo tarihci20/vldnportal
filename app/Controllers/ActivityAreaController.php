@@ -18,21 +18,10 @@ class ActivityAreaController extends Controller
         parent::__construct();
         $this->areaModel = new ActivityArea();
         
-        // GEÇİCİ: Authentication kontrolünü devre dışı bırak (test için)
-        /*
         // Giriş kontrolü
         if (!isLoggedIn()) {
-            $this->redirect(url('/login'));
-            return;
+            redirect('/login');
         }
-        
-        // Admin veya yetki kontrolü
-        if (!isAdmin() && !hasPermission('activity_areas', 'can_view')) {
-            setFlashMessage('Bu sayfaya erişim yetkiniz yok.', 'error');
-            $this->redirect(url('/dashboard'));
-            return;
-        }
-        */
     }
     
     /**
@@ -40,6 +29,9 @@ class ActivityAreaController extends Controller
      */
     public function index()
     {
+        // Permission kontrolü - etkinlik alanları yetkisi gerekli
+        \App\Middleware\PermissionMiddleware::canView('activity_areas');
+        
         $areas = $this->areaModel->getActive();
         
         $this->view('activity-areas/index', [

@@ -37,6 +37,9 @@ class StudentController extends Controller
      * Öğrenci listesi sayfası
      */
     public function index() {
+        // Permission kontrolü - öğrenci sayfası yetkisi gerekli
+        \App\Middleware\PermissionMiddleware::canView('students');
+        
         // Sayfa numarası
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perPage = STUDENTS_PER_PAGE;

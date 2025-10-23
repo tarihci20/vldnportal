@@ -27,6 +27,9 @@ class DashboardController extends Controller
      * Dashboard ana sayfa
      */
     public function index() {
+        // Permission kontrolü - dashboard yetkisi gerekli
+        \App\Middleware\PermissionMiddleware::canView('dashboard');
+        
         $studentModel = new Student();
         $activityModel = new Activity();
         $etutModel = new Etut();

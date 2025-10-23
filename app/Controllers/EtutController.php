@@ -29,6 +29,9 @@ class EtutController extends Controller
      */
     public function index()
     {
+        // Permission kontrolü - etüt sayfası yetkisi gerekli
+        \App\Middleware\PermissionMiddleware::canView('etut');
+        
         $this->view('etut/areas', [
             'title' => 'Etüt Alanları'
         ]);
