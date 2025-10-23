@@ -21,11 +21,14 @@
         </div>
 
         <!-- Flash Messages -->
-        <?php if(hasFlashMessage()): ?>
-            <div class="mb-6 p-4 rounded-lg <?= getFlashType() === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' ?>">
-                <?= getFlashMessage() ?>
+        <?php if(hasFlashMessage()): 
+            $flash = getFlashMessage();
+            $type = $flash['type'] ?? 'info';
+            $message = $flash['message'] ?? '';
+        ?>
+            <div class="mb-6 p-4 rounded-lg <?= $type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' ?>">
+                <?= $message ?>
             </div>
-            <?php clearFlashMessage(); ?>
         <?php endif; ?>
 
         <!-- Users Table -->
