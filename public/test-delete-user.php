@@ -21,9 +21,25 @@ if (session_status() === PHP_SESSION_NONE) {
 
 header('Content-Type: text/html; charset=UTF-8');
 
-// Load config and helpers
-require_once __DIR__ . '/config/config.php';
-require_once __DIR__ . '/app/helpers/functions.php';
+// Get root path (parent of public directory)
+$rootPath = dirname(__DIR__);
+
+// Load helpers FIRST - need csrf_token() function
+$helpersPath = $rootPath . '/app/helpers/functions.php';
+if (!file_exists($helpersPath)) {
+    die("❌ Helpers not found at " . $helpersPath);
+}
+require_once $helpersPath;
+
+// Generate CSRF token if not exists
+csrf_token();
+
+// Load config
+$configPath = $rootPath . '/config/config.php';
+if (!file_exists($configPath)) {
+    die("❌ Config not found at " . $configPath);
+}
+require_once $configPath;
 
 ?>
 <!DOCTYPE html>
@@ -31,6 +47,7 @@ require_once __DIR__ . '/app/helpers/functions.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= $_SESSION['csrf_token'] ?? '' ?>">
     <title>Test - Kullanıcı Silme</title>
     <style>
         body {

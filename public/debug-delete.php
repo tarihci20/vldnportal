@@ -16,28 +16,36 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Get root path (parent of public directory)
+$rootPath = dirname(__DIR__);
+
+// Load helpers FIRST to have access to csrf_token()
+$helpersPath = $rootPath . '/app/helpers/functions.php';
+if (file_exists($helpersPath)) {
+    require_once $helpersPath;
+} else {
+    die("Helpers not found at " . $helpersPath);
+}
+
+// Now generate CSRF token if not exists
+// This ensures $_SESSION['csrf_token'] is populated
+csrf_token();
+
 // Set content type
 header('Content-Type: text/html; charset=UTF-8');
 
 // Try to load config and helpers
 $errors = [];
 $config_loaded = false;
-$helpers_loaded = false;
+$helpers_loaded = true;  // Already loaded above
 
 // Load config from config directory
-if (file_exists(__DIR__ . '/config/config.php')) {
-    require_once __DIR__ . '/config/config.php';
+$configPath = $rootPath . '/config/config.php';
+if (file_exists($configPath)) {
+    require_once $configPath;
     $config_loaded = true;
 } else {
-    $errors[] = "Config.php not found at " . __DIR__ . '/config/config.php';
-}
-
-// Load helpers
-if (file_exists(__DIR__ . '/app/helpers/functions.php')) {
-    require_once __DIR__ . '/app/helpers/functions.php';
-    $helpers_loaded = true;
-} else {
-    $errors[] = "Helpers not found";
+    $errors[] = "Config.php not found at " . $configPath;
 }
 
 ?>
@@ -225,7 +233,8 @@ if (file_exists(__DIR__ . '/app/helpers/functions.php')) {
     if ($dbDefined) {
         echo '<div class="success">✅ Database Constants tanımlanmış</div>';
         try {
-            require_once __DIR__ . '/core/Database.php';
+            $dbPath = $rootPath . '/core/Database.php';
+            require_once $dbPath;
             $db = \Core\Database::getInstance();
             
             // Check vp_users table
