@@ -24,17 +24,32 @@ class AdminController extends Controller
         $this->studentModel = new Student();
         $this->roleModel = new Role();
         
-        // Kullanıcı giriş kontrolü
-        if (!isLoggedIn()) {
-            redirect('/login');
-        }
+        // API endpoints için login kontrol'ünü BYPASS ET
+        // (deleteUser, getRolePermissions vb. JSON işlemleri)
+        $apiMethods = ['deleteUser', 'getRolePermissions', 'updateRolePermissions', 'deleteAllStudents'];
+        $currentMethod = $this->getCurrentMethod();
         
-        // Admin kontrolü
-        $user = currentUser();
-        if ($user['role'] !== 'admin') {
-            setFlashMessage('Bu sayfaya erişim yetkiniz yok.', 'error');
-            redirect('/dashboard');
+        if (!in_array($currentMethod, $apiMethods)) {
+            // Kullanıcı giriş kontrolü
+            if (!isLoggedIn()) {
+                redirect('/login');
+            }
+            
+            // Admin kontrolü
+            $user = currentUser();
+            if ($user['role'] !== 'admin') {
+                setFlashMessage('Bu sayfaya erişim yetkiniz yok.', 'error');
+                redirect('/dashboard');
+            }
         }
+    }
+    
+    /**
+     * Get current method name from backtrace
+     */
+    private function getCurrentMethod() {
+        $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
+        return $trace[1]['function'] ?? '';
     }
     
     /**
@@ -389,6 +404,22 @@ class AdminController extends Controller
         try {
             error_log("=== DELETE USER START ===");
             error_log("Route parameter ID: $id");
+            
+            // API İçin Login Kontrol
+            if (!isLoggedIn()) {
+                error_log("Not logged in");
+                echo json_encode(['success' => false, 'message' => 'Giriş yapmalısınız']);
+                exit;
+            }
+            
+            // Admin Kontrolü
+            $user = currentUser();
+            if ($user['role'] !== 'admin') {
+                error_log("Not admin - role: " . $user['role']);
+                echo json_encode(['success' => false, 'message' => 'Admin yetkiniz yok']);
+                exit;
+            }
+            
             error_log("Session CSRF Token: " . (isset($_SESSION['csrf_token']) ? substr($_SESSION['csrf_token'], 0, 20) . '...' : 'NOT SET'));
             error_log("Session CSRF Token Time: " . ($_SESSION['csrf_token_time'] ?? 'NOT SET'));
             
