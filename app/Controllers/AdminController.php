@@ -387,48 +387,65 @@ class AdminController extends Controller
         header('Content-Type: application/json');
         
         try {
+            error_log("=== DELETE USER START ===");
+            
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                error_log("Invalid request method: " . $_SERVER['REQUEST_METHOD']);
                 echo json_encode(['success' => false, 'message' => 'Geçersiz istek']);
                 exit;
             }
             
             $input = json_decode(file_get_contents('php://input'), true);
+            error_log("Delete User Input: " . json_encode($input));
+            
             $id = $input['id'] ?? null;
             $csrfToken = $input['csrf_token'] ?? '';
             
             if (!validateCsrfToken($csrfToken)) {
+                error_log("Invalid CSRF token");
                 echo json_encode(['success' => false, 'message' => 'Geçersiz token']);
                 exit;
             }
             
             $user = $this->userModel->findById($id);
+            error_log("User found: " . json_encode($user));
+            
             if (!$user) {
+                error_log("User not found: $id");
                 echo json_encode(['success' => false, 'message' => 'Kullanıcı bulunamadı']);
                 exit;
             }
             
             // Kendi hesabını silmeye çalışıyor mu?
             if ($id == getCurrentUserId()) {
+                error_log("User trying to delete own account");
                 echo json_encode(['success' => false, 'message' => 'Kendi hesabınızı silemezsiniz']);
                 exit;
             }
             
-            if ($this->userModel->delete($id)) {
+            error_log("Attempting to delete user: $id");
+            $deleteResult = $this->userModel->delete($id);
+            error_log("Delete result: " . var_export($deleteResult, true));
+            
+            if ($deleteResult) {
                 // Log aktivitesi kaydı (hata olsa da devam et)
                 try {
                     logActivity('user_deleted', 'users', $id, ['username' => $user['username']], null);
                 } catch (\Exception $logError) {
                     error_log("LogActivity Error: " . $logError->getMessage());
                 }
+                error_log("User deleted successfully: $id");
                 echo json_encode(['success' => true, 'message' => 'Kullanıcı başarıyla silindi']);
             } else {
+                error_log("Failed to delete user: $id");
                 echo json_encode(['success' => false, 'message' => 'Kullanıcı silinemedi']);
             }
         } catch (\Exception $e) {
-            error_log("DeleteUser Error: " . $e->getMessage());
+            error_log("DeleteUser Exception: " . $e->getMessage() . "\n" . $e->getTraceAsString());
             echo json_encode(['success' => false, 'message' => 'Hata: ' . $e->getMessage()]);
         }
         
+        error_log("=== DELETE USER END ===");
         exit;
     }
     
