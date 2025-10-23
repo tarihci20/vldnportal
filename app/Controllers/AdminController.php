@@ -383,11 +383,12 @@ class AdminController extends Controller
     /**
      * Kullanıcı Silme
      */
-    public function deleteUser() {
+    public function deleteUser($id = null) {
         header('Content-Type: application/json');
         
         try {
             error_log("=== DELETE USER START ===");
+            error_log("Route parameter ID: $id");
             
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 error_log("Invalid request method: " . $_SERVER['REQUEST_METHOD']);
@@ -398,7 +399,10 @@ class AdminController extends Controller
             $input = json_decode(file_get_contents('php://input'), true);
             error_log("Delete User Input: " . json_encode($input));
             
-            $id = $input['id'] ?? null;
+            // ID'yi route parametresinden veya body'den al
+            $id = $id ?? ($input['id'] ?? null);
+            error_log("Using ID: $id");
+            
             $csrfToken = $input['csrf_token'] ?? '';
             
             if (!validateCsrfToken($csrfToken)) {
