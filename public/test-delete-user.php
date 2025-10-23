@@ -353,13 +353,18 @@ async function testDelete() {
     try {
         const csrfToken = '<?= $csrfToken ?>';
         
+        // Get BASE_PATH from current URL
+        const baseUrl = window.location.origin + '/portalv2';
+        const apiUrl = baseUrl + '/admin/users/' + userId + '/delete';
+        
         output.value += `✓ CSRF Token alındı (${csrfToken.substring(0, 20)}...)\n`;
         output.value += `✓ Kullanıcı ID: ${userId}\n\n`;
         output.value += `📤 POST İsteği Gönderiliyor...\n`;
-        output.value += `URL: /admin/users/${userId}/delete\n`;
+        output.value += `Base URL: ${baseUrl}\n`;
+        output.value += `API URL: ${apiUrl}\n`;
         output.value += `CSRF Token: ${csrfToken.substring(0, 30)}...\n\n`;
         
-        const response = await fetch(`/admin/users/${userId}/delete`, {
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

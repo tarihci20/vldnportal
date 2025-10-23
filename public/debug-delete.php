@@ -302,13 +302,18 @@ async function testDelete() {
         const userId = 3; // Test user ID (admin hesabını silmeyin!)
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
         
+        // Get BASE_PATH from current URL
+        const baseUrl = window.location.origin + '/portalv2';
+        const apiUrl = baseUrl + '/admin/users/' + userId + '/delete';
+        
         log('🚀 DELETE İsteği Gönderiliyor...');
-        log('URL: /admin/users/' + userId + '/delete');
+        log('Base URL: ' + baseUrl);
+        log('API URL: ' + apiUrl);
         log('Method: POST');
         log('CSRF Token: ' + (csrfToken ? csrfToken.substring(0, 20) + '...' : 'BOŞŞ ⚠️'));
         log('');
         
-        const response = await fetch(`/admin/users/${userId}/delete`, {
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
