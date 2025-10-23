@@ -5,7 +5,7 @@
  */
 
 $user = currentUser();
-$role = $user['role_slug'] ?? 'user';
+$role = $user['role_name'] ?? 'user'; // Changed from role_slug to role_name
 $currentUrl = $_SERVER['REQUEST_URI'] ?? '/';
 
 // Menü aktif kontrolü
