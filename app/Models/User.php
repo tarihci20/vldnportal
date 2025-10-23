@@ -14,7 +14,7 @@ class User extends Model
         parent::__construct();
     }
 
-    protected $table = 'users';
+    protected $table = 'vp_users';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     
