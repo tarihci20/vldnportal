@@ -187,7 +187,7 @@ try {
         echo '<div><span class="label">Role Slug:</span><span class="value">' . htmlspecialchars($currentUser['role_slug'] ?? 'N/A') . '</span></div>';
     } else {
         echo '<div class="warning">⚠️ Giriş yapılmamış - Bazı özellikler sınırlı olacaktır</div>';
-        echo '<div><a href="/login">Giriş Yap</a></div>';
+        echo '<div><a href="/portalv2/login">Giriş Yap</a></div>';
     }
     echo '</div>';
 
