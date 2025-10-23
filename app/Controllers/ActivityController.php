@@ -14,6 +14,7 @@ use Core\Controller;
 use App\Models\Activity;
 use App\Models\ActivityArea;
 use App\Models\TimeSlot;
+use App\Middleware\PermissionMiddleware;
 use DateTime;
 use DateInterval;
 
@@ -43,7 +44,7 @@ class ActivityController extends Controller
     {
         try {
             // Permission kontrolü - etkinlik sayfası yetkisi gerekli
-            \App\Middleware\PermissionMiddleware::canView('activities');
+            PermissionMiddleware::canView('activities');
             
             // Sayfalama parametreleri
             $page = $_GET['page'] ?? 1;

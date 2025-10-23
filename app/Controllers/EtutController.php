@@ -8,6 +8,7 @@ namespace App\Controllers;
 
 use Core\Controller;
 use App\Models\Etut;
+use App\Middleware\PermissionMiddleware;
 
 class EtutController extends Controller
 {
@@ -30,7 +31,7 @@ class EtutController extends Controller
     public function index()
     {
         // Permission kontrolü - etüt sayfası yetkisi gerekli
-        \App\Middleware\PermissionMiddleware::canView('etut');
+        PermissionMiddleware::canView('etut');
         
         $this->view('etut/areas', [
             'title' => 'Etüt Alanları'

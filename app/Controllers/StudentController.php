@@ -9,6 +9,7 @@ namespace App\Controllers;
 use Core\Controller;
 use App\Models\Student;
 use App\Helpers\ExcelHelper;
+use App\Middleware\PermissionMiddleware;
 
 class StudentController extends Controller
 {
@@ -38,7 +39,7 @@ class StudentController extends Controller
      */
     public function index() {
         // Permission kontrolü - öğrenci sayfası yetkisi gerekli
-        \App\Middleware\PermissionMiddleware::canView('students');
+        PermissionMiddleware::canView('students');
         
         // Sayfa numarası
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;

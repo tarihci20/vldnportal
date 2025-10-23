@@ -11,6 +11,7 @@ use App\Models\Student;
 use App\Models\Activity;
 use App\Models\Etut;
 use App\Models\ActivityArea;
+use App\Middleware\PermissionMiddleware;
 
 class DashboardController extends Controller
 {
@@ -28,7 +29,7 @@ class DashboardController extends Controller
      */
     public function index() {
         // Permission kontrolü - dashboard yetkisi gerekli
-        \App\Middleware\PermissionMiddleware::canView('dashboard');
+        PermissionMiddleware::canView('dashboard');
         
         $studentModel = new Student();
         $activityModel = new Activity();
