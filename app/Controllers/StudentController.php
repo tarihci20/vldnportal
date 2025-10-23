@@ -85,6 +85,7 @@ class StudentController extends Controller
     
     /**
      * Öğrenci arama sayfası (Ana sayfa)
+     * Teacher'a izin verilen ana sayfa
      */
     public function search() {
         $this->view('students/search', [

@@ -27,12 +27,8 @@ class DashboardController extends Controller
      * Dashboard ana sayfa
      */
     public function index() {
-        // Permission kontrolü - dashboard yetkisi gerekli
-        if (!hasPermission('dashboard', 'can_view')) {
-            setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
-            redirect('/student-search');
-            exit;
-        }
+        // Dashboard tüm roller tarafından erişilebilir
+        // Her rol kendi yetkisi dahilinde bilgileri görecek
         
         $studentModel = new Student();
         $activityModel = new Activity();
