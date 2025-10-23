@@ -14,7 +14,7 @@ class Student extends Model
         parent::__construct();
     }
 
-    protected $table = 'students';  // DB_PREFIX otomatik eklenecek
+    protected $table = 'vp_students';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     

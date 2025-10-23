@@ -14,7 +14,7 @@ class Etut extends Model
         parent::__construct();
     }
 
-    protected $table = 'etut_applications';
+    protected $table = 'vp_etut_applications';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     

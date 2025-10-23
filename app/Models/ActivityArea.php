@@ -14,7 +14,7 @@ class ActivityArea extends Model
         parent::__construct();
     }
 
-    protected $table = 'activity_areas';
+    protected $table = 'vp_activity_areas';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     

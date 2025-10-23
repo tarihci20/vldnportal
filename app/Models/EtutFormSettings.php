@@ -14,7 +14,7 @@ class EtutFormSettings extends Model
         parent::__construct();
     }
 
-    protected $table = 'etut_form_settings';
+    protected $table = 'vp_etut_form_settings';
     protected $primaryKey = 'id';
     
     /**

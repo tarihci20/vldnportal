@@ -10,7 +10,7 @@ class TimeSlot extends Model
         parent::__construct();
     }
 
-    protected $table = 'time_slots';
+    protected $table = 'vp_time_slots';
     protected $primaryKey = 'id';
     protected $timestamps = true;
 

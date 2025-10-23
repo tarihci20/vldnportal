@@ -14,7 +14,7 @@ class Activity extends Model
         parent::__construct();
     }
 
-    protected $table = 'activities';
+    protected $table = 'vp_activities';
     protected $primaryKey = 'id';
     protected $timestamps = true;
     

@@ -9,7 +9,7 @@ class Role extends Model {
         parent::__construct();
     }
 
-    protected $table = 'roles';
+    protected $table = 'vp_roles';
     
     /**
      * Tüm rolleri getir

@@ -10,7 +10,7 @@ class ActivityAreaTimeSlot extends Model
         parent::__construct();
     }
 
-    protected $table = 'activity_area_time_slots';
+    protected $table = 'vp_activity_area_time_slots';
     protected $primaryKey = 'id';
     protected $timestamps = true;
 

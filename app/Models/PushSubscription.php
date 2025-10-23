@@ -15,7 +15,7 @@ class PushSubscription extends Model
         parent::__construct();
     }
 
-    protected $table = 'push_subscriptions';
+    protected $table = 'vp_push_subscriptions';
     
     protected $fillable = [
         'user_id',
