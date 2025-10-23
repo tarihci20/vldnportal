@@ -33,20 +33,24 @@ function isActiveText($path, $currentUrl) {
         <ul class="space-y-2 font-medium">
             
             <!-- Dashboard -->
+            <?php if (hasPermission('dashboard', 'can_view')): ?>
             <li>
                 <a href="<?= url('/dashboard') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/dashboard', $currentUrl) ?>">
                     <i class="fas fa-home w-5 h-5 transition duration-75 <?= isActiveText('/dashboard', $currentUrl) ?>"></i>
                     <span class="ml-3 <?= isActiveText('/dashboard', $currentUrl) ?>">Ana Sayfa</span>
                 </a>
             </li>
+            <?php endif; ?>
             
             <!-- Öğrenci Arama -->
+            <?php if (hasPermission('student-search', 'can_view') || hasPermission('student_search', 'can_view')): ?>
             <li>
                 <a href="<?= url('/student-search') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/student-search', $currentUrl) ?>">
                     <i class="fas fa-search w-5 h-5 transition duration-75 <?= isActiveText('/student-search', $currentUrl) ?>"></i>
                     <span class="ml-3 <?= isActiveText('/student-search', $currentUrl) ?>">Öğrenci Ara</span>
                 </a>
             </li>
+            <?php endif; ?>
             
             <!-- Öğrenci Yönetimi -->
             <?php if (in_array($role, ['admin', 'mudur', 'mudur_yardimcisi', 'sekreter'])): ?>

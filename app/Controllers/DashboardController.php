@@ -28,12 +28,11 @@ class DashboardController extends Controller
      */
     public function index() {
         // Permission kontrolü - dashboard yetkisi gerekli
-        // EMERGENCY FIX: Teacher için geçici olarak devre dışı
-        // if (!hasPermission('dashboard', 'can_view')) {
-        //     setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
-        //     redirect('/student-search');
-        //     exit;
-        // }
+        if (!hasPermission('dashboard', 'can_view')) {
+            setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
+            redirect('/student-search');
+            exit;
+        }
         
         $studentModel = new Student();
         $activityModel = new Activity();

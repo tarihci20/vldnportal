@@ -45,7 +45,6 @@ class ActivityController extends Controller
             // Permission kontrolü - etkinlik sayfası yetkisi gerekli
             if (!hasPermission('activities', 'can_view')) {
                 setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
-                // Çoğu rol için home'a yönlendir
                 $user = currentUser();
                 $role = $user['role_slug'] ?? $user['role'] ?? 'user';
                 if ($role === 'teacher') {
