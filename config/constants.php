@@ -40,7 +40,7 @@ if (!defined('UPLOAD_PATH')) define('UPLOAD_PATH', PUBLIC_PATH . '/assets/upload
 // ============================================================
 if (!defined('APP_NAME')) define('APP_NAME', 'Vildan Portal');
 if (!defined('APP_ENV')) define('APP_ENV', 'production');
-if (!defined('APP_DEBUG')) define('APP_DEBUG', false); // Production'da false olmalı
+if (!defined('APP_DEBUG')) define('APP_DEBUG', true); // ⚠️ DEBUG MODE (Temporary for delete button testing)
 
 // ============================================================
 // TARİH VE ZAMAN

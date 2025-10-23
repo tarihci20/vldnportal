@@ -13,7 +13,7 @@ return [
     'base_path' => '/portalv2',
     'base_url' => 'https://vldn.in/portalv2',
     'environment' => 'production', // development, production
-    'debug' => false, // Production'da mutlaka false olmalı!
+    'debug' => true, // ⚠️ DEBUG MODE (Temporary for testing)
 
     // ============================================================
     // YOLLAR (cPanel Production)
