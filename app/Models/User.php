@@ -209,6 +209,16 @@ class User extends Model
     }
     
     /**
+     * Kullanıcının session kayıtlarını sil
+     */
+    public function deleteUserSessions($userId) {
+        $sql = "DELETE FROM vp_user_sessions WHERE user_id = :user_id";
+        $this->getDb()->query($sql);
+        $this->getDb()->bind(':user_id', $userId);
+        return $this->getDb()->execute();
+    }
+
+    /**
      * Kullanıcı oluştur
      */
     public function create($data) {

@@ -523,15 +523,12 @@ class AdminController extends Controller
     
     /**
      * Kullanıcının session kayıtlarını sil
-     * (vp_user_sessions tablosunda FK constraint olmadığı için manuel siliyoruz)
+     * (vp_user_sessions tablosundan o user'a ait tüm session'ları sil)
      */
     private function deleteUserSessions($userId) {
         try {
-            // vp_user_sessions tablosundan o user'a ait tüm session'ları sil
-            $sql = "DELETE FROM vp_user_sessions WHERE user_id = :user_id";
-            $this->userModel->getDb()->query($sql);
-            $this->userModel->getDb()->bind(':user_id', $userId);
-            $result = $this->userModel->getDb()->execute();
+            error_log("Calling userModel->deleteUserSessions for user_id: $userId");
+            $result = $this->userModel->deleteUserSessions($userId);
             error_log("User sessions deleted for user_id $userId: " . var_export($result, true));
             return $result;
         } catch (\Exception $e) {

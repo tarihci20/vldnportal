@@ -233,17 +233,33 @@ document.getElementById('confirmDelete').addEventListener('click', async functio
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                // Don't set Accept-Encoding - let browser handle it
             },
             body: JSON.stringify(requestBody)
         });
         
         console.log('Response Status:', response.status);
         console.log('Response Headers:', {
-            'content-type': response.headers.get('content-type')
+            'content-type': response.headers.get('content-type'),
+            'content-encoding': response.headers.get('content-encoding')
         });
         
-        const data = await response.json();
-        console.log('Response Data:', data);
+        // Response'u text olarak oku (compression'ı browser automatic handle eder)
+        const responseText = await response.text();
+        console.log('Response Text (first 200 chars):', responseText.substring(0, 200));
+        console.log('Response Text Length:', responseText.length);
+        
+        // Text'i JSON'a parse et
+        let data;
+        try {
+            data = JSON.parse(responseText);
+        } catch (parseError) {
+            console.error('JSON Parse Error:', parseError);
+            console.error('Response text:', responseText);
+            throw new Error('Sunucu geçersiz JSON döndürdü: ' + responseText.substring(0, 100));
+        }
+        
+        console.log('Parsed JSON:', data);
         
         if (data.success) {
             console.log('Delete successful, reloading page...');
