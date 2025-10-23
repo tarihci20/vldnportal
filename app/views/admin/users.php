@@ -244,12 +244,17 @@ function toggleUserStatus(userId, status) {
 
 function deleteUser(userId) {
     if (confirm('Bu kullanıcıyı silmek istediğinizden emin misiniz?')) {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        
         fetch(`<?= url('/api/users/') ?>${userId}/delete`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            }
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: userId,
+                csrf_token: csrfToken
+            })
         })
         .then(response => response.json())
         .then(data => {
@@ -258,6 +263,10 @@ function deleteUser(userId) {
             } else {
                 alert('Hata: ' + data.message);
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hata: ' + error.message);
         });
     }
 }

@@ -94,6 +94,9 @@ $router->get('/api/etut/stats', [EtutApiController::class, 'stats']);
 // USER API ROUTES (for admin panel)
 // ============================================
 
+// Users delete
+$router->post('/api/users/{id}/delete', 'AdminController@deleteUser');
+
 // Users CRUD (if needed in future)
 // $router->get('/api/users', [UserApiController::class, 'index']);
 // $router->get('/api/users/{id}', [UserApiController::class, 'show']);
