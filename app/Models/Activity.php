@@ -575,7 +575,7 @@ class Activity extends Model
             FROM vp_time_slots ts
             LEFT JOIN (
                 SELECT ats.time_slot_id, COUNT(*) as slot_count
-                FROM activity_time_slots ats
+                FROM vp_activity_time_slots ats
                 INNER JOIN vp_activities a ON ats.activity_id = a.id
                 WHERE a.area_id = :area_id 
                 AND a.activity_date = :activity_date
