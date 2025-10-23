@@ -23,9 +23,23 @@ $config_loaded = false;
 $helpers_loaded = false;
 
 try {
-    if (file_exists(__DIR__ . '/../config/config.php')) {
-        require_once __DIR__ . '/../config/config.php';
-        $config_loaded = true;
+    // Try different config paths
+    $config_paths = [
+        __DIR__ . '/../config/config.php',
+        __DIR__ . '/../../../portalv2/config/config.php',
+        __DIR__ . '/../../../config/config.php',
+    ];
+    
+    foreach ($config_paths as $path) {
+        if (file_exists($path)) {
+            require_once $path;
+            $config_loaded = true;
+            break;
+        }
+    }
+    
+    if (!$config_loaded) {
+        $errors[] = "Config.php not found in any path";
     }
 } catch (\Exception $e) {
     $errors[] = "Config Error: " . $e->getMessage();
@@ -249,24 +263,34 @@ try {
     echo '<div class="section">';
     echo '<h3>🗄️ Database Kontrol</h3>';
     
-    try {
-        require_once __DIR__ . '/../core/Database.php';
-        $db = \Core\Database::getInstance();
-        
-        // Check vp_users table
-        $result = $db->query("SELECT COUNT(*) as count FROM vp_users")->single();
-        echo '<div class="success">✅ vp_users tablosu erişilebilir (' . ($result['count'] ?? 0) . ' kullanıcı)</div>';
-        
-        // List users
-        echo '<p><strong>Kullanıcılar:</strong></p>';
-        echo '<pre>';
-        $users = $db->query("SELECT id, username, email, role_id FROM vp_users LIMIT 10")->resultSet();
-        foreach ($users as $user) {
-            echo "ID: {$user['id']} | Username: {$user['username']} | Email: {$user['email']} | Role: {$user['role_id']}\n";
+    if (defined('DB_HOST') && defined('DB_USER') && defined('DB_PASS') && defined('DB_NAME')) {
+        try {
+            require_once __DIR__ . '/../core/Database.php';
+            $db = \Core\Database::getInstance();
+            
+            // Check vp_users table
+            $result = $db->query("SELECT COUNT(*) as count FROM vp_users")->single();
+            echo '<div class="success">✅ vp_users tablosu erişilebilir (' . ($result['count'] ?? 0) . ' kullanıcı)</div>';
+            
+            // List users
+            echo '<p><strong>Kullanıcılar:</strong></p>';
+            echo '<pre>';
+            $users = $db->query("SELECT id, username, email, role_id FROM vp_users LIMIT 10")->resultSet();
+            foreach ($users as $user) {
+                echo "ID: {$user['id']} | Username: {$user['username']} | Email: {$user['email']} | Role: {$user['role_id']}\n";
+            }
+            echo '</pre>';
+        } catch (\Exception $e) {
+            echo '<div class="error">❌ Database Hatası: ' . htmlspecialchars($e->getMessage()) . '</div>';
         }
+    } else {
+        echo '<div class="error">❌ Database Constants tanımlanmamış:</div>';
+        echo '<pre>';
+        echo "DB_HOST: " . (defined('DB_HOST') ? 'DEFINED' : 'NOT DEFINED') . "\n";
+        echo "DB_USER: " . (defined('DB_USER') ? 'DEFINED' : 'NOT DEFINED') . "\n";
+        echo "DB_PASS: " . (defined('DB_PASS') ? 'DEFINED' : 'NOT DEFINED') . "\n";
+        echo "DB_NAME: " . (defined('DB_NAME') ? 'DEFINED' : 'NOT DEFINED') . "\n";
         echo '</pre>';
-    } catch (\Exception $e) {
-        echo '<div class="error">❌ Database Hatası: ' . htmlspecialchars($e->getMessage()) . '</div>';
     }
     echo '</div>';
 
