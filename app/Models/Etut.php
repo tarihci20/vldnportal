@@ -27,9 +27,9 @@ class Etut extends Model
                        u1.full_name as creator_name,
                        u2.full_name as approver_name
                 FROM {$this->table} e
-                LEFT JOIN students s ON e.student_id = s.id
-                LEFT JOIN users u1 ON e.created_by = u1.id
-                LEFT JOIN users u2 ON e.approved_by = u2.id
+                LEFT JOIN vp_students s ON e.student_id = s.id
+                LEFT JOIN vp_users u1 ON e.created_by = u1.id
+                LEFT JOIN vp_users u2 ON e.approved_by = u2.id
                 WHERE 1=1";
         
         $params = [];
@@ -88,7 +88,7 @@ class Etut extends Model
         
         $sql = "SELECT e.*, s.first_name, s.last_name, s.class
                 FROM {$this->table} e
-                LEFT JOIN students s ON e.student_id = s.id
+                LEFT JOIN vp_students s ON e.student_id = s.id
                 WHERE e.application_date = :today
                 ORDER BY e.start_time ASC";
         
@@ -111,7 +111,7 @@ class Etut extends Model
     public function getByStudent($studentId) {
         $sql = "SELECT e.*, u.full_name as creator_name
                 FROM {$this->table} e
-                LEFT JOIN users u ON e.created_by = u.id
+                LEFT JOIN vp_users u ON e.created_by = u.id
                 WHERE e.student_id = :student_id
                 ORDER BY e.application_date DESC";
         
@@ -180,5 +180,6 @@ class Etut extends Model
         return $this->getDb()->resultSet();
     }
 }
+
 
 

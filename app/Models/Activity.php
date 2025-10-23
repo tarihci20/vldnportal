@@ -29,8 +29,8 @@ class Activity extends Model
                     aa.color_code as area_color,
                     u.full_name as created_by_name
                 FROM vp_activities a
-                LEFT JOIN activity_areas aa ON a.area_id = aa.id  
-                LEFT JOIN users u ON a.created_by = u.id
+                LEFT JOIN vp_activity_areas aa ON a.area_id = aa.id  
+                LEFT JOIN vp_users u ON a.created_by = u.id
                 WHERE 1=1";
         
         $params = [];
@@ -102,7 +102,7 @@ class Activity extends Model
                     a.*,
                     aa.area_name
                 FROM vp_activities a
-                LEFT JOIN activity_areas aa ON a.area_id = aa.id
+                LEFT JOIN vp_activity_areas aa ON a.area_id = aa.id
                 WHERE a.area_id = :area_id
                 AND a.activity_date = DATE(:start_dt)
                 AND (
@@ -132,7 +132,7 @@ class Activity extends Model
         
         $sql = "SELECT a.*, aa.area_name, aa.color_code
                 FROM vp_activities a
-                LEFT JOIN activity_areas aa ON a.area_id = aa.id
+                LEFT JOIN vp_activity_areas aa ON a.area_id = aa.id
                 WHERE a.activity_date = :today
                 ORDER BY a.start_time ASC";
         
@@ -184,7 +184,7 @@ class Activity extends Model
                     aa.area_name,
                     aa.color_code
                 FROM vp_activities a
-                LEFT JOIN activity_areas aa ON a.area_id = aa.id
+                LEFT JOIN vp_activity_areas aa ON a.area_id = aa.id
                 WHERE a.activity_date BETWEEN :start_date AND :end_date
                 ORDER BY a.activity_date ASC, a.start_time ASC";
         
@@ -204,7 +204,7 @@ class Activity extends Model
         if (empty($ids)) return [];
         $ids = array_map('intval', $ids);
         $placeholders = implode(',', $ids);
-        $sql = "SELECT a.*, aa.area_name, aa.color_code as area_color, u.full_name as created_by_name FROM vp_activities a LEFT JOIN activity_areas aa ON a.area_id = aa.id LEFT JOIN users u ON a.created_by = u.id WHERE a.id IN ({$placeholders}) ORDER BY a.activity_date DESC";
+        $sql = "SELECT a.*, aa.area_name, aa.color_code as area_color, u.full_name as created_by_name FROM vp_activities a LEFT JOIN vp_activity_areas aa ON a.area_id = aa.id LEFT JOIN vp_users u ON a.created_by = u.id WHERE a.id IN ({$placeholders}) ORDER BY a.activity_date DESC";
         return $this->query($sql);
     }
 
@@ -215,7 +215,7 @@ class Activity extends Model
      */
     public function getByDate($date)
     {
-        $sql = "SELECT a.*, aa.area_name, aa.color_code as area_color, u.full_name as created_by_name FROM vp_activities a LEFT JOIN activity_areas aa ON a.area_id = aa.id LEFT JOIN users u ON a.created_by = u.id WHERE a.activity_date = :d ORDER BY a.start_time ASC";
+        $sql = "SELECT a.*, aa.area_name, aa.color_code as area_color, u.full_name as created_by_name FROM vp_activities a LEFT JOIN vp_activity_areas aa ON a.area_id = aa.id LEFT JOIN vp_users u ON a.created_by = u.id WHERE a.activity_date = :d ORDER BY a.start_time ASC";
         return $this->query($sql, ['d' => $date]);
     }
     
@@ -452,9 +452,9 @@ class Activity extends Model
                     u.full_name as created_by_name,
                     COUNT(t.id) as tekrar_sayisi
                 FROM vp_activities a
-                LEFT JOIN activity_areas aa ON a.area_id = aa.id  
-                LEFT JOIN users u ON a.created_by = u.id
-                LEFT JOIN activities t ON a.id = t.ana_etkinlik_id
+                LEFT JOIN vp_activity_areas aa ON a.area_id = aa.id  
+                LEFT JOIN vp_users u ON a.created_by = u.id
+                LEFT JOIN vp_activities t ON a.id = t.ana_etkinlik_id
                 WHERE a.ana_etkinlik_id IS NULL";
         
         $params = [];
@@ -576,7 +576,7 @@ class Activity extends Model
             LEFT JOIN (
                 SELECT ats.time_slot_id, COUNT(*) as slot_count
                 FROM activity_time_slots ats
-                INNER JOIN activities a ON ats.activity_id = a.id
+                INNER JOIN vp_activities a ON ats.activity_id = a.id
                 WHERE a.area_id = :area_id 
                 AND a.activity_date = :activity_date
                 AND a.uses_time_slots = 1
@@ -633,8 +633,8 @@ class Activity extends Model
                 ts.display_time,
                 ats.time_slot_id
             FROM vp_activities a
-            INNER JOIN activity_time_slots ats ON a.id = ats.activity_id
-            INNER JOIN time_slots ts ON ats.time_slot_id = ts.id
+            INNER JOIN vp_activity_time_slots ats ON a.id = ats.activity_id
+            INNER JOIN vp_time_slots ts ON ats.time_slot_id = ts.id
             WHERE a.area_id = ? 
             AND a.activity_date = ?
             AND ats.time_slot_id IN ($placeholders)
@@ -804,7 +804,7 @@ class Activity extends Model
         return $this->query("
             SELECT ts.*, ats.created_at as assigned_at
             FROM vp_time_slots ts
-            INNER JOIN activity_time_slots ats ON ts.id = ats.time_slot_id
+            INNER JOIN vp_activity_time_slots ats ON ts.id = ats.time_slot_id
             WHERE ats.activity_id = ?
             ORDER BY ts.sort_order
         ", [$activityId]);
@@ -964,10 +964,10 @@ class Activity extends Model
                 ) as time_slots_display,
                 COUNT(DISTINCT ats.time_slot_id) as slot_count
             FROM vp_activities a
-            LEFT JOIN activity_areas aa ON a.area_id = aa.id
-            LEFT JOIN users u ON a.created_by = u.id
-            LEFT JOIN activity_time_slots ats ON a.id = ats.activity_id
-            LEFT JOIN time_slots ts ON ats.time_slot_id = ts.id
+            LEFT JOIN vp_activity_areas aa ON a.area_id = aa.id
+            LEFT JOIN vp_users u ON a.created_by = u.id
+            LEFT JOIN vp_activity_time_slots ats ON a.id = ats.activity_id
+            LEFT JOIN vp_time_slots ts ON ats.time_slot_id = ts.id
             WHERE a.uses_time_slots = 1
         ";
         
@@ -1028,4 +1028,5 @@ class Activity extends Model
         return $result[0]['total'] ?? 0;
     }
 }
+
 

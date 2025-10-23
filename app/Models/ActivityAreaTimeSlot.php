@@ -35,7 +35,7 @@ class ActivityAreaTimeSlot extends Model
                 aa.area_name,
                 aa.color_code
             FROM {$this->table} aats
-            JOIN activity_areas aa ON aa.id = aats.area_id
+            JOIN vp_activity_areas aa ON aa.id = aats.area_id
             WHERE aats.is_active = 1
             ORDER BY aa.area_name ASC
         ";
@@ -109,4 +109,5 @@ class ActivityAreaTimeSlot extends Model
         return $timeSlotModel->generateTimeSlots($startTime, $endTime, $duration);
     }
 }
+
 

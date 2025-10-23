@@ -332,7 +332,7 @@ class Student extends Model
     public function getMostActiveStudents($limit = 10) {
         $sql = "SELECT s.*, COUNT(e.id) as etut_count
                 FROM {$this->table} s
-                LEFT JOIN etut_applications e ON s.id = e.student_id
+                LEFT JOIN vp_etut_applications e ON s.id = e.student_id
                 WHERE s.is_active = 1
                 GROUP BY s.id
                 ORDER BY etut_count DESC
@@ -368,5 +368,6 @@ class Student extends Model
         ], ['orderBy' => 'first_name ASC, last_name ASC']);
     }
 }
+
 
 
