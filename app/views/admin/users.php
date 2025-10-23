@@ -246,7 +246,10 @@ function deleteUser(userId) {
     if (confirm('Bu kullanıcıyı silmek istediğinizden emin misiniz?')) {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
         
-        fetch(`<?= url('/api/users/') ?>${userId}/delete`, {
+        // Construct the proper API endpoint
+        const apiUrl = `/api/users/${userId}/delete`;
+        
+        fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
