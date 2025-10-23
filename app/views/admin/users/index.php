@@ -186,6 +186,8 @@ function deleteUser(userId, username) {
     userToDelete = userId;
     document.getElementById('deleteUsername').textContent = username;
     document.getElementById('deleteModal').classList.remove('hidden');
+    // Button'u aktif yap
+    document.getElementById('confirmDelete').disabled = false;
 }
 
 function closeDeleteModal() {
@@ -194,7 +196,12 @@ function closeDeleteModal() {
 }
 
 document.getElementById('confirmDelete').addEventListener('click', async function() {
-    if (!userToDelete) return;
+    if (!userToDelete) {
+        console.error('No user selected for deletion');
+        return;
+    }
+    
+    console.log('Delete button clicked for user:', userToDelete);
     
     // Disable button to prevent double clicks
     this.disabled = true;
@@ -205,36 +212,50 @@ document.getElementById('confirmDelete').addEventListener('click', async functio
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
         
         // Debug log
-        console.log('Delete User:', userToDelete);
-        console.log('CSRF Token:', csrfToken ? csrfToken.substring(0, 20) + '...' : 'EMPTY');
+        console.log('Delete User ID:', userToDelete);
+        console.log('CSRF Token exists:', !!csrfToken);
+        console.log('CSRF Token preview:', csrfToken ? csrfToken.substring(0, 20) + '...' : 'EMPTY');
         
         if (!csrfToken) {
             throw new Error('CSRF token bulunamadı - sayfayı yenileyin');
         }
         
-        const response = await fetch(`/admin/users/${userToDelete}/delete`, {
+        const deleteUrl = `${window.location.origin}/portalv2/admin/users/${userToDelete}/delete`;
+        console.log('Fetch URL:', deleteUrl);
+        
+        const requestBody = {
+            id: userToDelete,
+            csrf_token: csrfToken
+        };
+        console.log('Request body:', requestBody);
+        
+        const response = await fetch(deleteUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                id: userToDelete,
-                csrf_token: csrfToken
-            })
+            body: JSON.stringify(requestBody)
         });
         
         console.log('Response Status:', response.status);
+        console.log('Response Headers:', {
+            'content-type': response.headers.get('content-type')
+        });
+        
         const data = await response.json();
         console.log('Response Data:', data);
         
         if (data.success) {
+            console.log('Delete successful, reloading page...');
             window.location.reload();
         } else {
+            console.error('Delete failed:', data.message);
             alert(data.message || 'Kullanıcı silinemedi');
             closeDeleteModal();
         }
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error during delete:', error);
+        console.error('Error stack:', error.stack);
         alert('Bir hata oluştu: ' + error.message);
         closeDeleteModal();
     } finally {
