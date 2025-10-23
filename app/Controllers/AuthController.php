@@ -26,7 +26,11 @@ class AuthController extends Controller
     {
         // Zaten giriş yapmışsa role'a göre yönlendir
         if ($this->auth->check()) {
-            $user = currentUser();
+            $user = Auth::user();
+            if (!$user) {
+                $user = currentUser();
+            }
+            
             $role = $user['role_slug'] ?? $user['role'] ?? 'user';
             
             if ($role === 'teacher') {
@@ -73,6 +77,11 @@ class AuthController extends Controller
             if ($result['success']) {
                 // Başarılı login - role'a göre yönlendir
                 $user = currentUser();
+                if (!$user || !isset($user['role_slug'])) {
+                    // Session'ı yenile
+                    $user = Auth::user();
+                }
+                
                 $role = $user['role_slug'] ?? $user['role'] ?? 'user';
                 
                 // Teacher ise öğrenci ara sayfasına, diğerleri dashboard'a
