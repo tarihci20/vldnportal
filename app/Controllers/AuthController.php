@@ -68,9 +68,9 @@ class AuthController extends Controller
                 $user = currentUser();
                 $role = $user['role_slug'] ?? $user['role'] ?? 'user';
                 
-                // Teacher rolüne sadece students sayfası açık ise, oraya yönlendir
+                // Teacher rolüne sadece student-search sayfası açık
                 if ($role === 'teacher') {
-                    redirect('/students');
+                    redirect('/student-search');
                 } else {
                     redirect('/dashboard');
                 }

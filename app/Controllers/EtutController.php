@@ -35,7 +35,7 @@ class EtutController extends Controller
             $user = currentUser();
             $role = $user['role_slug'] ?? $user['role'] ?? 'user';
             if ($role === 'teacher') {
-                redirect('/students');
+                redirect('/student-search');
             } else {
                 redirect('/');
             }

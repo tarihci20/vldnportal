@@ -19,11 +19,12 @@ DELETE FROM `vp_role_page_permissions` WHERE role_id = 3;
 
 -- STEP 5: Tüm sayfalar için permissions oluştur
 -- ADMIN tarafından önceden oluşturulmuş olan tüm sayfaları al
+-- Teacher sadece 'student-search' sayfasına VIEW yetkisi alır
 INSERT INTO `vp_role_page_permissions` (`role_id`, `page_id`, `can_view`, `can_create`, `can_edit`, `can_delete`, `created_at`, `updated_at`)
 SELECT 
     3 as role_id,
     p.id as page_id,
-    IF(p.page_key = 'students', 1, 0) as can_view,
+    IF(p.page_key = 'student-search' OR p.page_key = 'student_search', 1, 0) as can_view,
     0 as can_create,
     0 as can_edit,
     0 as can_delete,
