@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 24 Eki 2025, 00:02:14
+-- Üretim Zamanı: 24 Eki 2025, 00:18:36
 -- Sunucu sürümü: 10.11.9-MariaDB
 -- PHP Sürümü: 8.3.19
 
@@ -393,21 +393,7 @@ INSERT INTO `vp_role_page_permissions` (`id`, `role_id`, `page_id`, `can_view`, 
 (4, 1, 4, 1, 1, 1, 1, '2025-10-23 15:34:21', '2025-10-23 15:34:21'),
 (5, 1, 5, 1, 1, 1, 1, '2025-10-23 15:34:21', '2025-10-23 15:34:21'),
 (6, 1, 6, 1, 1, 1, 1, '2025-10-23 15:34:21', '2025-10-23 15:34:21'),
-(7, 1, 7, 1, 1, 1, 1, '2025-10-23 15:34:21', '2025-10-23 15:34:21'),
-(22, 2, 1, 0, 0, 0, 0, '2025-10-23 16:08:51', '2025-10-23 16:08:51'),
-(23, 2, 2, 1, 0, 0, 0, '2025-10-23 16:08:51', '2025-10-23 16:08:51'),
-(24, 2, 3, 0, 0, 0, 0, '2025-10-23 16:08:51', '2025-10-23 16:08:51'),
-(25, 2, 4, 0, 0, 0, 0, '2025-10-23 16:08:51', '2025-10-23 16:08:51'),
-(26, 2, 5, 0, 0, 0, 0, '2025-10-23 16:08:51', '2025-10-23 16:08:51'),
-(27, 2, 6, 0, 0, 0, 0, '2025-10-23 16:08:51', '2025-10-23 16:08:51'),
-(28, 2, 7, 0, 0, 0, 0, '2025-10-23 16:08:51', '2025-10-23 16:08:51'),
-(29, 2, 8, 0, 0, 0, 0, '2025-10-23 16:08:51', '2025-10-23 16:08:51'),
-(30, 2, 9, 0, 0, 0, 0, '2025-10-23 16:08:51', '2025-10-23 16:08:51'),
-(31, 2, 10, 0, 0, 0, 0, '2025-10-23 16:08:52', '2025-10-23 16:08:52'),
-(32, 2, 11, 0, 0, 0, 0, '2025-10-23 16:08:52', '2025-10-23 16:08:52'),
-(33, 2, 12, 0, 0, 0, 0, '2025-10-23 16:08:52', '2025-10-23 16:08:52'),
-(34, 2, 13, 0, 0, 0, 0, '2025-10-23 16:08:52', '2025-10-23 16:08:52'),
-(35, 2, 14, 0, 0, 0, 0, '2025-10-23 16:08:52', '2025-10-23 16:08:52');
+(7, 1, 7, 1, 1, 1, 1, '2025-10-23 15:34:21', '2025-10-23 15:34:21');
 
 -- --------------------------------------------------------
 
@@ -1224,7 +1210,8 @@ CREATE TABLE `vp_users` (
 INSERT INTO `vp_users` (`id`, `username`, `email`, `password_hash`, `full_name`, `role_id`, `is_active`, `phone`, `profile_photo`, `google_id`, `can_change_password`, `last_login`, `last_login_ip`, `created_at`, `updated_at`, `last_login_at`, `sessions_valid_from`) VALUES
 (1, 'tarihci20', 'admin@vildanportal.com', '$2y$10$O2zm8VliTF6.2XujECWOLOIn8PfwqLjByxcrWuqT2rlfMYmSWR3V6', 'Admin Kullanıcı', 1, 1, NULL, NULL, NULL, 1, '2025-10-12 16:59:36', '185.118.178.11', '2025-10-08 19:18:53', '2025-10-23 20:50:12', '2025-10-23 23:50:12', '2025-10-12 18:20:35'),
 (2, 'vildan', 'vildankoleji@gmail.com', '$2y$10$fW39Dg.LI1QQ0mjZv8kd4uaBxj1iS.NnFC2H/JagiwBMn2wDGpw8m', 'Vildan Öğretmen', 3, 1, NULL, NULL, NULL, 0, NULL, '185.118.178.11', '2025-10-12 19:55:18', '2025-10-23 19:40:26', '2025-10-23 22:40:26', '2025-10-12 20:55:18'),
-(3, 'fatma', 'fatma@dede.com', '$2y$10$mETgsu0zyCuOr4W.ojbSSebNy7iHG7hKaTHgHfDryMKrZsOrNGG16', 'fatma', 3, 1, NULL, NULL, NULL, 0, NULL, '::1', '2025-10-12 20:07:41', '2025-10-23 20:52:44', '2025-10-12 23:29:29', '2025-10-12 21:07:41');
+(3, 'fatma', 'fatma@dede.com', '$2y$10$mETgsu0zyCuOr4W.ojbSSebNy7iHG7hKaTHgHfDryMKrZsOrNGG16', 'fatma', 3, 1, NULL, NULL, NULL, 0, NULL, '::1', '2025-10-12 20:07:41', '2025-10-23 20:52:44', '2025-10-12 23:29:29', '2025-10-12 21:07:41'),
+(4, 'qwerty', 'qwerty@gf.com', '$2y$10$8ucmb3Tk99bVkXaGO6q7oOjBe4.NjG4InJW7.FJTz54BoARkrtzhW', 'sdfsf sdfs', 2, 1, NULL, NULL, NULL, 1, NULL, NULL, '2025-10-23 21:18:01', '2025-10-23 21:18:01', NULL, '2025-10-23 21:18:01');
 
 -- --------------------------------------------------------
 
@@ -1276,6 +1263,14 @@ ALTER TABLE `vp_students`
   ADD UNIQUE KEY `unique_tc_no` (`tc_no`);
 
 --
+-- Tablo için indeksler `vp_users`
+--
+ALTER TABLE `vp_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_username` (`username`),
+  ADD UNIQUE KEY `unique_email` (`email`);
+
+--
 -- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
 --
 
@@ -1296,6 +1291,12 @@ ALTER TABLE `vp_role_page_permissions`
 --
 ALTER TABLE `vp_students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1329;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `vp_users`
+--
+ALTER TABLE `vp_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
