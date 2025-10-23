@@ -142,7 +142,7 @@
                 </p>
             </div>
             <div class="items-center px-4 py-3">
-                <button id="confirmDelete" class="px-4 py-2 bg-red-600 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                <button id="confirmDelete" class="px-4 py-2 bg-red-600 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" disabled>
                     Evet, Sil
                 </button>
                 <button onclick="closeDeleteModal()" class="mt-3 px-4 py-2 bg-gray-100 text-gray-700 text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
@@ -196,10 +196,23 @@ function closeDeleteModal() {
 document.getElementById('confirmDelete').addEventListener('click', async function() {
     if (!userToDelete) return;
     
+    // Disable button to prevent double clicks
+    this.disabled = true;
+    const originalText = this.textContent;
+    this.textContent = 'Siliniyor...';
+    
     try {
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
         
-        const response = await fetch('/admin/users/delete', {
+        // Debug log
+        console.log('Delete User:', userToDelete);
+        console.log('CSRF Token:', csrfToken ? csrfToken.substring(0, 20) + '...' : 'EMPTY');
+        
+        if (!csrfToken) {
+            throw new Error('CSRF token bulunamadı - sayfayı yenileyin');
+        }
+        
+        const response = await fetch(`/admin/users/${userToDelete}/delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -210,7 +223,9 @@ document.getElementById('confirmDelete').addEventListener('click', async functio
             })
         });
         
+        console.log('Response Status:', response.status);
         const data = await response.json();
+        console.log('Response Data:', data);
         
         if (data.success) {
             window.location.reload();
@@ -220,8 +235,12 @@ document.getElementById('confirmDelete').addEventListener('click', async functio
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Bir hata oluştu');
+        alert('Bir hata oluştu: ' + error.message);
         closeDeleteModal();
+    } finally {
+        // Re-enable button
+        this.disabled = false;
+        this.textContent = originalText;
     }
 });
 

@@ -389,6 +389,8 @@ class AdminController extends Controller
         try {
             error_log("=== DELETE USER START ===");
             error_log("Route parameter ID: $id");
+            error_log("Session CSRF Token: " . (isset($_SESSION['csrf_token']) ? substr($_SESSION['csrf_token'], 0, 20) . '...' : 'NOT SET'));
+            error_log("Session CSRF Token Time: " . ($_SESSION['csrf_token_time'] ?? 'NOT SET'));
             
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 error_log("Invalid request method: " . $_SERVER['REQUEST_METHOD']);
@@ -404,10 +406,17 @@ class AdminController extends Controller
             error_log("Using ID: $id");
             
             $csrfToken = $input['csrf_token'] ?? '';
+            error_log("Received CSRF Token: " . (empty($csrfToken) ? 'EMPTY' : substr($csrfToken, 0, 20) . '...'));
+            
+            if (!$csrfToken) {
+                error_log("CSRF Token is empty - this is the issue!");
+                echo json_encode(['success' => false, 'message' => 'CSRF token bulunamadı - sayfayı yenileyin']);
+                exit;
+            }
             
             if (!validateCsrfToken($csrfToken)) {
-                error_log("Invalid CSRF token");
-                echo json_encode(['success' => false, 'message' => 'Geçersiz token']);
+                error_log("CSRF token validation failed");
+                echo json_encode(['success' => false, 'message' => 'Geçersiz token - lütfen sayfayı yenileyin']);
                 exit;
             }
             
