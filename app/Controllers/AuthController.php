@@ -24,20 +24,9 @@ class AuthController extends Controller
      */
     public function loginPage()
     {
-        // Zaten giriş yapmışsa role'a göre yönlendir
+        // Zaten giriş yapmışsa öğrenci ara sayfasına yönlendir
         if ($this->auth->check()) {
-            $user = Auth::user();
-            if (!$user) {
-                $user = currentUser();
-            }
-            
-            $role = $user['role_slug'] ?? $user['role'] ?? 'user';
-            
-            if ($role === 'teacher') {
-                redirect('/student-search');
-            } else {
-                redirect('/dashboard');
-            }
+            redirect('/student-search');
         }
 
         // Sadece login view'ı, layout olmadan göster
@@ -75,21 +64,8 @@ class AuthController extends Controller
             $result = $this->auth->login($email, $password, $remember);
 
             if ($result['success']) {
-                // Başarılı login - role'a göre yönlendir
-                $user = currentUser();
-                if (!$user || !isset($user['role_slug'])) {
-                    // Session'ı yenile
-                    $user = Auth::user();
-                }
-                
-                $role = $user['role_slug'] ?? $user['role'] ?? 'user';
-                
-                // Teacher ise öğrenci ara sayfasına, diğerleri dashboard'a
-                if ($role === 'teacher') {
-                    redirect('/student-search');
-                } else {
-                    redirect('/dashboard');
-                }
+                // Başarılı login - herkes için /student-search'e yönlendir
+                redirect('/student-search');
             } else {
                 $message = $result['message'] ?? 'Kullanıcı adı veya şifre hatalı!';
                 setFlashMessage('error', $message);
