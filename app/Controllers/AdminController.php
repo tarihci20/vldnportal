@@ -646,7 +646,7 @@ class AdminController extends Controller
                 
                 $permissionData[] = [
                     'page_id' => $page['id'],
-                    'page_name' => $page['page_name'] ?? '',
+                    'page_name' => mb_convert_encoding($page['page_name'] ?? '', 'UTF-8', 'UTF-8'),
                     'page_key' => $page['page_key'] ?? '',
                     'page_url' => $page['page_url'] ?? '',
                     'can_view' => $perm ? ($perm['can_view'] ?? 0) : 0,
