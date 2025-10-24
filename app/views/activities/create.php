@@ -590,7 +590,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             for (const checkDate of datesToCheck) {
                 try {
-                    const response = await fetch('<?= url('/api/activities/check-slots-conflict') ?>', {
+                    const fetchUrl = '<?= url('/api/activities/check-slots-conflict') ?>';
+                    console.log('Checking conflicts for:', fetchUrl, 'date:', checkDate);
+                    
+                    const response = await fetch(fetchUrl, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -602,12 +605,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         })
                     });
                     
+                    console.log('Check response status:', response.status);
+                    
                     if (!response.ok) {
-                        console.error('Response not OK:', response.status, response.statusText);
+                        const text = await response.text();
+                        console.error('Response error:', response.status, text.substring(0, 300));
                         continue;
                     }
                     
                     const data = await response.json();
+                    console.log('Check response data:', data);
                     
                     if (data.success && data.has_conflict) {
                         allConflicts.push({
@@ -617,7 +624,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         conflictCount++;
                     }
                 } catch (error) {
-                    console.error('Fetch error for date', checkDate, ':', error);
+                    console.error('Fetch error:', error.message);
                 }
             }
             
@@ -655,25 +662,34 @@ document.addEventListener('DOMContentLoaded', function() {
         
         for (const checkDate of datesToCheck) {
             try {
-                const response = await fetch('<?= url('/api/activities/check-slots-conflict') ?>', {
+                const fetchUrl = '<?= url('/api/activities/check-slots-conflict') ?>';
+                const requestBody = {
+                    area_id: areaId,
+                    date: checkDate,
+                    time_slot_ids: selectedSlots
+                };
+                
+                console.log('Fetching:', fetchUrl, 'with:', requestBody);
+                
+                const response = await fetch(fetchUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        area_id: areaId,
-                        date: checkDate,
-                        time_slot_ids: selectedSlots
-                    })
+                    body: JSON.stringify(requestBody)
                 });
                 
+                console.log('Response status:', response.status, response.statusText);
+                
                 if (!response.ok) {
-                    console.error('Response not OK:', response.status, response.statusText);
+                    const text = await response.text();
+                    console.error('Response not OK:', response.status, response.statusText, 'Body:', text.substring(0, 300));
                     // Hata olsa bile devam et
                     continue;
                 }
                 
                 const data = await response.json();
+                console.log('Response JSON:', data);
                 
                 if (data.success && data.has_conflict) {
                     allConflicts.push({
@@ -683,7 +699,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     conflictCount++;
                 }
             } catch (error) {
-                console.error('Fetch error for date', checkDate, ':', error);
+                console.error('Fetch error for date', checkDate, ':', error.message);
                 // Hata olsa bile devam et
             }
         }
