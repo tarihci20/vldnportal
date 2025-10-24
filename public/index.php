@@ -128,6 +128,7 @@ use Core\Router;
 $router = new Router(BASE_PATH);
 
 // Route dosyalarını yükle
+require_once ROOT_PATH . '/routes/api.php';
 require_once ROOT_PATH . '/routes/web.php';
 
 
