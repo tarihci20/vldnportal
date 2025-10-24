@@ -39,11 +39,18 @@ $pageTitle = $data['title'] ?? 'Etkinlik Alanı Seçin';
                    class="group block">
                     <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-teal-400 h-full flex flex-col">
                         
-                        <!-- Renkli Background Section -->
-                        <div class="h-24 flex items-center justify-center relative overflow-hidden transition-all"
-                             style="background: linear-gradient(135deg, <?= $area['color_code'] ?? '#3b82f6' ?> 0%, <?= $area['color_code'] ?? '#3b82f6' ?>dd 100%);
-                                    opacity: 0.9;
-                                    background-color: <?= $area['color_code'] ?? '#3b82f6' ?>;">
+                        <!-- Image or Color Background Section -->
+                        <div class="h-32 flex items-center justify-center relative overflow-hidden transition-all bg-cover bg-center"
+                             <?php if (!empty($area['area_image'])): ?>
+                                 style="background-image: url('<?= url('/assets/uploads/' . esc($area['area_image'])) ?>'); background-size: cover; background-position: center;"
+                             <?php else: ?>
+                                 style="background: linear-gradient(135deg, <?= $area['color_code'] ?? '#3b82f6' ?> 0%, <?= $area['color_code'] ?? '#3b82f6' ?>dd 100%); opacity: 0.9;"
+                             <?php endif; ?>>
+                            
+                            <!-- Overlay for better text readability if image exists -->
+                            <?php if (!empty($area['area_image'])): ?>
+                                <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-10 transition-opacity"></div>
+                            <?php endif; ?>
                         </div>
                         
                         <!-- Card Content -->

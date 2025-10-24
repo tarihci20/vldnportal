@@ -29,10 +29,10 @@ class ActivityArea extends Model
             'order' => ['area_name' => 'ASC']
         ]);
     }    /**
-     * API için liste (ID ve isim)
+     * API için liste (ID, isim, görsel ve renk)
      */
     public function getForSelect() {
-        $sql = "SELECT id, area_name, color_code, default_slot_duration
+        $sql = "SELECT id, area_name, color_code, area_image, default_slot_duration
                 FROM {$this->table}
                 WHERE is_active = 1
                 ORDER BY sort_order ASC, area_name ASC";
