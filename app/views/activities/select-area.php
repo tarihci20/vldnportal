@@ -42,7 +42,7 @@ $pageTitle = $data['title'] ?? 'Etkinlik Alanı Seçin';
                         <!-- Image or Color Background Section -->
                         <div class="h-32 flex items-center justify-center relative overflow-hidden transition-all bg-cover bg-center"
                              <?php if (!empty($area['area_image'])): ?>
-                                 style="background-image: url('<?= url('/assets/uploads/' . esc($area['area_image'])) ?>'); background-size: cover; background-position: center;"
+                                 style="background-image: url('<?= url('/assets/uploads/activity-areas/' . esc($area['area_image'])) ?>'); background-size: cover; background-position: center;"
                              <?php else: ?>
                                  style="background: linear-gradient(135deg, <?= $area['color_code'] ?? '#3b82f6' ?> 0%, <?= $area['color_code'] ?? '#3b82f6' ?>dd 100%); opacity: 0.9;"
                              <?php endif; ?>>
@@ -81,13 +81,13 @@ $pageTitle = $data['title'] ?? 'Etkinlik Alanı Seçin';
     </div>
     
     <!-- Geri Dön Butonu -->
-    <div class="mt-12 text-center">
+    <div class="mt-12 flex justify-center">
         <a href="<?= url('/activities') ?>" 
-           class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
-            Etkinliklere Geri Dön
+            <span>Etkinliklere Geri Dön</span>
         </a>
     </div>
 </div>
