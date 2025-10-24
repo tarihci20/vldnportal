@@ -16,7 +16,9 @@ register_shutdown_function(function() {
 // 0. HATA AYIKLAMA KODU (Geliştirme için)
 // ======================================================================
 error_reporting(E_ALL);
-ini_set('display_errors', '1'); // Hataları ekranda göster
+// AÇIK HATALAR: AJAX istekleri JSON beklediği için display_errors KAPALı olmalı
+// Hatalar error_log'a gidiyor
+ini_set('display_errors', '0'); // Hataları ekranda GÖSTERME (JSON'ı bozuyor)
 
 
 // ======================================================================
