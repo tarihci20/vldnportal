@@ -633,6 +633,28 @@ class AdminController extends Controller
             $permissions = $this->roleModel->getPermissionsByRoleId($roleId);
             $pages = $this->roleModel->getAllPages();
             
+            // Rol türüne göre sayfaları filtrele
+            $pages = array_filter($pages, function($page) use ($role) {
+                $etutType = $page['etut_type'] ?? 'all';
+                
+                // 'all' sayfaları herkese göster
+                if ($etutType === 'all') {
+                    return true;
+                }
+                
+                // ortaokul ve lise sayfaları için - sadece sistem yöneticileri ve öğretmenlere göster
+                if (in_array($role['role_name'], ['admin', 'teacher', 'secretary', 'principal'])) {
+                    return true;
+                }
+                
+                // Müdür yardımcısı için - tüm sayfaları göster
+                if ($role['role_name'] === 'vice_principal') {
+                    return true;
+                }
+                
+                return false;
+            });
+            
             // Her sayfa için izin bilgisini hazırla
             $permissionData = [];
             foreach ($pages as $page) {
@@ -844,11 +866,17 @@ class AdminController extends Controller
      * Rol Kaydet
      */
     public function storeRole() {
+        error_log("=== storeRole method called ===");
+        error_log("REQUEST_METHOD: " . $_SERVER['REQUEST_METHOD']);
+        error_log("POST data: " . json_encode($_POST));
+        
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            error_log("Not a POST request");
             redirect('/admin/roles');
         }
 
         if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+            error_log("CSRF token validation failed");
             setFlashMessage('Geçersiz form token.', 'error');
             redirect('/admin/roles/create');
         }
@@ -857,7 +885,10 @@ class AdminController extends Controller
         $displayName = trim($_POST['display_name'] ?? '');
         $description = trim($_POST['description'] ?? '');
 
+        error_log("Role data - name: $roleName, displayName: $displayName");
+
         if (empty($roleName) || empty($displayName)) {
+            error_log("Empty role name or display name");
             setFlashMessage('Rol adı ve gösterim adı gerekli.', 'error');
             redirect('/admin/roles/create');
         }
@@ -870,11 +901,14 @@ class AdminController extends Controller
                 'is_active' => 1
             ];
 
+            error_log("Calling roleModel->create with data: " . json_encode($data));
             $roleId = $this->roleModel->create($data);
+            error_log("roleModel->create returned: " . var_export($roleId, true));
             
             if ($roleId) {
                 // TODO: logActivity eklenecek - şimdilik devre dışı
                 // // logActivity('role_created', 'roles', $roleId, null, ['role_name' => $roleName]);
+                error_log("Role created successfully with ID: $roleId");
                 setFlashMessage('Rol başarıyla oluşturuldu.', 'success');
                 redirect('/admin/roles/' . $roleId . '/edit');
             } else {
@@ -883,7 +917,7 @@ class AdminController extends Controller
                 redirect('/admin/roles/create');
             }
         } catch (\Exception $e) {
-            error_log("Role creation error: " . $e->getMessage());
+            error_log("Role creation exception: " . $e->getMessage() . " | Trace: " . $e->getTraceAsString());
             setFlashMessage('Hata: ' . $e->getMessage(), 'error');
             redirect('/admin/roles/create');
         }
@@ -902,6 +936,29 @@ class AdminController extends Controller
 
         $permissions = $this->roleModel->getPermissionsByRoleId($id);
         $pages = $this->roleModel->getAllPages();
+        
+        // Rol türüne göre sayfaları filtrele
+        $pages = array_filter($pages, function($page) use ($role) {
+            $etutType = $page['etut_type'] ?? 'all';
+            
+            // 'all' sayfaları herkese göster
+            if ($etutType === 'all') {
+                return true;
+            }
+            
+            // ortaokul ve lise sayfaları için - sadece sistem yöneticileri ve öğretmenlere göster
+            if (in_array($role['role_name'], ['admin', 'teacher', 'secretary', 'principal'])) {
+                return true;
+            }
+            
+            // Müdür yardımcısı için - kendisine atanan etüt_type sayfalarını göster
+            if ($role['role_name'] === 'vice_principal') {
+                // NOT: vice_principal için db'de etut_type kaydedilmeli, ama şimdilik tüm sayfaları göster
+                return true;
+            }
+            
+            return false;
+        });
 
         $this->view('admin/roles/edit', [
             'title' => 'Rol Düzenle: ' . $role['display_name'],
