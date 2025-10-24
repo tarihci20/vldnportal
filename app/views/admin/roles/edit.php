@@ -114,7 +114,7 @@
                     <h2 class="text-lg font-semibold text-red-600 mb-4">Rolü Sil</h2>
                     <p class="text-sm text-gray-600 mb-4">Bu işlem geri alınamaz ve bu role sahip tüm kullanıcılar etkilenecek.</p>
                     
-                    <?php if (!in_array($role['role_name'], ['admin', 'teacher', 'student'])): ?>
+                    <?php if (!in_array($role['role_name'], ['admin', 'teacher', 'student', 'secretary', 'principal', 'vice_principal'])): ?>
                         <button onclick="deleteRole(<?= $role['id'] ?>)" class="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
                             Rolü Sil
                         </button>
