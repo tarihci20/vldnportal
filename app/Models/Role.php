@@ -10,6 +10,7 @@ class Role extends Model {
     }
 
     protected $table = 'vp_roles';
+    protected $timestamps = false; // DB otomatik olarak timestamp'i yönetiyor
     
     /**
      * Tüm rolleri getir
@@ -52,36 +53,6 @@ class Role extends Model {
         } catch (\Exception $e) {
             error_log("Role getRoleByName error: " . $e->getMessage());
             return null;
-        }
-    }
-
-    /**
-     * Yeni rol oluştur
-     */
-    public function create($data) {
-        try {
-            $sql = "INSERT INTO {$this->table} (role_name, display_name, description, is_active) 
-                    VALUES (:role_name, :display_name, :description, :is_active)";
-            
-            $this->getDb()->query($sql);
-            $this->getDb()->bind(':role_name', $data['role_name']);
-            $this->getDb()->bind(':display_name', $data['display_name']);
-            $this->getDb()->bind(':description', $data['description'] ?? '');
-            $this->getDb()->bind(':is_active', $data['is_active'] ?? 1);
-            
-            $result = $this->getDb()->execute();
-            
-            if ($result) {
-                $lastId = $this->getDb()->lastInsertId();
-                error_log("Role created successfully with ID: " . $lastId);
-                return $lastId;
-            }
-            
-            error_log("Role create execute failed. Error: " . $this->getDb()->getError() . " | SQL: " . $sql);
-            return false;
-        } catch (\Exception $e) {
-            error_log("Role create exception: " . $e->getMessage() . " | File: " . $e->getFile() . " | Line: " . $e->getLine());
-            return false;
         }
     }
 
