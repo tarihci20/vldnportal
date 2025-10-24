@@ -873,7 +873,7 @@ class AdminController extends Controller
             $roleId = $this->roleModel->create($data);
             
             if ($roleId) {
-                logActivity('role_created', 'roles', $roleId, null, ['role_name' => $roleName]);
+                // logActivity('role_created', 'roles', $roleId, null, ['role_name' => $roleName]);
                 setFlashMessage('Rol başarıyla oluşturuldu.', 'success');
                 redirect('/admin/roles/' . $roleId . '/edit');
             } else {
