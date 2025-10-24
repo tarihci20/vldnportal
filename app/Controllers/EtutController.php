@@ -65,12 +65,6 @@ class EtutController extends Controller
         
         $formType = 'ortaokul';
         $applications = $this->etutModel->getByFormType($formType);
-        // Debug: write a compact representation of the first application to logs to verify keys
-        if (!empty($applications) && is_array($applications)) {
-            $first = $applications[0];
-            $logPath = BASE_PATH . '/storage/logs/etut_list_debug.log';
-            @file_put_contents($logPath, date('Y-m-d H:i:s') . "\n" . json_encode(array_keys($first), JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND);
-        }
 
         $settingsModel = new \App\Models\EtutFormSettings();
         $formActive = $settingsModel->isFormActive($formType);
@@ -101,12 +95,6 @@ class EtutController extends Controller
         
         $formType = 'lise';
         $applications = $this->etutModel->getByFormType($formType);
-        // Debug: write a compact representation of the first application to logs to verify keys
-        if (!empty($applications) && is_array($applications)) {
-            $first = $applications[0];
-            $logPath = BASE_PATH . '/storage/logs/etut_list_debug.log';
-            @file_put_contents($logPath, date('Y-m-d H:i:s') . "\n" . json_encode(array_keys($first), JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND);
-        }
 
         $settingsModel = new \App\Models\EtutFormSettings();
         $formActive = $settingsModel->isFormActive($formType);
