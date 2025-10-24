@@ -5,9 +5,14 @@
 ?>
 
 <!-- Header -->
-<div class="mb-8">
-    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Rol İzinleri</h1>
-    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Rol bazlı erişim kontrolü</p>
+<div class="mb-8 flex items-center justify-between">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Rol İzinleri</h1>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Rol bazlı erişim kontrolü</p>
+    </div>
+    <a href="<?= url('/admin/roles/create') ?>" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+        + Yeni Rol
+    </a>
 </div>
 
 <!-- Flash Messages -->

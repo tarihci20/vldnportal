@@ -830,4 +830,174 @@ class AdminController extends Controller
             $this->json(['success' => false, 'message' => 'Ayarlar güncellenirken hata oluştu']);
         }
     }
+
+    /**
+     * Rol Oluşturma Sayfası
+     */
+    public function createRole() {
+        $this->view('admin/roles/create', [
+            'title' => 'Yeni Rol Oluştur'
+        ]);
+    }
+
+    /**
+     * Rol Kaydet
+     */
+    public function storeRole() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/admin/roles');
+        }
+
+        if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+            setFlashMessage('Geçersiz form token.', 'error');
+            redirect('/admin/roles/create');
+        }
+
+        $roleName = trim($_POST['role_name'] ?? '');
+        $displayName = trim($_POST['display_name'] ?? '');
+        $description = trim($_POST['description'] ?? '');
+
+        if (empty($roleName) || empty($displayName)) {
+            setFlashMessage('Rol adı ve gösterim adı gerekli.', 'error');
+            redirect('/admin/roles/create');
+        }
+
+        try {
+            $data = [
+                'role_name' => $roleName,
+                'display_name' => $displayName,
+                'description' => $description,
+                'is_active' => 1
+            ];
+
+            $roleId = $this->roleModel->create($data);
+            
+            if ($roleId) {
+                logActivity('role_created', 'roles', $roleId, null, ['role_name' => $roleName]);
+                setFlashMessage('Rol başarıyla oluşturuldu.', 'success');
+                redirect('/admin/roles/' . $roleId . '/edit');
+            } else {
+                setFlashMessage('Rol oluşturma başarısız.', 'error');
+                redirect('/admin/roles/create');
+            }
+        } catch (\Exception $e) {
+            error_log("Role creation error: " . $e->getMessage());
+            setFlashMessage('Hata: ' . $e->getMessage(), 'error');
+            redirect('/admin/roles/create');
+        }
+    }
+
+    /**
+     * Rol Düzenleme Sayfası
+     */
+    public function editRole($id) {
+        $role = $this->roleModel->getRoleById($id);
+        
+        if (!$role) {
+            setFlashMessage('Rol bulunamadı.', 'error');
+            redirect('/admin/roles');
+        }
+
+        $permissions = $this->roleModel->getPermissionsByRoleId($id);
+        $pages = $this->roleModel->getAllPages();
+
+        $this->view('admin/roles/edit', [
+            'title' => 'Rol Düzenle: ' . $role['display_name'],
+            'role' => $role,
+            'permissions' => $permissions,
+            'pages' => $pages
+        ]);
+    }
+
+    /**
+     * Rol Güncelle
+     */
+    public function updateRole($id) {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect('/admin/roles');
+        }
+
+        if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+            setFlashMessage('Geçersiz form token.', 'error');
+            redirect('/admin/roles/' . $id . '/edit');
+        }
+
+        $role = $this->roleModel->getRoleById($id);
+        if (!$role) {
+            setFlashMessage('Rol bulunamadı.', 'error');
+            redirect('/admin/roles');
+        }
+
+        $displayName = trim($_POST['display_name'] ?? '');
+        $description = trim($_POST['description'] ?? '');
+
+        if (empty($displayName)) {
+            setFlashMessage('Gösterim adı gerekli.', 'error');
+            redirect('/admin/roles/' . $id . '/edit');
+        }
+
+        try {
+            $data = [
+                'display_name' => $displayName,
+                'description' => $description
+            ];
+
+            if ($this->roleModel->update($id, $data)) {
+                // İzinleri güncelle
+                $permissions = $_POST['permissions'] ?? [];
+                $this->saveUserPermissions($id, $permissions);
+
+                logActivity('role_updated', 'roles', $id, null, ['display_name' => $displayName]);
+                setFlashMessage('Rol başarıyla güncellendi.', 'success');
+            } else {
+                setFlashMessage('Rol güncellenirken hata oluştu.', 'error');
+            }
+        } catch (\Exception $e) {
+            error_log("Role update error: " . $e->getMessage());
+            setFlashMessage('Hata: ' . $e->getMessage(), 'error');
+        }
+
+        redirect('/admin/roles/' . $id . '/edit');
+    }
+
+    /**
+     * Rol Sil
+     */
+    public function deleteRole($id) {
+        header('Content-Type: application/json');
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(['success' => false, 'message' => 'Geçersiz istek']);
+            exit;
+        }
+
+        if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+            echo json_encode(['success' => false, 'message' => 'Geçersiz token']);
+            exit;
+        }
+
+        try {
+            $role = $this->roleModel->getRoleById($id);
+            if (!$role) {
+                echo json_encode(['success' => false, 'message' => 'Rol bulunamadı']);
+                exit;
+            }
+
+            // Default roller silinemesin
+            if (in_array($role['role_name'], ['admin', 'teacher', 'student'])) {
+                echo json_encode(['success' => false, 'message' => 'Sistem rolleri silinemez']);
+                exit;
+            }
+
+            if ($this->roleModel->delete($id)) {
+                logActivity('role_deleted', 'roles', $id, null, ['role_name' => $role['role_name']]);
+                echo json_encode(['success' => true, 'message' => 'Rol silindi']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Rol silinemedi']);
+            }
+        } catch (\Exception $e) {
+            error_log("Role delete error: " . $e->getMessage());
+            echo json_encode(['success' => false, 'message' => 'Hata: ' . $e->getMessage()]);
+        }
+    }
 }
