@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 24 Eki 2025, 18:54:15
+-- Üretim Zamanı: 24 Eki 2025, 20:20:06
 -- Sunucu sürümü: 10.11.9-MariaDB
 -- PHP Sürümü: 8.3.19
 
@@ -323,10 +323,10 @@ INSERT INTO `vp_pages` (`id`, `page_key`, `page_name`, `page_url`, `parent_id`, 
 (8, 'settings', 'Ayarlar', '/settings', NULL, 8, 1, '2025-10-08 19:18:52'),
 (9, 'time_slots', 'Saat Ayarları', '/time-slots', 8, 1, 1, '2025-10-08 19:18:52'),
 (10, 'system_settings', 'Sistem Ayarları', '/system-settings', 8, 2, 1, '2025-10-08 19:18:52'),
-(11, 'etut_area', 'Et??t Alan??', '/etut', NULL, 6, 1, '2025-10-16 16:21:24'),
-(12, 'etut_ortaokul', 'Ortaokul Et??t', '/etut?type=ortaokul', 11, 1, 1, '2025-10-16 16:21:24'),
-(13, 'etut_lise', 'Lise Et??t', '/etut?type=lise', 11, 2, 1, '2025-10-16 16:21:24'),
-(14, 'etut_settings', 'Et??t Form Ayarlar??', '/admin/etut-settings', 11, 3, 1, '2025-10-16 16:21:24');
+(11, 'etut_area', 'Etüt Alanı', '/etut', NULL, 6, 1, '2025-10-16 16:21:24'),
+(12, 'etut_ortaokul', 'Ortaokul Etüt', '/etut?type=ortaokul', 11, 1, 1, '2025-10-16 16:21:24'),
+(13, 'etut_lise', 'Lise Etüt', '/etut?type=lise', 11, 2, 1, '2025-10-16 16:21:24'),
+(14, 'etut_settings', 'Etüt Form Ayarları', '/admin/etut-settings', 11, 3, 1, '2025-10-16 16:21:24');
 
 -- --------------------------------------------------------
 
@@ -1255,7 +1255,7 @@ CREATE TABLE `vp_users` (
 --
 
 INSERT INTO `vp_users` (`id`, `username`, `email`, `password_hash`, `full_name`, `role_id`, `is_active`, `phone`, `profile_photo`, `google_id`, `can_change_password`, `last_login`, `last_login_ip`, `created_at`, `updated_at`, `last_login_at`, `sessions_valid_from`) VALUES
-(1, 'tarihci20', 'admin@vildanportal.com', '$2y$10$O2zm8VliTF6.2XujECWOLOIn8PfwqLjByxcrWuqT2rlfMYmSWR3V6', 'Admin Kullanıcı', 1, 1, NULL, NULL, NULL, 1, '2025-10-12 16:59:36', '185.118.178.11', '2025-10-08 19:18:53', '2025-10-24 15:47:16', '2025-10-24 18:47:16', '2025-10-12 18:20:35'),
+(1, 'tarihci20', 'admin@vildanportal.com', '$2y$10$O2zm8VliTF6.2XujECWOLOIn8PfwqLjByxcrWuqT2rlfMYmSWR3V6', 'Admin Kullanıcı', 1, 1, NULL, NULL, NULL, 1, '2025-10-12 16:59:36', '185.118.178.11', '2025-10-08 19:18:53', '2025-10-24 17:18:30', '2025-10-24 20:18:30', '2025-10-12 18:20:35'),
 (5, 'vildan', 'vildankoleji@gmail.com', '$2y$10$WilIrfKZ3/1rIxGoDrGriuTJA/NlLpTzAIfiBIUc0Dz5MxV8vrFBi', 'Vildan Öğretmen', 2, 1, NULL, NULL, NULL, 0, NULL, '185.118.178.11', '2025-10-23 21:33:11', '2025-10-23 21:40:55', '2025-10-24 00:40:55', '2025-10-23 21:33:11');
 
 -- --------------------------------------------------------
