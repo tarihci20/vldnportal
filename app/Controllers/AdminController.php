@@ -133,7 +133,7 @@ class AdminController extends Controller
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
         
         if ($this->userModel->update($userId, ['password' => $hashedPassword])) {
-            logActivity('password_changed', 'users', $userId, null, null);
+            // logActivity('password_changed', 'users', $userId, null, null);
             setFlashMessage('Şifreniz başarıyla değiştirildi.', 'success');
         } else {
             setFlashMessage('Şifre değiştirme başarısız.', 'error');
@@ -201,7 +201,7 @@ class AdminController extends Controller
         $userId = $this->userModel->create($data);
         
         if ($userId) {
-            logActivity('user_created', 'users', $userId, null, ['username' => $username, 'role' => $role]);
+            // logActivity('user_created', 'users', $userId, null, ['username' => $username, 'role' => $role]);
             setFlashMessage('Kullanıcı başarıyla oluşturuldu.', 'success');
         } else {
             setFlashMessage('Kullanıcı oluşturma başarısız.', 'error');
@@ -301,7 +301,7 @@ class AdminController extends Controller
                 $permissions = $_POST['permissions'] ?? [];
                 $this->saveUserPermissions($roleId, $permissions);
                 
-                logActivity('user_created', 'users', $userId, null, ['username' => $username]);
+                // logActivity('user_created', 'users', $userId, null, ['username' => $username]);
                 setFlashMessage('Kullanıcı başarıyla oluşturuldu.', 'success');
                 redirect('/admin/users');
             } else {
@@ -410,7 +410,7 @@ class AdminController extends Controller
             $permissions = $_POST['permissions'] ?? [];
             $this->saveUserPermissions($roleId, $permissions);
             
-            logActivity('user_updated', 'users', $id, null, ['username' => $username]);
+            // logActivity('user_updated', 'users', $id, null, ['username' => $username]);
             setFlashMessage('Kullanıcı başarıyla güncellendi.', 'success');
         } else {
             setFlashMessage('Kullanıcı güncellenirken bir hata oluştu.', 'error');
@@ -502,7 +502,7 @@ class AdminController extends Controller
             if ($deleteResult) {
                 // Log aktivitesi kaydı (hata olsa da devam et)
                 try {
-                    logActivity('user_deleted', 'users', $id, ['username' => $user['username']], null);
+                    // logActivity('user_deleted', 'users', $id, ['username' => $user['username']], null);
                 } catch (\Exception $logError) {
                     error_log("LogActivity Error: " . $logError->getMessage());
                 }
@@ -587,7 +587,7 @@ class AdminController extends Controller
         $count = $this->studentModel->countAll();
         
         if ($this->studentModel->deleteAll()) {
-            logActivity('all_students_deleted', 'students', null, ['count' => $count], null);
+            // logActivity('all_students_deleted', 'students', null, ['count' => $count], null);
             echo json_encode(['success' => true, 'message' => "{$count} öğrenci başarıyla silindi."]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Silme işlemi başarısız.']);
@@ -726,7 +726,7 @@ class AdminController extends Controller
         }
         
         if ($this->roleModel->updateRolePermissions($roleId, $permissionsArray)) {
-            logActivity('role_permissions_updated', 'roles', $roleId, null, ['permissions_count' => count($permissionsArray)]);
+            // logActivity('role_permissions_updated', 'roles', $roleId, null, ['permissions_count' => count($permissionsArray)]);
             echo json_encode(['success' => true, 'message' => 'İzinler başarıyla güncellendi']);
         } else {
             echo json_encode(['success' => false, 'message' => 'İzinler güncellenirken bir hata oluştu']);
@@ -874,7 +874,7 @@ class AdminController extends Controller
             
             if ($roleId) {
                 // TODO: logActivity eklenecek - şimdilik devre dışı
-                // logActivity('role_created', 'roles', $roleId, null, ['role_name' => $roleName]);
+                // // logActivity('role_created', 'roles', $roleId, null, ['role_name' => $roleName]);
                 setFlashMessage('Rol başarıyla oluşturuldu.', 'success');
                 redirect('/admin/roles/' . $roleId . '/edit');
             } else {
@@ -950,7 +950,7 @@ class AdminController extends Controller
                 $this->saveUserPermissions($id, $permissions);
 
                 // TODO: logActivity eklenecek
-                // logActivity('role_updated', 'roles', $id, null, ['display_name' => $displayName]);
+                // // logActivity('role_updated', 'roles', $id, null, ['display_name' => $displayName]);
                 setFlashMessage('Rol başarıyla güncellendi.', 'success');
             } else {
                 setFlashMessage('Rol güncellenirken hata oluştu.', 'error');
@@ -994,7 +994,7 @@ class AdminController extends Controller
 
             if ($this->roleModel->delete($id)) {
                 // TODO: logActivity eklenecek
-                // logActivity('role_deleted', 'roles', $id, null, ['role_name' => $role['role_name']]);
+                // // logActivity('role_deleted', 'roles', $id, null, ['role_name' => $role['role_name']]);
                 echo json_encode(['success' => true, 'message' => 'Rol silindi']);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Rol silinemedi']);
