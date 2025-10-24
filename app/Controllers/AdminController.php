@@ -1003,17 +1003,24 @@ class AdminController extends Controller
      * Rol Güncelle
      */
     public function updateRole($id) {
+        error_log("=== updateRole() START: id=$id ===");
+        error_log("REQUEST_METHOD: " . $_SERVER['REQUEST_METHOD']);
+        error_log("POST data keys: " . implode(", ", array_keys($_POST)));
+        
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            error_log("REQUEST_METHOD is not POST, redirecting");
             redirect('/admin/roles');
         }
 
         if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+            error_log("CSRF token validation failed");
             setFlashMessage('Geçersiz form token.', 'error');
             redirect('/admin/roles/' . $id . '/edit');
         }
 
         $role = $this->roleModel->getRoleById($id);
         if (!$role) {
+            error_log("Role not found: $id");
             setFlashMessage('Rol bulunamadı.', 'error');
             redirect('/admin/roles');
         }
@@ -1022,6 +1029,7 @@ class AdminController extends Controller
         $description = trim($_POST['description'] ?? '');
 
         if (empty($displayName)) {
+            error_log("Display name is empty");
             setFlashMessage('Gösterim adı gerekli.', 'error');
             redirect('/admin/roles/' . $id . '/edit');
         }
@@ -1035,7 +1043,13 @@ class AdminController extends Controller
             if ($this->roleModel->update($id, $data)) {
                 // İzinleri güncelle
                 $permissions = $_POST['permissions'] ?? [];
-                $this->saveUserPermissions($id, $permissions);
+                error_log("=== DEBUG updateRole: roleId=$id ===");
+                error_log("DEBUG updateRole: permissions count=" . count($permissions));
+                error_log("DEBUG updateRole: permissions array keys: " . implode(", ", array_keys($permissions)));
+                error_log("DEBUG updateRole: permissions data=" . json_encode($permissions));
+                
+                $saveResult = $this->saveUserPermissions($id, $permissions);
+                error_log("DEBUG updateRole: saveUserPermissions result=" . ($saveResult ? 'true' : 'false'));
 
                 // TODO: logActivity eklenecek
                 // // logActivity('role_updated', 'roles', $id, null, ['display_name' => $displayName]);
