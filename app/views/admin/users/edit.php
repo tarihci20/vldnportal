@@ -4,6 +4,14 @@
 /** @var array $pages */
 /** @var array $rolePermissions */
 $permissions = $rolePermissions ?? []; // Backward compatibility
+
+// UTF-8 encoding kontrol et ve düzelt
+foreach ($permissions as &$perm) {
+    if (isset($perm['page_name']) && !mb_check_encoding($perm['page_name'], 'UTF-8')) {
+        $perm['page_name'] = mb_convert_encoding($perm['page_name'], 'UTF-8', 'ISO-8859-9,UTF-8');
+    }
+}
+unset($perm);
 ?>
 <div class="p-4 sm:ml-64">
     <div class="p-4 mt-14 max-w-6xl mx-auto">

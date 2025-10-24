@@ -644,9 +644,16 @@ class AdminController extends Controller
                     }
                 }
                 
+                // Sayfa adını UTF-8 encode et
+                $pageName = $page['page_name'] ?? '';
+                // Eğer yanlış encode edilmişse düzelt
+                if (!mb_check_encoding($pageName, 'UTF-8')) {
+                    $pageName = mb_convert_encoding($pageName, 'UTF-8', 'ISO-8859-9,UTF-8');
+                }
+                
                 $permissionData[] = [
                     'page_id' => $page['id'],
-                    'page_name' => mb_convert_encoding($page['page_name'] ?? '', 'UTF-8', 'UTF-8'),
+                    'page_name' => $pageName,
                     'page_key' => $page['page_key'] ?? '',
                     'page_url' => $page['page_url'] ?? '',
                     'can_view' => $perm ? ($perm['can_view'] ?? 0) : 0,
