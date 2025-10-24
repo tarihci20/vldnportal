@@ -432,7 +432,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: formData
             });
             
-            const data = await response.json();
+            console.log('Response status:', response.status, response.statusText);
+            
+            let data;
+            try {
+                const text = await response.text();
+                console.log('Response text length:', text.length);
+                console.log('Response first 500 chars:', text.substring(0, 500));
+                data = JSON.parse(text);
+            } catch (parseError) {
+                console.error('JSON parse error:', parseError);
+                throw new Error('Sunucudan geçersiz yanıt alındı: ' + text.substring(0, 200));
+            }
+            
+            console.log('Parsed data:', data);
             
             if (data.success) {
                 // Başarılı mesaj göster
