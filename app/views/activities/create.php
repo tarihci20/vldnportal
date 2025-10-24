@@ -589,26 +589,35 @@ document.addEventListener('DOMContentLoaded', function() {
             let conflictCount = 0;
             
             for (const checkDate of datesToCheck) {
-                const response = await fetch('<?= url('/api/activities/check-slots-conflict') ?>', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        area_id: areaId,
-                        date: checkDate,
-                        time_slot_ids: selectedSlots
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success && data.has_conflict) {
-                    allConflicts.push({
-                        date: checkDate,
-                        conflict_count: data.conflict_count
+                try {
+                    const response = await fetch('<?= url('/api/activities/check-slots-conflict') ?>', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            area_id: areaId,
+                            date: checkDate,
+                            time_slot_ids: selectedSlots
+                        })
                     });
-                    conflictCount++;
+                    
+                    if (!response.ok) {
+                        console.error('Response not OK:', response.status, response.statusText);
+                        continue;
+                    }
+                    
+                    const data = await response.json();
+                    
+                    if (data.success && data.has_conflict) {
+                        allConflicts.push({
+                            date: checkDate,
+                            conflict_count: data.conflict_count
+                        });
+                        conflictCount++;
+                    }
+                } catch (error) {
+                    console.error('Fetch error for date', checkDate, ':', error);
                 }
             }
             
@@ -645,26 +654,37 @@ document.addEventListener('DOMContentLoaded', function() {
         let conflictCount = 0;
         
         for (const checkDate of datesToCheck) {
-            const response = await fetch('<?= url('/api/activities/check-slots-conflict') ?>', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    area_id: areaId,
-                    date: checkDate,
-                    time_slot_ids: selectedSlots
-                })
-            });
-            
-            const data = await response.json();
-            
-            if (data.success && data.has_conflict) {
-                allConflicts.push({
-                    date: checkDate,
-                    conflict_count: data.conflict_count
+            try {
+                const response = await fetch('<?= url('/api/activities/check-slots-conflict') ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        area_id: areaId,
+                        date: checkDate,
+                        time_slot_ids: selectedSlots
+                    })
                 });
-                conflictCount++;
+                
+                if (!response.ok) {
+                    console.error('Response not OK:', response.status, response.statusText);
+                    // Hata olsa bile devam et
+                    continue;
+                }
+                
+                const data = await response.json();
+                
+                if (data.success && data.has_conflict) {
+                    allConflicts.push({
+                        date: checkDate,
+                        conflict_count: data.conflict_count
+                    });
+                    conflictCount++;
+                }
+            } catch (error) {
+                console.error('Fetch error for date', checkDate, ':', error);
+                // Hata olsa bile devam et
             }
         }
         

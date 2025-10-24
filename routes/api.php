@@ -7,6 +7,7 @@
 use App\Controllers\Api\StudentApiController;
 use App\Controllers\Api\ActivityApiController;
 use App\Controllers\Api\EtutApiController;
+use App\Controllers\ActivityController;
 
 // ============================================
 // STUDENT API ROUTES
@@ -36,8 +37,8 @@ $router->get('/api/students/stats', [StudentApiController::class, 'stats']);
 // ============================================
 
 // Saat dilimleri ve çakışma kontrolü
-$router->get('/api/activities/available-slots', 'ActivityController@getAvailableTimeSlots');
-$router->post('/api/activities/check-slots-conflict', 'ActivityController@checkTimeSlotsConflict');
+$router->get('/api/activities/available-slots', [ActivityController::class, 'getAvailableTimeSlots']);
+$router->post('/api/activities/check-slots-conflict', [ActivityController::class, 'checkTimeSlotsConflict']);
 
 // Check time conflict (eski sistem uyumluluğu için)
 $router->post('/api/activities/check-conflict', [ActivityApiController::class, 'checkConflict']);
