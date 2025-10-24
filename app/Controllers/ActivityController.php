@@ -229,7 +229,7 @@ class ActivityController extends Controller
                 'activity_name' => trim($_POST['activity_name']),
                 'responsible_person' => trim($_POST['staff'] ?? ''),
                 'notes' => trim($_POST['notes'] ?? ''),
-                'created_by' => getuserid(),
+                'created_by' => getUserId(),
                 'uses_time_slots' => 1
             ];
 
@@ -658,7 +658,7 @@ class ActivityController extends Controller
             }
             
             // Silme yetkisi kontrolü
-            $userId = getuserid();
+            $userId = getUserId();
             $userRole = getUserSession('role_id');
             
             if ($userRole != 1 && $activity['created_by'] != $userId) {
