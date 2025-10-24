@@ -305,6 +305,7 @@ CREATE TABLE `vp_pages` (
   `parent_id` int(11) DEFAULT NULL,
   `sort_order` int(11) DEFAULT 0,
   `is_active` tinyint(1) DEFAULT 1,
+  `etut_type` enum('all','ortaokul','lise') DEFAULT 'all' COMMENT 'etut_type: all=herkese, ortaokul=ortaokul müdür yardımcısı, lise=lise müdür yardımcısı',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -312,21 +313,21 @@ CREATE TABLE `vp_pages` (
 -- Tablo döküm verisi `vp_pages`
 --
 
-INSERT INTO `vp_pages` (`id`, `page_key`, `page_name`, `page_url`, `parent_id`, `sort_order`, `is_active`, `created_at`) VALUES
-(1, 'dashboard', 'Ana Sayfa', '/dashboard', NULL, 1, 1, '2025-10-08 19:18:52'),
-(2, 'student_search', 'Öğrenci Ara', '/student-search', NULL, 2, 1, '2025-10-08 19:18:52'),
-(3, 'students', 'Öğrenci Bilgileri', '/students', NULL, 3, 1, '2025-10-08 19:18:52'),
-(4, 'activities', 'Etkinlikler', '/activities', NULL, 4, 1, '2025-10-08 19:18:52'),
-(5, 'activity_areas', 'Etkinlik Alanları', '/activity-areas', NULL, 5, 1, '2025-10-08 19:18:52'),
-(6, 'etut', 'Etüt Başvuruları', '/etut', NULL, 6, 1, '2025-10-08 19:18:52'),
-(7, 'users', 'Kullanıcılar', '/users', NULL, 7, 1, '2025-10-08 19:18:52'),
-(8, 'settings', 'Ayarlar', '/settings', NULL, 8, 1, '2025-10-08 19:18:52'),
-(9, 'time_slots', 'Saat Ayarları', '/time-slots', 8, 1, 1, '2025-10-08 19:18:52'),
-(10, 'system_settings', 'Sistem Ayarları', '/system-settings', 8, 2, 1, '2025-10-08 19:18:52'),
-(11, 'etut_area', 'Etüt Alanı', '/etut', NULL, 6, 1, '2025-10-16 16:21:24'),
-(12, 'etut_ortaokul', 'Ortaokul Etüt', '/etut?type=ortaokul', 11, 1, 1, '2025-10-16 16:21:24'),
-(13, 'etut_lise', 'Lise Etüt', '/etut?type=lise', 11, 2, 1, '2025-10-16 16:21:24'),
-(14, 'etut_settings', 'Etüt Form Ayarları', '/admin/etut-settings', 11, 3, 1, '2025-10-16 16:21:24');
+INSERT INTO `vp_pages` (`id`, `page_key`, `page_name`, `page_url`, `parent_id`, `sort_order`, `is_active`, `etut_type`, `created_at`) VALUES
+(1, 'dashboard', 'Ana Sayfa', '/dashboard', NULL, 1, 1, 'all', '2025-10-08 19:18:52'),
+(2, 'student_search', 'Öğrenci Ara', '/student-search', NULL, 2, 1, 'all', '2025-10-08 19:18:52'),
+(3, 'students', 'Öğrenci Bilgileri', '/students', NULL, 3, 1, 'all', '2025-10-08 19:18:52'),
+(4, 'activities', 'Etkinlikler', '/activities', NULL, 4, 1, 'all', '2025-10-08 19:18:52'),
+(5, 'activity_areas', 'Etkinlik Alanları', '/activity-areas', NULL, 5, 1, 'all', '2025-10-08 19:18:52'),
+(6, 'etut', 'Etüt Başvuruları', '/etut', NULL, 6, 1, 'all', '2025-10-08 19:18:52'),
+(7, 'users', 'Kullanıcılar', '/users', NULL, 7, 1, 'all', '2025-10-08 19:18:52'),
+(8, 'settings', 'Ayarlar', '/settings', NULL, 8, 1, 'all', '2025-10-08 19:18:52'),
+(9, 'time_slots', 'Saat Ayarları', '/time-slots', 8, 1, 1, 'all', '2025-10-08 19:18:52'),
+(10, 'system_settings', 'Sistem Ayarları', '/system-settings', 8, 2, 1, 'all', '2025-10-08 19:18:52'),
+(11, 'etut_area', 'Etüt Alanı', '/etut', NULL, 6, 1, 'all', '2025-10-16 16:21:24'),
+(12, 'etut_ortaokul', 'Ortaokul Etüt', '/etut?type=ortaokul', 11, 1, 1, 'ortaokul', '2025-10-16 16:21:24'),
+(13, 'etut_lise', 'Lise Etüt', '/etut?type=lise', 11, 2, 1, 'lise', '2025-10-16 16:21:24'),
+(14, 'etut_settings', 'Etüt Form Ayarları', '/admin/etut-settings', 11, 3, 1, 'all', '2025-10-16 16:21:24');
 
 -- --------------------------------------------------------
 
@@ -1245,6 +1246,7 @@ CREATE TABLE `vp_users` (
   `can_change_password` tinyint(1) DEFAULT 1,
   `last_login` timestamp NULL DEFAULT NULL,
   `last_login_ip` varchar(45) DEFAULT NULL,
+  `etut_type` enum('ortaokul','lise') DEFAULT NULL COMMENT 'Müdür yardımcısı için ortaokul/lise ayırımı',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `last_login_at` datetime DEFAULT NULL,
