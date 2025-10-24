@@ -7,6 +7,9 @@
 $pageTitle = 'Yeni Etkinlik Rezervasyonu';
 $activityAreas = $data['activityAreas'] ?? [];
 $timeSlots = $data['timeSlots'] ?? [];
+
+// URL'den gelen area_id parametresi (select-area.php'den yönlendirme)
+$preSelectedAreaId = $_GET['area_id'] ?? null;
 ?>
 
 <!-- Main Content -->
@@ -260,6 +263,10 @@ $timeSlots = $data['timeSlots'] ?? [];
 // Saat Dilimi Sistemi JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     
+    // URL'den gelen area_id parametresi varsa önceden seç
+    const urlParams = new URLSearchParams(window.location.search);
+    const preSelectedAreaId = urlParams.get('area_id');
+    
     // Flatpickr ile Modern Tarih Seçici (Türkçe)
     const datePickerConfig = {
         locale: 'tr',
@@ -299,6 +306,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const timeSlotsList = document.getElementById('timeSlotsList');
     const selectedCount = document.getElementById('selectedCount');
     const submitBtn = document.getElementById('submitBtn');
+    
+    // Area ID önceden seçiliyse, seç ve slots yükle
+    if (preSelectedAreaId) {
+        areaSelect.value = preSelectedAreaId;
+        
+        // Küçük bir delay ile slots'ı otomatik yükle
+        setTimeout(function() {
+            const date = dateInput.value;
+            if (date) {
+                loadTimeSlots(preSelectedAreaId, date);
+            }
+        }, 100);
+    }
     const tekrarRadios = document.querySelectorAll('input[name="tekrar_durumu"]');
     const tekrarOptions = document.getElementById('tekrarOptions');
     const tekrarTuru = document.getElementById('tekrar_turu');

@@ -72,6 +72,7 @@ $router->get('/activities', 'ActivityController@index', 'activities.index');
 // ÖNEMLİ: Statik route'lar dinamik route'lardan ÖNCE tanımlanmalı!
 $router->get('/activities/current', 'ActivityController@current', 'activities.current');
 $router->get('/activities/past', 'ActivityController@past', 'activities.past');
+$router->get('/activities/select-area', 'ActivityController@selectArea', 'activities.select-area');
 $router->get('/activities/create', 'ActivityController@create', 'activities.create');
 $router->post('/activities/bulk-delete', 'ActivityController@bulkDelete');
 

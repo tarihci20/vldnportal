@@ -36,7 +36,7 @@ $pagination = $data['pagination'] ?? [];
                 <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
                     <!-- Add New Button (Prominent) -->
                     <?php if (hasPermission('activities', 'can_create')): ?>
-                    <a href="<?= url('/activities/create') ?>" 
+                    <a href="<?= url('/activities/select-area') ?>" 
                        class="group relative inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-1 whitespace-nowrap">
                         <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>

@@ -130,6 +130,32 @@ class ActivityController extends Controller
     }
     
     /**
+     * Etkinlik alanı seçim sayfası (kare kartlar)
+     */
+    public function selectArea()
+    {
+        try {
+            // Permission kontrolü
+            if (!isLoggedIn()) {
+                redirect('/login');
+            }
+            
+            // Aktif etkinlik alanlarını getir
+            $activityAreas = $this->activityAreaModel->where(['is_active' => 1]);
+            
+            $this->view('activities/select-area', [
+                'activityAreas' => $activityAreas,
+                'title' => 'Etkinlik Alanı Seçin'
+            ], 'main');
+            
+        } catch (\Exception $e) {
+            error_log('Activity select area error: ' . $e->getMessage());
+            setFlashMessage('Sayfa yüklenirken hata oluştu', 'error');
+            redirect('/activities');
+        }
+    }
+    
+    /**
      * Yeni rezervasyon kaydet - Saat Dilimi Sistemi
      * POST /activities
      */
