@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let conflictCount = 0;
             
             for (const checkDate of datesToCheck) {
-                const response = await fetch('<?= url('/api/activities/check-timeslots-conflict') ?>', {
+                const response = await fetch('<?= url('/api/activities/check-slots-conflict') ?>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -645,7 +645,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let conflictCount = 0;
         
         for (const checkDate of datesToCheck) {
-            const response = await fetch('<?= url('/api/activities/check-timeslots-conflict') ?>', {
+            const response = await fetch('<?= url('/api/activities/check-slots-conflict') ?>', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
