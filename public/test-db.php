@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'vildacgg_portalv2');
 define('DB_USER', 'vildacgg_tarihci20');
-define('DB_PASS', 'vildacgg123'); // Bu şifreyi kontrol et!
+define('DB_PASS', 'C@rg_;NBXBu5');
 
 try {
     $pdo = new PDO(
