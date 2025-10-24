@@ -877,7 +877,8 @@ class AdminController extends Controller
                 setFlashMessage('Rol başarıyla oluşturuldu.', 'success');
                 redirect('/admin/roles/' . $roleId . '/edit');
             } else {
-                setFlashMessage('Rol oluşturma başarısız.', 'error');
+                error_log("Role create returned false or 0. Data: " . json_encode($data));
+                setFlashMessage('Rol oluşturma başarısız. Lütfen veritabanı bağlantısını kontrol edin.', 'error');
                 redirect('/admin/roles/create');
             }
         } catch (\Exception $e) {

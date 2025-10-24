@@ -69,14 +69,18 @@ class Role extends Model {
             $this->getDb()->bind(':description', $data['description'] ?? '');
             $this->getDb()->bind(':is_active', $data['is_active'] ?? 1);
             
-            if ($this->getDb()->execute()) {
-                return $this->getDb()->lastInsertId();
+            $result = $this->getDb()->execute();
+            
+            if ($result) {
+                $lastId = $this->getDb()->lastInsertId();
+                error_log("Role created successfully with ID: " . $lastId);
+                return $lastId;
             }
             
-            error_log("Role create failed: " . $this->getDb()->getError());
+            error_log("Role create execute failed. Error: " . $this->getDb()->getError() . " | SQL: " . $sql);
             return false;
         } catch (\Exception $e) {
-            error_log("Role create error: " . $e->getMessage());
+            error_log("Role create exception: " . $e->getMessage() . " | File: " . $e->getFile() . " | Line: " . $e->getLine());
             return false;
         }
     }
