@@ -63,8 +63,22 @@ $testData = [
 echo "Test data: " . json_encode($testData) . "<br>";
 
 try {
+    echo "Calling roleModel->create()<br>";
     $roleId = $roleModel->create($testData);
-    echo "Role created! ID: " . $roleId . "<br>";
+    echo "Create returned: " . var_export($roleId, true) . "<br>";
+    echo "Role created! ID: " . ($roleId ?: 'NULL/FALSE') . "<br>";
+    
+    // Kontrol - Veritabanından doğrudan sor
+    $db = Database::getInstance();
+    $db->query("SELECT * FROM vp_roles WHERE role_name = :role_name");
+    $db->bind(':role_name', $testData['role_name']);
+    $createdRole = $db->single();
+    
+    if ($createdRole) {
+        echo "Veritabanında bulundu! ID: " . $createdRole['id'] . "<br>";
+    } else {
+        echo "Veritabanında bulunamadı!<br>";
+    }
 } catch (\Exception $e) {
     echo "Exception: " . $e->getMessage() . "<br>";
 }
