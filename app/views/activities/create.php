@@ -381,6 +381,37 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
+            // Tekrarlı ise çakışma kontrolü yap
+            const tekrarDurumu = document.querySelector('input[name="tekrar_durumu"]:checked')?.value || 'hayir';
+            
+            if (tekrarDurumu === 'evet') {
+                // Çakışma kontrolü yap
+                const conflictCheckResult = await checkConflictsBeforeSubmit();
+                
+                if (conflictCheckResult.has_conflict) {
+                    // Çakışma varsa hata mesajı göster
+                    const dateFormatter = (dateStr) => {
+                        const date = new Date(dateStr + 'T00:00:00');
+                        const days = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+                        return date.getDate().toString().padStart(2, '0') + '.' + 
+                               (date.getMonth() + 1).toString().padStart(2, '0') + '.' + 
+                               date.getFullYear() + ' ' + days[date.getDay()];
+                    };
+                    
+                    const conflictList = conflictCheckResult.conflicting_dates
+                        .map(d => `• ${dateFormatter(d.date)}`)
+                        .join('\n');
+                    
+                    const errorMsg = `❌ Çakışma Tespit Edildi!\n\n` +
+                        `${conflictCheckResult.conflict_count}/${conflictCheckResult.total_dates} tarihte çakışma bulunmaktadır:\n\n` +
+                        `${conflictList}\n\n` +
+                        `Bu şekilde kaydedemezsiniz! Lütfen farklı saat dilimleri seçin.`;
+                    
+                    alert(errorMsg);
+                    return;
+                }
+            }
+            
             // Submit butonunu devre dışı bırak
             submitBtn.disabled = true;
             const originalText = submitBtn.textContent;
@@ -593,6 +624,57 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Çakışma kontrol hatası:', error);
             alert('Çakışma kontrolü sırasında hata oluştu: ' + error.message);
         }
+    }
+    
+    // Form submit öncesi çakışma kontrolü (Promise return)
+    async function checkConflictsBeforeSubmit() {
+        const areaId = areaSelect.value;
+        const date = dateInput.value;
+        const tekrarDurumu = document.querySelector('input[name="tekrar_durumu"]:checked')?.value || 'hayir';
+        
+        // Tekrarlı ise tarih listesi oluştur
+        let datesToCheck = [date];
+        
+        if (tekrarDurumu !== 'hayir') {
+            const tekrarTuru = document.querySelector('select[name="tekrar_turu"]')?.value;
+            datesToCheck = generateDateListForCheck(date, tekrarDurumu, tekrarTuru);
+        }
+        
+        // Tüm tarihleri kontrol et
+        const allConflicts = [];
+        let conflictCount = 0;
+        
+        for (const checkDate of datesToCheck) {
+            const response = await fetch('<?= url('/api/activities/check-timeslots-conflict') ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    area_id: areaId,
+                    date: checkDate,
+                    time_slot_ids: selectedSlots
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success && data.has_conflict) {
+                allConflicts.push({
+                    date: checkDate,
+                    conflict_count: data.conflict_count
+                });
+                conflictCount++;
+            }
+        }
+        
+        // Sonucu return et
+        return {
+            has_conflict: allConflicts.length > 0,
+            conflict_count: conflictCount,
+            total_dates: datesToCheck.length,
+            conflicting_dates: allConflicts
+        };
     }
     
     // Tarih listesi oluştur (kontrol için)
