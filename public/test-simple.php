@@ -50,6 +50,9 @@ echo "Role model yüklendi<br>";
 $roleModel = new Role();
 echo "Role model instantiate edildi<br>";
 
+// Debug: Tablo adını kontrol et
+echo "Table name: " . $roleModel->table . "<br>";
+
 $testData = [
     'role_name' => 'test_' . time(),
     'display_name' => 'Test Role',
@@ -59,8 +62,11 @@ $testData = [
 
 echo "Test data: " . json_encode($testData) . "<br>";
 
-$roleId = $roleModel->create($testData);
-
-echo "Role created! ID: " . $roleId . "<br>";
+try {
+    $roleId = $roleModel->create($testData);
+    echo "Role created! ID: " . $roleId . "<br>";
+} catch (\Exception $e) {
+    echo "Exception: " . $e->getMessage() . "<br>";
+}
 
 ?>
