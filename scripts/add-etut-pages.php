@@ -8,16 +8,42 @@
  * php scripts/add-etut-pages.php
  */
 
-// Database bağlantı
-require_once __DIR__ . '/../config/database.php';
+// Basepath'i ayarla
+define('BASE_PATH', __DIR__ . '/..');
+
+// Database config'i yükle
+$dbConfig = include BASE_PATH . '/config/database.php';
+
+// database.php dosyasını kontrol et
+if (!file_exists(BASE_PATH . '/config/database.php')) {
+    echo "[HATA] config/database.php dosyası bulunamadı!\n";
+    exit(1);
+}
+
+// config/config.php dosyasını kontrol et
+if (!file_exists(BASE_PATH . '/config/config.php')) {
+    echo "[HATA] config/config.php dosyası bulunamadı!\n";
+    exit(1);
+}
+
+// Konfigürasyonları yükle
+$config = include BASE_PATH . '/config/config.php';
+$dbConfig = include BASE_PATH . '/config/database.php';
+
+$dbHost = $config['db_host'] ?? 'localhost';
+$dbName = $config['db_name'] ?? 'vildacgg_portalv2';
+$dbUser = $config['db_user'] ?? 'root';
+$dbPass = $config['db_pass'] ?? '';
 
 try {
     $pdo = new PDO(
-        'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
-        DB_USER,
-        DB_PASS,
+        'mysql:host=' . $dbHost . ';dbname=' . $dbName . ';charset=utf8mb4',
+        $dbUser,
+        $dbPass,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
+    
+    echo "[OK] Veritabanına bağlandı: $dbName\n";
     
     // Önce etut_area (parent) sayfasının var olup olmadığını kontrol et
     $stmt = $pdo->prepare("SELECT id FROM vp_pages WHERE page_key = ?");
@@ -68,6 +94,9 @@ try {
     
 } catch (PDOException $e) {
     echo "[HATA] Veritabanı Hatası: " . $e->getMessage() . "\n";
+    exit(1);
+} catch (Exception $e) {
+    echo "[HATA] Hata: " . $e->getMessage() . "\n";
     exit(1);
 }
 ?>
