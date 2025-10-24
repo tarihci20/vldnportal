@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 24 Eki 2025, 18:21:11
+-- Üretim Zamanı: 24 Eki 2025, 18:54:15
 -- Sunucu sürümü: 10.11.9-MariaDB
 -- PHP Sürümü: 8.3.19
 
@@ -105,7 +105,12 @@ CREATE TABLE `vp_activities` (
 INSERT INTO `vp_activities` (`id`, `area_id`, `activity_name`, `activity_type_id`, `activity_date`, `start_time`, `end_time`, `responsible_person`, `notes`, `created_by`, `is_recurring`, `recurring_rule`, `recurrence_type`, `recurrence_count`, `parent_activity_id`, `ana_etkinlik_id`, `tekrar_durumu`, `tekrar_turu`, `status`, `created_at`, `updated_at`, `uses_time_slots`) VALUES
 (104, 1, 'asda asdasd', NULL, '2025-10-24', '10:00:00', '11:00:00', '', '', 1, 0, NULL, NULL, NULL, NULL, NULL, 'hayir', NULL, 'scheduled', '2025-10-23 21:59:01', '2025-10-23 21:59:01', 1),
 (105, 9, 'adadakda', NULL, '2025-10-24', '09:00:00', '11:00:00', 'sdasdasdas', 'asdasdasd', 1, 0, NULL, NULL, NULL, NULL, NULL, 'hayir', NULL, 'scheduled', '2025-10-23 22:09:52', '2025-10-23 22:09:52', 1),
-(106, 9, 'dsasd asdsa', NULL, '2025-10-24', '11:00:00', '12:30:00', 'adsasd', 'asdasd', 1, 0, NULL, NULL, NULL, NULL, NULL, 'hayir', NULL, 'scheduled', '2025-10-23 22:10:19', '2025-10-23 22:10:19', 1);
+(106, 9, 'dsasd asdsa', NULL, '2025-10-24', '11:00:00', '12:30:00', 'adsasd', 'asdasd', 1, 0, NULL, NULL, NULL, NULL, NULL, 'hayir', NULL, 'scheduled', '2025-10-23 22:10:19', '2025-10-23 22:10:19', 1),
+(107, 1, 'DENEME', NULL, '2025-10-27', '16:00:00', '17:30:00', 'AADSDAD', 'ASDAD', 1, 0, NULL, NULL, NULL, NULL, NULL, 'hayir', NULL, 'scheduled', '2025-10-24 15:52:18', '2025-10-24 15:52:18', 1),
+(108, 1, 'DENEME', NULL, '2025-10-28', '16:00:00', '17:30:00', 'AADSDAD', 'ASDAD', 1, 0, NULL, NULL, NULL, NULL, NULL, 'hayir', NULL, 'scheduled', '2025-10-24 15:52:18', '2025-10-24 15:52:18', 1),
+(109, 1, 'DENEME', NULL, '2025-10-29', '16:00:00', '17:30:00', 'AADSDAD', 'ASDAD', 1, 0, NULL, NULL, NULL, NULL, NULL, 'hayir', NULL, 'scheduled', '2025-10-24 15:52:18', '2025-10-24 15:52:18', 1),
+(110, 1, 'DENEME', NULL, '2025-10-30', '16:00:00', '17:30:00', 'AADSDAD', 'ASDAD', 1, 0, NULL, NULL, NULL, NULL, NULL, 'hayir', NULL, 'scheduled', '2025-10-24 15:52:18', '2025-10-24 15:52:18', 1),
+(111, 1, 'DENEME', NULL, '2025-10-31', '16:00:00', '17:30:00', 'AADSDAD', 'ASDAD', 1, 0, NULL, NULL, NULL, NULL, NULL, 'hayir', NULL, 'scheduled', '2025-10-24 15:52:18', '2025-10-24 15:52:18', 1);
 
 -- --------------------------------------------------------
 
@@ -131,10 +136,11 @@ CREATE TABLE `vp_activity_areas` (
 
 INSERT INTO `vp_activity_areas` (`id`, `area_name`, `area_image`, `color_code`, `is_active`, `default_slot_duration`, `sort_order`, `created_at`, `updated_at`) VALUES
 (1, 'KONFERANS SALONU', 'area_1760464185_4154.jpg', '#3b82f6', 1, 30, 1, '2025-10-14 16:49:45', '2025-10-23 21:56:42'),
-(9, 'Cep Sineması', 'area_1760558119_4963.jpg', '#6d2876', 1, 30, 2, '2025-10-15 18:55:19', '2025-10-15 18:56:19'),
-(10, 'Hasan Yılmaz Toplantı Salonu', 'area_1760558521_8080.jpg', '#7c838d', 1, 30, 3, '2025-10-15 19:02:01', '2025-10-15 19:02:01'),
-(11, 'Lise Toplantı Salonu', 'area_1760558561_8615.jpeg', '#e1e6ef', 1, 30, 4, '2025-10-15 19:02:41', '2025-10-15 19:02:41'),
-(14, '3. KAT TOPLANTI SALONU', 'area_1761255966_7711.jpeg', '#a9aaad', 1, 30, 5, '2025-10-23 21:46:06', '2025-10-23 21:46:06');
+(9, 'CEP SİNEMASI', 'area_1760558119_4963.jpg', '#6d2876', 1, 30, 2, '2025-10-15 18:55:19', '2025-10-24 15:49:31'),
+(10, 'HASAN YILMAZ TOPLANTI SALONU', 'area_1760558521_8080.jpg', '#7c838d', 1, 30, 3, '2025-10-15 19:02:01', '2025-10-24 15:49:44'),
+(11, 'LİSE TOPLANTI SALONU', 'area_1760558561_8615.jpeg', '#e1e6ef', 1, 30, 4, '2025-10-15 19:02:41', '2025-10-24 15:49:56'),
+(14, '3. KAT TOPLANTI SALONU', 'area_1761255966_7711.jpeg', '#a9aaad', 1, 30, 5, '2025-10-23 21:46:06', '2025-10-23 21:46:06'),
+(15, 'ZEKA OYUNLARI SINIFI', 'area_1761321080_2796.jpg', '#19a957', 1, 30, 6, '2025-10-24 15:51:20', '2025-10-24 15:51:20');
 
 -- --------------------------------------------------------
 
@@ -163,7 +169,22 @@ INSERT INTO `vp_activity_time_slots` (`activity_id`, `time_slot_id`, `created_at
 (105, 4, '2025-10-23 22:09:52'),
 (106, 5, '2025-10-23 22:10:19'),
 (106, 6, '2025-10-23 22:10:19'),
-(106, 7, '2025-10-23 22:10:19');
+(106, 7, '2025-10-23 22:10:19'),
+(107, 15, '2025-10-24 15:52:18'),
+(107, 16, '2025-10-24 15:52:18'),
+(107, 17, '2025-10-24 15:52:18'),
+(108, 15, '2025-10-24 15:52:18'),
+(108, 16, '2025-10-24 15:52:18'),
+(108, 17, '2025-10-24 15:52:18'),
+(109, 15, '2025-10-24 15:52:18'),
+(109, 16, '2025-10-24 15:52:18'),
+(109, 17, '2025-10-24 15:52:18'),
+(110, 15, '2025-10-24 15:52:18'),
+(110, 16, '2025-10-24 15:52:18'),
+(110, 17, '2025-10-24 15:52:18'),
+(111, 15, '2025-10-24 15:52:18'),
+(111, 16, '2025-10-24 15:52:18'),
+(111, 17, '2025-10-24 15:52:18');
 
 -- --------------------------------------------------------
 
@@ -1234,7 +1255,7 @@ CREATE TABLE `vp_users` (
 --
 
 INSERT INTO `vp_users` (`id`, `username`, `email`, `password_hash`, `full_name`, `role_id`, `is_active`, `phone`, `profile_photo`, `google_id`, `can_change_password`, `last_login`, `last_login_ip`, `created_at`, `updated_at`, `last_login_at`, `sessions_valid_from`) VALUES
-(1, 'tarihci20', 'admin@vildanportal.com', '$2y$10$O2zm8VliTF6.2XujECWOLOIn8PfwqLjByxcrWuqT2rlfMYmSWR3V6', 'Admin Kullanıcı', 1, 1, NULL, NULL, NULL, 1, '2025-10-12 16:59:36', '185.118.178.11', '2025-10-08 19:18:53', '2025-10-24 15:17:58', '2025-10-24 18:17:58', '2025-10-12 18:20:35'),
+(1, 'tarihci20', 'admin@vildanportal.com', '$2y$10$O2zm8VliTF6.2XujECWOLOIn8PfwqLjByxcrWuqT2rlfMYmSWR3V6', 'Admin Kullanıcı', 1, 1, NULL, NULL, NULL, 1, '2025-10-12 16:59:36', '185.118.178.11', '2025-10-08 19:18:53', '2025-10-24 15:47:16', '2025-10-24 18:47:16', '2025-10-12 18:20:35'),
 (5, 'vildan', 'vildankoleji@gmail.com', '$2y$10$WilIrfKZ3/1rIxGoDrGriuTJA/NlLpTzAIfiBIUc0Dz5MxV8vrFBi', 'Vildan Öğretmen', 2, 1, NULL, NULL, NULL, 0, NULL, '185.118.178.11', '2025-10-23 21:33:11', '2025-10-23 21:40:55', '2025-10-24 00:40:55', '2025-10-23 21:33:11');
 
 -- --------------------------------------------------------
@@ -1322,13 +1343,13 @@ ALTER TABLE `vp_user_sessions`
 -- Tablo için AUTO_INCREMENT değeri `vp_activities`
 --
 ALTER TABLE `vp_activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `vp_activity_areas`
 --
 ALTER TABLE `vp_activity_areas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `vp_role_page_permissions`

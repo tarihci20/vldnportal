@@ -147,9 +147,16 @@ class Database
             $this->error = $e->getMessage();
             $this->logError($this->statement->queryString, $e);
             
-            // HATA DÜZELTMESİ: APP_DEBUG için mutlak yol kullanıldı.
-            if (\APP_DEBUG) {
-                throw $e;
+            // AJAX istekleri için hata mesajını JSON olarak döndür
+            if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Database Error: ' . $e->getMessage(),
+                    'error' => $e->getMessage()
+                ]);
+                exit;
             }
             
             return false;

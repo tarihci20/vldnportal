@@ -161,6 +161,19 @@ class ActivityController extends Controller
      */
     public function store()
     {
+        // Tüm hataları yakala (Fatal error, warning, notice, etc)
+        set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+            error_log("ERROR: [$errno] $errstr in $errfile:$errline");
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => false,
+                'message' => 'Hata: ' . $errstr,
+                'error' => $errstr
+            ]);
+            exit;
+        });
+        
         error_log('=== SAAT DİLİMİ SİSTEMİ REZERVASYON ===');
         error_log('POST Data: ' . print_r($_POST, true));
         

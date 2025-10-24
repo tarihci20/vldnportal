@@ -702,6 +702,8 @@ class Activity extends Model
     public function createWithTimeSlots($activityData, $timeSlotIds)
     {
         try {
+            error_log('createWithTimeSlots called with: ' . json_encode(['data' => $activityData, 'slots' => $timeSlotIds]));
+            
             $this->getDb()->beginTransaction();
             
             // Önce çakışma kontrolü
@@ -712,7 +714,12 @@ class Activity extends Model
             );
             
             if ($conflictResult['has_conflict']) {
-                throw new \Exception('Seçilen saat dilimlerinde çakışma var!');
+                // Çakışan tarihleri belirle
+                $conflictingDates = array_map(function($item) {
+                    return $item['activity_date'];
+                }, $conflictResult['conflicts'] ?? []);
+                
+                throw new \Exception('Seçilen saat dilimlerinde çakışma var! Çakışan tarihler: ' . implode(', ', $conflictingDates));
             }
             
             // Seçilen saat dilimlerinin başlangıç ve bitiş saatlerini al
