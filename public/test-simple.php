@@ -24,6 +24,7 @@ define('DB_NAME', 'vildacgg_portalv2');
 define('DB_USER', 'vildacgg_tarihci20');
 define('DB_PASS', 'C@rg_;NBXBu5');
 define('DB_CHARSET', 'utf8mb4');
+define('DB_PREFIX', 'vp_');
 define('APP_DEBUG', true);
 
 echo "DB Constants defined<br>";
