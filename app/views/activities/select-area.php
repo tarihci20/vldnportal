@@ -37,34 +37,23 @@ $pageTitle = $data['title'] ?? 'Etkinlik Alanı Seçin';
             <?php foreach ($activityAreas as $area): ?>
                 <a href="<?= url('/activities/create?area_id=' . $area['id']) ?>" 
                    class="group block">
-                    <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 hover:border-teal-300 h-full">
+                    <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-teal-400 h-full flex flex-col">
                         
-                        <!-- Card Container - Smaller -->
-                        <div class="h-32 flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                            
-                            <!-- Color Accent -->
-                            <div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity"
-                                 style="background-color: <?= $area['color_code'] ?? '#3b82f6' ?>"></div>
-                            
-                            <!-- Color Circle Background -->
-                            <div class="w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
-                                 style="background-color: <?= $area['color_code'] ?? '#3b82f6' ?>; opacity: 0.2;">
-                                <svg class="w-8 h-8" fill="currentColor" 
-                                     style="color: <?= $area['color_code'] ?? '#3b82f6' ?>" 
-                                     viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8m3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5m-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11m3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
-                                </svg>
-                            </div>
+                        <!-- Renkli Background Section -->
+                        <div class="h-24 flex items-center justify-center relative overflow-hidden transition-all"
+                             style="background: linear-gradient(135deg, <?= $area['color_code'] ?? '#3b82f6' ?> 0%, <?= $area['color_code'] ?? '#3b82f6' ?>dd 100%);
+                                    opacity: 0.9;
+                                    background-color: <?= $area['color_code'] ?? '#3b82f6' ?>;">
                         </div>
                         
-                        <!-- Card Content - Smaller Text -->
-                        <div class="p-3 text-center">
-                            <h3 class="font-bold text-gray-900 text-sm line-clamp-2 group-hover:text-teal-700 transition-colors">
+                        <!-- Card Content -->
+                        <div class="flex-1 p-3 text-center flex flex-col items-center justify-center">
+                            <h3 class="font-bold text-gray-900 text-sm line-clamp-3 group-hover:text-teal-700 transition-colors leading-tight">
                                 <?= esc($area['area_name']) ?>
                             </h3>
                             
-                            <!-- Click to Select -->
-                            <div class="mt-2">
+                            <!-- Click to Select Button -->
+                            <div class="mt-2 w-full">
                                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-teal-100 text-teal-800 group-hover:bg-teal-200 transition-colors">
                                     <svg class="w-3 h-3 mr-0.5" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -74,7 +63,7 @@ $pageTitle = $data['title'] ?? 'Etkinlik Alanı Seçin';
                             </div>
                         </div>
                         
-                        <!-- Hover Effect Overlay -->
+                        <!-- Hover Effect Border -->
                         <div class="absolute inset-0 pointer-events-none">
                             <div class="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-teal-400 transition-colors duration-300"></div>
                         </div>
