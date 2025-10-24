@@ -298,7 +298,7 @@ INSERT INTO `vp_etut_form_settings` (`id`, `form_type`, `is_active`, `title`, `d
 --
 
 CREATE TABLE `vp_pages` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `page_key` varchar(50) NOT NULL,
   `page_name` varchar(100) NOT NULL,
   `page_url` varchar(255) NOT NULL,
