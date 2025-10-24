@@ -293,6 +293,15 @@ class AdminController extends Controller
             'is_active' => 1
         ];
         
+        // Müdür yardımcısı ise etut_type ekle
+        $role = $this->userModel->getRoleById($roleId);
+        if ($role && $role['role_name'] === 'vice_principal') {
+            $etutType = trim($_POST['etut_type'] ?? '');
+            if ($etutType && in_array($etutType, ['ortaokul', 'lise'])) {
+                $data['etut_type'] = $etutType;
+            }
+        }
+        
         try {
             $userId = $this->userModel->create($data);
             
@@ -395,6 +404,18 @@ class AdminController extends Controller
             'is_active' => isset($_POST['is_active']) ? 1 : 0,
             'can_change_password' => isset($_POST['can_change_password']) ? 1 : 0
         ];
+        
+        // Etüt tipi - Vice Principal rol için
+        $role = $this->userModel->getRoleById($roleId);
+        if ($role && $role['role_name'] === 'vice_principal') {
+            $etutType = trim($_POST['etut_type'] ?? '');
+            if ($etutType && in_array($etutType, ['ortaokul', 'lise'])) {
+                $data['etut_type'] = $etutType;
+            }
+        } else {
+            // Diğer roller için etut_type'ı NULL yap
+            $data['etut_type'] = null;
+        }
         
         // Şifre değiştirilecekse
         if (!empty($password)) {

@@ -68,7 +68,7 @@ unset($perm);
                             
                             <div>
                                 <label for="role_id" class="block text-sm font-medium text-gray-700 mb-1">Rol *</label>
-                                <select id="role_id" name="role_id" required onchange="loadRolePermissions(this.value)"
+                                <select id="role_id" name="role_id" required onchange="loadRolePermissions(this.value); toggleEtutTypeField()"
                                         class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
                                     <?php foreach ($roles as $role): ?>
                                         <option value="<?= $role['id'] ?>" <?= $role['id'] == $user['role_id'] ? 'selected' : '' ?>>
@@ -76,6 +76,17 @@ unset($perm);
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
+                            </div>
+                            
+                            <div id="etut_type_field" style="display: none;">
+                                <label for="etut_type" class="block text-sm font-medium text-gray-700 mb-1">Etüt Türü (Müdür Yardımcısı)</label>
+                                <select id="etut_type" name="etut_type"
+                                        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <option value="">Seç...</option>
+                                    <option value="ortaokul" <?= ($user['etut_type'] ?? '') == 'ortaokul' ? 'selected' : '' ?>>Ortaokul</option>
+                                    <option value="lise" <?= ($user['etut_type'] ?? '') == 'lise' ? 'selected' : '' ?>>Lise</option>
+                                </select>
+                                <p class="text-xs text-gray-500 mt-1">Müdür yardımcısının erişim sağlayacağı etüt alanını seçin</p>
                             </div>
                         </div>
                         
@@ -107,4 +118,22 @@ unset($perm);
     </div>
 </div>
 
+<script>
+// Müdür yardımcısı seçilirse etut_type field'ını göster
+function toggleEtutTypeField() {
+    const roleSelect = document.getElementById('role_id');
+    const selectedOption = roleSelect.options[roleSelect.selectedIndex];
+    const selectedText = selectedOption.text.toLowerCase();
+    const etutTypeField = document.getElementById('etut_type_field');
+    
+    // Eğer seçili rol "müdür yardımcısı" ise göster
+    if (selectedText.includes('müdür yardımcı') || selectedText.includes('vice_principal')) {
+        etutTypeField.style.display = 'block';
+    } else {
+        etutTypeField.style.display = 'none';
+    }
+}
 
+// Sayfa yüklenmesinde kontrol et
+document.addEventListener('DOMContentLoaded', toggleEtutTypeField);
+</script>
