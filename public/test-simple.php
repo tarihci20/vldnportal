@@ -66,6 +66,13 @@ try {
     echo "Calling roleModel->create()<br>";
     $roleId = $roleModel->create($testData);
     echo "Create returned: " . var_export($roleId, true) . "<br>";
+    
+    if (!$roleId) {
+        // Error detaylarını al
+        $dbError = $db->getError();
+        echo "Database Error: " . $dbError . "<br>";
+    }
+    
     echo "Role created! ID: " . ($roleId ?: 'NULL/FALSE') . "<br>";
     
     // Kontrol - Veritabanından doğrudan sor
@@ -81,6 +88,7 @@ try {
     }
 } catch (\Exception $e) {
     echo "Exception: " . $e->getMessage() . "<br>";
+    echo "Trace: " . $e->getTraceAsString() . "<br>";
 }
 
 ?>
