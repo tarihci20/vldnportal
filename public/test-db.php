@@ -1,7 +1,13 @@
 <?php
 // Test Database Connection
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../config/config.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// DB config
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'vildacgg_portalv2');
+define('DB_USER', 'vildacgg_tarihci20');
+define('DB_PASS', 'vildacgg123'); // Bu şifreyi kontrol et!
 
 try {
     $pdo = new PDO(
@@ -19,32 +25,24 @@ try {
     // Rolleri listele
     echo "<h2>Mevcut Roller:</h2>";
     $stmt = $pdo->query("SELECT * FROM vp_roles");
+    $roles = $stmt->fetchAll();
     echo "<pre>";
-    print_r($stmt->fetchAll());
+    print_r($roles);
     echo "</pre>";
     
-    // Basit INSERT test
-    echo "<h2>INSERT Test:</h2>";
-    try {
-        $stmt = $pdo->prepare("INSERT INTO vp_roles (role_name, display_name, description, is_active) VALUES (?, ?, ?, ?)");
-        $result = $stmt->execute(['test_role_' . time(), 'Test Rol', 'Test açıklama', 1]);
-        
-        if ($result) {
-            $lastId = $pdo->lastInsertId();
-            echo "<p style='color: green;'>✓ INSERT başarılı! Oluşturulan ID: " . $lastId . "</p>";
-            
-            // Hemen sil
-            $pdo->query("DELETE FROM vp_roles WHERE id = " . $lastId);
-            echo "<p>Test verisi silindi.</p>";
-        } else {
-            echo "<p style='color: red;'>✗ INSERT başarısız</p>";
-        }
-    } catch (Exception $e) {
-        echo "<p style='color: red;'>✗ INSERT Hata: " . $e->getMessage() . "</p>";
-    }
+    echo "<h2>Tablo Yapısı:</h2>";
+    $stmt = $pdo->query("DESCRIBE vp_roles");
+    $columns = $stmt->fetchAll();
+    echo "<pre>";
+    print_r($columns);
+    echo "</pre>";
     
 } catch (PDOException $e) {
     echo "<h1 style='color: red;'>✗ Database Bağlantı Hatası</h1>";
-    echo "<p>" . $e->getMessage() . "</p>";
+    echo "<p>" . htmlspecialchars($e->getMessage()) . "</p>";
+    echo "<p>Host: " . DB_HOST . "</p>";
+    echo "<p>Database: " . DB_NAME . "</p>";
+    echo "<p>User: " . DB_USER . "</p>";
 }
 ?>
+
