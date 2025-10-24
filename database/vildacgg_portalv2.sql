@@ -367,7 +367,7 @@ CREATE TABLE `vp_recurring_rules` (
 --
 
 CREATE TABLE `vp_roles` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `role_name` varchar(50) NOT NULL,
   `display_name` varchar(100) NOT NULL,
   `sort_order` int(11) DEFAULT 0,
