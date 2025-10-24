@@ -656,6 +656,11 @@ class AdminController extends Controller
             
             // Rol türüne göre sayfaları filtrele
             $pages = array_filter($pages, function($page) use ($role) {
+                // Sadece aktif sayfaları göster
+                if ((!isset($page['is_active']) || !$page['is_active'])) {
+                    return false;
+                }
+                
                 $etutType = $page['etut_type'] ?? 'all';
                 
                 // 'all' sayfaları herkese göster
@@ -960,6 +965,11 @@ class AdminController extends Controller
         
         // Rol türüne göre sayfaları filtrele
         $pages = array_filter($pages, function($page) use ($role) {
+            // Sadece aktif sayfaları göster
+            if ((!isset($page['is_active']) || !$page['is_active'])) {
+                return false;
+            }
+            
             $etutType = $page['etut_type'] ?? 'all';
             
             // 'all' sayfaları herkese göster
