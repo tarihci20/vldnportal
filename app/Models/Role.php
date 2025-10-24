@@ -54,6 +54,75 @@ class Role extends Model {
             return null;
         }
     }
+
+    /**
+     * Yeni rol oluştur
+     */
+    public function create($data) {
+        try {
+            $sql = "INSERT INTO {$this->table} (role_name, display_name, description, is_active) 
+                    VALUES (:role_name, :display_name, :description, :is_active)";
+            
+            $this->getDb()->query($sql);
+            $this->getDb()->bind(':role_name', $data['role_name']);
+            $this->getDb()->bind(':display_name', $data['display_name']);
+            $this->getDb()->bind(':description', $data['description'] ?? '');
+            $this->getDb()->bind(':is_active', $data['is_active'] ?? 1);
+            
+            if ($this->getDb()->execute()) {
+                return $this->getDb()->lastInsertId();
+            }
+            
+            error_log("Role create failed: " . $this->getDb()->getError());
+            return false;
+        } catch (\Exception $e) {
+            error_log("Role create error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Rolü güncelle
+     */
+    public function update($id, $data) {
+        try {
+            $sql = "UPDATE {$this->table} SET ";
+            $sets = [];
+            $params = [':id' => $id];
+            
+            foreach ($data as $key => $value) {
+                $sets[] = "{$key} = :{$key}";
+                $params[":{$key}"] = $value;
+            }
+            
+            $sql .= implode(', ', $sets) . " WHERE id = :id";
+            
+            $this->getDb()->query($sql);
+            foreach ($params as $key => $value) {
+                $this->getDb()->bind($key, $value);
+            }
+            
+            return $this->getDb()->execute();
+        } catch (\Exception $e) {
+            error_log("Role update error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Rolü sil
+     */
+    public function delete($id) {
+        try {
+            $sql = "DELETE FROM {$this->table} WHERE id = :id";
+            $this->getDb()->query($sql);
+            $this->getDb()->bind(':id', $id);
+            return $this->getDb()->execute();
+        } catch (\Exception $e) {
+            error_log("Role delete error: " . $e->getMessage());
+            return false;
+        }
+    }
     
     /**
      * Belirli bir rolün tüm izinlerini getir
