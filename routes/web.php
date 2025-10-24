@@ -155,13 +155,17 @@ $router->get('/admin/users/permissions', 'AdminController@getUserPermissionsAjax
 
 // Rol yönetimi
 $router->get('/admin/roles', 'AdminController@roles', 'admin.roles');
+
+// ÖNEMLİ: Statik route'lar dinamik route'lardan ÖNCE tanımlanmalı!
 $router->get('/admin/roles/create', 'AdminController@createRole', 'admin.roles.create');
+$router->get('/admin/roles/permissions', 'AdminController@getRolePermissions');
+$router->post('/admin/roles/update-permissions', 'AdminController@updateRolePermissions');
+
+// Dinamik route'lar (ID ile) en sonda!
 $router->post('/admin/roles', 'AdminController@storeRole');
 $router->get('/admin/roles/{id}/edit', 'AdminController@editRole', 'admin.roles.edit');
 $router->post('/admin/roles/{id}', 'AdminController@updateRole');
 $router->post('/admin/roles/{id}/delete', 'AdminController@deleteRole');
-$router->get('/admin/roles/permissions', 'AdminController@getRolePermissions');
-$router->post('/admin/roles/update-permissions', 'AdminController@updateRolePermissions');
 
 // Etüt form ayarları
 $router->get('/admin/etut-settings', 'AdminController@etutSettings', 'admin.etut-settings');
