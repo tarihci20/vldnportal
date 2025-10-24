@@ -325,8 +325,8 @@ INSERT INTO `vp_pages` (`id`, `page_key`, `page_name`, `page_url`, `parent_id`, 
 (9, 'time_slots', 'Saat Ayarları', '/time-slots', 8, 1, 1, 'all', '2025-10-08 19:18:52'),
 (10, 'system_settings', 'Sistem Ayarları', '/system-settings', 8, 2, 1, 'all', '2025-10-08 19:18:52'),
 (11, 'etut_area', 'Etüt Alanı', '/etut', NULL, 6, 1, 'all', '2025-10-16 16:21:24'),
-(12, 'etut_ortaokul', 'Ortaokul Etüt', '/etut?type=ortaokul', 11, 1, 1, 'ortaokul', '2025-10-16 16:21:24'),
-(13, 'etut_lise', 'Lise Etüt', '/etut?type=lise', 11, 2, 1, 'lise', '2025-10-16 16:21:24'),
+(12, 'etut_ortaokul', 'Ortaokul Etüt Başvuruları', '/etut/ortaokul', 11, 1, 1, 'ortaokul', '2025-10-16 16:21:24'),
+(13, 'etut_lise', 'Lise Etüt Başvuruları', '/etut/lise', 11, 2, 1, 'lise', '2025-10-16 16:21:24'),
 (14, 'etut_settings', 'Etüt Form Ayarları', '/admin/etut-settings', 11, 3, 1, 'all', '2025-10-16 16:21:24');
 
 -- --------------------------------------------------------
