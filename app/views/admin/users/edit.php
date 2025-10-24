@@ -265,24 +265,33 @@ function savePermissions() {
     
     Object.values(grouped).forEach(p => permissions.push(p));
     
-    fetch(`<?= url("/admin/users/permissions/{$user['role_id']}") ?>`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            csrf_token: document.querySelector('meta[name="csrf-token"]').content,
-            permissions
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('İzinler güncellendi');
-            location.reload();
-        } else {
-            alert('Hata: ' + data.message);
-        }
+    // Update local data
+    permissionsData = Object.values(grouped);
+    updatePermissionsDisplay();
+    closePermissionsModal();
+    
+    // Update form - add hidden inputs for permissions
+    let form = document.querySelector('form');
+    let existingPerms = form.querySelectorAll('input[name^="permissions"]');
+    existingPerms.forEach(p => p.remove());
+    
+    permissions.forEach(perm => {
+        Object.keys(perm).forEach(key => {
+            if (key !== 'page_id') {
+                let input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = `permissions[${perm.page_id}][${key}]`;
+                input.value = perm[key];
+                form.appendChild(input);
+            }
+        });
     });
+    
+    // Show success message
+    const msg = document.createElement('div');
+    msg.className = 'p-4 bg-green-100 text-green-700 rounded mb-4';
+    msg.textContent = '✓ İzinler güncellendi, formu kaydet';
+    document.body.insertBefore(msg, document.body.firstChild);
+    setTimeout(() => msg.remove(), 3000);
 }
 </script>

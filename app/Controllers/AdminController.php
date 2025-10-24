@@ -614,19 +614,19 @@ class AdminController extends Controller
      * Rol izinlerini getir (AJAX)
      */
     public function getRolePermissions() {
-        header('Content-Type: application/json');
+        header('Content-Type: application/json; charset=utf-8');
         
         try {
             $roleId = $_GET['role_id'] ?? null;
             
             if (!$roleId) {
-                echo json_encode(['success' => false, 'message' => 'Rol ID gerekli']);
+                echo json_encode(['success' => false, 'message' => 'Rol ID gerekli'], JSON_UNESCAPED_UNICODE);
                 exit;
             }
             
             $role = $this->roleModel->getRoleById($roleId);
             if (!$role) {
-                echo json_encode(['success' => false, 'message' => 'Rol bulunamadı']);
+                echo json_encode(['success' => false, 'message' => 'Rol bulunamadı'], JSON_UNESCAPED_UNICODE);
                 exit;
             }
             
@@ -660,13 +660,13 @@ class AdminController extends Controller
                 'success' => true,
                 'permissions' => $permissionData,
                 'role_name' => $role['display_name'] ?? $role['role_name'] ?? 'Bilinmeyen Rol'
-            ]);
+            ], JSON_UNESCAPED_UNICODE);
         } catch (\Exception $e) {
             error_log("getRolePermissions error: " . $e->getMessage());
             echo json_encode([
                 'success' => false, 
                 'message' => 'Bir hata oluştu: ' . $e->getMessage()
-            ]);
+            ], JSON_UNESCAPED_UNICODE);
         }
         exit;
     }
