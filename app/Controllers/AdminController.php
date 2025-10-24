@@ -562,9 +562,53 @@ class AdminController extends Controller
      * Kullanıcı izinlerini kaydet
      */
     private function saveUserPermissions($roleId, $permissions) {
+        error_log("=== saveUserPermissions called: roleId=$roleId ===");
+        error_log("Received permissions array: " . json_encode($permissions));
+        error_log("Permissions keys: " . implode(", ", array_keys($permissions)));
+        
+        // Tüm sayfaları al
+        $allPages = $this->roleModel->getAllPages();
+        error_log("Total pages in database: " . count($allPages));
+        
+        // Filter yapılan sayfaları al (roleId'ye göre görüntülenen sayfalar)
+        $role = $this->roleModel->getRoleById($roleId);
+        $filteredPages = array_filter($allPages, function($page) use ($role) {
+            // Sadece aktif sayfaları göster
+            if ((!isset($page['is_active']) || !$page['is_active'])) {
+                return false;
+            }
+            
+            $etutType = $page['etut_type'] ?? 'all';
+            
+            // 'all' sayfaları herkese göster
+            if ($etutType === 'all') {
+                return true;
+            }
+            
+            // ortaokul ve lise sayfaları için - sadece sistem yöneticileri ve öğretmenlere göster
+            if (in_array($role['role_name'], ['admin', 'teacher', 'secretary', 'principal'])) {
+                return true;
+            }
+            
+            // Müdür yardımcısı için - tüm sayfaları göster
+            if ($role['role_name'] === 'vice_principal') {
+                return true;
+            }
+            
+            return false;
+        });
+        
+        error_log("Filtered pages for role: " . count($filteredPages));
+        
         $permissionData = [];
         
-        foreach ($permissions as $pageId => $perms) {
+        // Tüm filtrelenen sayfalar için permission verisi oluştur
+        foreach ($filteredPages as $page) {
+            $pageId = $page['id'];
+            $perms = $permissions[$pageId] ?? []; // Form'dan gelen permission, yoksa boş array
+            
+            error_log("Processing page $pageId: form had " . count($perms) . " permissions");
+            
             $permissionData[] = [
                 'page_id' => $pageId,
                 'can_view' => isset($perms['can_view']) ? 1 : 0,
@@ -574,7 +618,12 @@ class AdminController extends Controller
             ];
         }
         
-        return $this->userModel->updateRolePermissions($roleId, $permissionData);
+        error_log("Final permission data to be saved: " . json_encode($permissionData));
+        
+        $result = $this->userModel->updateRolePermissions($roleId, $permissionData);
+        error_log("updateRolePermissions returned: " . ($result ? 'true' : 'false'));
+        
+        return $result;
     }
     
     /**
