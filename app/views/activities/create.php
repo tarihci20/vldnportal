@@ -236,8 +236,8 @@ $preSelectedAreaId = $_GET['area_id'] ?? null;
             
             <!-- Form Butonları -->
             <div class="mt-8 flex justify-end space-x-3">
-                <a href="<?= url('/activities') ?>" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
-                    İptal
+                <a href="<?= url('/activities') ?>" class="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 font-semibold transition">
+                    ← İptal Et
                 </a>
                 <button 
                     type="button" 
@@ -249,10 +249,10 @@ $preSelectedAreaId = $_GET['area_id'] ?? null;
                 <button 
                     type="submit" 
                     id="submitBtn"
-                    class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 font-semibold"
                     disabled
                 >
-                    Rezervasyonu Oluştur
+                    ✓ Rezervasyonu Oluştur
                 </button>
             </div>
         </form>

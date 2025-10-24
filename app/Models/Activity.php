@@ -850,7 +850,6 @@ class Activity extends Model
         try {
             // ÖNCE TÜM TARİHLERİ KONTROL ET - HİÇ BİR ÇAKIŞMA OLMAMALI!
             $conflictingDates = [];
-            $conflictDetails = [];
             
             // Seçilen saat dilimlerinin başlangıç ve bitiş saatlerini al
             $timeSlotInfo = $this->getTimeSlotRange($timeSlotIds);
@@ -865,10 +864,6 @@ class Activity extends Model
                 
                 if ($conflictResult['has_conflict']) {
                     $conflictingDates[] = $date;
-                    $conflictDetails[] = [
-                        'date' => $date,
-                        'conflicting_activities' => $conflictResult['conflicts'] ?? []
-                    ];
                 }
             }
             
@@ -896,8 +891,7 @@ class Activity extends Model
                 return [
                     'success' => false,
                     'error' => $errorMessage,
-                    'conflicting_dates' => $conflictingDates,
-                    'conflict_details' => $conflictDetails
+                    'conflicting_dates' => $conflictingDates
                 ];
             }
             
