@@ -199,7 +199,12 @@ class ActivityController extends Controller
             }
             
             // Saat dilimleri kontrolü
-            if (empty($_POST['time_slots']) || !is_array($_POST['time_slots'])) {
+            $timeSlots = $_POST['time_slots'] ?? $_POST['time_slot_ids'] ?? [];
+            if (!is_array($timeSlots)) {
+                $timeSlots = [$timeSlots]; // String ise array'e çevir
+            }
+            
+            if (empty($timeSlots)) {
                 $errors[] = 'En az bir saat dilimi seçmelisiniz';
             }
             
@@ -214,7 +219,7 @@ class ActivityController extends Controller
             // Form verilerini al
             $areaId = (int)$_POST['activity_area_id'];
             $activityDate = $_POST['activity_date'];
-            $timeSlotIds = array_map('intval', $_POST['time_slots']);
+            $timeSlotIds = array_map('intval', $timeSlots);
             $tekrarDurumu = $_POST['tekrar_durumu'] ?? 'hayir';
 
             // Etkinlik verilerini hazırla
