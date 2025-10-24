@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 24 Eki 2025, 20:20:06
+-- Üretim Zamanı: 24 Eki 2025, 20:54:18
 -- Sunucu sürümü: 10.11.9-MariaDB
 -- PHP Sürümü: 8.3.19
 
@@ -372,6 +372,7 @@ CREATE TABLE `vp_roles` (
   `display_name` varchar(100) NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `description` text DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -380,12 +381,12 @@ CREATE TABLE `vp_roles` (
 -- Tablo döküm verisi `vp_roles`
 --
 
-INSERT INTO `vp_roles` (`id`, `role_name`, `display_name`, `sort_order`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Admin', 1, 'Tam yetki', '2025-10-08 19:18:52', '2025-10-12 20:53:51'),
-(2, 'teacher', 'Öğretmen', 2, 'Öğretmen yetkisi', '2025-10-08 19:18:52', '2025-10-12 20:53:51'),
-(3, 'secretary', 'Sekreter', 3, 'Sekreter yetkisi', '2025-10-08 19:18:52', '2025-10-12 20:53:51'),
-(4, 'principal', 'Okul Müdürü', 4, 'Okul müdürü yetkisi', '2025-10-08 19:18:52', '2025-10-12 20:53:51'),
-(5, 'vice_principal', 'Müdür Yardımcısı', 5, 'Müdür yardımcısı yetkisi', '2025-10-08 19:18:52', '2025-10-12 20:53:51');
+INSERT INTO `vp_roles` (`id`, `role_name`, `display_name`, `sort_order`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'Admin', 1, 'Tam yetki', 1, '2025-10-08 19:18:52', '2025-10-12 20:53:51'),
+(2, 'teacher', 'Öğretmen', 2, 'Öğretmen yetkisi', 1, '2025-10-08 19:18:52', '2025-10-12 20:53:51'),
+(3, 'secretary', 'Sekreter', 3, 'Sekreter yetkisi', 1, '2025-10-08 19:18:52', '2025-10-12 20:53:51'),
+(4, 'principal', 'Okul Müdürü', 4, 'Okul müdürü yetkisi', 1, '2025-10-08 19:18:52', '2025-10-12 20:53:51'),
+(5, 'vice_principal', 'Müdür Yardımcısı', 5, 'Müdür yardımcısı yetkisi', 1, '2025-10-08 19:18:52', '2025-10-12 20:53:51');
 
 -- --------------------------------------------------------
 
@@ -431,20 +432,20 @@ INSERT INTO `vp_role_page_permissions` (`id`, `role_id`, `page_id`, `can_view`, 
 (90, 3, 12, 0, 0, 0, 0, '2025-10-23 21:33:53', '2025-10-23 21:33:53'),
 (91, 3, 13, 0, 0, 0, 0, '2025-10-23 21:33:53', '2025-10-23 21:33:53'),
 (92, 3, 14, 0, 0, 0, 0, '2025-10-23 21:33:53', '2025-10-23 21:33:53'),
-(93, 2, 1, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(94, 2, 2, 1, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(95, 2, 3, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(96, 2, 4, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(97, 2, 5, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(98, 2, 6, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(99, 2, 7, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(100, 2, 8, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(101, 2, 9, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(102, 2, 10, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(103, 2, 11, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(104, 2, 12, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(105, 2, 13, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29'),
-(106, 2, 14, 0, 0, 0, 0, '2025-10-23 21:39:29', '2025-10-23 21:39:29');
+(135, 2, 1, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(136, 2, 2, 1, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:19'),
+(137, 2, 3, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(138, 2, 4, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(139, 2, 5, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(140, 2, 6, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(141, 2, 7, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(142, 2, 8, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(143, 2, 9, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(144, 2, 10, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(145, 2, 11, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(146, 2, 12, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(147, 2, 13, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08'),
+(148, 2, 14, 0, 0, 0, 0, '2025-10-24 17:31:08', '2025-10-24 17:31:08');
 
 -- --------------------------------------------------------
 
@@ -1255,8 +1256,8 @@ CREATE TABLE `vp_users` (
 --
 
 INSERT INTO `vp_users` (`id`, `username`, `email`, `password_hash`, `full_name`, `role_id`, `is_active`, `phone`, `profile_photo`, `google_id`, `can_change_password`, `last_login`, `last_login_ip`, `created_at`, `updated_at`, `last_login_at`, `sessions_valid_from`) VALUES
-(1, 'tarihci20', 'admin@vildanportal.com', '$2y$10$O2zm8VliTF6.2XujECWOLOIn8PfwqLjByxcrWuqT2rlfMYmSWR3V6', 'Admin Kullanıcı', 1, 1, NULL, NULL, NULL, 1, '2025-10-12 16:59:36', '185.118.178.11', '2025-10-08 19:18:53', '2025-10-24 17:18:30', '2025-10-24 20:18:30', '2025-10-12 18:20:35'),
-(5, 'vildan', 'vildankoleji@gmail.com', '$2y$10$WilIrfKZ3/1rIxGoDrGriuTJA/NlLpTzAIfiBIUc0Dz5MxV8vrFBi', 'Vildan Öğretmen', 2, 1, NULL, NULL, NULL, 0, NULL, '185.118.178.11', '2025-10-23 21:33:11', '2025-10-23 21:40:55', '2025-10-24 00:40:55', '2025-10-23 21:33:11');
+(1, 'tarihci20', 'admin@vildanportal.com', '$2y$10$O2zm8VliTF6.2XujECWOLOIn8PfwqLjByxcrWuqT2rlfMYmSWR3V6', 'Admin Kullanıcı', 1, 1, NULL, NULL, NULL, 1, '2025-10-12 16:59:36', '185.118.178.11', '2025-10-08 19:18:53', '2025-10-24 17:34:57', '2025-10-24 20:34:57', '2025-10-12 18:20:35'),
+(5, 'vildan', 'vildankoleji@gmail.com', '$2y$10$WilIrfKZ3/1rIxGoDrGriuTJA/NlLpTzAIfiBIUc0Dz5MxV8vrFBi', 'Vildan Öğretmen', 2, 1, NULL, NULL, NULL, 0, NULL, '185.118.178.11', '2025-10-23 21:33:11', '2025-10-24 17:31:08', '2025-10-24 00:40:55', '2025-10-23 21:33:11');
 
 -- --------------------------------------------------------
 
@@ -1355,7 +1356,7 @@ ALTER TABLE `vp_activity_areas`
 -- Tablo için AUTO_INCREMENT değeri `vp_role_page_permissions`
 --
 ALTER TABLE `vp_role_page_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `vp_students`
