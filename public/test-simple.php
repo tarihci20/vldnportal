@@ -6,12 +6,30 @@ error_reporting(E_ALL);
 
 echo "Test başladı<br>";
 
-// Config yükle
-require_once '../config/config.php';
-echo "Config yüklendi<br>";
+// ROOT_PATH tanımla
+define('ROOT_PATH', dirname(__DIR__));
+define('BASE_PATH', '/portalv2');
+define('BASE_URL', 'https://vldn.in/portalv2');
+define('PUBLIC_PATH', ROOT_PATH . '/public');
+define('APP_PATH', ROOT_PATH . '/app');
+define('CONFIG_PATH', ROOT_PATH . '/config');
+define('CORE_PATH', ROOT_PATH . '/core');
+
+echo "Constants defined<br>";
+
+// DB sabitleri tanımla
+define('DB_HOST', 'localhost');
+define('DB_PORT', '3306');
+define('DB_NAME', 'vildacgg_portalv2');
+define('DB_USER', 'vildacgg_tarihci20');
+define('DB_PASS', 'C@rg_;NBXBu5');
+define('DB_CHARSET', 'utf8mb4');
+define('APP_DEBUG', true);
+
+echo "DB Constants defined<br>";
 
 // Autoload yükle
-require_once '../vendor/autoload.php';
+require_once ROOT_PATH . '/vendor/autoload.php';
 echo "Autoload yüklendi<br>";
 
 // Database test
