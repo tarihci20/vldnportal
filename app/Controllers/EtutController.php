@@ -140,6 +140,42 @@ class EtutController extends Controller
     }
     
     /**
+     * Ortaokul Etüt Başvuru Oluştur
+     */
+    public function createOrtaokul()
+    {
+        // Vice principal kontrolü
+        $user = currentUser();
+        if ($user['role'] === 'vice_principal' && $user['etut_type'] !== 'ortaokul') {
+            setFlashMessage('Bu alana erişim yetkiniz yok.', 'error');
+            redirect('/etut');
+        }
+        
+        $this->view('etut/create', [
+            'title' => 'Yeni Ortaokul Etüt Başvurusu',
+            'etutType' => 'ortaokul'
+        ]);
+    }
+    
+    /**
+     * Lise Etüt Başvuru Oluştur
+     */
+    public function createLise()
+    {
+        // Vice principal kontrolü
+        $user = currentUser();
+        if ($user['role'] === 'vice_principal' && $user['etut_type'] !== 'lise') {
+            setFlashMessage('Bu alana erişim yetkiniz yok.', 'error');
+            redirect('/etut');
+        }
+        
+        $this->view('etut/create', [
+            'title' => 'Yeni Lise Etüt Başvurusu',
+            'etutType' => 'lise'
+        ]);
+    }
+    
+    /**
      * Başvuru kaydetme
      */
     public function store()

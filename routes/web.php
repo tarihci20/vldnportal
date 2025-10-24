@@ -124,12 +124,16 @@ $router->post('/etut/public/submit', 'PublicEtutController@submit');
 
 // Etüt Alanları (giriş gerektirir)
 $router->get('/etut', 'EtutController@index', 'etut.index'); // Ana sayfa (kare kartlar)
-$router->get('/etut/ortaokul', 'EtutController@ortaokul', 'etut.ortaokul'); // Ortaokul listesi
-$router->get('/etut/lise', 'EtutController@lise', 'etut.lise'); // Lise listesi
 
 // ÖNEMLİ: Statik route'lar dinamik route'lardan ÖNCE tanımlanmalı!
 $router->get('/etut/form', 'EtutController@form', 'etut.form');
 $router->get('/etut/create', 'EtutController@create', 'etut.create');
+$router->get('/etut/ortaokul/create', 'EtutController@createOrtaokul', 'etut.ortaokul.create');
+$router->get('/etut/lise/create', 'EtutController@createLise', 'etut.lise.create');
+
+// Etüt Alanları listesi
+$router->get('/etut/ortaokul', 'EtutController@ortaokul', 'etut.ortaokul'); // Ortaokul listesi
+$router->get('/etut/lise', 'EtutController@lise', 'etut.lise'); // Lise listesi
 
 // Dinamik route'lar (ID ile) en sonda!
 $router->post('/etut', 'EtutController@store');

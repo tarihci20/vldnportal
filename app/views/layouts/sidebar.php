@@ -122,16 +122,31 @@ function isActiveText($path, $currentUrl) {
                     <i class="fas fa-chevron-down w-3 h-3 transition-transform" :class="{ 'rotate-180': open }"></i>
                 </button>
                 <ul x-show="open" x-transition class="py-2 space-y-2 pl-4">
+                    <!-- Ortaokul -->
                     <li>
-                        <a href="<?= url('/etut') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/etut', $currentUrl) ?>">
-                            <i class="fas fa-list w-4 h-4 transition duration-75 <?= isActiveText('/etut', $currentUrl) ?>"></i>
-                            <span class="ml-3 <?= isActiveText('/etut', $currentUrl) ?>">Başvurular</span>
+                        <a href="<?= url('/etut/ortaokul') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/etut/ortaokul', $currentUrl) ?>">
+                            <i class="fas fa-school w-4 h-4 transition duration-75 <?= isActiveText('/etut/ortaokul', $currentUrl) ?>"></i>
+                            <span class="ml-3 <?= isActiveText('/etut/ortaokul', $currentUrl) ?>">Ortaokul Başvuruları</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?= url('/etut/create') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="<?= url('/etut/ortaokul/create') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fas fa-plus w-4 h-4 text-gray-500 dark:text-gray-400"></i>
-                            <span class="ml-3 text-gray-700 dark:text-gray-200">Yeni Başvuru</span>
+                            <span class="ml-3 text-gray-700 dark:text-gray-200">Yeni Ortaokul Başvurusu</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Lise -->
+                    <li class="pt-2 mt-2 border-t border-gray-300 dark:border-gray-600">
+                        <a href="<?= url('/etut/lise') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/etut/lise', $currentUrl) ?>">
+                            <i class="fas fa-graduation-cap w-4 h-4 transition duration-75 <?= isActiveText('/etut/lise', $currentUrl) ?>"></i>
+                            <span class="ml-3 <?= isActiveText('/etut/lise', $currentUrl) ?>">Lise Başvuruları</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= url('/etut/lise/create') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i class="fas fa-plus w-4 h-4 text-gray-500 dark:text-gray-400"></i>
+                            <span class="ml-3 text-gray-700 dark:text-gray-200">Yeni Lise Başvurusu</span>
                         </a>
                     </li>
                 </ul>
