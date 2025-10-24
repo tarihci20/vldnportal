@@ -567,10 +567,10 @@ class AdminController extends Controller
         foreach ($permissions as $pageId => $perms) {
             $permissionData[] = [
                 'page_id' => $pageId,
-                'can_view' => isset($perms['view']) ? 1 : 0,
-                'can_create' => isset($perms['create']) ? 1 : 0,
-                'can_edit' => isset($perms['edit']) ? 1 : 0,
-                'can_delete' => isset($perms['delete']) ? 1 : 0
+                'can_view' => isset($perms['can_view']) ? 1 : 0,
+                'can_create' => isset($perms['can_create']) ? 1 : 0,
+                'can_edit' => isset($perms['can_edit']) ? 1 : 0,
+                'can_delete' => isset($perms['can_delete']) ? 1 : 0
             ];
         }
         
