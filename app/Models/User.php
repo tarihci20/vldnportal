@@ -86,17 +86,21 @@ class User extends Model
      */
     public function updateRolePermissions($roleId, $permissions) {
         try {
+            error_log("updateRolePermissions called: roleId=$roleId, permissions count=" . count($permissions));
+            
             // Önce mevcut izinleri sil
             $deleteSql = "DELETE FROM vp_role_page_permissions WHERE role_id = :role_id";
             $this->getDb()->query($deleteSql);
             $this->getDb()->bind(':role_id', $roleId);
             $this->getDb()->execute();
+            error_log("Deleted old permissions for role $roleId");
             
             // Yeni izinleri ekle
             $insertSql = "INSERT INTO vp_role_page_permissions (role_id, page_id, can_view, can_create, can_edit, can_delete) 
                          VALUES (:role_id, :page_id, :can_view, :can_create, :can_edit, :can_delete)";
             
             foreach ($permissions as $permission) {
+                error_log("Inserting permission: " . json_encode($permission));
                 $this->getDb()->query($insertSql);
                 $this->getDb()->bind(':role_id', $roleId);
                 $this->getDb()->bind(':page_id', $permission['page_id']);
@@ -107,8 +111,10 @@ class User extends Model
                 $this->getDb()->execute();
             }
             
+            error_log("updateRolePermissions completed successfully");
             return true;
         } catch (\Exception $e) {
+            error_log("updateRolePermissions error: " . $e->getMessage());
             return false;
         }
     }
