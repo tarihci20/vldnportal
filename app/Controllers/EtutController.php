@@ -52,6 +52,17 @@ class EtutController extends Controller
      */
     public function ortaokul()
     {
+        // Müdür yardımcısı için etut_type kontrol
+        $user = currentUser();
+        if ($user['role'] === 'vice_principal') {
+            // Müdür yardımcısı ise kendisine atanan etut_type'ını kontrol et
+            $userEtutType = $user['etut_type'] ?? null;
+            if ($userEtutType !== 'ortaokul') {
+                setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
+                redirect('/etut');
+            }
+        }
+        
         $formType = 'ortaokul';
         $applications = $this->etutModel->getByFormType($formType);
         // Debug: write a compact representation of the first application to logs to verify keys
@@ -77,6 +88,17 @@ class EtutController extends Controller
      */
     public function lise()
     {
+        // Müdür yardımcısı için etut_type kontrol
+        $user = currentUser();
+        if ($user['role'] === 'vice_principal') {
+            // Müdür yardımcısı ise kendisine atanan etut_type'ını kontrol et
+            $userEtutType = $user['etut_type'] ?? null;
+            if ($userEtutType !== 'lise') {
+                setFlashMessage('Bu sayfaya erişim yetkiniz bulunmamaktadır.', 'error');
+                redirect('/etut');
+            }
+        }
+        
         $formType = 'lise';
         $applications = $this->etutModel->getByFormType($formType);
         // Debug: write a compact representation of the first application to logs to verify keys
