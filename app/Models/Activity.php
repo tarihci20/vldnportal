@@ -867,7 +867,7 @@ class Activity extends Model
                     $conflictingDates[] = $date;
                     $conflictDetails[] = [
                         'date' => $date,
-                        'conflicting_activities' => $conflictResult['conflicting_activities']
+                        'conflicting_activities' => $conflictResult['conflicts'] ?? []
                     ];
                 }
             }
