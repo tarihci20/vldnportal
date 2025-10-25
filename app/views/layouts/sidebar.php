@@ -121,7 +121,7 @@ function isActiveText($path, $currentUrl) {
             <?php endif; ?>
             
             <!-- Etüt Yönetimi -->
-            <?php if (hasPermission('etut', 'can_view') || hasPermission('etut-lise', 'can_view') || hasPermission('etut-ortaokul', 'can_view')): ?>
+            <?php if (hasPermission('etut-ortaokul', 'can_view') || hasPermission('etut-lise', 'can_view')): ?>
             <li x-data="{ open: <?= strpos($currentUrl, '/etut') !== false ? 'true' : 'false' ?> }">
                 <button @click="open = !open" type="button" class="flex items-center w-full p-2 text-base transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:bg-gray-700">
                     <i class="fas fa-book-reader w-5 h-5 text-gray-500 dark:text-gray-400"></i>
