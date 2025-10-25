@@ -8,12 +8,12 @@
 -- =================================================================
 SELECT 
     u.id as user_id,
-    u.name as kullanici_adi,
+    u.username as kullanici_adi,
     u.role_id,
     r.role_name as rol_adi
 FROM vp_users u
 JOIN vp_roles r ON r.id = u.role_id
-WHERE u.name = 'emine';
+WHERE u.username = 'emine';
 
 -- BEKLENEN: role_id = 5 (vice_principal)
 
