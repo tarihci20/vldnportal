@@ -406,7 +406,7 @@ class AdminController extends Controller
         ];
         
         // Etüt tipi - Vice Principal rol için
-        $role = $this->userModel->getRoleById($roleId);
+        $role = $this->roleModel->getRoleById($roleId);
         if ($role && $role['role_name'] === 'vice_principal') {
             $etutType = trim($_POST['etut_type'] ?? '');
             if ($etutType && in_array($etutType, ['ortaokul', 'lise'])) {
