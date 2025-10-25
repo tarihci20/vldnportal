@@ -2,6 +2,7 @@
 /**
  * SESSION DEBUG - Ne oluyor?
  */
+session_name('app_session');
 session_start();
 
 echo "<h1>Session Debug</h1>";

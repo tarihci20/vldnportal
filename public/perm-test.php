@@ -2,6 +2,7 @@
 /**
  * SIMPLE Permission Test
  */
+session_name('app_session');
 session_start();
 ?>
 <!DOCTYPE html>
