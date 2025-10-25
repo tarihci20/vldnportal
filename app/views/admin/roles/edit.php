@@ -112,6 +112,38 @@
                             Güncelle
                         </button>
                     </div>
+                    
+                    <!-- CRITICAL FIX: Hidden inputs untuk unchecked checkboxes -->
+                    <script>
+                    document.querySelector('form').addEventListener('submit', function(e) {
+                        const form = this;
+                        const pageIds = new Set();
+                        
+                        // Tüm checkbox'lar için page ID'leri topla
+                        form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                            const match = checkbox.name.match(/permissions\[(\d+)\]/);
+                            if (match) {
+                                pageIds.add(match[1]);
+                            }
+                        });
+                        
+                        // Her sayfa için, eğer hiçbir checkbox seçilmemişse 0 değerlendirmesi gönder
+                        pageIds.forEach(pageId => {
+                            const permTypes = ['can_view', 'can_create', 'can_edit', 'can_delete'];
+                            permTypes.forEach(permType => {
+                                const checkbox = form.querySelector(`input[name="permissions[${pageId}][${permType}]"]`);
+                                if (checkbox && !checkbox.checked) {
+                                    // Unchecked checkbox, hidden input ekle
+                                    const hidden = document.createElement('input');
+                                    hidden.type = 'hidden';
+                                    hidden.name = `permissions[${pageId}][${permType}]`;
+                                    hidden.value = '0';
+                                    form.appendChild(hidden);
+                                }
+                            });
+                        });
+                    });
+                    </script>
                 </form>
             </div>
 

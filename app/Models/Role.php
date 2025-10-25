@@ -154,32 +154,25 @@ class Role extends Model {
     }
     
     /**
-     * FAZA 2: Rol için erişilebilir sayfaları getir (Veritabanı bazlı)
+     * FAZA 2 REVİSED: Rol için erişilebilir sayfaları getir
      * 
-     * Bu metod Controller'da filtreleme yapmak yerine,
-     * veritabanında tanımlanmış erişim kurallarını kullanır
+     * CRITICAL FIX: Bu metod TÜM aktif sayfaları döndürmelidir, böylece form editleme sayfasında
+     * tüm sayfalar gösterilir ve admin yeni izinler atayabilir.
+     * Önceki sürümde vp_role_page_permissions INNER JOIN kullanıyordu, bu yüzden
+     * henüz hiçbir izin atanmamış roller için boş dönüyordu!
      * 
      * @param int $roleId Rol ID'si
      * @return array Erişilebilir sayfaların listesi
      */
     public function getRoleAccessiblePages($roleId) {
         try {
-            // Roller için sabit erişim kuralları
-            // RULE 1: Admin (role_id=1) → Tüm sayfalar
-            // RULE 2: Öğretmen (role_id=2) → Tüm sayfalar + Etüt
-            // RULE 3: Sekreter (role_id=3) → Normal sayfalar (etüt hariç)
-            // RULE 4: Müdür (role_id=4) → Normal sayfalar (okuma)
-            // RULE 5: Müdür Yardımcısı (role_id=5) → Normal + Etüt sayfaları
-            
-            // VERITABANI BAZLI: vp_role_page_permissions'dan oku
+            // FIX: LEFT JOIN kullan, böylece tüm sayfalar gösterilir
+            // Permission verisi yüklenmeyebilir, ama sayfalar yine de gösterilir
             $sql = "SELECT p.* FROM vp_pages p
-                    INNER JOIN vp_role_page_permissions rpp ON p.id = rpp.page_id
                     WHERE p.is_active = 1 
-                    AND rpp.role_id = :role_id
                     ORDER BY p.sort_order, p.id";
             
             $this->getDb()->query($sql);
-            $this->getDb()->bind(':role_id', $roleId);
             return $this->getDb()->resultSet();
         } catch (\Exception $e) {
             error_log("Role getRoleAccessiblePages error: " . $e->getMessage());
