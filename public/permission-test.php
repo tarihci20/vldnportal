@@ -121,12 +121,18 @@ session_start();
 
         <?php
         // Database bağlantısı
-        require_once __DIR__ . '/vendor/autoload.php';
-        require_once __DIR__ . '/config/database.php';
+        try {
+            require_once __DIR__ . '/../vendor/autoload.php';
+            require_once __DIR__ . '/../config/database.php';
 
-        use Core\Database;
+            use Core\Database;
 
-        $db = Database::getInstance();
+            $db = Database::getInstance();
+        } catch (Exception $e) {
+            echo "<div class='error'>❌ Database bağlantı hatası: " . $e->getMessage() . "</div>";
+            echo "<pre>" . $e->getTraceAsString() . "</pre>";
+            die();
+        }
 
         // Test 1: Git Deployment Kontrolü
         echo "<h2>1️⃣ Git Deployment Kontrolü</h2>";
@@ -255,7 +261,11 @@ session_start();
         // Test 5: hasPermission() Fonksiyonu Test
         echo "<h2>5️⃣ hasPermission() Fonksiyon Testi</h2>";
         
-        require_once __DIR__ . '/app/helpers/session.php';
+        if (file_exists(__DIR__ . '/../app/helpers/session.php')) {
+            require_once __DIR__ . '/../app/helpers/session.php';
+        } else {
+            echo "<div class='error'>❌ session.php bulunamadı!</div>";
+        }
         
         if (isset($_SESSION['user_id'])) {
             $testPages = [
