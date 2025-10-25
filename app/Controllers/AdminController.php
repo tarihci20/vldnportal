@@ -559,58 +559,52 @@ class AdminController extends Controller
     }
     
     /**
-     * Kullanıcı izinlerini kaydet
+     * FAZA 2 REFACTOR: Kullanıcı izinlerini kaydet (Basitleştirilmiş)
+     * 
+     * Artık:
+     * - Filtreleme yapılmıyor (veritabanda yapılıyor)
+     * - TÜM form girdileri kaydedilıyor
+     * - Controller nur giriş/çıkış doğrulama yapıyor
      */
     private function saveUserPermissions($roleId, $permissions) {
-        error_log("=== saveUserPermissions called: roleId=$roleId ===");
-        error_log("Received permissions array: " . json_encode($permissions));
-        error_log("Permissions keys: " . implode(", ", array_keys($permissions)));
+        error_log("=== FAZA 2: saveUserPermissions (Simplified) ===");
+        error_log("RoleID: $roleId");
+        error_log("Permissions received: " . count($permissions) . " pages");
         
-        // Tüm sayfaları al
-        $allPages = $this->roleModel->getAllPages();
-        error_log("Total pages in database: " . count($allPages));
-        
-        // Filter yapılan sayfaları al (roleId'ye göre görüntülenen sayfalar)
-        $role = $this->roleModel->getRoleById($roleId);
-        $filteredPages = array_filter($allPages, function($page) use ($role) {
-            // Sadece aktif sayfaları göster
-            if ((!isset($page['is_active']) || !$page['is_active'])) {
-                return false;
-            }
-            
-            $etutType = $page['etut_type'] ?? 'all';
-            
-            // 'all' sayfaları herkese göster
-            if ($etutType === 'all') {
-                return true;
-            }
-            
-            // ortaokul ve lise sayfaları için - sadece sistem yöneticileri ve öğretmenlere göster
-            if (in_array($role['role_name'], ['admin', 'teacher', 'secretary', 'principal'])) {
-                return true;
-            }
-            
-            // Müdür yardımcısı için - tüm sayfaları göster
-            if ($role['role_name'] === 'vice_principal') {
-                return true;
-            }
-            
+        // 1. Giriş Doğrulaması
+        if (empty($roleId) || $roleId <= 0) {
+            error_log("❌ Invalid roleId: $roleId");
             return false;
-        });
+        }
         
-        error_log("Filtered pages for role: " . count($filteredPages));
+        if (empty($permissions)) {
+            error_log("⚠️  No permissions provided for roleId: $roleId");
+            $permissions = [];
+        }
         
+        // 2. Rol Kontrol Et
+        $role = $this->roleModel->getRoleById($roleId);
+        if (!$role) {
+            error_log("❌ Role not found: $roleId");
+            return false;
+        }
+        
+        error_log("✅ Role found: {$role['display_name']}");
+        
+        // 3. İzin Verisi Hazırla
+        // FAZA 2 LOGIC: Tüm form girdilerini direkt olarak kaydet
+        // Filtreleme veritabanında vp_role_page_permissions'da zaten yapılmış
         $permissionData = [];
         
-        // Tüm filtrelenen sayfalar için permission verisi oluştur
-        foreach ($filteredPages as $page) {
-            $pageId = $page['id'];
-            $perms = $permissions[$pageId] ?? []; // Form'dan gelen permission, yoksa boş array
-            
-            error_log("Processing page $pageId: form had " . count($perms) . " permissions");
+        foreach ($permissions as $pageId => $perms) {
+            // Çıkış Doğrulaması: page_id numeric olmalı
+            if (!is_numeric($pageId) || $pageId <= 0) {
+                error_log("⚠️  Skipping invalid pageId: $pageId");
+                continue;
+            }
             
             $permissionData[] = [
-                'page_id' => $pageId,
+                'page_id' => (int)$pageId,
                 'can_view' => isset($perms['can_view']) ? 1 : 0,
                 'can_create' => isset($perms['can_create']) ? 1 : 0,
                 'can_edit' => isset($perms['can_edit']) ? 1 : 0,
@@ -618,12 +612,23 @@ class AdminController extends Controller
             ];
         }
         
-        error_log("Final permission data to be saved: " . json_encode($permissionData));
+        error_log("Permission data prepared: " . count($permissionData) . " pages");
         
-        $result = $this->userModel->updateRolePermissions($roleId, $permissionData);
-        error_log("updateRolePermissions returned: " . ($result ? 'true' : 'false'));
-        
-        return $result;
+        // 4. Veritabanına Kaydet
+        try {
+            $result = $this->userModel->updateRolePermissions($roleId, $permissionData);
+            
+            if ($result) {
+                error_log("✅ Permissions saved successfully for roleId: $roleId");
+                return true;
+            } else {
+                error_log("❌ Failed to save permissions for roleId: $roleId");
+                return false;
+            }
+        } catch (\Exception $e) {
+            error_log("❌ Exception saving permissions: " . $e->getMessage());
+            return false;
+        }
     }
     
     /**
@@ -1000,6 +1005,7 @@ class AdminController extends Controller
 
     /**
      * Rol Düzenleme Sayfası
+     * FAZA 2 REFACTOR: Erişilebilir sayfaları veritabanından oku
      */
     public function editRole($id) {
         $role = $this->roleModel->getRoleById($id);
@@ -1009,36 +1015,13 @@ class AdminController extends Controller
             redirect('/admin/roles');
         }
 
+        // FAZA 2: Veritabanında tanımlı erişilebilir sayfaları kullan
         $permissions = $this->roleModel->getPermissionsByRoleId($id);
-        $pages = $this->roleModel->getAllPages();
+        $pages = $this->roleModel->getRoleAccessiblePages($id);
         
-        // Rol türüne göre sayfaları filtrele
-        $pages = array_filter($pages, function($page) use ($role) {
-            // Sadece aktif sayfaları göster
-            if ((!isset($page['is_active']) || !$page['is_active'])) {
-                return false;
-            }
-            
-            $etutType = $page['etut_type'] ?? 'all';
-            
-            // 'all' sayfaları herkese göster
-            if ($etutType === 'all') {
-                return true;
-            }
-            
-            // ortaokul ve lise sayfaları için - sadece sistem yöneticileri ve öğretmenlere göster
-            if (in_array($role['role_name'], ['admin', 'teacher', 'secretary', 'principal'])) {
-                return true;
-            }
-            
-            // Müdür yardımcısı için - kendisine atanan etüt_type sayfalarını göster
-            if ($role['role_name'] === 'vice_principal') {
-                // NOT: vice_principal için db'de etut_type kaydedilmeli, ama şimdilik tüm sayfaları göster
-                return true;
-            }
-            
-            return false;
-        });
+        // Artık filtreleme yapmıyoruz - veritabanda zaten yapılmış
+        // $pages veya permissioni tekrar filtrelemek gerekirse:
+        // vp_role_page_permissions tablosundaki veri güvenilir
 
         $this->view('admin/roles/edit', [
             'title' => 'Rol Düzenle: ' . $role['display_name'],

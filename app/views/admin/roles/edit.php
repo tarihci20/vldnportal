@@ -45,6 +45,13 @@
                     <div class="bg-white p-6 rounded-lg shadow">
                         <h2 class="text-xl font-semibold mb-4">Rol İzinleri</h2>
                         
+                        <!-- FAZA 2 NOTE: Bu form artık yalnızca erişilebilir sayfaları gösteriyor
+                             vp_role_page_permissions tablosunda tanımlanan sayfalar.
+                             Filtreleme Controller değil, Veritabanda yapılıyor. -->
+                        <p class="text-sm text-gray-600 mb-4">
+                            Aşağıda bu rol için tanımlı sayfalar listeleniyor. Her sayfa için izinleri belirleyiniz.
+                        </p>
+                        
                         <div class="overflow-x-auto">
                             <table class="min-w-full">
                                 <thead class="bg-gray-50">
