@@ -53,7 +53,7 @@ function isActiveText($path, $currentUrl) {
             <?php endif; ?>
             
             <!-- Öğrenci Yönetimi -->
-            <?php if (in_array($role, ['admin', 'mudur', 'mudur_yardimcisi', 'sekreter'])): ?>
+            <?php if (hasPermission('students', 'can_view')): ?>
             <li x-data="{ open: <?= strpos($currentUrl, '/students') !== false ? 'true' : 'false' ?> }">
                 <button @click="open = !open" type="button" class="flex items-center w-full p-2 text-base transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:bg-gray-700">
                     <i class="fas fa-user-graduate w-5 h-5 text-gray-500 dark:text-gray-400"></i>
@@ -67,6 +67,7 @@ function isActiveText($path, $currentUrl) {
                             <span class="ml-3 <?= isActiveText('/students', $currentUrl) ?>">Öğrenci Listesi</span>
                         </a>
                     </li>
+                    <?php if (hasPermission('students', 'can_create')): ?>
                     <li>
                         <a href="<?= url('/students/create') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fas fa-plus w-4 h-4 text-gray-500 dark:text-gray-400"></i>
@@ -79,11 +80,13 @@ function isActiveText($path, $currentUrl) {
                             <span class="ml-3 text-gray-700 dark:text-gray-200">Excel'den Yükle</span>
                         </a>
                     </li>
+                    <?php endif; ?>
                 </ul>
             </li>
             <?php endif; ?>
             
             <!-- Etkinlik Yönetimi -->
+            <?php if (hasPermission('activities', 'can_view')): ?>
             <li x-data="{ open: <?= strpos($currentUrl, '/activities') !== false ? 'true' : 'false' ?> }">
                 <button @click="open = !open" type="button" class="flex items-center w-full p-2 text-base transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:bg-gray-700">
                     <i class="fas fa-calendar-alt w-5 h-5 text-gray-500 dark:text-gray-400"></i>
@@ -97,13 +100,15 @@ function isActiveText($path, $currentUrl) {
                             <span class="ml-3 <?= isActiveText('/activities', $currentUrl) ?>">Etkinlik Listesi</span>
                         </a>
                     </li>
+                    <?php if (hasPermission('activities', 'can_create')): ?>
                     <li>
                         <a href="<?= url('/activities/create') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fas fa-plus w-4 h-4 text-gray-500 dark:text-gray-400"></i>
                             <span class="ml-3 text-gray-700 dark:text-gray-200">Yeni Etkinlik</span>
                         </a>
                     </li>
-                    <?php if (in_array($role, ['admin', 'mudur'])): ?>
+                    <?php endif; ?>
+                    <?php if (hasPermission('activity-areas', 'can_view')): ?>
                     <li>
                         <a href="<?= url('/activity-areas') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fas fa-map-marker-alt w-4 h-4 text-gray-500 dark:text-gray-400"></i>
@@ -113,8 +118,10 @@ function isActiveText($path, $currentUrl) {
                     <?php endif; ?>
                 </ul>
             </li>
+            <?php endif; ?>
             
             <!-- Etüt Yönetimi -->
+            <?php if (hasPermission('etut', 'can_view') || hasPermission('etut-lise', 'can_view') || hasPermission('etut-ortaokul', 'can_view')): ?>
             <li x-data="{ open: <?= strpos($currentUrl, '/etut') !== false ? 'true' : 'false' ?> }">
                 <button @click="open = !open" type="button" class="flex items-center w-full p-2 text-base transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:bg-gray-700">
                     <i class="fas fa-book-reader w-5 h-5 text-gray-500 dark:text-gray-400"></i>
@@ -123,37 +130,46 @@ function isActiveText($path, $currentUrl) {
                 </button>
                 <ul x-show="open" x-transition class="py-2 space-y-2 pl-4">
                     <!-- Ortaokul -->
+                    <?php if (hasPermission('etut-ortaokul', 'can_view')): ?>
                     <li>
                         <a href="<?= url('/etut/ortaokul') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/etut/ortaokul', $currentUrl) ?>">
                             <i class="fas fa-school w-4 h-4 transition duration-75 <?= isActiveText('/etut/ortaokul', $currentUrl) ?>"></i>
                             <span class="ml-3 <?= isActiveText('/etut/ortaokul', $currentUrl) ?>">Ortaokul Başvuruları</span>
                         </a>
                     </li>
+                    <?php if (hasPermission('etut-ortaokul', 'can_create')): ?>
                     <li>
                         <a href="<?= url('/etut/ortaokul/create') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fas fa-plus w-4 h-4 text-gray-500 dark:text-gray-400"></i>
                             <span class="ml-3 text-gray-700 dark:text-gray-200">Yeni Ortaokul Başvurusu</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+                    <?php endif; ?>
                     
                     <!-- Lise -->
+                    <?php if (hasPermission('etut-lise', 'can_view')): ?>
                     <li class="pt-2 mt-2 border-t border-gray-300 dark:border-gray-600">
                         <a href="<?= url('/etut/lise') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/etut/lise', $currentUrl) ?>">
                             <i class="fas fa-graduation-cap w-4 h-4 transition duration-75 <?= isActiveText('/etut/lise', $currentUrl) ?>"></i>
                             <span class="ml-3 <?= isActiveText('/etut/lise', $currentUrl) ?>">Lise Başvuruları</span>
                         </a>
                     </li>
+                    <?php if (hasPermission('etut-lise', 'can_create')): ?>
                     <li>
                         <a href="<?= url('/etut/lise/create') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <i class="fas fa-plus w-4 h-4 text-gray-500 dark:text-gray-400"></i>
                             <span class="ml-3 text-gray-700 dark:text-gray-200">Yeni Lise Başvurusu</span>
                         </a>
                     </li>
+                    <?php endif; ?>
+                    <?php endif; ?>
                 </ul>
             </li>
+            <?php endif; ?>
             
             <!-- Raporlar -->
-            <?php if (in_array($role, ['admin', 'mudur', 'mudur_yardimcisi'])): ?>
+            <?php if (hasPermission('reports', 'can_view')): ?>
             <li>
                 <a href="<?= url('/reports') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <i class="fas fa-chart-bar w-5 h-5 text-gray-500 dark:text-gray-400"></i>
@@ -163,34 +179,40 @@ function isActiveText($path, $currentUrl) {
             <?php endif; ?>
             
             <!-- Admin Panel -->
-            <?php if (in_array($role, ['admin', 'mudur'])): ?>
+            <?php if (hasPermission('users', 'can_view') || hasPermission('roles', 'can_view')): ?>
             <li class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
                 <p class="px-3 text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">Yönetim</p>
             </li>
             
             <!-- Kullanıcılar -->
+            <?php if (hasPermission('users', 'can_view')): ?>
             <li>
                 <a href="<?= url('/admin/users') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/admin/users', $currentUrl) ?>">
                     <i class="fas fa-users w-5 h-5 transition duration-75 <?= isActiveText('/admin/users', $currentUrl) ?>"></i>
                     <span class="ml-3 <?= isActiveText('/admin/users', $currentUrl) ?>">Kullanıcılar</span>
                 </a>
             </li>
+            <?php endif; ?>
             
             <!-- Rol İzinleri -->
+            <?php if (hasPermission('roles', 'can_view')): ?>
             <li>
                 <a href="<?= url('/admin/roles') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/admin/roles', $currentUrl) ?>">
                     <i class="fas fa-shield-alt w-5 h-5 transition duration-75 <?= isActiveText('/admin/roles', $currentUrl) ?>"></i>
                     <span class="ml-3 <?= isActiveText('/admin/roles', $currentUrl) ?>">Rol İzinleri</span>
                 </a>
             </li>
+            <?php endif; ?>
             
             <!-- Sistem Ayarları -->
+            <?php if (hasPermission('settings', 'can_view')): ?>
             <li>
                 <a href="<?= url('/admin/settings') ?>" class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 group <?= isActive('/admin/settings', $currentUrl) ?>">
                     <i class="fas fa-cog w-5 h-5 transition duration-75 <?= isActiveText('/admin/settings', $currentUrl) ?>"></i>
                     <span class="ml-3 <?= isActiveText('/admin/settings', $currentUrl) ?>">Sistem Ayarları</span>
                 </a>
             </li>
+            <?php endif; ?>
             <?php endif; ?>
             
         </ul>
