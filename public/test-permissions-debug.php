@@ -6,11 +6,61 @@
  * Erişim: https://portal.vildacgg.com/test-permissions-debug.php
  */
 
-// Veritabanı bağlantısı
-require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../core/Database.php';
+// Hataları göster (debug)
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
+// Veritabanı bağlantısı
 try {
+    // Vendor autoload'ı yükle
+    require_once __DIR__ . '/../vendor/autoload.php';
+    
+    // Config yükle
+    $rootPath = dirname(__DIR__);
+    if (!defined('ROOT_PATH')) {
+        define('ROOT_PATH', $rootPath);
+    }
+    
+    // Constants'ları yükle
+    $constantsLoaded = false;
+    $constantsPaths = [
+        ROOT_PATH . '/config/constants.php',
+        '/home/vildacgg/vldn.in/portalv2/config/constants.php',
+    ];
+    
+    foreach ($constantsPaths as $path) {
+        if (file_exists($path)) {
+            require_once $path;
+            $constantsLoaded = true;
+            break;
+        }
+    }
+    
+    if (!$constantsLoaded) {
+        throw new Exception("Constants.php bulunamadı");
+    }
+    
+    // Config'i yükle
+    $configLoaded = false;
+    $configPaths = [
+        ROOT_PATH . '/config/config.php',
+        '/home/vildacgg/vldn.in/portalv2/config/config.php',
+    ];
+    
+    foreach ($configPaths as $path) {
+        if (file_exists($path)) {
+            require_once $path;
+            $configLoaded = true;
+            break;
+        }
+    }
+    
+    if (!$configLoaded) {
+        throw new Exception("Config.php bulunamadı");
+    }
+    
+    require_once ROOT_PATH . '/core/Database.php';
+    
     $db = new \Core\Database();
     
     echo "<h1>Permission System Debug</h1>";

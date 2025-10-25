@@ -1,0 +1,70 @@
+<!-- 
+Browser Console'da permission form gönderirken ne olduğunu görmek için:
+
+1. Admin Panel > Rol İzinleri > Role 5 Düzenle sayfasında
+2. F12 tuşu basıp Developer Tools'u aç
+3. Network tab'ına git
+4. Form'da bir permission değiştir ve "Güncelle" butonuna tıkla
+5. Network tab'ında POST isteğini gör ve aşağıdaki adımları izle
+
+FORM POST İSTEĞİ KONTROLÜ:
+1. Network tab'ında /admin/roles/5 POST isteğini tıkla
+2. Request tab'ında göster:
+   - Headers
+   - Form Data (POST verilerini göster)
+   - csrf_token mevcut mi?
+   - permissions[] array'i gönderiliyor mu?
+3. Response tab'ında göster:
+   - HTTP Status Code (200, 302, 500?)
+   - Response body (hata mesajı var mı?)
+
+CONSOLE TAB'INDA KONTROL:
+- Console.log() mesajları var mı?
+- JavaScript hataları var mı?
+-->
+
+<script>
+// Admin rol düzenleme sayfasında bunu console'a yapıştır
+// (F12 > Console tab)
+
+console.log("=== PERMISSION FORM DEBUG ===");
+
+// Form elemanını bul
+const form = document.querySelector('form[action*="/admin/roles/"]');
+if (form) {
+    console.log("✓ Form bulundu");
+    
+    // Form submit event'ini dinle
+    form.addEventListener('submit', function(e) {
+        console.log("=== FORM SUBMIT EVENT ===");
+        
+        // FormData'yı logla
+        const formData = new FormData(form);
+        console.log("Form data entries:");
+        
+        let permissionCount = 0;
+        for (let [key, value] of formData.entries()) {
+            if (key.startsWith('permissions')) {
+                console.log(`  ${key} = ${value}`);
+                permissionCount++;
+            }
+        }
+        
+        console.log(`Toplam permission checkbox: ${permissionCount}`);
+        
+        if (permissionCount === 0) {
+            console.warn("⚠️ UYARI: Hiç permission gönderilmiyor!");
+        }
+        
+        // CSRF token kontrol et
+        const csrfToken = formData.get('csrf_token');
+        console.log(`CSRF Token mevcut: ${csrfToken ? '✓ Evet' : '✗ Hayır'}`);
+        
+        // Display name kontrol et
+        const displayName = formData.get('display_name');
+        console.log(`Display Name: ${displayName}`);
+    });
+} else {
+    console.error("✗ Form bulunamadı!");
+}
+</script>
