@@ -5,10 +5,11 @@
 -- ÇÖZÜM: Önce id sütununu AUTO_INCREMENT yap, sonra INSERT
 -- =================================================================
 
--- ADIM 1: vp_pages tablosunun id sütununu AUTO_INCREMENT yap
+-- ADIM 1: vp_pages tablosunun id sütununu PRIMARY KEY ve AUTO_INCREMENT yap
 -- =================================================================
+-- HATA FIX: #1075 - AUTO_INCREMENT için önce PRIMARY KEY olmalı
 ALTER TABLE vp_pages 
-MODIFY COLUMN id INT(11) NOT NULL AUTO_INCREMENT;
+MODIFY COLUMN id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY;
 
 -- ADIM 2: Eksik page_key'leri ekle (DUPLICATE hatası varsa devam eder)
 -- =================================================================
